@@ -64,6 +64,7 @@ public class RegisterLoginController {
 		request.getSession().setAttribute("user", user);
 		return modelAndView;
 	}
+	@SuppressWarnings("unused")
 	@RequestMapping ("/adminLogin")
 	public ModelAndView adminLogin(HttpServletRequest request) {
 		String adminName=request.getParameter("adminName");

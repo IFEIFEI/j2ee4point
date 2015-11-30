@@ -17,10 +17,11 @@ import cn.edu.xmu.artworkauction.entity.User;
  * @author Administrator
  *
  */
+@SuppressWarnings("unused")
 @Repository("artistDAO")
 public class ArtistDAOImpl implements ArtistDAO{
 
-    private SessionFactory sessionFactory;
+	private SessionFactory sessionFactory;
 	
 	@Resource(name="sessionFactory")
 	public void setSessionFactory(SessionFactory sessionFactory) {
