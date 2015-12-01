@@ -14,9 +14,9 @@
        <th>IDNumber</th>
      </tr>
      <tr>
-       <td>${artist.userName}</td>
-       <td>${artist.password}</td>
-       <td>${artist.IDNumber}</td>
+       <td>${user.userName}</td>
+       <td>${user.password}</td>
+       <td>${user.IDNumber}</td>
      </tr>
   </table>
 </body>

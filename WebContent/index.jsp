@@ -17,7 +17,7 @@
     <label for="password">密码：</label><input id="password" type="password" name="password"><br>
     <input type="submit" value="submit">
   </form>
-   <form action="userLogin" method="post">
+   <form action="userLoginByUserName" method="post">
     <label for="name">用户名：</label><input id="username" type="text" name="userName"><br>
     <label for="password">密码：</label><input id="password" type="password" name="password"><br>
     <input type="submit" value="submit">
