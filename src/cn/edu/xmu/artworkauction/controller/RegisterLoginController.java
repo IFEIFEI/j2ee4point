@@ -64,12 +64,16 @@ public class RegisterLoginController {
 		request.getSession().setAttribute("user", user);
 		return modelAndView;
 	}
-	@SuppressWarnings("unused")
+	
+	private Admin admin;
 	@RequestMapping ("/adminLogin")
 	public ModelAndView adminLogin(HttpServletRequest request) {
 		String adminName=request.getParameter("adminName");
 		String password=request.getParameter("password");
-		Admin admin=secureService.adminLogin(adminName, password);
-		return null;
+		ModelAndView modelAndView=new ModelAndView("Admin/admin_main");
+		admin=secureService.adminLogin(adminName, password);
+		modelAndView.addObject(admin);
+		request.getSession().setAttribute("admin", admin);
+		return modelAndView;
 	}
 }

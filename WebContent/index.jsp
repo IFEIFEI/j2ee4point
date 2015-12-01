@@ -3,8 +3,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<jsp:include page="lib/template.jsp"></jsp:include>
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="Resource/css/index/index.css">
+<script src="Resource/js/index/index.js"></script>
+<script type="text/javascript" src="indextest.js"></script>
 </head>
 <body>
  <form action="userRegister" method="post">
@@ -19,5 +22,29 @@
     <label for="password">密码：</label><input id="password" type="password" name="password"><br>
     <input type="submit" value="submit">
   </form>
+  <%String path =request.getContextPath(); %>
+  <%=path %>
+  <article class="article"></article>
+  <script>
+  
+  	hello();
+  </script>
 </body>
+	<script type="text/html" id="information" class="template">
+		<div>
+			<div>
+				<form action="adminLogin" method="post">
+					<label>
+						<span>UserName:</span>
+						<input type="text" name="adminName" value=""></label>
+					<label>
+					<lable>
+						<span>PassWord:</span>
+						<input type="password" name="password">
+					</lable>
+					<button type="submit">Login</button>
+				</form>
+			</div>
+		</div>
+	</script>
 </html>
