@@ -17,8 +17,8 @@
 	<mvc:annotation-driven />
 	
 	<!-- 静态资源的访问 -->
-	<mvc:resources location="/Resource" mapping="*"/>
-
+	<mvc:resources location="/" mapping="*"/>
+	
 	<!-- 定义视图解析器 -->	
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/"></property>
