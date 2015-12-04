@@ -48,6 +48,8 @@ public class ArtNews implements java.io.Serializable
 	@Column
 	private HTML article;
 	@Column
+	private String type;
+	@Column
 	private Data createtime;
 	@Column
 	private Data edittime;
@@ -94,6 +96,14 @@ public class ArtNews implements java.io.Serializable
 	public void setArticle(HTML article)
 	{
 		this.article=article;
+	}
+	public String getType()
+	{
+		return this.type;
+	}
+	public void setType(String type)
+	{
+		this.type=type;
 	}
 	public Data getCreatetime()
 	{
