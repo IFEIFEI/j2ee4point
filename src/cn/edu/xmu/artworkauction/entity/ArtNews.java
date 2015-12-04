@@ -21,7 +21,7 @@ import org.hibernate.annotations.GenericGenerators;
 
 import com.sun.org.apache.bcel.internal.generic.GETFIELD;
 
-import javafx.scene.chart.PieChart.Data;
+import java.util.Date;
 
 /*
  *  ArtNews
@@ -46,15 +46,17 @@ public class ArtNews implements java.io.Serializable
 	@Column(name="title")
 	private String title;
 	@Column
-	private HTML article;
+	private String article;
 	@Column
 	private String type;
 	@Column
-	private Data createtime;
+	private Date createtime;
 	@Column
-	private Data edittime;
+	private Date edittime;
+	//checked是否被审查，0无，1被审查过了，2存草稿
 	@Column
 	private Integer checked;
+	//是否审核通过，0不通过，1通过
 	@Column
 	private Integer checkedout;
 	@ManyToOne(targetEntity=Editor.class)
@@ -66,9 +68,15 @@ public class ArtNews implements java.io.Serializable
 	@Cascade(org.hibernate.annotations.CascadeType.ALL)
 	private ChiefEditor chiefEditor;
 	
-	public ArtNews(String title,HTML article,Data createtime,Data edittime,Integer checked,Integer checkedout,Editor editor)
+	public ArtNews(String title,String article,Date createtime,Date edittime,Integer checked,Integer checkedout,Editor editor)
 	{
-		
+		setTile(title);
+		setArticle(article);
+		setCreatetime(createtime);
+		setEdittime(edittime);
+		setChecked(checked);
+		setCheckedout(checkedout);
+		setEditor(editor);
 	}
 	public ArtNews()
 	{
@@ -89,11 +97,11 @@ public class ArtNews implements java.io.Serializable
 	{
 		this.title=title;
 	}
-	public HTML getArticle()
+	public String getArticle()
 	{
 		return this.article;
 	}
-	public void setArticle(HTML article)
+	public void setArticle(String article)
 	{
 		this.article=article;
 	}
@@ -105,19 +113,19 @@ public class ArtNews implements java.io.Serializable
 	{
 		this.type=type;
 	}
-	public Data getCreatetime()
+	public Date getCreatetime()
 	{
 		return this.createtime;
 	}
-	public void setCreatetime(Data createtime)
+	public void setCreatetime(Date createtime)
 	{
 		this.createtime=createtime;
 	}
-	public Data getEdittime()
+	public Date getEdittime()
 	{
 		return this.edittime;
 	}
-	public void setEdittime(Data edittime)
+	public void setEdittime(Date edittime)
 	{
 		this.edittime=edittime;
 	}
@@ -128,6 +136,14 @@ public class ArtNews implements java.io.Serializable
 	public void setChecked(Integer checked)
 	{
 		this.checked=checked;	
+	}
+	public Integer getCheckedout()
+	{
+		return checkedout;
+	}
+	public void setCheckedout(Integer checked)
+	{
+		this.checkedout=checkedout;	
 	}
 	public Editor getEditor()
 	{

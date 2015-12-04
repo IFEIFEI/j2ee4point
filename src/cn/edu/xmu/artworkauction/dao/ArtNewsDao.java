@@ -18,7 +18,8 @@ public interface ArtNewsDao
 	public List<ArtNews> getArtNewsByTitle(String title);
 	public List<ArtNews> getArtNewsByType(String type);
 	public List<ArtNews> getCheckedArtNews();
-	public List<ArtNews> getUnCheckedArtNews();
+	public List<ArtNews> getUnCheckedArtNews(Integer lev);
 	public List<ArtNews> getCheckedoutArtNews();
 	public List<ArtNews> getUnCheckedoutArtNews();
+	public boolean isExistByTitle(String title);
 }

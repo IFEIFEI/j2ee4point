@@ -84,10 +84,10 @@ public class ArtNewsDaoImpl implements ArtNewsDao
 		return (List<ArtNews>)sessionFactory.getCurrentSession().createQuery(hql).list();
 	}
 	@Override
-	public List<ArtNews> getUnCheckedArtNews()
+	public List<ArtNews> getUnCheckedArtNews(Integer lev)
 	{
-		String hql="form ArtNews a where a.checked=0";
-		return (List<ArtNews>)sessionFactory.getCurrentSession().createQuery(hql).list();
+		String hql="form ArtNews a where a.checked=?";
+		return (List<ArtNews>)sessionFactory.getCurrentSession().createQuery(hql).setString(0,lev.toString()).list();
 	}
 	@Override
 	public List<ArtNews> getCheckedoutArtNews()
@@ -100,5 +100,15 @@ public class ArtNewsDaoImpl implements ArtNewsDao
 	{
 		String hql="form ArtNews a where a.checkedout=0";
 		return (List<ArtNews>)sessionFactory.getCurrentSession().createQuery(hql).list();
+	}
+	@Override
+	public boolean isExistByTitle(String title)
+	{
+		String hql="form ArtNews a where a.title=?";
+		return 	sessionFactory
+				.getCurrentSession()
+				.createQuery(hql)
+				.setString(0, title)
+				.list()!=null;
 	}
 }
