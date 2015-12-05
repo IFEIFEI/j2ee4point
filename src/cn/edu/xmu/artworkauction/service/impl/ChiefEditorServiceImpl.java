@@ -20,10 +20,12 @@ public class ChiefEditorServiceImpl implements ChiefEditorService
 	{
 		this.artNewsDao=artNewsDao;
 	}
+	@Override
 	public List<ArtNews> getUncheckedArtNews()
 	{
 		return artNewsDao.getUnCheckedArtNews(0);
 	}
+	@Override
 	public void savaCheckedArtNews(List<ArtNews> artNewslist,ChiefEditor chiefEditor)
 	{
 		artNewslist.stream()
