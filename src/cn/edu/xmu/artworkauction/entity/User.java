@@ -17,7 +17,7 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 /**
- * @author Administrator
+ * @author XiaWenSheng
  *user entity ,is inherited by Artist
  */
 @Entity

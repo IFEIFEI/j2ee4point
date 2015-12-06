@@ -25,7 +25,7 @@ window.Typekit.config = {
     var j=!0, k = null, l=!1;
     function m(a) {
         return function() {
-            return this[a]
+            return this[a];
         }
     }
     var aa = this;
@@ -46,11 +46,11 @@ window.Typekit.config = {
             return function() {
                 var c = Array.prototype.slice.call(arguments);
                 Array.prototype.unshift.apply(c, d);
-                return a.apply(b, c)
+                return a.apply(b, c);
             }
         }
         return function() {
-            return a.apply(b, arguments)
+            return a.apply(b, arguments);
         }
     }
     function n(a, b, c) {
@@ -58,7 +58,7 @@ window.Typekit.config = {
         return n.apply(k, arguments)
     }
     var ea = Date.now || function() {
-        return + new Date
+        return + new Date;
     };
     function fa(a, b) {
         this.da = a;
@@ -91,7 +91,7 @@ window.Typekit.config = {
             for (var f = l, g = 0; g < d.length; g += 1)
                 if (b[e] === d[g]) {
                     f = j;
-                    break
+                    break;
                 }
             f || d.push(b[e])
         }
@@ -101,7 +101,7 @@ window.Typekit.config = {
             for (g = 0; g < c.length; g += 1)
                 if (d[e] === c[g]) {
                     f = j;
-                    break
+                    break;
                 }
             f || b.push(d[e])
         }
@@ -450,7 +450,7 @@ window.Typekit.config = {
                     for (f = 0; f < c.length; f++)
                         if (d[e] === c[f]) {
                             f = j;
-                            break a
+                            break ;
                         }
                         f = l
                     }
@@ -610,6 +610,7 @@ window.Typekit.config = {
                 if (a[h]) {
                     d = d.concat(a[h]);
                     break
+                    ;
                 }
             }
         c = d;
@@ -718,7 +719,7 @@ window.Typekit.config = {
                     }), f = new Image(1, 1);
                     f.src = d;
                     f.onload = function() {
-                        f.onload = k
+                        f.onload = k;
                     }
                 }
                 d = a.ca;
@@ -904,7 +905,7 @@ window.Typekit.config = {
             X.load.apply(X, arguments)
         };
         window.Typekit.addKit = function() {
-            X.Y.apply(X, arguments)
+            X.Y.apply(X, arguments);
         }
     }
     var hb, ib = k, jb = k, kb = k, lb, Y, $, N = window.Typekit.config || {};

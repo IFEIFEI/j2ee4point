@@ -7,7 +7,7 @@ import cn.edu.xmu.artworkauction.entity.Artist;
 import cn.edu.xmu.artworkauction.entity.User;
 
 /**
- * @author Administrator
+ * @author XiaWenSheng
  *
  */
 public interface ArtistDAO {

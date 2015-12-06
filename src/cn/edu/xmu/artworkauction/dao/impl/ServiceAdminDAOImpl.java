@@ -4,7 +4,7 @@
 package cn.edu.xmu.artworkauction.dao.impl;
 
 /**
- * @author Administrator
+ * @author XiaWenSheng
  *
  */
 public class ServiceAdminDAOImpl {

@@ -6,7 +6,7 @@ import javax.annotation.Resource;
 
 import com.sun.javafx.collections.MappingChange.Map;
 
-import cn.edu.xmu.artworkauction.dao.ArtNewsDao;
+import cn.edu.xmu.artworkauction.dao.ArtNewsDAO;
 import cn.edu.xmu.artworkauction.dao.ChiefEditorDAO;
 import cn.edu.xmu.artworkauction.entity.ArtNews;
 import cn.edu.xmu.artworkauction.entity.ChiefEditor;
@@ -14,22 +14,22 @@ import cn.edu.xmu.artworkauction.service.ChiefEditorService;
 
 public class ChiefEditorServiceImpl implements ChiefEditorService
 {
-	private ArtNewsDao artNewsDao;
-	@Resource(name="ArtNewsDao")
-	public void setUserDAO(ArtNewsDao artNewsDao)
+	private ArtNewsDAO artNewsDAO;
+	@Resource(name="artNewsDAO")
+	public void setArtNewsDAO(ArtNewsDAO artNewsDAO)
 	{
-		this.artNewsDao=artNewsDao;
+		this.artNewsDAO=artNewsDAO;
 	}
 	@Override
 	public List<ArtNews> getUncheckedArtNews()
 	{
-		return artNewsDao.getUnCheckedArtNews(0);
+		return artNewsDAO.getUnCheckedArtNews(0);
 	}
 	@Override
 	public void savaCheckedArtNews(List<ArtNews> artNewslist,ChiefEditor chiefEditor)
 	{
 		artNewslist.stream()
 				.map(a->{a.setChiefeditor(chiefEditor);return a;})
-				.forEach(a->artNewsDao.saveArtNews(a));
+				.forEach(a->artNewsDAO.saveArtNews(a));
 	}
 }

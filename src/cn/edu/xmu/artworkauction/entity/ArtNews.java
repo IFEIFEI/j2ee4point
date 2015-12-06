@@ -1,31 +1,24 @@
 package cn.edu.xmu.artworkauction.entity;
 
-import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.sql.rowset.JdbcRowSet;
-import javax.swing.text.html.HTML;
-
-import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.GenericGenerators;
 
-import com.sun.org.apache.bcel.internal.generic.GETFIELD;
-
+import java.math.BigDecimal;
 import java.util.Date;
 
-/*
+/**
  *  ArtNews
  *  @author Dany ifeifei@stu.xmu.edu.cn
+ *   Modified by XiaWenSheng  
  */
 
 @Entity
@@ -40,125 +33,162 @@ public class ArtNews implements java.io.Serializable
 	 */
 	private static final long serialVersionUID = 8323156141033933840L;
 	@Id
-	@GenericGenerator(name="id",strategy="hilo")
-	@GeneratedValue(generator="id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
 	private Integer id;
+	
 	@Column(name="title")
 	private String title;
+	
 	@Column
 	private String article;
+	
 	@Column
 	private String type;
+	
 	@Column
-	private Date createtime;
+	private Date createTime;
+	
 	@Column
-	private Date edittime;
-	//checked是否被审查，0无，1被审查过了，2存草稿
+	private Date editTime;
+	
 	@Column
 	private Integer checked;
-	//是否审核通过，0不通过，1通过
+	
 	@Column
 	private Integer checkedout;
-	@ManyToOne(targetEntity=Editor.class)
-	@JoinColumn(name="id",nullable=false)
-	@Cascade(org.hibernate.annotations.CascadeType.ALL)
+	
+	@Column
+	private Date launchTime;
+	
+	@Column
+	private Date offlineTime;
+	
+	@Column
+	private BigDecimal expense;
+	
+	@Column
+	private String position;
+	
+	@ManyToOne(targetEntity=Editor.class, cascade = {CascadeType.ALL})
+	@JoinColumn(name="editor_id",nullable=false)
 	private Editor editor;
-	@ManyToOne(targetEntity=ChiefEditor.class)
-	@JoinColumn(name="id",nullable=true)
-	@Cascade(org.hibernate.annotations.CascadeType.ALL)
+	
+	@ManyToOne(targetEntity=ChiefEditor.class, cascade = {CascadeType.ALL})
+	@JoinColumn(name="chiefEditor_id",nullable=true)
 	private ChiefEditor chiefEditor;
 	
-	public ArtNews(String title,String article,Date createtime,Date edittime,Integer checked,Integer checkedout,Editor editor)
-	{
-		setTile(title);
+	public ArtNews(String title,String article,Date createTime,Date editTime,Integer checked,Integer checkedout,Editor editor)
+    {
+		setTitle(title);
 		setArticle(article);
-		setCreatetime(createtime);
-		setEdittime(edittime);
+		setCreatetime(createTime);
+		setEditTime(editTime);
 		setChecked(checked);
 		setCheckedout(checkedout);
 		setEditor(editor);
 	}
-	public ArtNews()
-	{
-		
-	}	
+	public ArtNews(){}	
+	
 	public Integer getId() {
 		return id;
 	}
-	public void setId(Integer id)
-	{
+	public void setId(Integer id){
 		this.id=id;
 	}
-	public String getTitle()
-	{
+	
+	public String getTitle() {
 		return this.title;
 	}
-	public void setTile(String title)
-	{
+	public void setTitle(String title) {
 		this.title=title;
 	}
-	public String getArticle()
-	{
+	
+	public String getArticle() {
 		return this.article;
 	}
-	public void setArticle(String article)
-	{
+	public void setArticle(String article) {
 		this.article=article;
 	}
-	public String getType()
-	{
+	
+	public String getType() {
 		return this.type;
 	}
 	public void setType(String type)
 	{
 		this.type=type;
 	}
-	public Date getCreatetime()
-	{
-		return this.createtime;
+	
+	public Date getCreatetime() {
+		return this.createTime;
 	}
 	public void setCreatetime(Date createtime)
 	{
-		this.createtime=createtime;
+		this.createTime=createtime;
 	}
-	public Date getEdittime()
-	{
-		return this.edittime;
+	
+	public Date getEditTime() {
+		return this.editTime;
 	}
-	public void setEdittime(Date edittime)
+	public void setEditTime(Date editTime)
 	{
-		this.edittime=edittime;
+		this.editTime=editTime;
 	}
-	public Integer getChecked()
-	{
+	
+	public Integer getChecked() {
 		return checked;
 	}
 	public void setChecked(Integer checked)
 	{
 		this.checked=checked;	
 	}
-	public Integer getCheckedout()
-	{
+	
+	public Integer getCheckedout(){
 		return checkedout;
 	}
-	public void setCheckedout(Integer checked)
-	{
-		this.checkedout=checkedout;	
+	public void setCheckedout(Integer checked){
+		this.checkedout=checked;	
 	}
-	public Editor getEditor()
-	{
+	
+	public Editor getEditor() {
 		return this.editor;
 	}
-	public void setEditor(Editor editor)
-	{
+	public void setEditor(Editor editor) {
 		this.editor=editor;
 	}
-	public Editor getChiefeditor()
-	{
+	
+	public Editor getChiefeditor() {
 		return this.editor;
 	}
-	public void setChiefeditor(ChiefEditor ceditor)
-	{
-		this.chiefEditor=ceditor;
+	public void setChiefeditor(ChiefEditor chiefEditor) {
+		this.chiefEditor=chiefEditor;
+	}
+	
+	public Date getLaunchTime() {
+		return this.launchTime;
+	}
+	public void setLaunchTime(Date launchTime) {
+		this.launchTime=launchTime;
+	}
+	
+	public Date getOfflineTime() {
+		return this.offlineTime;
+	}
+	public void setOfflineTime(Date offlineTime) {
+		this.offlineTime=offlineTime;
+	}
+	
+	public BigDecimal getExpense() {
+		return expense;
+	}
+	public void setExpense(BigDecimal expense) {
+		this.expense = expense;
+	}
+	
+	public String getPosition() {
+		return position;
+	}
+	public void setPosition(String position) {
+		this.position = position;
 	}
 }

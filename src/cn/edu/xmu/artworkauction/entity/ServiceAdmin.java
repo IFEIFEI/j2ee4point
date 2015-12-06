@@ -7,7 +7,7 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 /**
- * @author Administrator
+ * @author XiaWenSheng
  *
  */
 @Entity

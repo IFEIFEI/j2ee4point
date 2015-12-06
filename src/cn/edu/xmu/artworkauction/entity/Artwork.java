@@ -22,7 +22,7 @@ import org.hibernate.annotations.DynamicUpdate;
 
 
 /**
- * @author Administrator
+ * @author XiaWenSheng
  *
  */
 @Entity

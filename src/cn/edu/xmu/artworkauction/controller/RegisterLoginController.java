@@ -21,7 +21,7 @@ import cn.edu.xmu.artworkauction.entity.UserAdmin;
 import cn.edu.xmu.artworkauction.service.SecureService;
 
 /**
- * @author Administrator
+ * @author 
  *
  */
 @Controller
@@ -30,15 +30,14 @@ public class RegisterLoginController {
 	@Resource
 	private SecureService secureService;
 	
-	private User user;
 	@RequestMapping("/userRegister")
 	public ModelAndView userRegister(HttpServletRequest request,Model model){
 		String email=request.getParameter("email");
 		String userName=request.getParameter("userName");
 		String phoneNumber=request.getParameter("phoneNumber");
 		String password=request.getParameter("password");
-		ModelAndView modelAndView=new ModelAndView("user");
-		user=secureService.userRegister(email, userName, phoneNumber, password);
+		ModelAndView modelAndView=new ModelAndView("userindex");
+		User user=secureService.userRegister(email, userName, phoneNumber, password);
 		model.addAttribute("user", user);
 		request.getSession().setAttribute("user", user);
 		return modelAndView;
@@ -57,12 +56,12 @@ public class RegisterLoginController {
 			return modelAndView;
 		}
 		else 
-			modelAndView =new ModelAndView(user.getUserType());
+			modelAndView =new ModelAndView(user.getUserType()+"index");
 		request.getSession().setAttribute("user", user);
 		return modelAndView;
 	}
 	
-	@RequestMapping ("/adminLogin")
+	@RequestMapping ("adminLogin")
 	public ModelAndView adminLogin(HttpServletRequest request) {
 		String adminName=request.getParameter("adminName");
 		String password=request.getParameter("password");
@@ -70,7 +69,7 @@ public class RegisterLoginController {
 		Admin admin=secureService.adminLogin(adminName, password);
 		ModelAndView modelAndView ;
 		if(admin==null) {
-			modelAndView=new ModelAndView("adminLogin");
+			modelAndView=new ModelAndView("/Admin/Admin-AddUser");
 		}
 		else
 			modelAndView=new ModelAndView(admin.getAdminType());

@@ -16,7 +16,7 @@ import cn.edu.xmu.artworkauction.entity.User;
 import cn.edu.xmu.artworkauction.service.SecureService;
 
 /**
- * @author Administrator
+ * @author XiaWenSheng
  *
  */
 @Service("secureService")
@@ -49,7 +49,7 @@ public class SecureServiceImpl implements SecureService{
 		// TODO Auto-generated method stub
 		return userDAO.findUserByEmailAndPassword(email, password);
 	}
-
+	
 	@Override
 	public Admin adminLogin(String adminName, String password) {
 		// TODO Auto-generated method stub

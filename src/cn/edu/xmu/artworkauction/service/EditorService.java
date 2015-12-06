@@ -1,15 +1,14 @@
 package cn.edu.xmu.artworkauction.service;
 
-import javax.swing.text.html.HTML;
-
 import cn.edu.xmu.artworkauction.entity.ArtNews;
 import cn.edu.xmu.artworkauction.entity.Editor;
 import java.util.Date;
 import java.util.List;
 
-/*
+/**
  * EditorService
  * @author Dany ifeifei@stu.xmu.edu.cn
+ * Modified 
  */
 public interface EditorService 
 {

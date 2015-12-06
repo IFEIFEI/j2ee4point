@@ -11636,6 +11636,39 @@ html.gecko #top select {
     }
 }
 
+.page-id-7 #about_section #about_tabs .tab-content .tab-pane  form #zhucequ {
+    font-family: "Graphik Web SemiBold", Helvetica, Arial;
+    -webkit-font-smoothing: antialiased;
+    -webkit-transition: all .2s ease-in 0s;
+    -moz-transition: all .2s ease-in 0s;
+    transition: all .2s ease-in 0s;
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: rgba(0, 0, 0, .5);
+    text-transform: uppercase;
+    padding: 12px 30px 10px;
+    display: inline-block;
+    width: 80%;
+    float: center;
+    border-bottom: 0;
+    margin: 0 0 0 30px
+}
+
+@media only screen and (max-width:700px) {
+.page-id-7 #about_section #about_tabs .tab-content .tab-pane  form #zhucequ{
+        margin: 0
+    }
+}
+
+@media only screen and (max-width:500px) {
+.page-id-7 #about_section #about_tabs .tab-content .tab-pane  form #zhucequ {
+        margin: 0;
+        padding: 10px 15px
+    }
+}
+
+
+
 .page-id-7 #about_section #about_tabs .tab-content .tab-pane  #agreement{
     width: 10%;
 }
@@ -11743,6 +11776,8 @@ html.gecko #top select {
         letter-spacing: .5px
     }
 }
+
+
 
 .page-id-7 #about_section #about_tabs p {
     font-size: 20px;

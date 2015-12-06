@@ -14,7 +14,7 @@ import javax.persistence.OneToMany;
 
 
 /**
- * @author Administrator
+ * @author XiaWenSheng
  *
  */
 @Entity

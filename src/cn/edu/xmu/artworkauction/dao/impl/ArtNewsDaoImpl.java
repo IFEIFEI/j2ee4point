@@ -15,16 +15,16 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
-import cn.edu.xmu.artworkauction.dao.ArtNewsDao;
+import cn.edu.xmu.artworkauction.dao.ArtNewsDAO;
 import cn.edu.xmu.artworkauction.entity.ArtNews;
-import cn.edu.xmu.artworkauction.entity.User;
 
-/*
+/**
  * ArtNewsDaoimpl
  * @author Dany ifeifei@stu.xmu.edu.cn
+ * Modified By XiaWenSheng
  */
-@Repository("ArtNewsDao")
-public class ArtNewsDaoImpl implements ArtNewsDao
+@Repository("artNewsDAO")
+public class ArtNewsDAOImpl implements ArtNewsDAO
 {
 	private SessionFactory sessionFactory;
 	
@@ -34,13 +34,18 @@ public class ArtNewsDaoImpl implements ArtNewsDao
 		this.sessionFactory = sessionFactory;
 	}
 	@Override
+	//transaction part should use AOP  
 	public List<ArtNews> getAllArtNews() throws Exception
 	{
 		Session session=sessionFactory.getCurrentSession();
+		//
 		Transaction tx=(Transaction) session.beginTransaction();
+		//
 		String hqlselect="select a from ArtNews";
 		List<ArtNews> aList=session.createQuery(hqlselect).list();
+		//
 		tx.commit();
+		//
 		return aList;
 		
 	}
@@ -59,12 +64,14 @@ public class ArtNewsDaoImpl implements ArtNewsDao
 	{
 		sessionFactory.getCurrentSession().delete(artNews);
 	}
+	/*who can use this function?
 	@Override
 	public ArtNews getArtNewsById(Integer id)
 	{
 		String hql="from ArtNews a where a.id=?";
 		return (ArtNews)sessionFactory.getCurrentSession().createQuery(hql).setString(0, id.toString()).uniqueResult();
 	}
+	*/
 	@Override
 	public List<ArtNews> getArtNewsByTitle(String title)
 	{

@@ -18,7 +18,7 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 /**
- * @author Administrator
+ * @author XiaWensheng
  *
  */
 @Entity

@@ -6,7 +6,7 @@ package cn.edu.xmu.artworkauction.dao;
 import cn.edu.xmu.artworkauction.entity.Admin;
 
 /**
- * @author Administrator
+ * @author XiaWenSheng
  *
  */
 public interface AdminDAO {

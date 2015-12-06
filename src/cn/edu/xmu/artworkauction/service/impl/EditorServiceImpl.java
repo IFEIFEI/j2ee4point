@@ -8,38 +8,39 @@ import java.util.stream.Collectors;
 import javax.annotation.Resource;
 import javax.swing.text.html.HTML;
 
-import cn.edu.xmu.artworkauction.dao.ArtNewsDao;
+import cn.edu.xmu.artworkauction.dao.ArtNewsDAO;
 import cn.edu.xmu.artworkauction.entity.ArtNews;
 import cn.edu.xmu.artworkauction.entity.Editor;
 import cn.edu.xmu.artworkauction.service.EditorService;
 
-/*
+/**
  * EditorServiceImpl
- * @author Dany ifeifei@stu.xmu.edu.cn
+ * @author  Dany ifeifei@stu.xmu.edu.cn
+ * Modified By XiaWenSheng
  */
 public class EditorServiceImpl implements EditorService
 {
-	private ArtNewsDao artNewsDao;
-	@Resource(name="ArtNewsDao")
-	public void setUserDAO(ArtNewsDao artNewsDao)
+	private ArtNewsDAO artNewsDAO;
+	@Resource(name="artNewsDAO")
+	public void setArtNewsDAO(ArtNewsDAO artNewsDAO)
 	{
-		this.artNewsDao=artNewsDao;
+		this.artNewsDAO=artNewsDAO;
 	}
 	@Override
 	public void saveDraft(String title,String article,Date createtime,Date edittime,Integer checked,Integer checkedout,Editor editor ,String type)
 	{
-		if(artNewsDao.isExistByTitle(title))
+		if(artNewsDAO.isExistByTitle(title))
 		{
-			ArtNews artNews=artNewsDao.getArtNewsByTitle(title).get(0);
-			artNews.setEdittime(new Date());
+			ArtNews artNews=artNewsDAO.getArtNewsByTitle(title).get(0);
+			artNews.setEditTime(new Date());
 			artNews.setType(type);
-			artNewsDao.saveArtNews(artNews);
+			artNewsDAO.saveArtNews(artNews);
 		}
 		else
 		{
 			ArtNews artNews=new ArtNews(title,article,createtime,edittime,checked,checkedout,editor);
 			artNews.setType(type);
-			artNewsDao.addArtNews(artNews);
+			artNewsDAO.addArtNews(artNews);
 		}
 	}
 	@Override
@@ -48,12 +49,12 @@ public class EditorServiceImpl implements EditorService
 	{
 		ArtNews artNews=new ArtNews(title,article,createtime,edittime,checked,checkedout,editor);
 		artNews.setType(type);
-		artNewsDao.addArtNews(artNews);
+		artNewsDAO.addArtNews(artNews);
 	}
 	@Override
 	public List<ArtNews> getDraft(Editor editor) 
 	{
-		List<ArtNews> draftlist=artNewsDao
+		List<ArtNews> draftlist=artNewsDAO
 				.getUnCheckedArtNews(2)
 				.stream()
 				.filter(e->e.getEditor().getId()==editor.getId())

@@ -17,7 +17,7 @@ import cn.edu.xmu.artworkauction.entity.ServiceAdmin;
 import cn.edu.xmu.artworkauction.entity.UserAdmin;
 
 /**
- * @author Administrator
+ * @author XiaWenSheng
  *
  */
 @Repository("adminDAO")
