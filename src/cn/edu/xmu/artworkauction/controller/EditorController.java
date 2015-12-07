@@ -19,7 +19,7 @@ public class EditorController
 {
 	private Editor editor;
 	@Resource
-	private EditorService editorService;
+	private EditorService editorServiceImpl;
 	@RequestMapping("/saveDraft")
 	public void saveDraft(HttpServletRequest request)
 	{
@@ -29,7 +29,7 @@ public class EditorController
 		Integer checked=2;
 		Integer checkedout=0;
 		request.getSession().getAttribute("editor");
-		editorService.saveDraft(title, article,new Date(),new Date(), checked,checkedout, editor,type);
+		editorServiceImpl.saveDraft(title, article,new Date(),new Date(), checked,checkedout, editor,type);
 	}
 	@RequestMapping("/submitNews")
 	public void submitNews(HttpServletRequest request)
@@ -40,6 +40,6 @@ public class EditorController
 		Integer checked=0;
 		Integer checkedout=0;
 		request.getSession().getAttribute("editor");
-		editorService.submit(title, article,new Date(),new Date(), checked,checkedout, editor,type);
+		editorServiceImpl.submit(title, article,new Date(),new Date(), checked,checkedout, editor,type);
 	}
 }

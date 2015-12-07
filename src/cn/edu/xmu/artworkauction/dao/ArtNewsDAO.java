@@ -2,6 +2,8 @@ package cn.edu.xmu.artworkauction.dao;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import cn.edu.xmu.artworkauction.entity.ArtNews;
 
 /*
@@ -9,6 +11,7 @@ import cn.edu.xmu.artworkauction.entity.ArtNews;
  *  @author Dany ifeifei@stu.xmu.edu.cn
  *  Modified By XiaWenSheng
  */
+@Repository
 public interface ArtNewsDAO 
 {
 	public List<ArtNews> getAllArtNews() throws Exception;

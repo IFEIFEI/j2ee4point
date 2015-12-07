@@ -8,6 +8,8 @@ import java.util.stream.Collectors;
 import javax.annotation.Resource;
 import javax.swing.text.html.HTML;
 
+import org.springframework.stereotype.Service;
+
 import cn.edu.xmu.artworkauction.dao.ArtNewsDAO;
 import cn.edu.xmu.artworkauction.entity.ArtNews;
 import cn.edu.xmu.artworkauction.entity.Editor;
@@ -18,6 +20,7 @@ import cn.edu.xmu.artworkauction.service.EditorService;
  * @author  Dany ifeifei@stu.xmu.edu.cn
  * Modified By XiaWenSheng
  */
+@Service
 public class EditorServiceImpl implements EditorService
 {
 	private ArtNewsDAO artNewsDAO;
