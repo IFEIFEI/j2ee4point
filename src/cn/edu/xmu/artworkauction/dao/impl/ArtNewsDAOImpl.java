@@ -1,5 +1,6 @@
 package cn.edu.xmu.artworkauction.dao.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -107,6 +108,17 @@ public class ArtNewsDAOImpl implements ArtNewsDAO
 	{
 		String hql="form ArtNews a where a.checkedout=0";
 		return (List<ArtNews>)sessionFactory.getCurrentSession().createQuery(hql).list();
+	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<ArtNews> getArtNewsByData(Date data)
+	{
+		String hql="form ArtNews a where a.launchTime=?";
+		return (List<ArtNews>)sessionFactory
+				.getCurrentSession()
+				.createQuery(hql)
+				.setString(0, data.toString())
+				.list();
 	}
 	@Override
 	public boolean isExistByTitle(String title)

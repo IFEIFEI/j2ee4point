@@ -1,5 +1,6 @@
 package cn.edu.xmu.artworkauction.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
@@ -25,5 +26,6 @@ public interface ArtNewsDAO
 	public List<ArtNews> getUnCheckedArtNews(Integer lev);
 	public List<ArtNews> getCheckedoutArtNews();
 	public List<ArtNews> getUnCheckedoutArtNews();
+	public List<ArtNews> getArtNewsByData(Date data);
 	public boolean isExistByTitle(String title);
 }
