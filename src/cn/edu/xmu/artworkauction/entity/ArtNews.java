@@ -71,7 +71,7 @@ public class ArtNews implements java.io.Serializable
 	private String position;
 	
 	@ManyToOne(targetEntity=Editor.class, cascade = {CascadeType.ALL})
-	@JoinColumn(name="editor_id",nullable=false)
+	@JoinColumn(name="editor_id",nullable=true)
 	private Editor editor;
 	
 	@ManyToOne(targetEntity=ChiefEditor.class, cascade = {CascadeType.ALL})

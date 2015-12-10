@@ -18,6 +18,8 @@ import org.springframework.stereotype.Repository;
 
 import cn.edu.xmu.artworkauction.dao.ArtNewsDAO;
 import cn.edu.xmu.artworkauction.entity.ArtNews;
+import cn.edu.xmu.artworkauction.entity.Editor;
+import cn.edu.xmu.artworkauction.entity.User;
 
 /**
  * ArtNewsDaoimpl
@@ -53,7 +55,17 @@ public class ArtNewsDAOImpl implements ArtNewsDAO
 	@Override
 	public void addArtNews(ArtNews artNews)
 	{
+		Editor editor=(Editor)sessionFactory.getCurrentSession().createQuery("from Editor").uniqueResult();
+		System.out.println(editor.getAdminName());
+		artNews.setEditor(editor);
+		org.hibernate.Transaction tx=sessionFactory.getCurrentSession().beginTransaction();
 		sessionFactory.getCurrentSession().persist(artNews);
+		editor.setAdminName("珊珊");
+		sessionFactory.getCurrentSession().persist(editor);
+		tx.commit();
+		artNews=(ArtNews)sessionFactory.getCurrentSession().createQuery("from ArtNews").uniqueResult();
+		System.out.println(artNews.getArticle());
+		System.out.println("save artNews");
 	}
 	@Override
 	public void saveArtNews(ArtNews artNews)
@@ -129,5 +141,16 @@ public class ArtNewsDAOImpl implements ArtNewsDAO
 				.createQuery(hql)
 				.setString(0, title)
 				.list()!=null;
+	}
+	@Override
+	public List<ArtNews> getHistoryArtNewsByEditor(Editor editor)
+	{
+		//TODO:此处的hql代码不确定，有问题
+		String hql="form ArtNews a inner join Editor e where e.adminName=?";
+		return (List<ArtNews>) sessionFactory
+				.getCurrentSession()
+				.createQuery(hql)
+				.setString(0, editor.getAdminName())
+				.list();
 	}
 }

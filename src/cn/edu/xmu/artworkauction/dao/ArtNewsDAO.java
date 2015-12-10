@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import cn.edu.xmu.artworkauction.entity.ArtNews;
+import cn.edu.xmu.artworkauction.entity.Editor;
 
 /*
  *  ArtNewsDAO 
@@ -27,5 +28,6 @@ public interface ArtNewsDAO
 	public List<ArtNews> getCheckedoutArtNews();
 	public List<ArtNews> getUnCheckedoutArtNews();
 	public List<ArtNews> getArtNewsByData(Date data);
+	public List<ArtNews> getHistoryArtNewsByEditor(Editor editor);
 	public boolean isExistByTitle(String title);
 }

@@ -39,7 +39,8 @@ public class EditorController
 		String article=request.getParameter("article");
 		Integer checked=0;
 		Integer checkedout=0;
-		request.getSession().getAttribute("editor");
+		//editor=(Editor)request.getSession().getAttribute("editor");
+		editor=new Editor();
 		editorServiceImpl.submit(title, article,new Date(),new Date(), checked,checkedout, editor,type);
 	}
 }

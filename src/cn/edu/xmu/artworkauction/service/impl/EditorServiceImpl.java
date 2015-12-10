@@ -52,6 +52,7 @@ public class EditorServiceImpl implements EditorService
 	{
 		ArtNews artNews=new ArtNews(title,article,createtime,edittime,checked,checkedout,editor);
 		artNews.setType(type);
+		System.out.println(artNews);
 		artNewsDAO.addArtNews(artNews);
 	}
 	@Override
