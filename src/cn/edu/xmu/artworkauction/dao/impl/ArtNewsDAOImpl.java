@@ -55,17 +55,10 @@ public class ArtNewsDAOImpl implements ArtNewsDAO
 	@Override
 	public void addArtNews(ArtNews artNews)
 	{
-		Editor editor=(Editor)sessionFactory.getCurrentSession().createQuery("from Editor").uniqueResult();
-		System.out.println(editor.getAdminName());
-		artNews.setEditor(editor);
 		org.hibernate.Transaction tx=sessionFactory.getCurrentSession().beginTransaction();
-		sessionFactory.getCurrentSession().persist(artNews);
-		editor.setAdminName("ɺɺ");
-		sessionFactory.getCurrentSession().persist(editor);
+		sessionFactory.getCurrentSession().save(artNews);
+		sessionFactory.getCurrentSession().flush();
 		tx.commit();
-		artNews=(ArtNews)sessionFactory.getCurrentSession().createQuery("from ArtNews").uniqueResult();
-		System.out.println(artNews.getArticle());
-		System.out.println("save artNews");
 	}
 	@Override
 	public void saveArtNews(ArtNews artNews)
