@@ -35,7 +35,7 @@ public class ChiefEditorServiceImpl implements ChiefEditorService
 	public void savaCheckedArtNews(List<ArtNews> artNewslist,ChiefEditor chiefEditor)
 	{
 		artNewslist.stream()
-				.map(a->{a.setChiefeditor(chiefEditor);return a;})
+				.map(a->{a.setChiefEditor(chiefEditor);return a;})
 				.forEach(a->artNewsDAO.saveArtNews(a));
 	}
 }
