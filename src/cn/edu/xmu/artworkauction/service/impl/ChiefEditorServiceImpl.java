@@ -1,8 +1,13 @@
 package cn.edu.xmu.artworkauction.service.impl;
-
+/**
+ * modified by XiaWenSheng 12/12
+ * */
 import java.util.List;
 
 import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.sun.javafx.collections.MappingChange.Map;
 
@@ -11,7 +16,8 @@ import cn.edu.xmu.artworkauction.dao.ChiefEditorDAO;
 import cn.edu.xmu.artworkauction.entity.ArtNews;
 import cn.edu.xmu.artworkauction.entity.ChiefEditor;
 import cn.edu.xmu.artworkauction.service.ChiefEditorService;
-
+@Transactional
+@Service("chiefEditorService")
 public class ChiefEditorServiceImpl implements ChiefEditorService
 {
 	private ArtNewsDAO artNewsDAO;

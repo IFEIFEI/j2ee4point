@@ -8,7 +8,10 @@ import java.util.stream.Collectors;
 import javax.annotation.Resource;
 import javax.swing.text.html.HTML;
 
+import org.springframework.stereotype.Service;
+
 import cn.edu.xmu.artworkauction.dao.ArtNewsDAO;
+import org.springframework.transaction.annotation.Transactional;
 import cn.edu.xmu.artworkauction.entity.ArtNews;
 import cn.edu.xmu.artworkauction.entity.Editor;
 import cn.edu.xmu.artworkauction.service.EditorService;
@@ -18,6 +21,8 @@ import cn.edu.xmu.artworkauction.service.EditorService;
  * @author  Dany ifeifei@stu.xmu.edu.cn
  * Modified By XiaWenSheng
  */
+@Transactional
+@Service("editorService")
 public class EditorServiceImpl implements EditorService
 {
 	private ArtNewsDAO artNewsDAO;
@@ -27,27 +32,30 @@ public class EditorServiceImpl implements EditorService
 		this.artNewsDAO=artNewsDAO;
 	}
 	@Override
-	public void saveDraft(String title,String article,Date createtime,Date edittime,Integer checked,Integer checkedout,Editor editor ,String type)
+	public ArtNews saveDraft(String title,String article,Date createtime,Date edittime,String state,Editor editor ,String type)
 	{
+		/*
 		if(artNewsDAO.isExistByTitle(title))
 		{
+			
 			ArtNews artNews=artNewsDAO.getArtNewsByTitle(title).get(0);
 			artNews.setEditTime(new Date());
 			artNews.setType(type);
 			artNewsDAO.saveArtNews(artNews);
 		}
 		else
-		{
-			ArtNews artNews=new ArtNews(title,article,createtime,edittime,checked,checkedout,editor);
+		{*/
+			ArtNews artNews=new ArtNews(title,article,createtime,edittime,state,editor);
 			artNews.setType(type);
 			artNewsDAO.addArtNews(artNews);
-		}
+			return artNews;
+		//}
 	}
 	@Override
-	public void submit(String title, String article, Date createtime, Date edittime, Integer checked, Integer checkedout,
+	public void submit(String title, String article, Date createtime, Date edittime, String state,
 			Editor editor,String type) 
 	{
-		ArtNews artNews=new ArtNews(title,article,createtime,edittime,checked,checkedout,editor);
+		ArtNews artNews=new ArtNews(title,article,createtime,edittime,state,editor);
 		artNews.setType(type);
 		artNewsDAO.addArtNews(artNews);
 	}

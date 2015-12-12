@@ -3,6 +3,7 @@
  */
 package cn.edu.xmu.artworkauction.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -16,7 +17,7 @@ import javax.persistence.OneToMany;
  */
 @Entity
 @DiscriminatorValue("editor")
-public class Editor extends Admin{
+public class Editor extends User{
 	
     /**
 	 * 

@@ -12,8 +12,8 @@ import java.util.List;
  */
 public interface EditorService 
 {
-	public void saveDraft(String title,String article,Date createtime,Date edittime,Integer checked,Integer checkedout,Editor editor ,String type);
+	public ArtNews saveDraft(String title,String article,Date createtime,Date edittime,String state,Editor editor ,String type);
 	public List<ArtNews> getDraft(Editor editor);
-	public void submit(String title,String article,Date createtime,Date edittime,Integer checked,Integer checkedout,Editor editor,String type);
+	public void submit(String title,String article,Date createtime,Date edittime,String state,Editor editor,String type);
 
 }

@@ -4,10 +4,10 @@ import java.util.List;
 
 import cn.edu.xmu.artworkauction.entity.ArtNews;
 
-/*
+/**
  *  ArtNewsDAO 
  *  @author Dany ifeifei@stu.xmu.edu.cn
- *  Modified By XiaWenSheng
+ *  Modified By XiaWenSheng 12/12
  */
 public interface ArtNewsDAO 
 {
@@ -23,4 +23,6 @@ public interface ArtNewsDAO
 	public List<ArtNews> getCheckedoutArtNews();
 	public List<ArtNews> getUnCheckedoutArtNews();
 	public boolean isExistByTitle(String title);
+	public List<ArtNews> getTodayArtNews(String columnID);
+	public List<ArtNews> getTodayAdvertisement(String columnID);
 }

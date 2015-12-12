@@ -5,13 +5,11 @@ package cn.edu.xmu.artworkauction.service.impl;
 
 import javax.annotation.Resource;
 
+import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import cn.edu.xmu.artworkauction.dao.AdminDAO;
-import cn.edu.xmu.artworkauction.dao.ArtistDAO;
 import cn.edu.xmu.artworkauction.dao.UserDAO;
-import cn.edu.xmu.artworkauction.entity.Admin;
-import cn.edu.xmu.artworkauction.entity.Artist;
 import cn.edu.xmu.artworkauction.entity.User;
 import cn.edu.xmu.artworkauction.service.SecureService;
 
@@ -19,8 +17,15 @@ import cn.edu.xmu.artworkauction.service.SecureService;
  * @author XiaWenSheng
  *
  */
+@Transactional
 @Service("secureService")
 public class SecureServiceImpl implements SecureService{
+	
+    private SessionFactory sessionFactory;
+	@Resource(name="sessionFactory")
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
 	
 	private UserDAO userDAO;
 	@Resource(name="userDAO")
@@ -28,16 +33,13 @@ public class SecureServiceImpl implements SecureService{
 		this.userDAO=userDAO;
 	}	
 	
-	private AdminDAO adminDAO;
-	@Resource(name="adminDAO")
-	public void setAdminDAO(AdminDAO adminDAO){
-		this.adminDAO=adminDAO;
-	}
-	
 	@Override
 	public User userRegister(String email, String userName, String phoneNumber, String password) {
 		// TODO Auto-generated method stub
-		return userDAO.userRegister(email, userName, phoneNumber, password);
+		//sessionFactory.getCurrentSession().beginTransaction();
+		User user=userDAO.userRegister(email, userName, phoneNumber, password);
+		//sessionFactory.getCurrentSession().getTransaction().commit();
+		return user;
 	}
 	@Override
 	public User userLoginByUserName(String userName, String password) {
@@ -49,11 +51,4 @@ public class SecureServiceImpl implements SecureService{
 		// TODO Auto-generated method stub
 		return userDAO.findUserByEmailAndPassword(email, password);
 	}
-	
-	@Override
-	public Admin adminLogin(String adminName, String password) {
-		// TODO Auto-generated method stub
-		return adminDAO.adminLogin(adminName, password);
-	}
-
 }

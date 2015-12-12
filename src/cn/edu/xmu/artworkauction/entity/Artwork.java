@@ -3,6 +3,7 @@
  */
 package cn.edu.xmu.artworkauction.entity;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -44,7 +45,8 @@ public class Artwork implements java.io.Serializable {
 	private List<String> imageURL;
 	private String type;
 	private String theme;
-	
+	private Shop shop;
+	private BigDecimal price;
 	public Artwork(){}
 	
 	@Id
@@ -56,9 +58,7 @@ public class Artwork implements java.io.Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
-	@ManyToOne(targetEntity = Artist.class, cascade = {CascadeType.ALL})
-    @JoinColumn(name = "artist_id", nullable = false)
+	
 	public Artist getArtist() {
 		return artist;
 	}
@@ -122,5 +122,21 @@ public class Artwork implements java.io.Serializable {
 	}
 	public void setTheme(String theme) {
 		this.theme = theme;
+	}
+	
+	@ManyToOne(targetEntity = Shop.class, cascade = {CascadeType.ALL})
+    @JoinColumn(name = "shop_id", nullable = false)
+	public Shop getShop() {
+		return shop;
+	}
+	public void setShop(Shop shop) {
+		this.shop = shop;
+	}
+	
+	public BigDecimal getPrice() {
+		return price;
+	}
+	public void setPrice(BigDecimal price) {
+		this.price=price;
 	}
 }

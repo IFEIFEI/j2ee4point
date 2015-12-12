@@ -12,11 +12,11 @@ import javax.persistence.OneToMany;
 
 /**
  * @author Dany ifeifei@stu.xmu.edu.cn
- *
+ *  modified By XiaWenSheng 12/12
  */
 @Entity
 @DiscriminatorValue("chiefEditor")
-public class ChiefEditor extends Admin {
+public class ChiefEditor extends User {
 
 	/**
 	 * 

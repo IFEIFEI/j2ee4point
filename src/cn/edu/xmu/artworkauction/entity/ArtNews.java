@@ -8,23 +8,38 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
+import cn.edu.xmu.artworkauction.utils.Constants;
+
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 /**
  *  ArtNews
  *  @author Dany ifeifei@stu.xmu.edu.cn
- *   Modified by XiaWenSheng  
+ *   Modified by XiaWenSheng  12/12
  */
 
 @Entity
 @DynamicInsert
 @DynamicUpdate
 @Table(name="tb_artnews")
+@NamedQueries(
+		{ 
+			@NamedQuery(name = "@HQL_GetArtNewsByType", 
+					query = "from ArtNews a where a.type=?"),
+			@NamedQuery(name = "@HQL_GetArtNewsByTitle", 
+			query = "from ArtNews a where a.title=?"),
+			@NamedQuery(name = "@HQL_GetAllArtNews", 
+			query = "from ArtNews")
+		})
 public class ArtNews implements java.io.Serializable 
 {
 
@@ -41,7 +56,7 @@ public class ArtNews implements java.io.Serializable
 	private String title;
 	
 	@Column
-	private String article;
+	private String content;
 	
 	@Column
 	private String type;
@@ -52,40 +67,27 @@ public class ArtNews implements java.io.Serializable
 	@Column
 	private Date editTime;
 	
-	@Column
-	private Integer checked;
+    @Column
+    private String state;
 	
-	@Column
-	private Integer checkedout;
-	
-	@Column
-	private Date launchTime;
-	
-	@Column
-	private Date offlineTime;
-	
-	@Column
-	private BigDecimal expense;
-	
-	@Column
-	private String position;
-	
+    @OneToMany(mappedBy = "artNews", targetEntity = DateAndPosition.class,
+            cascade = CascadeType.ALL)
+    private List<DateAndPosition> dateAndpositions;
+    
 	@ManyToOne(targetEntity=Editor.class, cascade = {CascadeType.ALL})
-	@JoinColumn(name="editor_id",nullable=false)
+	@JoinColumn(name="editor_id")
 	private Editor editor;
 	
 	@ManyToOne(targetEntity=ChiefEditor.class, cascade = {CascadeType.ALL})
-	@JoinColumn(name="chiefEditor_id",nullable=true)
+	@JoinColumn(name="chiefEditor_id")
 	private ChiefEditor chiefEditor;
 	
-	public ArtNews(String title,String article,Date createTime,Date editTime,Integer checked,Integer checkedout,Editor editor)
+	public ArtNews(String title,String article,Date createTime,Date editTime,String state,Editor editor)
     {
 		setTitle(title);
-		setArticle(article);
+		setContent(article);
 		setCreatetime(createTime);
 		setEditTime(editTime);
-		setChecked(checked);
-		setCheckedout(checkedout);
 		setEditor(editor);
 	}
 	public ArtNews(){}	
@@ -104,11 +106,11 @@ public class ArtNews implements java.io.Serializable
 		this.title=title;
 	}
 	
-	public String getArticle() {
-		return this.article;
+	public String getContent() {
+		return this.content;
 	}
-	public void setArticle(String article) {
-		this.article=article;
+	public void setContent(String content) {
+		this.content=content;
 	}
 	
 	public String getType() {
@@ -135,21 +137,6 @@ public class ArtNews implements java.io.Serializable
 		this.editTime=editTime;
 	}
 	
-	public Integer getChecked() {
-		return checked;
-	}
-	public void setChecked(Integer checked)
-	{
-		this.checked=checked;	
-	}
-	
-	public Integer getCheckedout(){
-		return checkedout;
-	}
-	public void setCheckedout(Integer checked){
-		this.checkedout=checked;	
-	}
-	
 	public Editor getEditor() {
 		return this.editor;
 	}
@@ -164,31 +151,17 @@ public class ArtNews implements java.io.Serializable
 		this.chiefEditor=chiefEditor;
 	}
 	
-	public Date getLaunchTime() {
-		return this.launchTime;
+	public String getState() {
+		return state;
 	}
-	public void setLaunchTime(Date launchTime) {
-		this.launchTime=launchTime;
-	}
-	
-	public Date getOfflineTime() {
-		return this.offlineTime;
-	}
-	public void setOfflineTime(Date offlineTime) {
-		this.offlineTime=offlineTime;
+	public void setState(String state) {
+		this.state=state;
 	}
 	
-	public BigDecimal getExpense() {
-		return expense;
+	public List<DateAndPosition> getDateAndPositions() {
+		return dateAndpositions;
 	}
-	public void setExpense(BigDecimal expense) {
-		this.expense = expense;
-	}
-	
-	public String getPosition() {
-		return position;
-	}
-	public void setPosition(String position) {
-		this.position = position;
+	public void setDateAndPositions(List<DateAndPosition> dateAndPositions) {
+		this.dateAndpositions=dateAndPositions;
 	}
 }

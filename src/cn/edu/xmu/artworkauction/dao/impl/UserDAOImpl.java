@@ -43,8 +43,7 @@ public class UserDAOImpl implements UserDAO{
 	@Override
 	public boolean checkUserNameUnique(String userName) {
 		// TODO Auto-generated method stub
-		String hql="from User u where u.userName=?";
-		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		Query query = sessionFactory.getCurrentSession().getNamedQuery("@HQL_CheckUserNameUnique");
 		query.setString(0, userName);
 		User user=(User)query.uniqueResult();
 		return user==null;
@@ -53,8 +52,7 @@ public class UserDAOImpl implements UserDAO{
 	@Override
 	public boolean checkEmailUnique(String email){
 		// TODO Auto-generated method stub
-		String hql="from User u where u.email=?";
-		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		Query query = sessionFactory.getCurrentSession().getNamedQuery("@HQL_CheckEmailUnique");
 		query.setString(0, email);
 		User user=(User)query.uniqueResult();
 		return user==null;
@@ -62,8 +60,7 @@ public class UserDAOImpl implements UserDAO{
 	@Override
 	public User findUserByUserNameAndPassword(String userName, String password) {
 		// TODO Auto-generated method stub
-		String hql="from User u where u.userName=? and u.password=?";
-		Query query=sessionFactory.getCurrentSession().createQuery(hql);
+		Query query=sessionFactory.getCurrentSession().getNamedQuery("@HQL_FindUserByUserNameAndPassword");
 		query.setString(0, userName);
 		query.setString(1, password);
 		User user=(User)query.uniqueResult();
@@ -76,8 +73,7 @@ public class UserDAOImpl implements UserDAO{
 	@Override
 	public User findUserByEmailAndPassword(String email, String password) {
 		// TODO Auto-generated method stub
-		String hql="from User u where u.email=? and u.password=?";
-		Query query=sessionFactory.getCurrentSession().createQuery(hql);
+		Query query=sessionFactory.getCurrentSession().getNamedQuery("@HQL_FindUserByEmailAndPassword");
 		query.setString(0, email);
 		query.setString(1, password);
 		User user=(User)query.uniqueResult();

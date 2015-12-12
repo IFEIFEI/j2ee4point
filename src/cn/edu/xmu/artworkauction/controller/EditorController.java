@@ -5,8 +5,12 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import cn.edu.xmu.artworkauction.entity.ArtNews;
 import cn.edu.xmu.artworkauction.entity.Editor;
 import cn.edu.xmu.artworkauction.service.EditorService;
+import cn.edu.xmu.artworkauction.utils.Constants;
 
 /**
  * EditorController 
@@ -21,15 +25,20 @@ public class EditorController
 	@Resource
 	private EditorService editorService;
 	@RequestMapping("/saveDraft")
-	public void saveDraft(HttpServletRequest request)
+	public ModelAndView saveDraft(HttpServletRequest request)
 	{
+
 		String title=request.getParameter("title");
 		String type=request.getParameter("type");
-		String article=request.getParameter("article");
-		Integer checked=2;
-		Integer checkedout=0;
-		request.getSession().getAttribute("editor");
-		editorService.saveDraft(title, article,new Date(),new Date(), checked,checkedout, editor,type);
+		
+		String article=request.getParameter("editor");
+		Editor editor=new Editor();
+		editor.setUserName("Xia");
+		//request.getSession().getAttribute("editor");
+		ArtNews artNews= editorService.saveDraft(title, article,new Date(),new Date(), Constants.UNCOMMITTED, editor,type);
+		ModelAndView modelAndView=new ModelAndView("draftTest");
+		modelAndView.addObject("artNews", artNews); 
+		return modelAndView;
 	}
 	@RequestMapping("/submitNews")
 	public void submitNews(HttpServletRequest request)
@@ -37,9 +46,7 @@ public class EditorController
 		String title=request.getParameter("title");
 		String type=request.getParameter("type");
 		String article=request.getParameter("article");
-		Integer checked=0;
-		Integer checkedout=0;
 		request.getSession().getAttribute("editor");
-		editorService.submit(title, article,new Date(),new Date(), checked,checkedout, editor,type);
+		editorService.submit(title, article,new Date(),new Date(), Constants.UNDERAPPROVAL, editor,type);
 	}
 }

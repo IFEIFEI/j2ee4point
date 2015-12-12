@@ -3,14 +3,7 @@ package cn.edu.xmu.artworkauction.dao.impl;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.transaction.HeuristicMixedException;
-import javax.transaction.HeuristicRollbackException;
-import javax.transaction.RollbackException;
-import javax.transaction.SystemException;
-import javax.transaction.Transaction;
 
-import org.hibernate.Hibernate;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
@@ -21,8 +14,9 @@ import cn.edu.xmu.artworkauction.entity.ArtNews;
 /**
  * ArtNewsDaoimpl
  * @author Dany ifeifei@stu.xmu.edu.cn
- * Modified By XiaWenSheng
+ * Modified By XiaWenSheng 12/12
  */
+
 @Repository("artNewsDAO")
 public class ArtNewsDAOImpl implements ArtNewsDAO
 {
@@ -34,18 +28,10 @@ public class ArtNewsDAOImpl implements ArtNewsDAO
 		this.sessionFactory = sessionFactory;
 	}
 	@Override
-	//transaction part should use AOP  
 	public List<ArtNews> getAllArtNews() throws Exception
 	{
 		Session session=sessionFactory.getCurrentSession();
-		//
-		Transaction tx=(Transaction) session.beginTransaction();
-		//
-		String hqlselect="select a from ArtNews";
-		List<ArtNews> aList=session.createQuery(hqlselect).list();
-		//
-		tx.commit();
-		//
+		List<ArtNews> aList=session.getNamedQuery("@HQL_GetAllArtNews").list();
 		return aList;
 		
 	}
@@ -58,6 +44,7 @@ public class ArtNewsDAOImpl implements ArtNewsDAO
 	public void saveArtNews(ArtNews artNews)
 	{
 		sessionFactory.getCurrentSession().save(artNews);
+		sessionFactory.getCurrentSession().flush();
 	}
 	@Override
 	public void deleteArtNews(ArtNews artNews)
@@ -75,47 +62,59 @@ public class ArtNewsDAOImpl implements ArtNewsDAO
 	@Override
 	public List<ArtNews> getArtNewsByTitle(String title)
 	{
-		String hql="from ArtNews a where a.title=?";
-		return (List<ArtNews>)sessionFactory.getCurrentSession().createQuery(hql).setString(0, title).list();
+		return (List<ArtNews>)sessionFactory.getCurrentSession().
+				getNamedQuery("@HQL_GetArtNewsByTitle").setString(0, title).list();
 	}
 	@Override
 	public List<ArtNews> getArtNewsByType(String type)
 	{
-		String hql="form ArtNews a where a.type=?";
-		return (List<ArtNews>)sessionFactory.getCurrentSession().createQuery(hql).setString(0, type).list();
+		return (List<ArtNews>)sessionFactory.getCurrentSession().
+				getNamedQuery("@HQL_GetArtNewsByType").setString(0, type).list();
 	}
+	
+	//剩下的查询我还没改，你根据这些修改来把查询语句用命名查询写到相应的类上
 	@Override
 	public List<ArtNews> getCheckedArtNews()
 	{
-		String hql="form ArtNews a where a.checked=1";
+		String hql="from ArtNews a where a.checked=1";
 		return (List<ArtNews>)sessionFactory.getCurrentSession().createQuery(hql).list();
 	}
 	@Override
 	public List<ArtNews> getUnCheckedArtNews(Integer lev)
 	{
-		String hql="form ArtNews a where a.checked=?";
+		String hql="from ArtNews a where a.checked=?";
 		return (List<ArtNews>)sessionFactory.getCurrentSession().createQuery(hql).setString(0,lev.toString()).list();
 	}
 	@Override
 	public List<ArtNews> getCheckedoutArtNews()
 	{
-		String hql="form ArtNews a where a.checkedout=1";
+		String hql="from ArtNews a where a.checkedout=1";
 		return (List<ArtNews>)sessionFactory.getCurrentSession().createQuery(hql).list();
 	}
 	@Override
 	public List<ArtNews> getUnCheckedoutArtNews()
 	{
-		String hql="form ArtNews a where a.checkedout=0";
+		String hql="from ArtNews a where a.checkedout=0";
 		return (List<ArtNews>)sessionFactory.getCurrentSession().createQuery(hql).list();
 	}
 	@Override
 	public boolean isExistByTitle(String title)
 	{
-		String hql="form ArtNews a where a.title=?";
+		String hql="from ArtNews a where a.title=?";
 		return 	sessionFactory
 				.getCurrentSession()
 				.createQuery(hql)
 				.setString(0, title)
 				.list()!=null;
+	}
+	@Override
+	public List<ArtNews> getTodayArtNews(String columnID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public List<ArtNews> getTodayAdvertisement(String columnID) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

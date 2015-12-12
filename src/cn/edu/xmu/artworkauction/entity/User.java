@@ -3,6 +3,9 @@
  */
 package cn.edu.xmu.artworkauction.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorValue;
@@ -13,6 +16,10 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.Table;
 import javax.persistence.InheritanceType;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -27,6 +34,17 @@ import org.hibernate.annotations.DynamicUpdate;
 @DiscriminatorColumn(name="userType")  
 @DiscriminatorValue("user") 
 @Table(name="tb_user")
+@NamedQueries(
+		{ 
+			@NamedQuery(name = "@HQL_CheckUserNameUnique", 
+			query = "from User u where u.userName=?"),
+			@NamedQuery(name = "@HQL_CheckEmailUnique", 
+			query = "from User u where u.email=?"),
+			@NamedQuery(name = "@HQL_FindUserByUserNameAndPassword", 
+			query = "from User u where u.userName=? and u.password=?"),
+			@NamedQuery(name = "@HQL_FindUserByEmailAndPassword",
+			query = "from User u where u.email=? and u.password=?")
+		})
 public class User implements java.io.Serializable{
 	/**
 	 * 
@@ -38,10 +56,9 @@ public class User implements java.io.Serializable{
 	private String realName;
 	private String phoneNumber;
 	private String email;
-	private String country;
-	private String city;
 	private String imageURL;
 	private String userType;
+	private List<Address> addresses;
 	public User(){}
 	
 	public User(String email,String userName,String phoneNumber,String password)
@@ -108,22 +125,6 @@ public class User implements java.io.Serializable{
 		this.email = email;
 	}
 	
-	@Column(length = 30)
-	public String getCountry() {
-		return country;
-	}
-	public void setCountry(String country) {
-		this.country = country;
-	}
-	
-	@Column(length = 30)
-	public String getCity() {
-		return city;
-	}
-	public void setCity(String city) {
-		this.city = city;
-	}
-	
 	@Column(length = 200)
 	public String getImageURL() {
 		return imageURL;
@@ -132,4 +133,12 @@ public class User implements java.io.Serializable{
 		this.imageURL = imageURL;
 	}
 	
+	@OneToMany(mappedBy = "user", targetEntity = Address.class,
+            cascade = CascadeType.ALL)
+	public List<Address> getAddresses() {
+		return addresses;
+	}
+	public void setAddresses(List<Address> addresses) {
+		this.addresses=addresses;
+	}
 }
