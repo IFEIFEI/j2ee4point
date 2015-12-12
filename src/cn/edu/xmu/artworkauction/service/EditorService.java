@@ -5,11 +5,14 @@ import cn.edu.xmu.artworkauction.entity.Editor;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 /**
  * EditorService
  * @author Dany ifeifei@stu.xmu.edu.cn
  * Modified 
  */
+@Service
 public interface EditorService 
 {
 	public ArtNews saveDraft(String title,String article,Date createtime,Date edittime,String state,Editor editor ,String type);

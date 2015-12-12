@@ -23,22 +23,25 @@ public class EditorController
 {
 	private Editor editor;
 	@Resource
-	private EditorService editorService;
+	private EditorService editorServiceImpl;
 	@RequestMapping("/saveDraft")
 	public ModelAndView saveDraft(HttpServletRequest request)
 	{
-
 		String title=request.getParameter("title");
 		String type=request.getParameter("type");
-		
 		String article=request.getParameter("editor");
 		Editor editor=new Editor();
 		editor.setUserName("Xia");
 		//request.getSession().getAttribute("editor");
-		ArtNews artNews= editorService.saveDraft(title, article,new Date(),new Date(), Constants.UNCOMMITTED, editor,type);
+		//ArtNews artNews= editorService.saveDraft(title, article,new Date(),new Date(), Constants.UNCOMMITTED, editor,type);
 		ModelAndView modelAndView=new ModelAndView("draftTest");
-		modelAndView.addObject("artNews", artNews); 
+		//modelAndView.addObject("artNews", artNews); 
 		return modelAndView;
+		//String article=request.getParameter("article");
+	//	Integer checked=2;
+	//	Integer checkedout=0;
+	//	request.getSession().getAttribute("editor");
+		//editorServiceImpl.saveDraft(title, article,new Date(),new Date(), checked,checkedout, editor,type);
 	}
 	@RequestMapping("/submitNews")
 	public void submitNews(HttpServletRequest request)
@@ -47,6 +50,11 @@ public class EditorController
 		String type=request.getParameter("type");
 		String article=request.getParameter("article");
 		request.getSession().getAttribute("editor");
-		editorService.submit(title, article,new Date(),new Date(), Constants.UNDERAPPROVAL, editor,type);
+		//editorService.submit(title, article,new Date(),new Date(), Constants.UNDERAPPROVAL, editor,type);
+		Integer checked=0;
+		Integer checkedout=0;
+		//editor=(Editor)request.getSession().getAttribute("editor");
+		editor=new Editor();
+		//editorServiceImpl.submit(title, article,new Date(),new Date(), checked,checkedout, editor,type);
 	}
 }

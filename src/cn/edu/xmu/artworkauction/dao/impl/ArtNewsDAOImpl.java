@@ -1,5 +1,6 @@
 package cn.edu.xmu.artworkauction.dao.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -10,6 +11,8 @@ import org.springframework.stereotype.Repository;
 
 import cn.edu.xmu.artworkauction.dao.ArtNewsDAO;
 import cn.edu.xmu.artworkauction.entity.ArtNews;
+import cn.edu.xmu.artworkauction.entity.Editor;
+import cn.edu.xmu.artworkauction.entity.User;
 
 /**
  * ArtNewsDaoimpl
@@ -38,7 +41,10 @@ public class ArtNewsDAOImpl implements ArtNewsDAO
 	@Override
 	public void addArtNews(ArtNews artNews)
 	{
-		sessionFactory.getCurrentSession().persist(artNews);
+		org.hibernate.Transaction tx=sessionFactory.getCurrentSession().beginTransaction();
+		sessionFactory.getCurrentSession().save(artNews);
+		sessionFactory.getCurrentSession().flush();
+		tx.commit();
 	}
 	@Override
 	public void saveArtNews(ArtNews artNews)
@@ -97,6 +103,17 @@ public class ArtNewsDAOImpl implements ArtNewsDAO
 		String hql="from ArtNews a where a.checkedout=0";
 		return (List<ArtNews>)sessionFactory.getCurrentSession().createQuery(hql).list();
 	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<ArtNews> getArtNewsByData(Date data)
+	{
+		String hql="form ArtNews a where a.launchTime=?";
+		return (List<ArtNews>)sessionFactory
+				.getCurrentSession()
+				.createQuery(hql)
+				.setString(0, data.toString())
+				.list();
+	}
 	@Override
 	public boolean isExistByTitle(String title)
 	{
@@ -116,5 +133,14 @@ public class ArtNewsDAOImpl implements ArtNewsDAO
 	public List<ArtNews> getTodayAdvertisement(String columnID) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	public List<ArtNews> getHistoryArtNewsByEditor(Editor editor)
+	{
+		String hql="form ArtNews a inner join Editor e where e.adminName=?";
+		return (List<ArtNews>) sessionFactory
+				.getCurrentSession()
+				.createQuery(hql)
+				.setString(0, editor.getUserName())
+				.list();
 	}
 }
