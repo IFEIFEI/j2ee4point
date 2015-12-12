@@ -1,7 +1,9 @@
 package cn.edu.xmu.artworkauction.entity;
 
 import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -72,7 +74,7 @@ public class ArtNews implements java.io.Serializable
 	
     @OneToMany(mappedBy = "artNews", targetEntity = DateAndPosition.class,
             cascade = CascadeType.ALL)
-    private List<DateAndPosition> dateAndpositions;
+    private List<DateAndPosition> dateAndPositions;
     
 	@ManyToOne(targetEntity=Editor.class, cascade = {CascadeType.ALL})
 	@JoinColumn(name="editor_id")
@@ -82,11 +84,13 @@ public class ArtNews implements java.io.Serializable
 	@JoinColumn(name="chiefEditor_id")
 	private ChiefEditor chiefEditor;
 	
+	private List<String> imageUrlList;
+	private List<String> videoUrlList;
 	public ArtNews(String title,String article,Date createTime,Date editTime,String state,Editor editor)
     {
 		setTitle(title);
 		setContent(article);
-		setCreatetime(createTime);
+		setCreateTime(createTime);
 		setEditTime(editTime);
 		setEditor(editor);
 	}
@@ -121,10 +125,10 @@ public class ArtNews implements java.io.Serializable
 		this.type=type;
 	}
 	
-	public Date getCreatetime() {
+	public Date getCreateTime() {
 		return this.createTime;
 	}
-	public void setCreatetime(Date createtime)
+	public void setCreateTime(Date createtime)
 	{
 		this.createTime=createtime;
 	}
@@ -144,10 +148,10 @@ public class ArtNews implements java.io.Serializable
 		this.editor=editor;
 	}
 	
-	public Editor getChiefeditor() {
+	public Editor getChiefEditor() {
 		return this.editor;
 	}
-	public void setChiefeditor(ChiefEditor chiefEditor) {
+	public void setChiefEditor(ChiefEditor chiefEditor) {
 		this.chiefEditor=chiefEditor;
 	}
 	
@@ -159,9 +163,22 @@ public class ArtNews implements java.io.Serializable
 	}
 	
 	public List<DateAndPosition> getDateAndPositions() {
-		return dateAndpositions;
+		return dateAndPositions;
 	}
 	public void setDateAndPositions(List<DateAndPosition> dateAndPositions) {
-		this.dateAndpositions=dateAndPositions;
+		this.dateAndPositions=dateAndPositions;
 	}
+	public List<String> getImageUrlList() {
+		return imageUrlList;
+	}
+	public void setImageUrlList(List<String> imageUrlList) {
+		this.imageUrlList = imageUrlList;
+	}
+	public List<String> getVideoUrlList() {
+		return videoUrlList;
+	}
+	public void setVideoUrlList(List<String> videoUrlList) {
+		this.videoUrlList = videoUrlList;
+	}
+	
 }
