@@ -57,6 +57,9 @@ import java.util.List;
 			query = "from ArtNews a where a.editor=:ediitor and a.state=:state"),
 			@NamedQuery(name="@HQL_GetAllDisApprovedArtNewsByEditor",
 			query = "from ArtNews a where a.editor=:ediitor and a.state=:state"),
+			@NamedQuery(name="@HQL_GetTodayArtNews",
+			query="select a from DateAndPosition dp inner join dp.artNews a where dp.publishDate "
+					+ "between :startTime and :endTime and dp.columnID=:columnId order by cast(dp.position as integer) asc"),
 		})
 public class ArtNews implements java.io.Serializable 
 {

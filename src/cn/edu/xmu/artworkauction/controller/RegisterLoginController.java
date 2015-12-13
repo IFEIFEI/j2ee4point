@@ -3,6 +3,8 @@
  */
 package cn.edu.xmu.artworkauction.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -11,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import cn.edu.xmu.artworkauction.entity.ArtNews;
 import cn.edu.xmu.artworkauction.entity.User;
 import cn.edu.xmu.artworkauction.service.SecureService;
 
@@ -30,8 +33,8 @@ public class RegisterLoginController {
 		String userName=request.getParameter("userName");
 		String phoneNumber=request.getParameter("phoneNumber");
 		String password=request.getParameter("password");
-		ModelAndView modelAndView=new ModelAndView("userindex");
 		User user=secureService.userRegister(email, userName, phoneNumber, password);
+		ModelAndView modelAndView=new ModelAndView("userindex");
 		model.addAttribute("user", user);
 		request.getSession().setAttribute("user", user);
 		return modelAndView;
@@ -44,14 +47,20 @@ public class RegisterLoginController {
 		String password=request.getParameter("password");
 		User user=secureService.userLoginByUserName(userName, password);
 		ModelAndView modelAndView;
-	//	if(user==null)
-	//	{
-	//		modelAndView =new ModelAndView("index");
-	//		return modelAndView;
-	//	}
-	//	else 
+		System.out.println(user.getUserType());
+		
+		if(user.getUserType().equals("chiefEditor"))
+		{
+			request.getSession().setAttribute("user", user);
+			modelAndView=new ModelAndView();
+			modelAndView.setViewName("redirect:/getCheckPendingList");
+			return modelAndView;
+		}
+		else //这部分返回采编
+		{
 			modelAndView =new ModelAndView("Editor/editArtNews");
-		request.getSession().setAttribute("user", user);
-		return modelAndView;
+			request.getSession().setAttribute("user", user);
+			return modelAndView;
+		}
 	}
 }
