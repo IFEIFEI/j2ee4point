@@ -51,7 +51,9 @@ import java.util.List;
 			query = "from ArtNews a where a.editor=:ediitor and a.state=:state"),
 			@NamedQuery(name="@HQL_GetTodayArtNews",
 			query="select a from DateAndPosition dp inner join dp.artNews a where dp.publishDate "
-					+ "between :startTime and :endTime and dp.columnID=:columnId order by cast(dp.position as integer) asc")
+					+ "between :startTime and :endTime and dp.columnID=:columnId order by cast(dp.position as integer) asc"),
+			@NamedQuery(name="@HQL_GetArtNewsByState",query="from ArtNews a where a.state=?"),
+
 		})
 public class ArtNews implements java.io.Serializable 
 {
@@ -95,7 +97,8 @@ public class ArtNews implements java.io.Serializable
 	@JoinColumn(name="chiefEditor_id")
 	private ChiefEditor chiefEditor;
 	
-	public ArtNews(String title,String article,Date createTime,Date editTime,String state,Editor editor,String type)
+	public ArtNews(String title,String article,Date createTime,Date editTime,String state,Editor editor,String type){}
+	public ArtNews(String title,String article,Date createTime,Date editTime,String state,Editor editor)
     {
 		setTitle(title);
 		setContent(article);

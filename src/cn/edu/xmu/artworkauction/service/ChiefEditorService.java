@@ -10,6 +10,7 @@ import cn.edu.xmu.artworkauction.entity.ChiefEditor;
 
 public interface ChiefEditorService 
 {
+	public void printTest();
 	public List<ArtNews> getUncheckedArtNews();
 	public void savaCheckedArtNews(List<ArtNews> artNewslist,ChiefEditor chiefEditor);
 }

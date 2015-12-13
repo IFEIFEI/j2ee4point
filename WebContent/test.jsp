@@ -5,13 +5,29 @@
 	<head>
 		<meta charset="UTF-8" />
 		<title>艺术品资讯测试</title>
+
+		<script src="js/jquery.js"></script>
 	</head>
 	<body>
-		<form action="submitNews" method="post">
-			<input type="text" name="title" value="">
-			<input type="text" name="type" value="">
-			<input type="text" name="article" value="">
-			<input type="submit" value="submit">
+		<form>
+			<input class="in1" type="text" name="title" value="">
+			<input class="in2" type="text" name="type" value="">
+			<input class="in3" type="text" name="article" value="">
+			<input class="sub1" type="button" value="submit">
 		</form>
 	</body>
+	<script type="text/javascript">
+	$(document).ready(function () {
+		$("input.sub1").click(function () {
+			$.post(
+				"jstest",
+				{ "jstest":"get it?" },
+				function (data) {
+						$("input.in1").val(data.title);
+						$("input.in2").val(data.type);
+						$("input.in3").val(data.article);			
+				}, 'json');
+		});
+	});
+	</script>
 </html>

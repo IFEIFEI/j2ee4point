@@ -11,8 +11,10 @@ import org.springframework.stereotype.Repository;
 
 import cn.edu.xmu.artworkauction.dao.ArtNewsDAO;
 import cn.edu.xmu.artworkauction.entity.ArtNews;
+import cn.edu.xmu.artworkauction.entity.ChiefEditor;
 import cn.edu.xmu.artworkauction.entity.Editor;
 import cn.edu.xmu.artworkauction.entity.User;
+import sun.misc.CEFormatException;
 
 /**
  * ArtNewsDaoimpl
@@ -72,7 +74,6 @@ public class ArtNewsDAOImpl implements ArtNewsDAO
 				getNamedQuery("@HQL_GetArtNewsByType").setString(0, type).list();
 	}
 	
-	//剩下的查询我还没改，你根据这些修改来把查询语句用命名查询写到相应的类上
 	@Override
 	public List<ArtNews> getCheckedArtNews()
 	{
@@ -141,5 +142,21 @@ public class ArtNewsDAOImpl implements ArtNewsDAO
 				.createQuery(hql)
 				.setString(0, editor.getUserName())
 				.list();
+	}
+	@Override
+	public void test() 
+	{
+		System.out.println("Hello");
+		String hql="from ArtNews a where a.chiefEditor=?";
+		ChiefEditor chiefEditor=(ChiefEditor)sessionFactory.getCurrentSession().createQuery("from ChiefEditor c where c.id=2" ).uniqueResult();
+		System.out.println(chiefEditor.getId());
+		List<ArtNews> aList=sessionFactory
+				.getCurrentSession()
+				//.getNamedQuery("@HQL_GetArtNewsByChiefEditor")
+				.createQuery(hql)
+				//.setString(0, "2")
+				.setEntity(0, chiefEditor)
+				.list();
+		System.out.println(aList.get(0).getState());
 	}
 }
