@@ -42,7 +42,7 @@ import java.util.List;
 			@NamedQuery(name = "@HQL_GetAllArtNews", 
 			query = "from ArtNews"),
 			@NamedQuery(name="@HQL_GetArtNewsById",
-			query="form ArtNews a where a.id=?"),
+			query="from ArtNews a where a.id=?"),
 			@NamedQuery(name="@HQL_GetArtNewsByState",
 			query="from ArtNews a where a.state=?"),
 			@NamedQuery(name="@HQL_GetArtNewsByChiefEditor",
@@ -57,10 +57,6 @@ import java.util.List;
 			query = "from ArtNews a where a.editor=:ediitor and a.state=:state"),
 			@NamedQuery(name="@HQL_GetAllDisApprovedArtNewsByEditor",
 			query = "from ArtNews a where a.editor=:ediitor and a.state=:state"),
-			@NamedQuery(name="@HQL_GetTodayArtNews",
-			query="select a from DateAndPosition dp inner join dp.artNews a where dp.publishDate "
-					+ "between :startTime and :endTime and dp.columnID=:columnId order by cast(dp.position as integer) asc"),
-			@NamedQuery(name="@HQL_GetArtNewsByState",query="from ArtNews a where a.state=?"),
 		})
 public class ArtNews implements java.io.Serializable 
 {
