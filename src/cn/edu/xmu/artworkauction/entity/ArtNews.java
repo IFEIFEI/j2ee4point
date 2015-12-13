@@ -40,7 +40,9 @@ import java.util.List;
 			@NamedQuery(name = "@HQL_GetArtNewsByTitle", 
 			query = "from ArtNews a where a.title=?"),
 			@NamedQuery(name = "@HQL_GetAllArtNews", 
-			query = "from ArtNews")
+			query = "from ArtNews"),
+			@NamedQuery(name="@HQL_GetArtNewsByState",query="from ArtNews a where a.state=?"),
+			
 		})
 public class ArtNews implements java.io.Serializable 
 {
@@ -84,8 +86,8 @@ public class ArtNews implements java.io.Serializable
 	@JoinColumn(name="chiefEditor_id")
 	private ChiefEditor chiefEditor;
 	
-	private List<String> imageUrlList;
-	private List<String> videoUrlList;
+	//private List<String> imageUrlList;
+	//private List<String> videoUrlList;
 	public ArtNews(String title,String article,Date createTime,Date editTime,String state,Editor editor)
     {
 		setTitle(title);
@@ -168,6 +170,7 @@ public class ArtNews implements java.io.Serializable
 	public void setDateAndPositions(List<DateAndPosition> dateAndPositions) {
 		this.dateAndPositions=dateAndPositions;
 	}
+	/*
 	public List<String> getImageUrlList() {
 		return imageUrlList;
 	}
@@ -180,5 +183,5 @@ public class ArtNews implements java.io.Serializable
 	public void setVideoUrlList(List<String> videoUrlList) {
 		this.videoUrlList = videoUrlList;
 	}
-	
+	*/
 }

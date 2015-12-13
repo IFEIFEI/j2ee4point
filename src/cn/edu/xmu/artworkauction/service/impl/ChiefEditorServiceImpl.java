@@ -38,4 +38,9 @@ public class ChiefEditorServiceImpl implements ChiefEditorService
 				.map(a->{a.setChiefEditor(chiefEditor);return a;})
 				.forEach(a->artNewsDAO.saveArtNews(a));
 	}
+	@Override
+	public void printTest() 
+	{		
+		artNewsDAO.test();
+	}
 }

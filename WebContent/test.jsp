@@ -23,7 +23,6 @@
 				"jstest",
 				{ "jstest":"get it?" },
 				function (data) {
-						alert(data.title+data.type+data.article);
 						$("input.in1").val(data.title);
 						$("input.in2").val(data.type);
 						$("input.in3").val(data.article);			

@@ -32,4 +32,5 @@ public interface ArtNewsDAO
 	public boolean isExistByTitle(String title);
 	public List<ArtNews> getTodayArtNews(String columnID);
 	public List<ArtNews> getTodayAdvertisement(String columnID);
+	public void test();
 }
