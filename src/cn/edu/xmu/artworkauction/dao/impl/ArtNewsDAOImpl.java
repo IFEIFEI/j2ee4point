@@ -14,6 +14,7 @@ import cn.edu.xmu.artworkauction.entity.ArtNews;
 import cn.edu.xmu.artworkauction.entity.ChiefEditor;
 import cn.edu.xmu.artworkauction.entity.Editor;
 import cn.edu.xmu.artworkauction.entity.User;
+import cn.edu.xmu.artworkauction.utils.Constants;
 import sun.misc.CEFormatException;
 
 /**
@@ -59,14 +60,15 @@ public class ArtNewsDAOImpl implements ArtNewsDAO
 	{
 		sessionFactory.getCurrentSession().delete(artNews);
 	}
-	/*who can use this function?
 	@Override
 	public ArtNews getArtNewsById(Integer id)
 	{
-		String hql="from ArtNews a where a.id=?";
-		return (ArtNews)sessionFactory.getCurrentSession().createQuery(hql).setString(0, id.toString()).uniqueResult();
+		return (ArtNews)sessionFactory
+				.getCurrentSession()
+				.getNamedQuery("@HQL_GetArtNewsById")
+				.setString(0, id.toString())
+				.uniqueResult();
 	}
-	*/
 	@Override
 	public List<ArtNews> getArtNewsByTitle(String title)
 	{
@@ -83,26 +85,38 @@ public class ArtNewsDAOImpl implements ArtNewsDAO
 	@Override
 	public List<ArtNews> getCheckedArtNews()
 	{
-		String hql="from ArtNews a where a.checked=1";
-		return (List<ArtNews>)sessionFactory.getCurrentSession().createQuery(hql).list();
+		return (List<ArtNews>)sessionFactory
+				.getCurrentSession()
+				.getNamedQuery("@HQL_GetArtNewsByState")
+				.setString(0, Constants.APPROVED)
+				.list();
 	}
 	@Override
-	public List<ArtNews> getUnCheckedArtNews(Integer lev)
+	public List<ArtNews> getUnCheckedArtNews()
 	{
-		String hql="from ArtNews a where a.checked=?";
-		return (List<ArtNews>)sessionFactory.getCurrentSession().createQuery(hql).setString(0,lev.toString()).list();
+		return (List<ArtNews>)sessionFactory
+				.getCurrentSession()
+				.getNamedQuery("@HQL_GetArtNewsByState")
+				.setString(0,Constants.UNDERAPPROVAL)
+				.list();
 	}
 	@Override
 	public List<ArtNews> getCheckedoutArtNews()
 	{
-		String hql="from ArtNews a where a.checkedout=1";
-		return (List<ArtNews>)sessionFactory.getCurrentSession().createQuery(hql).list();
+		return (List<ArtNews>)sessionFactory
+				.getCurrentSession()
+				.getNamedQuery("@HQL_GetArtNewsByState")
+				.setString(0, Constants.APPROVED)
+				.list();
 	}
 	@Override
 	public List<ArtNews> getUnCheckedoutArtNews()
 	{
-		String hql="from ArtNews a where a.checkedout=0";
-		return (List<ArtNews>)sessionFactory.getCurrentSession().createQuery(hql).list();
+		return (List<ArtNews>)sessionFactory
+				.getCurrentSession()
+				.getNamedQuery("@HQL_GetArtNewsByState")
+				.setString(0, Constants.DISAPPROVED)
+				.list();
 	}
 	@SuppressWarnings("unchecked")
 	@Override
@@ -137,11 +151,18 @@ public class ArtNewsDAOImpl implements ArtNewsDAO
 	}
 	public List<ArtNews> getHistoryArtNewsByEditor(Editor editor)
 	{
-		String hql="form ArtNews a inner join Editor e where e.adminName=?";
 		return (List<ArtNews>) sessionFactory
 				.getCurrentSession()
-				.createQuery(hql)
-				.setString(0, editor.getUserName())
+				.getNamedQuery("HQL_GetArtNewsByEditor")
+				.setEntity(0, editor)
+				.list();
+	}
+	public List<ArtNews> getHistoryArtNewsByChiefEditor(ChiefEditor chiefEditor)
+	{
+		return (List<ArtNews>) sessionFactory
+				.getCurrentSession()
+				.getNamedQuery("HQL_GetArtNewsByChiefEditor")
+				.setEntity(0, chiefEditor)
 				.list();
 	}
 	@Override

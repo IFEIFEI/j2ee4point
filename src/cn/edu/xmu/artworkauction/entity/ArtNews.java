@@ -41,8 +41,14 @@ import java.util.List;
 			query = "from ArtNews a where a.title=?"),
 			@NamedQuery(name = "@HQL_GetAllArtNews", 
 			query = "from ArtNews"),
-			@NamedQuery(name="@HQL_GetArtNewsByState",query="from ArtNews a where a.state=?"),
-			
+			@NamedQuery(name="@HQL_GetArtNewsById",
+			query="form ArtNews a where a.id=?"),
+			@NamedQuery(name="@HQL_GetArtNewsByState",
+			query="from ArtNews a where a.state=?"),
+			@NamedQuery(name="@HQL_GetArtNewsByChiefEditor",
+			query="from ArtNews a where a.chiefEditor=?"),
+			@NamedQuery(name="@HQL_GetArtNewsByEditor",
+			query="from ArtNews a where a.editor=?"),
 		})
 public class ArtNews implements java.io.Serializable 
 {

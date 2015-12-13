@@ -29,7 +29,7 @@ public class ChiefEditorServiceImpl implements ChiefEditorService
 	@Override
 	public List<ArtNews> getUncheckedArtNews()
 	{
-		return artNewsDAO.getUnCheckedArtNews(0);
+		return artNewsDAO.getUnCheckedArtNews();
 	}
 	@Override
 	public void savaCheckedArtNews(List<ArtNews> artNewslist,ChiefEditor chiefEditor)
@@ -42,5 +42,18 @@ public class ChiefEditorServiceImpl implements ChiefEditorService
 	public void printTest() 
 	{		
 		artNewsDAO.test();
+	}
+	@Override
+	public void saveArtNewsState(Integer artNewsId, String state, ChiefEditor chiefEditor) 
+	{
+		ArtNews artNews=artNewsDAO.getArtNewsById(artNewsId);
+		artNews.setState(state);
+		artNews.setChiefEditor(chiefEditor);
+		artNewsDAO.saveArtNews(artNews);		
+	}
+	@Override
+	public List<ArtNews> getMyCheckedHistory(ChiefEditor chiefEditor) 
+	{
+		return artNewsDAO.getHistoryArtNewsByChiefEditor(chiefEditor);
 	}
 }

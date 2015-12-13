@@ -64,7 +64,7 @@ public class EditorServiceImpl implements EditorService
 	public List<ArtNews> getDraft(Editor editor) 
 	{
 		List<ArtNews> draftlist=artNewsDAO
-				.getUnCheckedArtNews(2)
+				.getUnCheckedArtNews()
 				.stream()
 				.filter(e->e.getEditor().getId()==editor.getId())
 				.collect(Collectors.toList());
