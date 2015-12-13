@@ -16,11 +16,11 @@
     <script type="text/javascript" charset="utf-8" src="ueditor/lang/zh-cn/zh-cn.js"></script>
  <form action="saveDraft" method="post">
 <input type="text" name="title"><input type="text" name="type">
-    <script id="editor"   name="editor" type="text/plain" style="width:1024px;height:500px;"></script>
+    <script id="ueditor"   name="ueditor" type="text/plain" style="width:1024px;height:500px;"></script>
 <script type="text/javascript">
 //实例化编辑器
 //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
-var ue = UE.getEditor('editor');</script>
+var ue = UE.getEditor('ueditor');</script>
 <input type="submit" value="添加">
 </form>
 </body>

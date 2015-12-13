@@ -6,17 +6,17 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
-
 /**
  * EditorService
  * @author Dany ifeifei@stu.xmu.edu.cn
- * Modified 
+ * Modified By XiaWenSheng 12/13
  */
 @Service
 public interface EditorService 
 {
-	public ArtNews saveDraft(String title,String article,Date createtime,Date edittime,String state,Editor editor ,String type);
-	public List<ArtNews> getDraft(Editor editor);
-	public void submit(String title,String article,Date createtime,Date edittime,String state,Editor editor,String type);
-
+	public ArtNews saveDraft(String title,String content,Date createTime,Date editTime,String state,Editor editor ,String type);
+	public List<ArtNews> getAllDraftByEditor(Editor editor);
+	public ArtNews submitDraft(String title,String content,Date createTime,Date editTime,String state,Editor editor,String type);
+	public List<ArtNews> getAllApprovedArtNewsByEditor(Editor editor);
+	public List<ArtNews> getAllDisApprovedArtNewsByEditor(Editor editor);
 }

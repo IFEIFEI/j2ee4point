@@ -5865,6 +5865,10 @@ body .container:after {
     clear: both
 }
 
+body #home_nav {
+    font-weight: bolder;
+}
+
 body #home_nav #logo_animated, body h1#fit {
     -webkit-transition: all .6s ease-out 0s;
     -moz-transition: all .6s ease-out 0s;
@@ -6109,6 +6113,12 @@ header.scroll nav {
     font-size: 30px
 }
 
+.home .hamburger img {
+    float: right;
+    width:10px;
+    height:10px;
+}
+
 @media only screen and (max-width:700px) {
     .hamburger {
         display: block;
@@ -6204,6 +6214,8 @@ nav ul li.current_page_item {
 .home #home_nav .hamburger i {
     color: #fff
 }
+
+
 
 .home #logo_animated {
     float: left;
@@ -6781,20 +6793,22 @@ nav ul li.current_page_item {
     }
 }
 
+
+
 .home #about_section #shows {
     background: #f3f3ec;
     box-shadow: none;
     padding: 20px;
-    width: calc(50% - 20px);
+    width: calc(50% - 40px);
     height: calc(100% - 40px);
     margin: 20px;
-    margin-left: 0
 }
+
 
 @media only screen and (max-width:1000px) {
     .home #about_section #shows {
         width: calc(100% - 40px);
-        margin: 0 20px 20px;
+        margin: 10px 20px 20px;
         height: 400px
     }
 }
@@ -7829,7 +7843,7 @@ nav ul li.current_page_item {
 
 @media only screen and (max-width:700px) {
     #shop_items .shop_item {
-        width: calc(100%)
+        width: calc(50% - 20px)
     }
 
     #shop_items .shop_item:last-of-type {
@@ -7901,7 +7915,14 @@ nav ul li.current_page_item {
 
 @media only screen and (max-width:900px) {
     #shop_items .shop_item .caption p {
-        font-size: 20px;
+        font-size: 16px;
+        line-height: 30px
+    }
+}
+
+@media only screen and (max-width:600px) {
+    #shop_items .shop_item .caption p {
+        font-size: 12px;
         line-height: 30px
     }
 }
@@ -11481,7 +11502,11 @@ html.gecko #top select {
     padding: 10px 8px 0 18px !important
 }
 
-.page-id-7 #about_section {
+
+
+
+/*==================================================================================*/
+.page-id-96 #about_section {
     position: relative;
     margin: 0 auto;
     height: 550px;
@@ -11489,12 +11514,12 @@ html.gecko #top select {
 }
 
 @media only screen and (max-width:1000px) {
-    .page-id-7 #about_section {
+    .page-id-96 #about_section {
         height: auto !important
     }
 }
 
-.page-id-7 #about_section .box {
+.page-id-96 #about_section .box {
     float: left;
     width: calc(50% - 20px);
     height: calc(100% - 40px);
@@ -11503,7 +11528,7 @@ html.gecko #top select {
     margin: 20px
 }
 
-.page-id-7 #about_section #about_tabs {
+.page-id-96 #about_section #about_tabs {
     text-align: center;
     display: table;
     overflow: hidden;
@@ -11514,46 +11539,46 @@ html.gecko #top select {
 }
 
 @media only screen and (max-width:1000px) {
-    .page-id-7 #about_section #about_tabs {
+    .page-id-96 #about_section #about_tabs {
         width: calc(100% - 40px);
         height: 550px !important
     }
 }
 
 @media only screen and (max-width:700px) {
-    .page-id-7 #about_section #about_tabs {
+    .page-id-96 #about_section #about_tabs {
         height: 650px !important
     }
 }
 
 @media only screen and (max-width:1200px) {
-    .page-id-7 #about_section #about_tabs {
+    .page-id-96 #about_section #about_tabs {
         background-size: 100% 100%
     }
 }
 
 @media only screen and (max-width:1000px) {
-    .page-id-7 #about_section #about_tabs {
+    .page-id-96 #about_section #about_tabs {
         background-size: 500px 500px;
         background-repeat: repeat
     }
 }
 
-.page-id-7 #about_section #about_tabs .tab-content {
+.page-id-96 #about_section #about_tabs .tab-content {
     vertical-align: middle;
     display: table-cell
 }
 
-.page-id-7 #about_section #about_tabs .tab-pane {
+.page-id-96 #about_section #about_tabs .tab-pane {
     display: none
 }
 
-.page-id-7 #about_section #about_tabs .tab-pane.active {
+.page-id-96 #about_section #about_tabs .tab-pane.active {
     display: block
 }
 /*==================================================================================*/
 
-.page-id-7 #about_section #about_tabs .tab-content .tab-pane form{
+.page-id-96 #about_section #about_tabs .tab-content .tab-pane form{
     float: center;
     padding: 80px,10%,10%,0;
     margin: 0;
@@ -11562,13 +11587,13 @@ html.gecko #top select {
 }
 
 @media only screen and (max-width:1000px) {
-.page-id-7 #about_section #about_tabs  .tab-content .tab-pane  form {
+.page-id-96 #about_section #about_tabs  .tab-content .tab-pane  form {
         width: 100%;
         margin-top: 20px
     }
 }
 
-.page-id-7 #about_section #about_tabs .tab-content .tab-pane  form input {
+.page-id-96 #about_section #about_tabs .tab-content .tab-pane  form input {
     font-family: "Graphik Web Medium", Helvetica, Arial;
     -webkit-font-smoothing: antialiased;
     margin: 0;
@@ -11583,17 +11608,17 @@ html.gecko #top select {
 }
 
 @media only screen and (max-width:600px) {
-.page-id-7 #about_section #about_tabs .tab-content .tab-pane   form input.email {
+.page-id-96 #about_section #about_tabs .tab-content .tab-pane   form input.email {
         width: 100%
     }
 }
 
 
-.page-id-7 #about_section #about_tabs .tab-content .tab-pane  form .req{
+.page-id-96 #about_section #about_tabs .tab-content .tab-pane  form .req{
     color: red;
 }
 
-.page-id-7 #about_section #about_tabs .tab-content .tab-pane  form input.button {
+.page-id-96 #about_section #about_tabs .tab-content .tab-pane  form input.button {
     font-family: "Graphik Web SemiBold", Helvetica, Arial;
     -webkit-font-smoothing: antialiased;
     -webkit-transition: all .2s ease-in 0s;
@@ -11616,7 +11641,7 @@ html.gecko #top select {
 }
 
 
-.page-id-7 #about_section #about_tabs .tab-content .tab-pane  form input.button:hover {
+.page-id-96 #about_section #about_tabs .tab-content .tab-pane  form input.button:hover {
     background: #e3e3d4;
     -moz-box-shadow: 0 4px 0 0 #d3d3bb;
     -webkit-box-shadow: 0 4px 0 0 #d3d3bb;
@@ -11624,19 +11649,19 @@ html.gecko #top select {
 }
 
 @media only screen and (max-width:700px) {
-.page-id-7 #about_section #about_tabs .tab-content .tab-pane  form input.button {
+.page-id-96 #about_section #about_tabs .tab-content .tab-pane  form input.button {
         margin: 0
     }
 }
 
 @media only screen and (max-width:500px) {
-.page-id-7 #about_section #about_tabs .tab-content .tab-pane  form input.button {
+.page-id-96 #about_section #about_tabs .tab-content .tab-pane  form input.button {
         margin: 0;
         padding: 10px 15px
     }
 }
 
-.page-id-7 #about_section #about_tabs .tab-content .tab-pane  form #zhucequ {
+.page-id-96 #about_section #about_tabs .tab-content .tab-pane  form #zhucequ {
     font-family: "Graphik Web SemiBold", Helvetica, Arial;
     -webkit-font-smoothing: antialiased;
     -webkit-transition: all .2s ease-in 0s;
@@ -11655,13 +11680,13 @@ html.gecko #top select {
 }
 
 @media only screen and (max-width:700px) {
-.page-id-7 #about_section #about_tabs .tab-content .tab-pane  form #zhucequ{
+.page-id-96 #about_section #about_tabs .tab-content .tab-pane  form #zhucequ{
         margin: 0
     }
 }
 
 @media only screen and (max-width:500px) {
-.page-id-7 #about_section #about_tabs .tab-content .tab-pane  form #zhucequ {
+.page-id-96 #about_section #about_tabs .tab-content .tab-pane  form #zhucequ {
         margin: 0;
         padding: 10px 15px
     }
@@ -11669,18 +11694,18 @@ html.gecko #top select {
 
 
 
-.page-id-7 #about_section #about_tabs .tab-content .tab-pane  #agreement{
+.page-id-96 #about_section #about_tabs .tab-content .tab-pane  #agreement{
     width: 10%;
 }
 
 @media only screen and (max-width:700px) {
-.page-id-7 #about_section #about_tabs .tab-content .tab-pane  form input.button {
+.page-id-96 #about_section #about_tabs .tab-content .tab-pane  form input.button {
         margin: 0
     }
 }
 
 @media only screen and (max-width:500px) {
-.page-id-7 #about_section #about_tabs .tab-content .tab-pane  form input.button {
+.page-id-96 #about_section #about_tabs .tab-content .tab-pane  form input.button {
         margin: 0;
         padding: 10px 15px
     }
@@ -11689,10 +11714,7 @@ html.gecko #top select {
 
 
 
-
-/*==================================================================================*/
-
-.page-id-7 #about_section #about_tabs h3 {
+.page-id-96 #about_section #about_tabs h3 {
     font-family: "Graphik Web SemiBold", Helvetica, Arial;
     -webkit-font-smoothing: antialiased;
     font-size: 14px;
@@ -11705,7 +11727,7 @@ html.gecko #top select {
 }
 
 @media only screen and (max-width:1200px) {
-    .page-id-7 #about_section #about_tabs h3 {
+    .page-id-96 #about_section #about_tabs h3 {
         font-size: 12px;
         padding-bottom: 0;
         margin-bottom: 15px;
@@ -11714,7 +11736,7 @@ html.gecko #top select {
 }
 
 @media only screen and (max-width:1000px) {
-    .page-id-7 #about_section #about_tabs h3 {
+    .page-id-96 #about_section #about_tabs h3 {
         font-size: 14px;
         padding-bottom: 4px;
         margin-bottom: 30px;
@@ -11722,7 +11744,7 @@ html.gecko #top select {
     }
 }
 
-.page-id-7 #about_section #about_tabs .button {
+.page-id-96 #about_section #about_tabs .button {
     font-family: "Graphik Web SemiBold", Helvetica, Arial;
     -webkit-font-smoothing: antialiased;
     -webkit-transition: all .2s ease-in 0s;
@@ -11741,12 +11763,12 @@ html.gecko #top select {
     box-shadow: 0 4px 0 0 #dfdfcd
 }
 
-.page-id-7 #about_section #about_tabs .button span {
+.page-id-96 #about_section #about_tabs .button span {
     opacity: .5;
     padding-left: 5px
 }
 
-.page-id-7 #about_section #about_tabs .button:hover {
+.page-id-96 #about_section #about_tabs .button:hover {
     background: #e3e3d4;
     -moz-box-shadow: 0 4px 0 0 #d3d3bb;
     -webkit-box-shadow: 0 4px 0 0 #d3d3bb;
@@ -11754,7 +11776,7 @@ html.gecko #top select {
 }
 
 @media only screen and (max-width:1200px) {
-    .page-id-7 #about_section #about_tabs .button {
+    .page-id-96 #about_section #about_tabs .button {
         padding: 8px 18px;
         font-size: 12px;
         letter-spacing: .5px
@@ -11762,7 +11784,7 @@ html.gecko #top select {
 }
 
 @media only screen and (max-width:1000px) {
-    .page-id-7 #about_section #about_tabs .button {
+    .page-id-96 #about_section #about_tabs .button {
         padding: 12px 25px;
         font-size: 14px;
         letter-spacing: 1.5px
@@ -11770,7 +11792,7 @@ html.gecko #top select {
 }
 
 @media only screen and (max-width:500px) {
-    .page-id-7 #about_section #about_tabs .button {
+    .page-id-96 #about_section #about_tabs .button {
         padding: 8px 18px;
         font-size: 12px;
         letter-spacing: .5px
@@ -11779,7 +11801,7 @@ html.gecko #top select {
 
 
 
-.page-id-7 #about_section #about_tabs p {
+.page-id-96 #about_section #about_tabs p {
     font-size: 20px;
     line-height: 34px;
     width: 70%;
@@ -11787,12 +11809,12 @@ html.gecko #top select {
     margin: 10px auto 20px
 }
 
-.page-id-7 #about_section #about_tabs p:last-of-type {
+.page-id-96 #about_section #about_tabs p:last-of-type {
     margin: 10px auto 40px
 }
 
 @media only screen and (max-width:1400px) {
-    .page-id-7 #about_section #about_tabs p {
+    .page-id-96 #about_section #about_tabs p {
         font-size: 18px;
         line-height: 32px;
         margin: 0 auto 30px
@@ -11800,7 +11822,7 @@ html.gecko #top select {
 }
 
 @media only screen and (max-width:1300px) {
-    .page-id-7 #about_section #about_tabs p {
+    .page-id-96 #about_section #about_tabs p {
         font-size: 18px;
         line-height: 33px;
         width: 85%;
@@ -11809,7 +11831,7 @@ html.gecko #top select {
 }
 
 @media only screen and (max-width:1200px) {
-    .page-id-7 #about_section #about_tabs p {
+    .page-id-96 #about_section #about_tabs p {
         font-size: 16px;
         line-height: 28px;
         width: 85%;
@@ -11818,7 +11840,7 @@ html.gecko #top select {
 }
 
 @media only screen and (max-width:1100px) {
-    .page-id-7 #about_section #about_tabs p {
+    .page-id-96 #about_section #about_tabs p {
         font-size: 16px;
         line-height: 26px;
         width: 92%;
@@ -11827,7 +11849,7 @@ html.gecko #top select {
 }
 
 @media only screen and (max-width:1000px) {
-    .page-id-7 #about_section #about_tabs p {
+    .page-id-96 #about_section #about_tabs p {
         font-size: 20px;
         line-height: 34px;
         width: 80%;
@@ -11836,7 +11858,7 @@ html.gecko #top select {
 }
 
 @media only screen and (max-width:500px) {
-    .page-id-7 #about_section #about_tabs p {
+    .page-id-96 #about_section #about_tabs p {
         font-size: 18px;
         line-height: 32px;
         width: 80%;
@@ -11844,7 +11866,7 @@ html.gecko #top select {
     }
 }
 
-.page-id-7 #about_section #about_tabs .tabs {
+.page-id-96 #about_section #about_tabs .tabs {
     width: calc(100%);
     position: absolute;
     bottom: 0;
@@ -11854,35 +11876,35 @@ html.gecko #top select {
     height: 60px
 }
 
-.page-id-7 #about_section #about_tabs .tabs .tab {
+.page-id-96 #about_section #about_tabs .tabs .tab {
     padding: 30px 0
 }
 
 @media only screen and (max-width:1200px) {
-    .page-id-7 #about_section #about_tabs .tabs .tab {
+    .page-id-96 #about_section #about_tabs .tabs .tab {
         padding: 35px 0 25px
     }
 }
 
 @media only screen and (max-width:1000px) {
-    .page-id-7 #about_section #about_tabs .tabs .tab {
+    .page-id-96 #about_section #about_tabs .tabs .tab {
         padding: 30px 0
     }
 }
 
 @media only screen and (max-width:700px) {
-    .page-id-7 #about_section #about_tabs .tabs .tab {
+    .page-id-96 #about_section #about_tabs .tabs .tab {
         padding: 35px 0 25px
     }
 }
 
 @media only screen and (max-width:500px) {
-    .page-id-7 #about_section #about_tabs .tabs .tab {
+    .page-id-96 #about_section #about_tabs .tabs .tab {
         padding: 0
     }
 }
 
-.page-id-7 #about_section #about_tabs .tabs li {
+.page-id-96 #about_section #about_tabs .tabs li {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -11906,54 +11928,54 @@ html.gecko #top select {
 }
 
 @media only screen and (max-width:1200px) {
-    .page-id-7 #about_section #about_tabs .tabs li {
+    .page-id-96 #about_section #about_tabs .tabs li {
         font-size: 12px
     }
 }
 
 @media only screen and (max-width:1000px) {
-    .page-id-7 #about_section #about_tabs .tabs li {
+    .page-id-96 #about_section #about_tabs .tabs li {
         font-size: 16px
     }
 }
 
 @media only screen and (max-width:700px) {
-    .page-id-7 #about_section #about_tabs .tabs li {
+    .page-id-96 #about_section #about_tabs .tabs li {
         font-size: 14px
     }
 }
 
 @media only screen and (max-width:600px) {
-    .page-id-7 #about_section #about_tabs .tabs li {
+    .page-id-96 #about_section #about_tabs .tabs li {
         font-size: 12px
     }
 }
 
 @media only screen and (max-width:500px) {
-    .page-id-7 #about_section #about_tabs .tabs li {
+    .page-id-96 #about_section #about_tabs .tabs li {
         padding: 27px 20px 20px
     }
 
-    .page-id-7 #about_section #about_tabs .tabs li span {
+    .page-id-96 #about_section #about_tabs .tabs li span {
         line-height: 15px
     }
 }
 
-.page-id-7 #about_section #about_tabs .tabs li:last-of-type {
+.page-id-96 #about_section #about_tabs .tabs li:last-of-type {
     border-right: 0
 }
 
-.page-id-7 #about_section #about_tabs .tabs li.active {
+.page-id-96 #about_section #about_tabs .tabs li.active {
     background: #efefe6;
     color: rgba(0, 0, 0, .6);
     border-top: 2px solid rgba(0, 0, 0, 0)
 }
 
-.page-id-7 #about_section #about_tabs .tabs li.active img {
+.page-id-96 #about_section #about_tabs .tabs li.active img {
     opacity: 1
 }
 
-.page-id-7 #about_section #about_tabs .tabs li img {
+.page-id-96 #about_section #about_tabs .tabs li img {
     height: 25px;
     width: auto;
     display: block;
@@ -11966,30 +11988,30 @@ html.gecko #top select {
 }
 
 @media only screen and (max-width:1200px) {
-    .page-id-7 #about_section #about_tabs .tabs li img {
+    .page-id-96 #about_section #about_tabs .tabs li img {
         margin: 0 auto 15px
     }
 }
 
 @media only screen and (max-width:1000px) {
-    .page-id-7 #about_section #about_tabs .tabs li img {
+    .page-id-96 #about_section #about_tabs .tabs li img {
         margin: 0 auto 20px
     }
 }
 
 @media only screen and (max-width:700px) {
-    .page-id-7 #about_section #about_tabs .tabs li img {
+    .page-id-96 #about_section #about_tabs .tabs li img {
         margin: 0 auto 17px
     }
 }
 
 @media only screen and (max-width:600px) {
-    .page-id-7 #about_section #about_tabs .tabs li img {
+    .page-id-96 #about_section #about_tabs .tabs li img {
         margin: 0 auto 12px
     }
 }
 
-.page-id-7 #about_section #shows {
+.page-id-96 #about_section #shows {
     background: #f3f3ec;
     box-shadow: none;
     width: calc(60% - 20px);
@@ -11998,7 +12020,7 @@ html.gecko #top select {
 }
 
 @media only screen and (max-width:1000px) {
-    .page-id-7 #about_section #shows {
+    .page-id-96 #about_section #shows {
         width: calc(100% - 40px);
         margin: 0 20px 20px;
         height: 400px
@@ -12006,25 +12028,25 @@ html.gecko #top select {
 }
 
 @media only screen and (max-width:800px) {
-    .page-id-7 #about_section #shows {
+    .page-id-96 #about_section #shows {
         height: 700px
     }
 }
 
 @media only screen and (max-width:700px) {
-    .page-id-7 #about_section #shows {
+    .page-id-96 #about_section #shows {
         height: 600px
     }
 }
 
-.page-id-7 #about_section #shows .show_panel {
+.page-id-96 #about_section #shows .show_panel {
     background: #fff;
     height: calc(100% - 10px);
     position: relative
 }
 
 @media only screen and (max-width:1000px) {
-    .page-id-7 #about_section #shows .show_panel {
+    .page-id-96 #about_section #shows .show_panel {
         width: calc(100% - 10px);
         height: calc(100% - 10px);
         float: center
@@ -12032,18 +12054,18 @@ html.gecko #top select {
 }
 
 @media only screen and (max-width:800px) {
-    .page-id-7 #about_section #shows .show_panel {
+    .page-id-96 #about_section #shows .show_panel {
         width: 100%;
         height: calc(100% - 10px);
         float: none
     }
 
-    .page-id-7 #about_section #shows .show_panel:first-of-type {
+    .page-id-96 #about_section #shows .show_panel:first-of-type {
         margin-right: 0
     }
 }
 
-.page-id-7 #about_section #shows .show_panel .thumb {
+.page-id-96 #about_section #shows .show_panel .thumb {
     width: calc(100% - 20px);
     height: calc(100% - 20px);
     margin: 10px;
@@ -12054,10 +12076,11 @@ html.gecko #top select {
 }
 
 
+
 /*=====================================================================*/
 #advertisement {
     width: calc(100% - 40px);
-    height: calc(30% - 20px);
+    height: calc(30% - 40px);
     margin: 20px;
     border: 5px solid #ebebe0;
     display: block;
@@ -12077,7 +12100,8 @@ html.gecko #top select {
 }
 
 #advertisement #left{
-    width: 30%;
+    width: calc(33% - 20px);
+    margin-left: 20px;
 }
 
 #advertisement #left, #advertisement #left i, #advertisement #left p {
@@ -12086,14 +12110,16 @@ html.gecko #top select {
 
 @media only screen and (max-width:1000px) {
     #advertisement #left {
-        width: 100%;
-        margin-left:10px;
+        width: calc(100% - 40px);
+        margin-left:20px;
+        margin-right: 20px;
     }
 }
 
 #advertisement #center{
-    width: 30%;
-    margin-left: 5%;
+    width: calc(34% - 40px);
+    margin-left: 20px;
+    margin-right: 20px;
     float: left;
 }
 
@@ -12103,15 +12129,17 @@ html.gecko #top select {
 
 @media only screen and (max-width:1000px) {
     #advertisement #center {
-        width: 100%;
-        margin-left:10px;
+        width: calc(100% - 40px);
+        margin-top: 20px;
+        margin-left:20px;
+        margin-right: 20px;
     }
 }
 
 #advertisement #right{
-    width: 30%;
-    margin-left: 5%;
-    float: left;
+    width: calc(33% - 20px);
+    margin-right: 20px;
+    float: right;
 }
 
 #advertisement #right i, #advertisement #right p {
@@ -12120,8 +12148,10 @@ html.gecko #top select {
 
 @media only screen and (max-width:1000px) {
     #advertisement #right {
-        width: 100%;
-        margin-left:5px;
+        width: calc(100% - 40px);
+        margin-top: 20px;
+        margin-left:20px;
+        margin-right: 20px;
     }
 }
 
@@ -12231,5 +12261,17 @@ html.gecko #top select {
     }
 }
 
+#container1 {
+    width: calc(100% - 40px);
+    margin: 20px;
+    display: block;
+    padding: 26px 40px
+}
 
+@media only screen and (max-width:700px) {
+    #container1{
+        width: 100%;
+        margin: 0;
+    }
+}
 

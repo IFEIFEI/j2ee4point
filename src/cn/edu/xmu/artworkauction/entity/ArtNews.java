@@ -36,11 +36,22 @@ import java.util.List;
 @NamedQueries(
 		{ 
 			@NamedQuery(name = "@HQL_GetArtNewsByType", 
-					query = "from ArtNews a where a.type=?"),
+			query = "from ArtNews a where a.type=?"),
 			@NamedQuery(name = "@HQL_GetArtNewsByTitle", 
 			query = "from ArtNews a where a.title=?"),
 			@NamedQuery(name = "@HQL_GetAllArtNews", 
-			query = "from ArtNews")
+			query = "from ArtNews"),
+			@NamedQuery(name="@HQL_GetAllDraftByEditor",
+			query = "from ArtNews a Where a.editor=:editor"),
+			@NamedQuery(name="@HQl_GetArtNewsById",
+			query="from ArtNews a where a.id=?"),
+			@NamedQuery(name="@HQL_GetAllApprovedArtNewsByEditor",
+			query = "from ArtNews a where a.editor=:ediitor and a.state=:state"),
+			@NamedQuery(name="@HQL_GetAllDisApprovedArtNewsByEditor",
+			query = "from ArtNews a where a.editor=:ediitor and a.state=:state"),
+			@NamedQuery(name="@HQL_GetTodayArtNews",
+			query="select a from DateAndPosition dp inner join dp.artNews a where dp.publishDate "
+					+ "between :startTime and :endTime and dp.columnID=:columnId order by cast(dp.position as integer) asc")
 		})
 public class ArtNews implements java.io.Serializable 
 {
@@ -84,15 +95,14 @@ public class ArtNews implements java.io.Serializable
 	@JoinColumn(name="chiefEditor_id")
 	private ChiefEditor chiefEditor;
 	
-	private List<String> imageUrlList;
-	private List<String> videoUrlList;
-	public ArtNews(String title,String article,Date createTime,Date editTime,String state,Editor editor)
+	public ArtNews(String title,String article,Date createTime,Date editTime,String state,Editor editor,String type)
     {
 		setTitle(title);
 		setContent(article);
 		setCreateTime(createTime);
 		setEditTime(editTime);
 		setEditor(editor);
+		setType(type);
 	}
 	public ArtNews(){}	
 	
@@ -168,17 +178,4 @@ public class ArtNews implements java.io.Serializable
 	public void setDateAndPositions(List<DateAndPosition> dateAndPositions) {
 		this.dateAndPositions=dateAndPositions;
 	}
-	public List<String> getImageUrlList() {
-		return imageUrlList;
-	}
-	public void setImageUrlList(List<String> imageUrlList) {
-		this.imageUrlList = imageUrlList;
-	}
-	public List<String> getVideoUrlList() {
-		return videoUrlList;
-	}
-	public void setVideoUrlList(List<String> videoUrlList) {
-		this.videoUrlList = videoUrlList;
-	}
-	
 }

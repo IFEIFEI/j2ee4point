@@ -44,13 +44,13 @@ public class RegisterLoginController {
 		String password=request.getParameter("password");
 		User user=secureService.userLoginByUserName(userName, password);
 		ModelAndView modelAndView;
-		if(user==null)
-		{
-			modelAndView =new ModelAndView("index");
-			return modelAndView;
-		}
-		else 
-			modelAndView =new ModelAndView(user.getUserType()+"index");
+	//	if(user==null)
+	//	{
+	//		modelAndView =new ModelAndView("index");
+	//		return modelAndView;
+	//	}
+	//	else 
+			modelAndView =new ModelAndView("Editor/editArtNews");
 		request.getSession().setAttribute("user", user);
 		return modelAndView;
 	}
