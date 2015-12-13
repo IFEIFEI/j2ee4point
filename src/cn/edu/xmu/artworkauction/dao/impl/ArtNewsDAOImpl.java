@@ -44,16 +44,12 @@ public class ArtNewsDAOImpl implements ArtNewsDAO
 	@Override
 	public void addArtNews(ArtNews artNews)
 	{
-		org.hibernate.Transaction tx=sessionFactory.getCurrentSession().beginTransaction();
 		sessionFactory.getCurrentSession().save(artNews);
-		sessionFactory.getCurrentSession().flush();
-		tx.commit();
 	}
 	@Override
 	public void saveArtNews(ArtNews artNews)
 	{
 		sessionFactory.getCurrentSession().save(artNews);
-		sessionFactory.getCurrentSession().flush();
 	}
 	@Override
 	public void deleteArtNews(ArtNews artNews)
@@ -70,10 +66,10 @@ public class ArtNewsDAOImpl implements ArtNewsDAO
 				.uniqueResult();
 	}
 	@Override
-	public List<ArtNews> getArtNewsByTitle(String title)
+	public ArtNews getArtNewsByTitle(String title)
 	{
-		return (List<ArtNews>)sessionFactory.getCurrentSession().
-				getNamedQuery("@HQL_GetArtNewsByTitle").setString(0, title).list();
+		return (ArtNews)sessionFactory.getCurrentSession().
+				getNamedQuery("@HQL_GetArtNewsByTitle").setString(0, title).uniqueResult();
 	}
 	@Override
 	public List<ArtNews> getArtNewsByType(String type)
@@ -133,16 +129,21 @@ public class ArtNewsDAOImpl implements ArtNewsDAO
 	public boolean isExistByTitle(String title)
 	{
 		String hql="from ArtNews a where a.title=?";
-		return 	sessionFactory
-				.getCurrentSession()
-				.createQuery(hql)
-				.setString(0, title)
-				.list()!=null;
+		return 	sessionFactory.getCurrentSession().createQuery(hql).setString(0, title).uniqueResult()!=null;
 	}
 	@Override
 	public List<ArtNews> getTodayArtNews(String columnID) {
 		// TODO Auto-generated method stub
-		return null;
+		Date startDate=new Date();
+		Date endDate=new Date();
+		startDate.setHours(0);
+		startDate.setMinutes(0);
+		startDate.setSeconds(0);
+		endDate.setHours(23);
+		endDate.setMinutes(59);
+		endDate.setSeconds(59);
+		return (List<ArtNews>)sessionFactory.getCurrentSession().
+				getNamedQuery("@HQL_GetTodayArtNews").list();
 	}
 	@Override
 	public List<ArtNews> getTodayAdvertisement(String columnID) {

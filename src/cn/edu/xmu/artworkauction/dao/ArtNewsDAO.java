@@ -22,7 +22,7 @@ public interface ArtNewsDAO
 	public void saveArtNews(ArtNews artNews);
 	public void deleteArtNews(ArtNews artNews);
 	public ArtNews getArtNewsById(Integer id);
-	public List<ArtNews> getArtNewsByTitle(String title);
+	public ArtNews getArtNewsByTitle(String title);
 	public List<ArtNews> getArtNewsByType(String type);
 	public List<ArtNews> getCheckedArtNews();
 	public List<ArtNews> getUnCheckedArtNews();
