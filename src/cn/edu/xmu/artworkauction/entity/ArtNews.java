@@ -14,6 +14,9 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -83,9 +86,11 @@ public class ArtNews implements java.io.Serializable
 	private String type;
 	
 	@Column
+	@Temporal(value=TemporalType.TIMESTAMP)
 	private Date createTime;
 	
 	@Column
+	@Temporal(value=TemporalType.TIMESTAMP)
 	private Date editTime;
 	
     @Column

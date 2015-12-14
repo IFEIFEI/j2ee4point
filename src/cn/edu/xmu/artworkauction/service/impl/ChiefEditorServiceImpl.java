@@ -1,4 +1,5 @@
 package cn.edu.xmu.artworkauction.service.impl;
+import java.util.Date;
 /**
  * modified by XiaWenSheng 12/12
  * */
@@ -29,6 +30,12 @@ public class ChiefEditorServiceImpl implements ChiefEditorService
 	@Override
 	public List<ArtNews> getUncheckedArtNews()
 	{
+		ArtNews artNews=new ArtNews();
+		Date data=new Date();
+		System.out.println(data);
+		artNews.setCreateTime(data);
+		System.out.println(artNews.getCreateTime());
+		artNewsDAO.saveArtNews(artNews);
 		return artNewsDAO.getUnCheckedArtNews();
 	}
 	@Override

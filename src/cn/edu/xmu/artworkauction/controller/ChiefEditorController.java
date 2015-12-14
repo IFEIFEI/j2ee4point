@@ -51,10 +51,10 @@ public class ChiefEditorController
 		return root.toString();
 	}
 	@RequestMapping("getCheckPendingList")
-	public ModelAndView getCheckPendingList(HttpServletRequest request)
+	public ModelAndView getCheckPendingList(HttpServletRequest request,Model model)
 	{
 		List<ArtNews> artNewsList=chiefEditorServiceImpl.getUncheckedArtNews();
-		request.setAttribute("artNewsList", artNewsList);
+		request.getSession().setAttribute("CheckPendingList", artNewsList);
 		ModelAndView modelAndView =new ModelAndView("ChiefEditor/ChiefEditor-CheckPendingList");
 		return modelAndView;
 	}

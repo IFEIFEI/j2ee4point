@@ -1,12 +1,5 @@
 <%@page import="cn.edu.xmu.artworkauction.entity.ArtNews"%>
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
-<%
-	List<ArtNews> CheckPendingList=(List<ArtNews>)session.getAttribute("artNewsList");
-%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
@@ -49,12 +42,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</tr>
 				</thead>				
 				<tbody  id="ctable">
-						<c:forEach items='${ CheckPendingList }' var="result">								
+						<c:forEach items='${ CheckPendingList }' var="result" varStatus="status">								
 							<tr class="alt">
-								<td>${result.getContent()}</td>
-								<td>asdf</td>
-								<td>asdf</td>
-								<td>asdf</td>
+								<td>${result.title}</td>
+								<td>${result.type}</td>
+								<td>${result.editor.userName}</td>
+								<td>${result.createTime}</td>
 								<td><a href="#" class="edit">审核</a></td>
 							</tr>
 						</c:forEach>
