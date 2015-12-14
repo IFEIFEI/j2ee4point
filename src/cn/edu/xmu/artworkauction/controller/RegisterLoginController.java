@@ -51,7 +51,7 @@ public class RegisterLoginController {
 		
 		if(user.getUserType().equals("chiefEditor"))
 		{
-			request.getSession().setAttribute("user", user);
+			request.getSession().setAttribute("chiefEditor", user);
 			modelAndView=new ModelAndView();
 			modelAndView.setViewName("redirect:/getCheckPendingList");
 			return modelAndView;

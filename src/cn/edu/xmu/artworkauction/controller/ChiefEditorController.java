@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import cn.edu.xmu.artworkauction.dao.ArtNewsDAO;
 import cn.edu.xmu.artworkauction.entity.ArtNews;
 import cn.edu.xmu.artworkauction.entity.ChiefEditor;
+import cn.edu.xmu.artworkauction.entity.User;
 import cn.edu.xmu.artworkauction.service.ChiefEditorService;
 import cn.edu.xmu.artworkauction.service.EditorService;
 import javafx.scene.chart.PieChart.Data;
@@ -62,9 +63,8 @@ public class ChiefEditorController
 	public void getHistoryList(HttpServletRequest request)
 	{
 		ChiefEditor chiefEditor=(ChiefEditor)request.getAttribute("chiefEditor");
-		List<ArtNews> artNewsList=chiefEditorServiceImpl.getMyCheckedHistory(chiefEditor);
-		
-		request.setAttribute("artNewsList", artNewsList);
+		List<ArtNews> artNewsList=chiefEditorServiceImpl.getMyCheckedHistory(chiefEditor);	
+		request.getSession().setAttribute("CheckedAdvList", artNewsList);
 	}
 	/*
 	 * @checkArtNews JSON
