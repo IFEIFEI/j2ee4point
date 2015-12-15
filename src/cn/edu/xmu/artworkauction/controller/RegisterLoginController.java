@@ -18,7 +18,7 @@ import cn.edu.xmu.artworkauction.entity.User;
 import cn.edu.xmu.artworkauction.service.SecureService;
 
 /**
- * @author 
+ * @author XiaWenSheng
  *
  */
 @Controller
@@ -47,8 +47,6 @@ public class RegisterLoginController {
 		String password=request.getParameter("password");
 		User user=secureService.userLoginByUserName(userName, password);
 		ModelAndView modelAndView;
-		System.out.println(user.getUserType());
-		
 		if(user.getUserType().equals("chiefEditor"))
 		{
 			request.getSession().setAttribute("chiefEditor", user);
