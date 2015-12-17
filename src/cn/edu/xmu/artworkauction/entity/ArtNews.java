@@ -92,6 +92,10 @@ public class ArtNews implements java.io.Serializable
 	@Temporal(value=TemporalType.TIME)
 	private Date editTime;
 	
+	@Column
+	@Temporal(value=TemporalType.TIME)
+	private Date checkTime;
+	
     @Column
     private String state;
 	    
@@ -165,7 +169,15 @@ public class ArtNews implements java.io.Serializable
 	}
 	public void setEditTime(Date editTime)
 	{
-		this.editTime=editTime;
+		this.checkTime=editTime;
+	}
+	
+	public Date getCheckTime() {
+		return this.checkTime;
+	}
+	public void setCheckTime(Date checkTime)
+	{
+		this.checkTime=checkTime;
 	}
 	
 	public Editor getEditor() {

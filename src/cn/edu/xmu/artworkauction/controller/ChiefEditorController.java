@@ -11,6 +11,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -60,12 +61,15 @@ public class ChiefEditorController
 		return modelAndView;
 	}
 	@RequestMapping("getHistoryList")
-	public void getHistoryList(HttpServletRequest request)
+	public ModelAndView getHistoryList(HttpServletRequest request)
 	{
-		ChiefEditor chiefEditor=(ChiefEditor)request.getAttribute("chiefEditor");
+		ChiefEditor chiefEditor=(ChiefEditor)request.getSession().getAttribute("chiefEditor");
 		List<ArtNews> artNewsList=chiefEditorServiceImpl.getMyCheckedHistory(chiefEditor);	
 		request.getSession().setAttribute("CheckedAdvList", artNewsList);
+		ModelAndView modelAndView =new ModelAndView("ChiefEditor/ChiefEditor-History");
+		return modelAndView;
 	}
+
 	/*
 	 * @checkArtNews JSON
 	 * @param artNewsId
@@ -78,6 +82,7 @@ public class ChiefEditorController
 	{
 		String artNewsId=request.getParameter("artNewsId");
 		String state=request.getParameter("state");
+		System.out.println(artNewsId+state);
 		ChiefEditor chiefEditor=(ChiefEditor)request.getSession().getAttribute("chiefEditor");
 		if(chiefEditor!=null)
 		{

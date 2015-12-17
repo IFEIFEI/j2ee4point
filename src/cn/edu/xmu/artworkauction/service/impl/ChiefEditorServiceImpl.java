@@ -64,6 +64,8 @@ public class ChiefEditorServiceImpl implements ChiefEditorService
 	{
 		artNews.setState(state);
 		artNews.setChiefEditor(chiefEditor);
+		artNews.setCheckTime(new Date());
+		System.out.println(artNews.getCheckTime());
 		artNewsDAO.updateArtNews(artNews);
 	}
 	@Override

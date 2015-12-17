@@ -21,7 +21,7 @@
 		<link rel="stylesheet" href="../css/admin/template.css" type="text/css" media="screen" charset="utf-8" />
 		<link rel="stylesheet" href="../css/admin/colour.css" type="text/css" media="screen" charset="utf-8" />
 		<script src="js/jquery.js"></script>
-		<script src="ChiefEditor/chief-checkpendinglist.js"></script>
+		<script src="js/admin/chief-checkpendinglist.js"></script>
 	</head>
 	<body>
 	<h1 id="head">艺术品定制网站后台管理系统</h1>
@@ -29,7 +29,7 @@
 	<ul id="navigation">
 			<li><span class="active">待审核列表</span></li>
 			<!--<li><a href="ChifeEditor-CheckAdsList.html">待审核广告</a></li>-->
-			<li><a href="ChiefEditor-History.html">我的审核记录</a></li>
+			<li><a href="getHistoryList">我的审核记录</a></li>
 	</ul>
 	<div id="content" class="container_16 clearfix">			
 		<div class="grid_16">
@@ -40,17 +40,19 @@
 						<th>软文类型</th>
 						<th>提交者</th>
 						<th>提交时间</th>
-						<th>操作</th>
+						<th colspan="3" width="28%">操作</th>
 					</tr>
 				</thead>				
 				<tbody  id="ctable">
 						<c:forEach items='${ CheckPendingList }' var="result" varStatus="status">								
-							<tr class="alt">
+							<tr class="alt" artNewsid="${result.id }">
 								<td>${result.title}</td>
 								<td>${result.type}</td>
 								<td>${result.editor.userName}</td>
 								<td>${result.createTime}</td>
 								<td><a href="#" class="edit">审核</a></td>
+								<td><a href="#" class="tong">上传</a></td>
+								<td><a href="#" class="notong">驳回</a></td>
 							</tr>
 						</c:forEach>
 				</tbody>

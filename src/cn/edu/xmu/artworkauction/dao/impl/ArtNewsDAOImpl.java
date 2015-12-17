@@ -154,7 +154,7 @@ public class ArtNewsDAOImpl implements ArtNewsDAO
 	{
 		return (List<ArtNews>) sessionFactory
 				.getCurrentSession()
-				.getNamedQuery("HQL_GetArtNewsByEditor")
+				.getNamedQuery("@HQL_GetArtNewsByEditor")
 				.setEntity(0, editor)
 				.list();
 	}
@@ -162,7 +162,7 @@ public class ArtNewsDAOImpl implements ArtNewsDAO
 	{
 		return (List<ArtNews>) sessionFactory
 				.getCurrentSession()
-				.getNamedQuery("HQL_GetArtNewsByChiefEditor")
+				.getNamedQuery("@HQL_GetArtNewsByChiefEditor")
 				.setEntity(0, chiefEditor)
 				.list();
 	}

@@ -7,11 +7,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-	
-<!--
-<%@ page contentType="text/html; charset=UTF-8" %>
-<%@ taglib prefix="s" uri="/struts-tags" %>
--->
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 	<head>
@@ -63,9 +58,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<tr class="alt">
 								<td>${result.title}</td>
 								<td>${result.type}</td>
-								<td>${result.author}</td>
-								<td>${result.checktime}</td>
-								<td>${result.status}</td>
+								<td>${result.editor.userName}</td>
+								<td>${result.checkTime}</td>
+								<td></td>
 								<td><a href="#" class="edit">查看</a></td>
 							</tr>
 							</c:forEach>
