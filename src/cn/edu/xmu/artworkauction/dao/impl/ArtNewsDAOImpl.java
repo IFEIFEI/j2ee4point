@@ -182,4 +182,10 @@ public class ArtNewsDAOImpl implements ArtNewsDAO
 				.list();
 		System.out.println(aList.get(0).getState());
 	}
+	@Override
+	public void updateArtNews(ArtNews artNews) 
+	{
+		sessionFactory.getCurrentSession()
+			.update(artNews);
+	}
 }

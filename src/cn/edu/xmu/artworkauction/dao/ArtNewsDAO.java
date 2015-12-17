@@ -20,6 +20,7 @@ public interface ArtNewsDAO
 	public List<ArtNews> getAllArtNews() throws Exception;
 	public void addArtNews(ArtNews artNews);
 	public void saveArtNews(ArtNews artNews);
+	public void updateArtNews(ArtNews artNews);
 	public void deleteArtNews(ArtNews artNews);
 	public ArtNews getArtNewsById(Integer id);
 	public ArtNews getArtNewsByTitle(String title);

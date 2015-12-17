@@ -77,12 +77,20 @@ public class ChiefEditorController
 	public String checkArtNews(HttpServletRequest request,HttpServletResponse response)
 	{
 		String artNewsId=request.getParameter("artNewsId");
-		String state=request.getParameter("statw");
-		ChiefEditor chiefEditor=(ChiefEditor)request.getAttribute("chiefEditor");
+		String state=request.getParameter("state");
+		ChiefEditor chiefEditor=(ChiefEditor)request.getSession().getAttribute("chiefEditor");
 		if(chiefEditor!=null)
 		{
 			JSONObject data=new JSONObject();
-			chiefEditorServiceImpl.saveArtNewsState(Integer.parseInt(artNewsId), state, chiefEditor);
+			//chiefEditorServiceImpl.saveArtNewsState(Integer.parseInt(artNewsId), state, chiefEditor);
+			List<ArtNews> aList=(List<ArtNews>)request.getSession().getAttribute("CheckPendingList");
+			for(ArtNews a : aList)
+			{
+				if(a.getId()==Integer.parseInt(artNewsId))
+				{
+					chiefEditorServiceImpl.saveArtNewsState(a, state, chiefEditor);
+				}
+			}
 			data.put("state",1);
 			return data.toString();
 		}

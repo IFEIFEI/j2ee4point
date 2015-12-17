@@ -20,6 +20,8 @@
 		<link rel="stylesheet" href="../css/admin/960.css" type="text/css" media="screen" charset="utf-8" />
 		<link rel="stylesheet" href="../css/admin/template.css" type="text/css" media="screen" charset="utf-8" />
 		<link rel="stylesheet" href="../css/admin/colour.css" type="text/css" media="screen" charset="utf-8" />
+		<script src="js/jquery.js"></script>
+		<script src="ChiefEditor/chief-checkpendinglist.js"></script>
 	</head>
 	<body>
 	<h1 id="head">艺术品定制网站后台管理系统</h1>

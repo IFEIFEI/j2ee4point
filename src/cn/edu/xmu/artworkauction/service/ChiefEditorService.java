@@ -14,5 +14,6 @@ public interface ChiefEditorService
 	public List<ArtNews> getUncheckedArtNews();
 	public void savaCheckedArtNews(List<ArtNews> artNewslist,ChiefEditor chiefEditor);
 	public void saveArtNewsState(Integer artNewsId,String state,ChiefEditor chiefEditor);
+	public void saveArtNewsState(ArtNews artNews, String state, ChiefEditor chiefEditor);
 	public List<ArtNews> getMyCheckedHistory(ChiefEditor chiefEditor);
 }
