@@ -1,5 +1,5 @@
 /**
- * 
+ * @author XiaWenSheng
  */
 package cn.edu.xmu.artworkauction.entity;
 

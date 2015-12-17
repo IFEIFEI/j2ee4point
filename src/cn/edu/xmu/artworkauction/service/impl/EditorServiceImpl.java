@@ -42,12 +42,12 @@ public class EditorServiceImpl implements EditorService
 	@Override
 	public ArtNews saveDraft(String title,String content,Date createTime,Date editTime,String state,Editor editor ,String type)
 	{
-		return editorDAO.saveDraft(new ArtNews(title,content,createTime,editTime,state,editor,type));
+		return null;//editorDAO.saveDraft(new ArtNews(title,content,createTime,editTime,state,editor,type));
 	}
 	@Override
 	public ArtNews submitDraft(String title, String article, Date createTime, Date editTime, String state,
 			Editor editor,String type) {
-		return editorDAO.submitDraft(new ArtNews(title,article,createTime,editTime,state,editor,type));
+		return null;//editorDAO.submitDraft(new ArtNews(title,article,createTime,editTime,state,editor,type));
 	}
 	/*
 	@Override

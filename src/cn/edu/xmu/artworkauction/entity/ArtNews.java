@@ -5,6 +5,7 @@ import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -29,7 +31,7 @@ import java.util.List;
 /**
  *  ArtNews
  *  @author Dany ifeifei@stu.xmu.edu.cn
- *   Modified by XiaWenSheng  12/12
+ *   Modified by XiaWenSheng  12/15
  */
 
 @Entity
@@ -80,26 +82,19 @@ public class ArtNews implements java.io.Serializable
 	private String title;
 	
 	@Column
-	private String content;
-	
-	@Column
 	private String type;
 	
 	@Column
-	@Temporal(value=TemporalType.TIMESTAMP)
+	@Temporal(value=TemporalType.TIME)
 	private Date createTime;
 	
 	@Column
-	@Temporal(value=TemporalType.TIMESTAMP)
+	@Temporal(value=TemporalType.TIME)
 	private Date editTime;
 	
     @Column
     private String state;
-	
-    @OneToMany(mappedBy = "artNews", targetEntity = DateAndPosition.class,
-            cascade = CascadeType.ALL)
-    private List<DateAndPosition> dateAndPositions;
-    
+	    
 	@ManyToOne(targetEntity=Editor.class, cascade = {CascadeType.ALL})
 	@JoinColumn(name="editor_id")
 	private Editor editor;
@@ -108,16 +103,31 @@ public class ArtNews implements java.io.Serializable
 	@JoinColumn(name="chiefEditor_id")
 	private ChiefEditor chiefEditor;
 	
-	public ArtNews(String title,String article,Date createTime,Date editTime,String state,Editor editor,String type){}
-	public ArtNews(String title,String article,Date createTime,Date editTime,String state,Editor editor)
+	@OneToMany(mappedBy = "artNews", targetEntity = DateAndPosition.class,
+            cascade = CascadeType.ALL)
+    private List<DateAndPosition> dateAndPositions;
+	
+	@OneToOne(targetEntity=ArtNewsContent.class, cascade = {CascadeType.ALL},fetch=FetchType.LAZY)
+	private ArtNewsContent artNewsContent;
+	
+	@Column
+	private String summary;
+	
+	@Column 
+	private String imageURL;
+	public ArtNews(String title,Date createTime,Date editTime,String state,Editor editor,
+			String type,ArtNewsContent artNewsContent,String summary,String imageURL)
     {
 		setTitle(title);
-		setContent(article);
 		setCreateTime(createTime);
 		setEditTime(editTime);
 		setEditor(editor);
 		setType(type);
+		setArtNewsContent(artNewsContent);
+		setSummary(summary);
+		setImageURL(imageURL);
 	}
+
 	public ArtNews(){}	
 	
 	public Integer getId() {
@@ -132,13 +142,6 @@ public class ArtNews implements java.io.Serializable
 	}
 	public void setTitle(String title) {
 		this.title=title;
-	}
-	
-	public String getContent() {
-		return this.content;
-	}
-	public void setContent(String content) {
-		this.content=content;
 	}
 	
 	public String getType() {
@@ -189,7 +192,31 @@ public class ArtNews implements java.io.Serializable
 	public List<DateAndPosition> getDateAndPositions() {
 		return dateAndPositions;
 	}
+	
 	public void setDateAndPositions(List<DateAndPosition> dateAndPositions) {
-		this.dateAndPositions=dateAndPositions;
+		this.dateAndPositions = dateAndPositions;
+	}
+	
+	public ArtNewsContent getArtNewsContent() {
+		return artNewsContent;
+	}
+	public void setArtNewsContent(ArtNewsContent artNewsContent) {
+		this.artNewsContent = artNewsContent;
+	}
+
+	public String getSummary() {
+		return summary;
+	}
+
+	public void setSummary(String summary) {
+		this.summary = summary;
+	}
+
+	public String getImageURL() {
+		return imageURL;
+	}
+
+	public void setImageURL(String imageURL) {
+		this.imageURL = imageURL;
 	}
 }
