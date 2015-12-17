@@ -17,9 +17,9 @@
 		<style type="text/css">
 			h1 {line-height: 300%}
 		</style>
-		<link rel="stylesheet" href="../css/admin/960.css" type="text/css" media="screen" charset="utf-8" />
-		<link rel="stylesheet" href="../css/admin/template.css" type="text/css" media="screen" charset="utf-8" />
-		<link rel="stylesheet" href="../css/admin/colour.css" type="text/css" media="screen" charset="utf-8" />
+		<link rel="stylesheet" href="css/admin/960.css" type="text/css" media="screen" charset="utf-8" />
+		<link rel="stylesheet" href="css/admin/template.css" type="text/css" media="screen" charset="utf-8" />
+		<link rel="stylesheet" href="css/admin/colour.css" type="text/css" media="screen" charset="utf-8" />
 		<script src="js/jquery.js"></script>
 		<script src="js/admin/chief-checkpendinglist.js"></script>
 	</head>

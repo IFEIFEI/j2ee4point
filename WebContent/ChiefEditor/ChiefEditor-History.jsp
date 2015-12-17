@@ -15,16 +15,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<style type="text/css">
 			h1 {line-height: 300%}
 		</style>
-		<link rel="stylesheet" href="../css/admin/960.css" type="text/css" media="screen" charset="utf-8" />
-		<link rel="stylesheet" href="../css/admin/template.css" type="text/css" media="screen" charset="utf-8" />
-		<link rel="stylesheet" href="../css/admin/colour.css" type="text/css" media="screen" charset="utf-8" />
+		<link rel="stylesheet" href="css/admin/960.css" type="text/css" media="screen" charset="utf-8" />
+		<link rel="stylesheet" href="css/admin/template.css" type="text/css" media="screen" charset="utf-8" />
+		<link rel="stylesheet" href="css/admin/colour.css" type="text/css" media="screen" charset="utf-8" />
 		
 	</head>
 	<body>
 	<h1 id="head">艺术品定制网站后台管理系统</h1>
 	
 	<ul id="navigation">
-			<li><a href="ChiefEditor-CheckPendingList.html">待审核列表</a></li>
+			<li><a href="getCheckPendingList">待审核列表</a></li>
 			<!--<li><a href="ChifeEditor-CheckAdsList.html">待审核广告</a></li>-->
 			<li><span class="active">我的审核记录</span></li>
 		</ul>
@@ -60,7 +60,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<td>${result.type}</td>
 								<td>${result.editor.userName}</td>
 								<td>${result.checkTime}</td>
-								<td></td>
+								<td>${result.state}</td>
 								<td><a href="#" class="edit">查看</a></td>
 							</tr>
 							</c:forEach>
