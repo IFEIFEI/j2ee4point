@@ -4,6 +4,7 @@
 package cn.edu.xmu.artworkauction.entity;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -16,7 +17,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
@@ -30,6 +35,31 @@ import org.hibernate.annotations.DynamicUpdate;
 @DynamicInsert
 @DynamicUpdate
 @Table(name="tb_artwork")
+@NamedQueries(
+		{ 
+			@NamedQuery(name="@HQL_getAllArtwork",
+					query="form Artwork"),
+			@NamedQuery(name="@HQL_getArtworkById",
+					query="form Artwork a where a.id=?"),
+			@NamedQuery(name="@HQL_getArtworkByArtist",
+			query="from Artwork a where a.artist=?"),
+			@NamedQuery(name="@HQL_getArtworkByMaterial",
+			query="from Artwork a where a.material=?"),
+			@NamedQuery(name="@HQL_getArtworkBySize",
+			query="from Artwork a where a.size=?"),
+			@NamedQuery(name="@HQL_getArtworkByCreateTime",
+			query="from Artwork a where a.createTime=?"),
+			@NamedQuery(name="@HQL_getArtworkByDescription",
+			query="from Artwork a where a.description=?"),
+			@NamedQuery(name="@HQL_getArtworkByType",
+			query="from Artwork a where a.type=?"),
+			@NamedQuery(name="@HQL_getArtworkByTheme",
+			query="from Artwork a where a.theme=?"),
+			@NamedQuery(name="@HQL_getArtworkByShop",
+			query="from Artwork a where a.shop=?"),
+			@NamedQuery(name="@HQL_getArtworkByPrice",
+			query="from Artwork a where a.price between ? and ?")
+		})
 public class Artwork implements java.io.Serializable {
 	/**
 	 * 
@@ -40,8 +70,10 @@ public class Artwork implements java.io.Serializable {
 	private Artist artist;
 	private String material;
 	private String size;
-	private String creationTime;
-	private String descrition;
+	@Column
+	@Temporal(value=TemporalType.TIME)
+	private Date creationTime;
+	private String description;
 	private List<String> imageURL;
 	private String type;
 	private String theme;
@@ -82,20 +114,19 @@ public class Artwork implements java.io.Serializable {
 		this.size = size;
 	}
 
-	@Column(length=100)
-	public String getCreationTime() {
+	public Date getCreationTime() {
 		return creationTime;
 	}
-	public void setCreationTime(String creationTime) {
+	public void setCreationTime(Date creationTime) {
 		this.creationTime = creationTime;
 	}
 
 	@Column(length=1000)
-	public String getDescrition() {
-		return descrition;
+	public String getDescription() {
+		return description;
 	}
-	public void setDescrition(String descrition) {
-		this.descrition = descrition;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	@ElementCollection
