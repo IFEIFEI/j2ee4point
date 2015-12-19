@@ -38,9 +38,9 @@ import org.hibernate.annotations.DynamicUpdate;
 @NamedQueries(
 		{ 
 			@NamedQuery(name="@HQL_getAllArtwork",
-					query="form Artwork"),
+			query="from Artwork"),
 			@NamedQuery(name="@HQL_getArtworkById",
-					query="form Artwork a where a.id=?"),
+			query="from Artwork a where a.id=?"),
 			@NamedQuery(name="@HQL_getArtworkByArtist",
 			query="from Artwork a where a.artist=?"),
 			@NamedQuery(name="@HQL_getArtworkByMaterial",
@@ -67,18 +67,27 @@ public class Artwork implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;
+	@Column
+	private String name;
 	private Artist artist;
+	@Column
+	private String artistName;
 	private String material;
 	private String size;
 	@Column
-	@Temporal(value=TemporalType.TIME)
-	private Date creationTime;
+	@Temporal(value=TemporalType.TIMESTAMP)
+	private Date createTime;
 	private String description;
 	private List<String> imageURL;
 	private String type;
 	private String theme;
 	private Shop shop;
 	private BigDecimal price;
+	@Column
+	private Integer inventory;
+	@Column
+	private String imageUrl;
+	
 	public Artwork(){}
 	
 	@Id
@@ -91,6 +100,15 @@ public class Artwork implements java.io.Serializable {
 		this.id = id;
 	}
 	
+	public String getName()
+	{
+		return this.name;
+	}
+	public void setName(String name)
+	{
+		this.name=name;
+	}
+	
 	public Artist getArtist() {
 		return artist;
 	}
@@ -98,6 +116,15 @@ public class Artwork implements java.io.Serializable {
 		this.artist = artist;
 	}
 
+	public String getArtistName()
+	{
+		return this.artistName;
+	}
+	public void setArtistName(String artistName)
+	{
+		this.artistName=artistName;
+	}
+	
 	@Column(length=100)
 	public String getMaterial() {
 		return material;
@@ -114,11 +141,11 @@ public class Artwork implements java.io.Serializable {
 		this.size = size;
 	}
 
-	public Date getCreationTime() {
-		return creationTime;
+	public Date getCreateTime() {
+		return createTime;
 	}
-	public void setCreationTime(Date creationTime) {
-		this.creationTime = creationTime;
+	public void setCreateTime(Date creationTime) {
+		this.createTime = creationTime;
 	}
 
 	@Column(length=1000)
@@ -169,5 +196,23 @@ public class Artwork implements java.io.Serializable {
 	}
 	public void setPrice(BigDecimal price) {
 		this.price=price;
+	}
+	
+	public Integer getInventory()
+	{
+		return this.inventory;
+	}
+	public void setInventory(Integer inventory)
+	{
+		this.inventory=inventory;
+	}
+	
+	public String getImageUrl()
+	{
+		return this.imageUrl;
+	}
+	public void setImageUrl(String imageUrl)
+	{
+		this.imageUrl=imageUrl;
 	}
 }

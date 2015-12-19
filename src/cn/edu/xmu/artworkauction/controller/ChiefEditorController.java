@@ -70,7 +70,7 @@ public class ChiefEditorController
 		return modelAndView;
 	}
 
-	/*
+	/**
 	 * @checkArtNews JSON
 	 * @param artNewsId
 	 * @param state

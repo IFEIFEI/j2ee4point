@@ -14,7 +14,6 @@ import cn.edu.xmu.artworkauction.entity.Editor;
  *  @author Dany ifeifei@stu.xmu.edu.cn
  *  Modified By XiaWenSheng 12/12
  */
-@Repository
 public interface ArtNewsDAO 
 {
 	public List<ArtNews> getAllArtNews() throws Exception;

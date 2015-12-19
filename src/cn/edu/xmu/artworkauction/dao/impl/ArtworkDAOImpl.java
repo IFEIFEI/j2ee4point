@@ -19,7 +19,7 @@ import cn.edu.xmu.artworkauction.entity.Shop;
  * @version D-1218_1.0.0
  *
  */
-@Repository("artNewsDAO")
+@Repository("artworkDAO")
 public class ArtworkDAOImpl implements ArtworkDAO
 {
 
@@ -35,91 +35,130 @@ public class ArtworkDAOImpl implements ArtworkDAO
 	public List<Artwork> getAllArtwork() throws Exception 
 	{
 		
-		return null;
+		return sessionFactory.getCurrentSession()
+				.getNamedQuery("@HQL_getAllArtwork")
+				.list();
 	}
 
 	@Override
-	public void addArtwork(Artwork artwork) {
-		// TODO Auto-generated method stub
+	public void addArtwork(Artwork artwork) 
+	{
+		sessionFactory.getCurrentSession()
+			.save(artwork);
+	}
+
+	@Override
+	public void saveArtNews(Artwork artwork) 
+	{
+		sessionFactory.getCurrentSession()
+			.saveOrUpdate(artwork);
+	}
+
+	@Override
+	public void updateArtNews(Artwork artwork) 
+	{
+		sessionFactory.getCurrentSession()
+			.update(sessionFactory);
 		
 	}
 
 	@Override
-	public void saveArtNews(Artwork artwork) {
-		// TODO Auto-generated method stub
-		
+	public void deleteArtNews(Artwork artwork) 
+	{
+		sessionFactory.getCurrentSession()
+			.delete(artwork);
 	}
 
 	@Override
-	public void updateArtNews(Artwork artwork) {
-		// TODO Auto-generated method stub
-		
+	public Artwork getArtworkById(Integer id) 
+	{
+		return (Artwork) sessionFactory.getCurrentSession()
+										.getNamedQuery("HQL_getArtworkById")
+										.setInteger(0, id)
+										.uniqueResult();
 	}
 
 	@Override
-	public void deleteArtNews(Artwork artwork) {
-		// TODO Auto-generated method stub
-		
+	public List<Artwork> getArtworkByArtist(Artist artist) 
+	{
+		return sessionFactory.getCurrentSession()
+						.getNamedQuery("@HQL_getArtworkByArtist")
+						.setEntity(0, artist)
+						.list();
+				
 	}
 
 	@Override
-	public Artwork getArtworkById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Artwork> getArtworkByMaterial(String material) 
+	{
+		return sessionFactory.getCurrentSession()
+				.getNamedQuery("@HQL_getArtworkByMaterial")
+				.setString(0, material)
+				.list();
 	}
 
 	@Override
-	public List<Artwork> getArtworkByArtist(Artist artist) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Artwork> getArtworkBySize(String size) 
+	{
+		return sessionFactory.getCurrentSession()
+				.getNamedQuery("@HQL_getArtworkBySize")
+				.setString(0, size)
+				.list();
 	}
 
 	@Override
-	public List<Artwork> getArtworkByMaterial(String material) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Artwork> getArtworkByCreateTime(Date createTime) 
+	{
+		return sessionFactory.getCurrentSession()
+				.getNamedQuery("HQL_getArtworkByCreateTime")
+				.setDate(0, createTime)
+				.list();
 	}
 
 	@Override
-	public List<Artwork> getArtworkBySize(String size) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Artwork> getArtworkByDescription(String description)
+	{
+		return sessionFactory.getCurrentSession()
+				.getNamedQuery("@HQL_getArtworkByDescription")
+				.setString(0, description)
+				.list();
 	}
 
 	@Override
-	public List<Artwork> getArtworkByCreateTime(Date createTime) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Artwork> getArtworkByType(String type) 
+	{
+		return sessionFactory.getCurrentSession()
+				.getNamedQuery("@HQL_getArtworkByType")
+				.setString(0, type)
+				.list();
 	}
 
 	@Override
-	public List<Artwork> getArtworkByDescription(String description) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Artwork> getArtworkByTheme(String theme) 
+	{
+		return sessionFactory.getCurrentSession()
+				.getNamedQuery("@HQL_getArtworkByTheme")
+				.setString(0, theme)
+				.list();
 	}
 
 	@Override
-	public List<Artwork> getArtworkByType(String type) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Artwork> getArtworkByShop(Shop shop) 
+	{
+		return sessionFactory.getCurrentSession()
+				.getNamedQuery("@HQL_getArtworkByShop")
+				.setEntity(0, shop)
+				.list();
 	}
 
 	@Override
-	public List<Artwork> getArtworkByTheme(String theme) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Artwork> getArtworkByShop(Shop shop) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Artwork> getArtworkByPrice(BigDecimal low, BigDecimal high) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Artwork> getArtworkByPrice(BigDecimal low, BigDecimal high) 
+	{
+		return sessionFactory.getCurrentSession()
+				.getNamedQuery("@HQL_getArtworkByPrice")
+				.setBigDecimal(0, low)
+				.setBigDecimal(0, high)
+				.list();
 	}
 
 }
