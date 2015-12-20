@@ -32,7 +32,7 @@ public class ArtworkDAOImpl implements ArtworkDAO
 	}
 	
 	@Override
-	public List<Artwork> getAllArtwork() throws Exception 
+	public List<Artwork> getAllArtwork()
 	{
 		
 		return sessionFactory.getCurrentSession()

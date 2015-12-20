@@ -15,7 +15,7 @@ import cn.edu.xmu.artworkauction.entity.Shop;
  */
 public interface ArtworkDAO 
 {
-	public List<Artwork> getAllArtwork() throws Exception;
+	public List<Artwork> getAllArtwork();
 	public void addArtwork(Artwork artwork);
 	public void saveArtNews(Artwork artwork);
 	public void updateArtNews(Artwork artwork);
