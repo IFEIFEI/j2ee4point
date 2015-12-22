@@ -1,13 +1,18 @@
 package cn.edu.xmu.artworkauction.dao.impl;
 
-import java.math.BigDecimal;
+
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import javax.annotation.Resource;
 
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
+
+
 import cn.edu.xmu.artworkauction.dao.ArtworkDAO;
 import cn.edu.xmu.artworkauction.entity.Artist;
 import cn.edu.xmu.artworkauction.entity.Artwork;
@@ -33,7 +38,7 @@ public class ArtworkDAOImpl implements ArtworkDAO
 	
 	@Override
 	public List<Artwork> getAllArtwork()
-	{
+	{	
 		
 		return sessionFactory.getCurrentSession()
 				.getNamedQuery("@HQL_getAllArtwork")
@@ -73,7 +78,7 @@ public class ArtworkDAOImpl implements ArtworkDAO
 	public Artwork getArtworkById(Integer id) 
 	{
 		return (Artwork) sessionFactory.getCurrentSession()
-										.getNamedQuery("HQL_getArtworkById")
+										.getNamedQuery("@HQL_getArtworkById")
 										.setInteger(0, id)
 										.uniqueResult();
 	}
@@ -152,12 +157,12 @@ public class ArtworkDAOImpl implements ArtworkDAO
 	}
 
 	@Override
-	public List<Artwork> getArtworkByPrice(BigDecimal low, BigDecimal high) 
+	public List<Artwork> getArtworkByPrice(Double low, Double high) 
 	{
 		return sessionFactory.getCurrentSession()
 				.getNamedQuery("@HQL_getArtworkByPrice")
-				.setBigDecimal(0, low)
-				.setBigDecimal(0, high)
+				.setDouble(0, low)
+				.setDouble(0, high)
 				.list();
 	}
 

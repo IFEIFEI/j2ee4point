@@ -47,16 +47,19 @@ public class RegisterLoginController {
 		String password=request.getParameter("password");
 		User user=secureService.userLoginByUserName(userName, password);
 		ModelAndView modelAndView;
-		if(user.getUserType().equals("chiefEditor"))
+		switch (user.getUserType()) 
 		{
+		case "chiefEditor":
 			request.getSession().setAttribute("chiefEditor", user);
 			modelAndView=new ModelAndView();
 			modelAndView.setViewName("redirect:/getCheckPendingList");
 			return modelAndView;
-		}
-		else //这部分返回采编
-		{
+		case "editor":
 			modelAndView =new ModelAndView("Editor/editArtNews");
+			request.getSession().setAttribute("user", user);
+			return modelAndView;
+		default:
+			modelAndView =new ModelAndView("index");
 			request.getSession().setAttribute("user", user);
 			return modelAndView;
 		}

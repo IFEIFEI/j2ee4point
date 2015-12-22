@@ -3,8 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <!--[if IE 8]>    <html class="ie8" lang="en"> <![endif]-->
 <!--[if gt IE 8]><!--><html lang="en-US" ><!--<![endif]-->
-
-	<head>
+<head>
 
 		<meta charset="UTF-8" />
 
@@ -16,30 +15,8 @@
 
 		<meta name='viewport' content='width=device-width, initial-scale=0.7'>
 		<meta name="format-detection" content="telephone=no">
-<!--
-		<script type="text/javascript" src="js/myg5ixg.js"></script>
-		
-		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 
-        
-		<script type="text/javascript">
-			var templateDir = "http://lamingtondrive.com/wp-content/themes/lamingtondrive";
-			var baseURL = "http://lamingtondrive.com";
-			var shopDomain = 'http://lamington-drive.myshopify.com';
-		</script>
-
-        <script type="text/javascript">
-			var templateDir = "index.html";
-			var baseURL = "index.html";
-			var shopDomain = 'index.html';
-		</script>
-
-
-		<link rel="pingback" href="http://lamingtondrive.com/xmlrpc.php">
-		<link rel="alternate" type="application/rss+xml" title="Lamington Drive RSS Feed" href="http://lamingtondrive.com/feed/">
-
-		<link rel="alternate" type="application/rss+xml" title="Lamington Drive &raquo; Home Comments Feed" href="http://lamingtondrive.com/home/feed/" />
-		-->
+      
 		<style type="text/css">
 img.wp-smiley,
 img.emoji {
@@ -53,60 +30,27 @@ img.emoji {
 	background: none !important;
 	padding: 0 !important;
 }
-
-.slider ul{width:100%;height:100%;}
-.slider ul li{width:100%;height:100%;background-size:cover;}
-img{border:none;}
-a{blr:expression(this.onFocus=this.blur());outline:none;}
-
-.slider{width:100%;height:100%;display:center;}
-.focus span{width:10px;height:10px;margin:5px;border-radius:50%;background:#666;font-size:0}
-.focus span.current{background:#fff}
-
 </style>
 
-<!--
-<link rel='stylesheet' id='style-css'  href='http://cdn.lamingtondrive.com/wp-content/themes/lamingtondrive/style.css?ver=4.3.1' type='text/css' media='all' />
-<link rel='stylesheet' id='icons-css'  href='http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css?ver=4.3.1' type='text/css' media='all' />
 
 
-<link rel='stylesheet' id='style-css'  href='/css/css' type='text/css' media='all' />
-<link rel='stylesheet' id='icons-css'  href='/css/font-awesome.css?ver=??' type='text/css' media='all' />
-<link rel='stylesheet' id='style-css'  href='/css/css?ver=??' type='text/css' media='all' />
-
-<link rel='stylesheet' id='style-css'  href='/css/style.css?ver=??' type='text/css' media='all' />
--->
-<!--
 <script type='text/javascript' src='http://cdn.lamingtondrive.com/wp-includes/js/jquery/jquery.js?ver=1.11.3'></script>
 <script type='text/javascript' src='http://cdn.lamingtondrive.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
 <script type='text/javascript' src='http://cdn.lamingtondrive.com/wp-content/themes/lamingtondrive/js/min/init.min.js?ver=4.3.1'></script>
--->
+
 
 <link rel='stylesheet' id='style-css'  href='css/style.css' type='text/css' media='all' />
-<script type='text/javascript' src='js/user/jquery.js'></script>
-<script type='text/javascript' src='js/user/jquery-migrate.min.js'></script>
-<script type='text/javascript' src='js/user/init.min.js'></script>
-<script type='text/javascript' src='js/user/jquery.min.js'></script>
-<script type='text/javascript' src='js/user/yxMobileSlider.js'></script>
-<!--
-<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://lamingtondrive.com/xmlrpc.php?rsd" />
-<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://lamingtondrive.com/wp-includes/wlwmanifest.xml" /> 
-<link rel='canonical' href='http://lamingtondrive.com/' />
-<link rel='shortlink' href='http://lamingtondrive.com/' />
--->
 <link rel='stylesheet' id='icons-css'  href='http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css?ver=4.3.1' type='text/css' media='all' />
-
 
 	</head>
 
-	<body>
-
-		
+	<body>	
+	
 		<header>
-			<div class="container clearfix">
+			<div class="container clearfix" >
 
 				<div id="logo">
-					<a href="index.html">
+					<a href="index.jsp">
 <svg width="98px" height="98px" viewBox="0 0 98 98" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <defs></defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
@@ -118,16 +62,16 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 </svg></a>
 				</div>
 
-				<nav class="clearfix">
+				<nav class="clearfix"  style="font-weight="bolder";">
 					<div class="menu-menu-1-container">
 						<ul id="menu-menu-1" class="menu">
-						    <li id="menu-item-50" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-50"><a href="index.html">首页</a></li>
-							<li id="menu-item-50" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-50"><a href="">艺术品</a></li>
-                            <li id="menu-item-98" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-98"><a href="">艺术家</a></li>
+						    <li id="menu-item-50" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-50"><a href="index.jsp">首页</a></li>
+							<li id="menu-item-50" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-50"><a href="artworks.jsp">艺术品</a></li>
+                            <li id="menu-item-98" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-98"><a href="artists.jsp">艺术家</a></li>
                             <li id="menu-item-52" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-52"><a href="">艺术定制</a></li>
                             <li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="">拍卖</a></li>
                             <li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="">商城</a></li>
-                            <li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="">艺术资讯</a></li>
+                            <li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="info_show.jsp">艺术资讯</a></li>
                         </ul>
                     </div>				
                 </nav>
@@ -143,41 +87,26 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
         <!--此处是手机端的菜单-->
   		<div id="mobile_menu">
 			<div class="menu-menu-1-container">
-				<ul id="menu-menu-2" class="menu">
-				    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-50"><a href="index.html">首页</a></li>
-					<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-50"><a href="">艺术品</a></li>
-                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-98"><a href="">艺术家</a></li>
+				<ul id="menu-menu-2" class="menu"  style="font-weight="bolder";">
+				    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-50"><a href="index.jsp">首页</a></li>
+					<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-50"><a href="artworks.jsp">艺术品</a></li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-98"><a href="artists.jsp">艺术家</a></li>
                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-52"><a href="">艺术定制</a></li>
                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="">拍卖</a></li>
                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="">商城</a></li>
-                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="">艺术资讯</a></li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="info_show.jsp">艺术资讯</a></li>
                 </ul>
             </div>			
 
             <div class="hamburger">
             	<i class="fa fa-bars"></i>
             </div>
-
-            <!--
-			<div id="contact_small">
-				<p>
-					<a href="https://www.google.com.au/maps/place/101+Sackville+St/">101A Sackville St<br>
-					Collingwood, Australia</a>
-				</p>
-				<p>
-					03 8060 9745<br>
-					<a href="mailto:info@lamingtondrive.com">info@lamingtondrive.com</a>
-				</p>
-			</div>
-		    -->
 		</div>
 
 		<section>
-		<div id="content">
-			<div id="dynamic" class="page page-id-7 page-template page-template-_templates page-template-about page-template-_templatesabout-php">
-				
-				
-					<div id="about_section" class="clearfix">
+		<div id="content" >
+			<div id="dynamic" class="page page-id-96 page-template page-template-_templates page-template-shows page-template-_templatesshows-php">		
+					<div id="about_section" class="clearfix"  style="background-image: url('images/user/loginbg1.jpg');">
 						<div id="about_tabs" class="box">
 							<div class="tab-content">
 								<div class="tab-pane fade in active" id="login_info1">
@@ -222,56 +151,17 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 						</div>
 					
 
-					    <div id="shows" class="box">
-		
-	<!--<			       
-    <div class="slider">
-	  <ul>
-	    <li><a href=""><img src="images/user/1.jpg" width="100%"  height="100%"></a></li>
-		<li><a href=""><img src="images/user/show2.jpg" ></a></li>
-		<li><a href=""><img src="images/user/show1.jpg"></a></li>
-	  </ul>
-	</div>
-	-->
-	
-	<div class="show_panel">
-	    <div class="thumb" style="background-image: url('images/user/1.jpg');"></div>																
+					     
+    
     </div>
-                    </div>
-					<!--</div>-->
-			  
-			</div>
-	    </div>
+                   
+	   
+
 	</section>
-<!--
-		<script type="text/javascript">
-
-		  var _gaq = _gaq || [];
-		  _gaq.push(['_setAccount', 'UA-7766337-1']);
-		  _gaq.push(['_trackPageview']);
-
-		  (function() {
-		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		  })();
-
-		</script>
--->
-		<script type='text/javascript' src='js/user/plugins.min.js'></script>
-
-		<!--
-<script type='text/javascript'>
-/* <![CDATA[ */
-var my_ajax = {"ajaxurl":"http:\/\/lamingtondrive.com\/wp-admin\/admin-ajax.php"};
-/* ]]> */
-</script>
--->
+<script type='text/javascript' src='js/user/plugins.min.js'></script>
 <script type='text/javascript' src='js/user/scripts.min.js'></script>
-<script type="text/javascript" src="js/yxMobileSlider.js"></script>
-  <script>
-    $(".slider").yxMobileSlider({width:640,height:320,during:3000})
-  </script>
+
+  
 
 	</body>
 

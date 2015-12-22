@@ -29,5 +29,5 @@ public interface ArtworkDAO
 	public List<Artwork> getArtworkByType(String type);
 	public List<Artwork> getArtworkByTheme(String theme);
 	public List<Artwork> getArtworkByShop(Shop shop);
-	public List<Artwork> getArtworkByPrice(BigDecimal low,BigDecimal high);
+	public List<Artwork> getArtworkByPrice(Double low,Double high);
 }

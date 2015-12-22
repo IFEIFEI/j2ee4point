@@ -5,27 +5,36 @@ package cn.edu.xmu.artworkauction.entity;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapKeyClass;
+import javax.persistence.MapKeyColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
-
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.springframework.context.annotation.Lazy;
 
 /**
  * @author XiaWenSheng
@@ -66,23 +75,40 @@ public class Artwork implements java.io.Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
 	private Integer id;
 	@Column
 	private String name;
+	@Column(length=100)
 	private Artist artist;
 	@Column
 	private String artistName;
+	@Column(length=100)
 	private String material;
+	@Column(length=100)
 	private String size;
 	@Column
 	@Temporal(value=TemporalType.TIMESTAMP)
 	private Date createTime;
+	@Column(length=1000)
 	private String description;
 	//imageURL will keep for images for normal,small,medium,large 
-	private List<String> imageURL;
+	@ElementCollection(targetClass=String.class)
+	@CollectionTable(name="artworkImageURL", joinColumns=@JoinColumn(name="artwork_id"))
+	@MapKeyColumn(name="size")
+	@MapKeyClass(String.class)
+	@Column(name="artworkImageURL")
+	private Map<String, String> imageURL;
+	@Column(length=100)
 	private String type;
+	@Column(length=100)
 	private String theme;
+	@ManyToOne(targetEntity = Shop.class, cascade = {CascadeType.ALL})
+    @JoinColumn(name = "shop_id", nullable = false)
 	private Shop shop;
+	@Column
 	private Double price;
 	@Column
 	private Integer inventory;
@@ -91,9 +117,7 @@ public class Artwork implements java.io.Serializable {
 	
 	public Artwork(){}
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id")
+	
 	public Integer getId() {
 		return id;
 	}
@@ -126,7 +150,6 @@ public class Artwork implements java.io.Serializable {
 		this.artistName=artistName;
 	}
 	
-	@Column(length=100)
 	public String getMaterial() {
 		return material;
 	}
@@ -134,7 +157,7 @@ public class Artwork implements java.io.Serializable {
 		this.material = material;
 	}
 
-	@Column(length=100)
+	
 	public String getSize() {
 		return size;
 	}
@@ -149,7 +172,6 @@ public class Artwork implements java.io.Serializable {
 		this.createTime = creationTime;
 	}
 
-	@Column(length=1000)
 	public String getDescription() {
 		return description;
 	}
@@ -157,17 +179,14 @@ public class Artwork implements java.io.Serializable {
 		this.description = description;
 	}
 
-	@ElementCollection
-	@CollectionTable(name="artworkImageURL", joinColumns=@JoinColumn(name="artwork_id"))
-	@Column(name="artworkImageURL")
-	public List<String> getImageURL() {
+	
+	public Map<String, String> getImageURL() {
 		return imageURL;
 	}
-	public void setImageURL(List<String> imageURL) {
-		this.imageURL = imageURL;
+	public void setImageURL(Map<String, String> imageURL2) {
+		this.imageURL = imageURL2;
 	}
 
-	@Column(length=100)
 	public String getType() {
 		return type;
 	}
@@ -175,7 +194,6 @@ public class Artwork implements java.io.Serializable {
 		this.type = type;
 	}
 
-	@Column(length=100)
 	public String getTheme() {
 		return theme;
 	}
@@ -183,8 +201,7 @@ public class Artwork implements java.io.Serializable {
 		this.theme = theme;
 	}
 	
-	@ManyToOne(targetEntity = Shop.class, cascade = {CascadeType.ALL})
-    @JoinColumn(name = "shop_id", nullable = false)
+	
 	public Shop getShop() {
 		return shop;
 	}

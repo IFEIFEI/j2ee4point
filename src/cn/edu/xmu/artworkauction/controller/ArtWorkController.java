@@ -1,7 +1,10 @@
 package cn.edu.xmu.artworkauction.controller;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import javax.annotation.Resource;
@@ -15,7 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sun.javafx.sg.prism.NGShape.Mode;
+
 import cn.edu.xmu.artworkauction.entity.Artwork;
+import cn.edu.xmu.artworkauction.entity.User;
 import cn.edu.xmu.artworkauction.service.ArtworkService;
 import cn.edu.xmu.artworkauction.service.impl.ArtworkServiceImpl;
 
@@ -35,6 +41,7 @@ public class ArtWorkController
 			List<Artwork> aList=artworkServiceImpl.getAllArtwork();
 			allArtworkList=aList;
 			request.getSession().setAttribute("allArtworkList", aList);
+			System.out.println(aList.get(0).getImageUrl());
 		}
 		ModelAndView modelAndView=new ModelAndView("/artworks");
 		return modelAndView;
@@ -83,15 +90,62 @@ public class ArtWorkController
 	public ModelAndView singleArtwork(HttpServletRequest request,Model model)
 	{
 		String artworkId=request.getParameter("id");
-		Artwork singleArtwork=allArtworkList.stream()
+		/*Artwork singleArtwork=allArtworkList.stream()
 				.filter(a->a.getId()==Integer.parseInt(artworkId))
 				.collect(Collectors.toList())
-				.get(0);
-		//System.out.println(singleArtwork.getPrice());
+				.get(0);*/
+		Artwork singleArtwork=artworkServiceImpl.getSingelArtwork(Integer.parseInt(artworkId));
 		request.getSession().setAttribute("singleArtwork", singleArtwork);
-		System.out.println(artworkId);
 		ModelAndView modelAndView=new ModelAndView("singleArtwork");
 		return modelAndView;
 	}
 	
+	
+	@RequestMapping("/addOneOrderRecord")
+	public ModelAndView addOneOrder(HttpServletRequest request,Model model)
+	{
+		User user=(User)request.getSession().getAttribute("user");
+		//String artworkId=(String)request.getSession().getAttribute("artworkId");
+		//String number=(String)request.getSession().getAttribute("number");
+		if(user==null)
+		{
+			ModelAndView modelAndView=new ModelAndView("login");
+			modelAndView.setViewName("login");
+			return modelAndView;
+		}
+		Map<Artwork, Integer> shopCarList=(Map<Artwork, Integer>)request.getSession().getAttribute("shopCar");
+		if(shopCarList==null)
+		{
+			shopCarList=new HashMap<>();
+		}
+		/*Artwork artwork=allArtworkList.stream()
+				.filter(a->a.getId()==Integer.parseInt(artworkId))
+				.collect(Collectors.toList())
+				.get(0);
+		*/
+		Artwork artwork=(Artwork)request.getSession().getAttribute("singleArtwork");
+		shopCarList.put(artwork,artwork.getInventory()==0?0:1);
+		request.getSession().setAttribute("shopCar", shopCarList);
+		ModelAndView modelAndView=new ModelAndView("singleArtwork");
+		return modelAndView;
+	}
+	@RequestMapping("/lookForMyCart")
+	public ModelAndView lookForMyCart(HttpServletRequest request,Model model)
+	{
+		User user=(User)request.getSession().getAttribute("user");
+		if(user==null)
+		{
+			ModelAndView modelAndView=new ModelAndView("login");
+			modelAndView.setViewName("login");
+			return modelAndView;
+		}
+		Map<Artwork, Integer> shopCarList=(Map<Artwork, Integer>)request.getSession().getAttribute("shopCar");
+		if(shopCarList==null)
+		{
+			shopCarList=new HashMap<>();
+		}
+		request.getSession().setAttribute("shopCar", shopCarList);
+		ModelAndView modelAndView=new ModelAndView("User/cart.jsp");
+		return modelAndView;
+	}
 }

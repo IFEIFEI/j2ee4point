@@ -17,6 +17,43 @@
 		<meta name='viewport' content='width=device-width, initial-scale=0.7'>
 		<meta name="format-detection" content="telephone=no">
 		<style type="text/css">
+a {
+    text-decoration:none;
+    color:#1c00ff;
+}
+ 
+fieldset.search {
+    padding: 0px;
+    border: none;
+    width: 100%;
+}
+ 
+.search input, .search button {
+    border: none;
+    float: left;
+}
+
+.search input.box {
+    height: 40px;
+    width: calc(100% - 50px);
+    margin-right: 0px;
+    padding-right: 0px;
+    margin: 1px;
+}
+
+.search input.box:focus {
+    background: #e8e8e8 ;
+    outline: none;
+}
+
+.search button.btn {
+    border: none;
+    width: 40px;
+    height: 40px;
+    margin: 0px auto;
+    margin: 1px;
+    background: url(images/user/search1.png) no-repeat top right;
+}		
 img.wp-smiley,
 img.emoji {
 	display: inline !important;
@@ -119,7 +156,7 @@ img.emoji {
 			<div class="container clearfix">
 
 				<div id="logo">
-					<a href="/">
+					<a href="index.jsp">
 <svg width="98px" height="98px" viewBox="0 0 98 98" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <defs></defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
@@ -139,8 +176,9 @@ img.emoji {
                             <li id="menu-item-98" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-98"><a href="">艺术家</a></li>
                             <li id="menu-item-52" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-52"><a href="">艺术定制</a></li>
                             <li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="">拍卖</a></li>
-                            <li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="">商城</a></li>
+                            
                             <li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="info_show.html">艺术资讯</a></li>
+                            <li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="lookForMyCart">购物车</a></li>
                             <li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="login.html">登录</a></li>
                             
                         </ul>
@@ -164,8 +202,9 @@ img.emoji {
                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-98"><a href="">艺术家</a></li>
                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-52"><a href="">艺术定制</a></li>
                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="">拍卖</a></li>
-                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="">商城</a></li>
+                    
                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="info_show.html">艺术资讯</a></li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="cart.jsp">购物车</a></li>
                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="login.html">登录</a></li>
                 </ul>
             </div>			
@@ -181,7 +220,7 @@ img.emoji {
                 <div class="shop_container">
 	                <div id="item_single" class="clearfix">
                         <div class="main_img">
-                            <!-- <img id="zoom_01" src='images/user/' data-zoom-image="images/user/"/> -->
+                            <img id="zoom_01" src='images/user/${singleArtwork.imageURL.small}' data-zoom-image="images/user/${singleArtwork.imageURL.large}"/>
                         </div>
 		                    
 		                    <div class="info">
@@ -207,7 +246,7 @@ img.emoji {
                                 
                                 <!--此处是尚待修改的加入购物车js-->
                                 <!--此处的链接是使用的方法-->
-								<a class="add_to_cart" href=""
+								<a class="add_to_cart" href="addOneOrderRecord"
 							onclick="var f = document.createElement('form'); f.style.display = 'none'; this.parentNode.appendChild(f);
 								f.method = 'POST'; f.action = this.href; var v = document.createElement('input'); v.setAttribute('type', 'hidden');
 								v.setAttribute('name', 'id'); v.setAttribute('value', 3632712772);
