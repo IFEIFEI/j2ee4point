@@ -78,11 +78,12 @@ public class Artwork implements java.io.Serializable {
 	@Temporal(value=TemporalType.TIMESTAMP)
 	private Date createTime;
 	private String description;
+	//imageURL will keep for images for normal,small,medium,large 
 	private List<String> imageURL;
 	private String type;
 	private String theme;
 	private Shop shop;
-	private BigDecimal price;
+	private Double price;
 	@Column
 	private Integer inventory;
 	@Column
@@ -191,10 +192,10 @@ public class Artwork implements java.io.Serializable {
 		this.shop = shop;
 	}
 	
-	public BigDecimal getPrice() {
+	public Double getPrice() {
 		return price;
 	}
-	public void setPrice(BigDecimal price) {
+	public void setPrice(Double price) {
 		this.price=price;
 	}
 	

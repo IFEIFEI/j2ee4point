@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <!--[if IE 8]>    <html class="ie8" lang="en"> <![endif]-->
 <!--[if gt IE 8]><!--><html lang="en-US" ><!--<![endif]-->
@@ -30,298 +31,43 @@ img.emoji {
 	padding: 0 !important;
 }
 
-.container
-{
-  padding-bottom: 50px;
+
+a {
+    text-decoration:none;
+    color:#1c00ff;
 }
-
-
-/* Default custom select styles */
-div.cs-select {
-  display: inline-block;
-  vertical-align: middle;
-  position: relative;
-  text-align: left;
-  width: 23%;
-  margin-right: 2%;
-  float: left;
-  background: #fff;
-  
-  max-width: 500px;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-div.cs-select:focus {
-  outline: none; /* For better accessibility add a style for this in your skin */
-}
-
-.cs-select select {
-  display: none;
-}
-
-.cs-select span {
-  display: block;
-  position: relative;
-  cursor: pointer;
-  padding: 1em;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-/* Placeholder and selected option */
-.cs-select > span {
-  padding-right: 3em;
-}
-
-.cs-select > span::after,
-.cs-select .cs-selected span::after {
-  speak: none;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  transform: translateY(-50%);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.cs-select > span::after {
-  content: '\25BE';
-  right: 1em;
-}
-
-.cs-select .cs-selected span::after {
-  content: '\2713';
-  margin-left: 1em;
-}
-
-.cs-select.cs-active > span::after {
-  -webkit-transform: translateY(-50%) rotate(180deg);
-  transform: translateY(-50%) rotate(180deg);
-}
-
-/* Options */
-.cs-select .cs-options {
-  z-index: 100;
-  position: absolute;
-  overflow: hidden;
-  width: 100%;
-  background: #fff;
-  visibility: hidden;
-  font-size: 12px;
-
-}
-
-.cs-select.cs-active .cs-options {
-  visibility: visible;
-}
-
-.cs-select ul {
-  z-index: 101;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-}
-
-.cs-select ul span {
-  padding: 1em;
-}
-
-.cs-select ul li.cs-focus span {
-  background-color: #ddd;
-}
-
-/* Optgroup and optgroup label */
-.cs-select li.cs-optgroup ul {
-  padding-left: 1em;
-}
-
-.cs-select li.cs-optgroup > span {
-  cursor: default;
-}
-
-
-
-div.cs-skin-elastic {
-  background: transparent;
-  font-size: 16px;
-  font-weight: 700;
-  color: #24324b;;
-}
-
-@media screen and (max-width: 1000px) {
-  div.cs-skin-elastic 
-  { 
-    font-size: 16px; 
-    width: 46%;
-    margin-right: 4%;
-  }
-}
-
-
-@media screen and (max-width: 700px) {
-  div.cs-skin-elastic 
-  { 
-    font-size: 16px; 
+ 
+fieldset.search {
+    padding: 0px;
+    border: none;
     width: 100%;
-  }
+}
+ 
+.search input, .search button {
+    border: none;
+    float: left;
 }
 
-.cs-skin-elastic > span {
-  background-color: #fff;
-  
+.search input.box {
+    height: 40px;
+    width: calc(100% - 50px);
+    margin-right: 0px;
+    padding-right: 0px;
+    margin: 1px;
 }
 
-.cs-skin-elastic > span::after {
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
+.search input.box:focus {
+    background: #e8e8e8 ;
+    outline: none;
 }
 
-.cs-skin-elastic .cs-options {
-  overflow: visible;
-  background: transparent;
-  opacity: 1;
-  visibility: visible;
-  padding-bottom: 0em;
-  pointer-events: none;
-  font-size: 16px;
-  
-}
-
-.cs-skin-elastic.cs-active .cs-options {
-  pointer-events: auto;
-  
-}
-
-.cs-skin-elastic .cs-options > ul::before {
-  content: '';
-  position: absolute;
-  font-size: 16px;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  left: 0;
-  top: 0;
-  -webkit-transform: scale3d(1,0,1);
-  transform: scale3d(1,0,1);
-  background: #fff;
-  -webkit-transform-origin: 50% 0%;
-  transform-origin: 50% 0%;
-  -webkit-transition: -webkit-transform 0.3s;
-  transition: transform 0.3s;
-  
-}
-
-.cs-skin-elastic.cs-active .cs-options > ul::before {
-  font-size: 16px;
-  -webkit-transform: scale3d(1,1,1);
-  transform: scale3d(1,1,1);
-  -webkit-transition: none;
-  transition: none;
-  -webkit-animation: expand 0.6s ease-out;
-  animation: expand 0.6s ease-out;
-}
-
-.cs-skin-elastic .cs-options ul li {
-  font-size: 16px;
-  margin: 0;
-  opacity: 0;
-
-  -webkit-transform: translate3d(0,-25px,0);
-  transform: translate3d(0,-25px,0);
-  -webkit-transition: opacity 0.15s, -webkit-transform 0.15s;
-  transition: opacity 0.15s, transform 0.15s;
-}
-
-.cs-skin-elastic.cs-active .cs-options ul li {
-  font-size: 16px;
-  margin: 0;
-
-  -webkit-transform: translate3d(0,0,0);
-  transform: translate3d(0,0,0);
-  opacity: 1;
-  -webkit-transition: none;
-  transition: none;
-  -webkit-animation: bounce 0.6s ease-out;
-  animation: bounce 0.6s ease-out;
-  
-}
-
-/* Optional delays (problematic in IE 11/Win) */
-/*
-.cs-skin-elastic.cs-active .cs-options ul li:first-child {
-  -webkit-animation-delay: 0.1s;
-  animation-delay: 0.1s;
-}
-
-.cs-skin-elastic.cs-active .cs-options ul li:nth-child(2) {
-  -webkit-animation-delay: 0.15s;
-  animation-delay: 0.15s;
-}
-
-.cs-skin-elastic.cs-active .cs-options ul li:nth-child(3) {
-  -webkit-animation-delay: 0.2s;
-  animation-delay: 0.2s;
-}
-
-.cs-skin-elastic.cs-active .cs-options ul li:nth-child(4) {
-  -webkit-animation-delay: 0.25s;
-  animation-delay: 0.25s;
-} 
-
-/* with more items, more delays declarations are needed */
-
-.cs-skin-elastic .cs-options span:hover,
-.cs-skin-elastic .cs-options li.cs-focus span,
-.cs-skin-elastic .cs-options .cs-selected span {
-  background-color: #24324b;
-  color: #fefefe;
-
-}
-
-.cs-skin-elastic .cs-options .cs-selected span::after {
-  content: '';
-
-}
-
-
-@-webkit-keyframes expand { 
-  0% { -webkit-transform: scale3d(1,0,1); }
-  25% { -webkit-transform: scale3d(1,1.2,1); }
-  50% { -webkit-transform: scale3d(1,0.85,1); }
-  75% { -webkit-transform: scale3d(1,1.05,1) }
-  100% { -webkit-transform: scale3d(1,1,1); }
-}
-
-@keyframes expand { 
-  0% { -webkit-transform: scale3d(1,0,1); transform: scale3d(1,0,1); }
-  25% { -webkit-transform: scale3d(1,1.2,1); transform: scale3d(1,1.2,1); }
-  50% { -webkit-transform: scale3d(1,0.85,1); transform: scale3d(1,0.85,1); }
-  75% { -webkit-transform: scale3d(1,1.05,1); transform: scale3d(1,1.05,1); }
-  100% { -webkit-transform: scale3d(1,1,1); transform: scale3d(1,1,1); }
-}
-
-
-@-webkit-keyframes bounce { 
-  0% { -webkit-transform: translate3d(0,-25px,0); opacity:0; }
-  25% { -webkit-transform: translate3d(0,10px,0); }
-  50% { -webkit-transform: translate3d(0,-6px,0); }
-  75% { -webkit-transform: translate3d(0,2px,0); }
-  100% { -webkit-transform: translate3d(0,0,0); opacity: 1; }
-}
-
-@keyframes bounce { 
-  0% { -webkit-transform: translate3d(0,-25px,0); transform: translate3d(0,-25px,0); opacity:0; }
-  25% { -webkit-transform: translate3d(0,10px,0); transform: translate3d(0,10px,0); }
-  50% { -webkit-transform: translate3d(0,-6px,0); transform: translate3d(0,-6px,0); }
-  75% { -webkit-transform: translate3d(0,2px,0); transform: translate3d(0,2px,0); }
-  100% { -webkit-transform: translate3d(0,0,0); transform: translate3d(0,0,0); opacity: 1; }
+.search button.btn {
+    border: none;
+    width: 40px;
+    height: 40px;
+    margin: 0px auto;
+    margin: 1px;
+    background: url(images/user/search1.png) no-repeat top right;
 }
 
 </style>
@@ -332,7 +78,9 @@ div.cs-skin-elastic {
 <script type='text/javascript' src='http://cdn.lamingtondrive.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
 <script type='text/javascript' src='js/user/jquery.dropkick-min.js'></script>
 <script type='text/javascript' src='http://cdn.lamingtondrive.com/wp-content/themes/lamingtondrive/js/min/init.min.js?ver=4.3.1'></script>
+
 <link rel='stylesheet' id='style-css'  href='css/style.css' type='text/css' media='all' />
+<link rel='stylesheet' id='style-css'  href='css/select.css' type='text/css' media='all' />
 	</head>
 
 	<body>
@@ -357,8 +105,8 @@ div.cs-skin-elastic {
 				<nav class="clearfix">
 					<div class="menu-menu-1-container">
 					<ul id="menu-menu-1" class="menu">
-					                  <li id="menu-item-50" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-50"><a href="index.jsp">首页</a></li>
-                            <li id="menu-item-98" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-98"><a href="">艺术家</a></li>
+					        <li id="menu-item-50" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-50"><a href="index.jsp">首页</a></li>
+                            <li id="menu-item-98" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-98"><a href="artists.jsp">艺术家</a></li>
                             <li id="menu-item-52" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-52"><a href="">艺术定制</a></li>
                             <li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="">拍卖</a></li>
                             <li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="">商城</a></li>
@@ -377,7 +125,7 @@ div.cs-skin-elastic {
 			<div class="menu-menu-1-container">
 			<ul id="menu-menu-2" class="menu">
 			        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-50"><a href="index.jsp">首页</a></li>
-                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-98"><a href="">艺术家</a></li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-98"><a href="artists.jsp">艺术家</a></li>
                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-52"><a href="">艺术定制</a></li>
                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="">拍卖</a></li>
                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="">商城</a></li>
@@ -449,11 +197,18 @@ div.cs-skin-elastic {
                                         <option value="GB">2000之后</option>
                                     </select>
                                 </span>
-
-                </div>
+                            
+                        </div>
              
             </form>
-          
+            <form id="searchform">
+                <div class="searching">
+                    <fieldset class="search">
+                        <input type="text" class="box" name="search" id="search" class="inputText" placeholder="搜索">
+                        <button class="btn" title="SEARCH" name="gotosearch" id="gotosearch"></button>
+                    </fieldset>
+                </div>
+            </form>
           </div>
 
                 
@@ -541,6 +296,16 @@ div.cs-skin-elastic {
 </h3>
 						</div>
 					   </a>
+
+						<c:forEach items='${ allArtworkList }' var="artwork" varStatus="status">
+							<a href="singleArtwork?id=${ artwork.id}" class="past_show clearfix" id='${ artwork.id}'>
+								<div class="thumb" style="background-image: url('images/user/${ artwork.imageUrl }'); opacity:;"></div>
+								<div class="text">
+									<h4>${ artwork.name }</h4>
+									<h3 style="color:#3e4251;">${ artwork.artistName} <br /></h3>
+								</div>
+						   </a>								
+						</c:forEach>
 
 				    </div>
 				</div>	
