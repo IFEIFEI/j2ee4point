@@ -204,7 +204,7 @@ img.emoji {
                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="">拍卖</a></li>
                     
                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="info_show.html">艺术资讯</a></li>
-                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="cart.jsp">购物车</a></li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="lookForMyCart">购物车</a></li>
                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="login.html">登录</a></li>
                 </ul>
             </div>			

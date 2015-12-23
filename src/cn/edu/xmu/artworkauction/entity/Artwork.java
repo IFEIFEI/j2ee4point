@@ -81,7 +81,8 @@ public class Artwork implements java.io.Serializable {
 	private Integer id;
 	@Column
 	private String name;
-	@Column(length=100)
+	@ManyToOne(targetEntity=Artist.class, cascade = {CascadeType.ALL})
+	@JoinColumn(name="artist_id")
 	private Artist artist;
 	@Column
 	private String artistName;
