@@ -7,7 +7,7 @@
 
 		<meta charset="UTF-8" />
 
-		<title>登录</title>
+		<title>登 录</title>
 
 		<!--[if lt IE 9]>
 		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
