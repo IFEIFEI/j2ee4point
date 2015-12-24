@@ -1,0 +1,326 @@
+
+.artistTouxiang{
+  float: left; 
+}
+
+.artistTouxiang img{
+  width: 200px;
+  height: 200px;
+  border-radius:200px
+}
+
+.artistText{
+  float: left;
+  margin-left: 60px;
+  position: relative;
+}
+
+.artistText h1{
+  float: left;
+  clear: left;
+  font-size: 24px;
+  font-weight: bolder;
+  display: block;
+  margin-bottom: 5px;
+}
+.artistText h2{
+  float: left;
+  clear: left;
+  font-size: 20px;
+  color: #c4c3c2;
+  display: block;
+  margin-bottom: 20px;
+}
+.artistText h3{
+  float: left;
+  clear: left;
+  font-size: 16px;
+  display: block;
+  margin-bottom: 5px;
+}
+.artistText h4{
+  float: left;
+  clear: left;
+  font-size: 16px;
+  display: block;
+}
+
+@media only screen and (max-width:600px) {
+    .artistTouxiang img{
+  width: 130px;
+  height: 130px;
+  border-radius:130px;
+  margin-left: 0;
+  }
+}
+
+@media only screen and (max-width:600px) {
+  .artistText{
+    margin-top:0;
+    width: calc(100% - 140px);
+    float: left;
+    margin-left: 10px;
+    margin-right: 0;
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width:600px) {
+  .artistText h1 h2 h3 h4{
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width:600px) {
+  .artistText h1 h2 h3 h4{
+    padding-left: 20px;
+    font-size: 16px;
+  }
+}
+
+.paixu{
+  margin-bottom: 30px;
+  width: 100%;
+}
+
+.paixu h4{
+   font-size: 20px;
+   display: inline;
+}
+
+.paixu .paixu-box{
+    font-size: 20px;
+    border:3px solid #dfdfdf;
+    display: inline;
+    margin-right: 4px;
+}
+
+.container #tabs0{
+  margin-bottom: 20px;
+  margin-top: 60px;
+}
+
+@media only screen and (max-width:600px) {
+  .container #tabs0{
+  margin-top: 0;
+ }
+}
+
+.container #tabs0 hr{
+  width: 100%;
+  margin-bottom: 0;
+}
+
+
+
+/*====================================================*/
+.menu0{ margin-left: 0;}
+.menu0 li { display:block; float: left; width:16%; text-align: center; cursor:pointer; background: #FFFFff; margin-bottom: 0;} 
+.menu0 li.hover { background: #dfdfdf; } 
+
+@media only screen and (max-width:600px) {
+  .menu0 li {
+    font-size: 12px;
+  }
+}
+
+
+/*====================================================*/
+
+input.button {
+    font-family: "Graphik Web SemiBold", Helvetica, Arial;
+    -webkit-font-smoothing: antialiased;
+    -webkit-transition: all .2s ease-in 0s;
+    -moz-transition: all .2s ease-in 0s;
+    transition: all .2s ease-in 0s;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    padding: 12px 30px 10px;
+    background: #2b4367;
+    -moz-box-shadow: 0 4px 0 0 #485c7a;
+    -webkit-box-shadow: 0 4px 0 0 #485c7a;
+    box-shadow: 0 4px 0 0 #485c7a;
+    width: auto;
+    border-bottom: 0;
+    margin: 0 0 0 30px
+}
+
+input.button:hover {
+    background: #485c7a;
+    -moz-box-shadow: 0 4px 0 0 #485c7a;
+    -webkit-box-shadow: 0 4px 0 0 #485c7a;
+    box-shadow: 0 4px 0 0 #485c7a
+}
+
+#infoCenter{
+  margin-top: 20px;
+  float: left;
+  margin-left: 0;
+  width: 100%;
+}
+
+@media only screen and (max-width:600px){
+  #infoCenter {
+  margin-top: 0;
+}
+}
+
+
+
+#infoCenter b{
+  width: 15%;
+  margin-left: 0;
+  margin-right: 10px;
+  float: left;
+  font-size: 18px;
+  font-weight: normal;
+}
+
+#infoCenter  #tijiao{
+  margin-left: 20%;
+  width: 200px;
+  float: left;
+  margin-bottom: 300px;
+}
+
+@media only screen and (max-width:600px){
+  #infoCenter b{
+  width: 25%;
+  margin-left: 0;
+  margin-right: 0;
+  float: left;
+  font-size: 14px;
+}
+}
+
+#infoCenter input{
+  width: 300px;
+  height: 30px;
+  border-radius: 0;
+}
+
+
+@media only screen and (max-width:600px){
+  #infoCenter input{
+  width: 70%;
+  height: 25px;
+}
+}
+
+@media only screen and (max-width:600px){
+  #infoCenter  #tijiao{
+    width: 50%;
+    height: 40px;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-bottom: 100px;
+    float: center;
+    font-size: 12px;
+  }
+}
+
+
+/*=========================================================*/
+.cartItem{
+  display: inline-block;
+    width: 100%;
+    margin-bottom: 60px;
+}
+
+@media only screen and (max-width:700px){
+  .cartItem{
+  margin-bottom: 20px;
+}
+}
+
+.cartItem .cartArtwork{
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.cartArtwork ul{
+  width: 100%;
+  list-style:none;
+} 
+
+.cartArtwork ul li{
+  float: left;
+  height: 160px;
+  margin-right: 20px;
+}
+
+
+@media only screen and (max-width:700px) {
+  .cartArtwork ul li{
+  float: left;
+  height: 80px;
+  margin-right: 10px;
+   }
+}
+
+.cartArtwork li img{
+  margin-left: 0;
+  width: 160px;
+}
+
+@media only screen and (max-width:700px) {
+  .cartArtwork li img{
+  width: 80px;
+}
+}
+
+
+.cartArtwork #artistName{
+  width: calc(60% - 200px);
+}
+
+@media only screen and (max-width:700px) {
+  .cartArtwork #artistName{
+  width: calc(90% - 210px);
+}
+}
+
+.cartArtwork #artistName p{
+  text-align:center;
+}
+
+@media only screen and (max-width:700px) {
+  .cartArtwork #artistName p{
+  font-size: 12px;
+}
+}
+
+.cartArtwork #artworkPrice{
+  width: 10%;
+}
+
+.cartArtwork #artworkPrice p{
+  text-align:center;
+}
+
+@media only screen and (max-width:700px) {
+  .cartArtwork #artworkPrice {
+  width: 40px;
+}
+}
+
+@media only screen and (max-width:700px) {
+  .cartArtwork #artworkPrice p{
+  font-size: 12px;
+}
+}
+
+.cartArtwork #artworkEdit{
+  width: 20%;
+  text-align:center;
+}
+
+@media only screen and (max-width:700px){
+  .cartArtwork #artworkEdit{
+    width: 50px;
+  font-size: 12px;
+}
+}
