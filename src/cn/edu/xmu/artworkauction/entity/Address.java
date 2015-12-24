@@ -46,6 +46,15 @@ public class Address {
 	@OneToOne(targetEntity=Shipment.class, cascade = {CascadeType.ALL})
 	@JoinColumn(name="shipment_id")
 	private Shipment shipment; 
+	
+	public Address(String country,String province,String city,String detailedAddress)
+	{
+		setCountry(country);
+		setProvince(province);
+		setCity(city);
+		setDetailedAddress(detailedAddress);
+	}
+	
 	public Integer getId() {
 		return id;
 	}
