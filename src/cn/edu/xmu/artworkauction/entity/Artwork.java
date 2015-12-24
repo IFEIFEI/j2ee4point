@@ -118,6 +118,20 @@ public class Artwork implements java.io.Serializable {
 	
 	public Artwork(){}
 	
+	//进行上传艺术品时使用
+	public Artwork(String artistName,String name,String theme,Double price,String type,String material,String size,Date createTime,String imageUrl,String description){
+		setArtistName(artistName);
+		setName(name);
+		setTheme(theme);
+		setPrice(price);
+		setType(type);
+		setMaterial(material);
+		setSize(size);
+		setCreateTime(createTime);
+		setImageUrl(imageUrl);
+		setDescription(description);
+	}
+	
 	
 	public Integer getId() {
 		return id;
