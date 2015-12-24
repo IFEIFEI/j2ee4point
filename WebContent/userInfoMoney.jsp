@@ -49,7 +49,7 @@ img.emoji {
       <div class="container clearfix">
 
         <div id="logo">
-          <a href="/">
+          <a href="index.jsp">
 <svg width="98px" height="98px" viewBox="0 0 98 98" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <defs></defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
@@ -64,13 +64,13 @@ img.emoji {
         <nav class="clearfix">
           <div class="menu-menu-1-container">
           <ul id="menu-menu-1" class="menu">
-                            <li id="menu-item-50" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-50"><a href="index.html">首页</a></li>
-                            <li id="menu-item-98" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-98"><a href="artwork.html">艺术品</a></li>
-                            <li id="menu-item-98" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-98"><a href="">艺术家</a></li>
+                            <li id="menu-item-50" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-50"><a href="index.jsp">首页</a></li>
+                            <li id="menu-item-98" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-98"><a href="artworks.jsp">艺术品</a></li>
+                            <li id="menu-item-98" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-98"><a href="artists.jsp">艺术家</a></li>
                             <li id="menu-item-52" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-52"><a href="">艺术定制</a></li>
                             <li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="">拍卖</a></li>
                             <li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="">商城</a></li>
-                            <li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="">艺术资讯</a></li>
+                            <li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="info_show.jsp">艺术资讯</a></li>
                             <li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617">您好,XXX</li>
                     </ul>
                     </div>        
@@ -84,13 +84,13 @@ img.emoji {
     <div id="mobile_menu">
       <div class="menu-menu-1-container">
       <ul id="menu-menu-2" class="menu">
-              <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-50"><a href="index.html">首页</a></li>
-                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-98"><a href="artwork.html">艺术品</a></li>
-                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-98"><a href="">艺术家</a></li>
+              <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-50"><a href="index.jsp">首页</a></li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-98"><a href="artworks.jsp">艺术品</a></li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-98"><a href="artists.jsp">艺术家</a></li>
                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-52"><a href="">艺术定制</a></li>
                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="">拍卖</a></li>
                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="">商城</a></li>
-                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="">艺术资讯</a></li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="info_show.jsp">艺术资讯</a></li>
                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="">您好,XXX</a></li>
             </ul>
             </div>      
@@ -117,10 +117,10 @@ img.emoji {
         <div class="container">
           <div id="tabs0"> 
             <ul class="menu0" id="menu0"> 
-              <li><a href="userCenter.html" >个人信息</a></li> 
-              <li class="hover" ><a href="userInfoMoney.html">个人账户</a></li> 
-              <li><a href="userAddress.html">地址管理</a></li>   
-              <li><a href="userRecord.html">购买记录</a></li>  
+              <li><a href="userCenter.jsp" >个人信息</a></li> 
+              <li class="hover" ><a href="userInfoMoney.jsp">个人账户</a></li> 
+              <li><a href="userAddress.jsp">地址管理</a></li>   
+              <li><a href="userRecord.jsp">购买记录</a></li>  
             </ul> 
             <hr />
           </div>

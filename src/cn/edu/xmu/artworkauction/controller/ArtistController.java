@@ -9,10 +9,18 @@ import java.util.Date;
 import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import cn.edu.xmu.artworkauction.service.ArtistService;
@@ -37,46 +45,86 @@ public class ArtistController {
 	@Resource
 	private OrderService orderService;
 	
+	@ResponseBody
 	@RequestMapping("/artistUpdateInfo")
-	public ModelAndView artistUpdateInfo(HttpServletRequest request,Model model){
+	public String artistUpdateInfo(HttpServletRequest request,HttpServletResponse response){
+		
 		Artist artist=(Artist)request.getSession().getAttribute("user");
-  
-		String email=request.getParameter("email");
-		String userName=request.getParameter("userName");
-		String phoneNumber=request.getParameter("phoneNumber");
-		String education=request.getParameter("education");
-		String description=request.getParameter("description");
-		String imageURL=request.getParameter("imageURL");
 		
-		artistService.updateArtistInfo(artist, userName, email, phoneNumber, education, description, imageURL);
-		
-		ModelAndView modelAndView=new ModelAndView("artistCenter");
-		
-       //不是很清楚有没有 artist 这个Attribute
-		model.addAttribute("user", artist);
-		request.getSession().setAttribute("user", artist);
-		return modelAndView;
+		if(artist!=null)
+		{
+			String email=request.getParameter("email");
+			String userName=request.getParameter("userName");
+			String phoneNumber=request.getParameter("phoneNumber");
+			String education=request.getParameter("education");
+			String description=request.getParameter("description");
+			String imageURL=request.getParameter("imageURL");
+			
+			artistService.updateArtistInfo(artist, userName, email, phoneNumber, education, description, imageURL);
+			
+			request.getSession().setAttribute("user", artist);
+			
+			JSONObject data=new JSONObject();
+			data.put("state",1);
+			return data.toString();	
+		}
+		else
+		{
+			JSONObject data=new JSONObject();
+			data.put("state",0);
+			data.put("url","userLoginByUserName");
+			return data.toString();
+		}
 	}
 	
 	
 	//查询艺术家的个人信息
+	@ResponseBody
 	@RequestMapping("/artistGetInfo")
-	public ModelAndView artistGetInfo(HttpServletRequest request,Model model){
+	public String artistGetInfo(HttpServletRequest request,HttpServletResponse response){
+		
 		Artist artist=(Artist)request.getSession().getAttribute("user");
-		ModelAndView modelAndView =new ModelAndView("artistCenter");
-		//不是很清楚有没有 artist 这个Attribute
-		request.getSession().setAttribute("user", artist);
-		return modelAndView;
+		
+		if(artist!=null)
+		{
+			request.getSession().setAttribute("user", artist);
+			JSONObject data=new JSONObject();
+			data.put("state",1);
+			return data.toString();	
+		}
+		else
+		{
+			JSONObject data=new JSONObject();
+			data.put("state",0);
+			data.put("url","userLoginByUserName");
+			return data.toString();
+		}
+	
 	}
 	
 	//查询艺术家的地址信息
+	@ResponseBody
 	@RequestMapping("/artistGetAddress")
-	public ModelAndView userGetAddress(HttpServletRequest request,Model model){
+	public String userGetAddress(HttpServletRequest request,HttpServletResponse response){
+		
 		Artist artist=(Artist)request.getSession().getAttribute("user");
-		Address address=artist.getAddresses().get(0);
-		ModelAndView modelAndView =new ModelAndView("artistAddress");
-		modelAndView.addObject("address", address);
-		return modelAndView;
+		
+		if(artist!=null)
+		{
+			Address address=artist.getAddresses().get(0);
+			request.getSession().setAttribute("address", address);
+			
+			JSONObject data=new JSONObject();
+			data.put("state",1);
+			return data.toString();
+		}
+		else
+		{
+			JSONObject data=new JSONObject();
+			data.put("state",0);
+			data.put("url","userLoginByUserName");
+			return data.toString();
+		}
 	}
 	
 	//获取所有的购买订单
@@ -84,8 +132,8 @@ public class ArtistController {
 	public ModelAndView artistGetAllOrder(HttpServletRequest request,Model model){
 		User user=(User)request.getSession().getAttribute("user");
 		List<Order> orderList=orderService.findAllOrderByUser(user);
-		ModelAndView modelAndView =new ModelAndView("artistRecord");
-		modelAndView.addObject("orderList", orderList);
+		request.getSession().setAttribute("orderList", orderList);
+		ModelAndView modelAndView =new ModelAndView("");
 		return modelAndView;
 	}
 	
@@ -94,31 +142,43 @@ public class ArtistController {
 	public ModelAndView artistGetAllArtwork(HttpServletRequest request,Model model){
 		Artist artist=(Artist)request.getSession().getAttribute("user");
 		List<Artwork> artworkList=artist.getShop().getArtworks();
-		ModelAndView modelAndView =new ModelAndView("artistArtwork");
+		request.getSession().setAttribute("artworkList", artworkList);
+		
+		ModelAndView modelAndView =new ModelAndView("");
 		modelAndView.addObject("artworkList", artworkList);
 		return modelAndView;
 	}
 	
 	//更新艺术家的地址信息
+	@ResponseBody
 	@RequestMapping("/artistUpdateAddress")
-	public ModelAndView artistUpdateAddress(HttpServletRequest request,Model model){
+	public String artistUpdateAddress(HttpServletRequest request,HttpServletResponse response){
 		
 		Artist artist=(Artist)request.getSession().getAttribute("user");
-  
-		String country=request.getParameter("country");
-		String province=request.getParameter("province");
-		String city=request.getParameter("city");
-		String detailedAddress=request.getParameter("detailedAddress");
 		
-		Address address=new Address(country,province,city,detailedAddress);
-		
-		artistService.updateArtistAddress(artist, address);
-		ModelAndView modelAndView=new ModelAndView("artistAddress");
-		
-       //不是很清楚有没有 artist 这个Attribute
-		model.addAttribute("user", artist);
-		request.getSession().setAttribute("user", artist);
-		return modelAndView;
+		if(artist!=null)
+		{
+			String country=request.getParameter("country");
+			String province=request.getParameter("province");
+			String city=request.getParameter("city");
+			String detailedAddress=request.getParameter("detailedAddress");
+			
+			Address address=new Address(country,province,city,detailedAddress);
+			
+			artistService.updateArtistAddress(artist, address);
+			request.getSession().setAttribute("user", artist);
+			
+			JSONObject data=new JSONObject();
+			data.put("state",1);
+			return data.toString();
+		}
+		else
+		{
+			JSONObject data=new JSONObject();
+			data.put("state",0);
+			data.put("url","userLoginByUserName");
+			return data.toString();
+		}
 	}
 	
 	//艺术家上传艺术品
@@ -144,10 +204,6 @@ public class ArtistController {
 		
 		artistService.addArtwork(artist, artwork);
 		ModelAndView modelAndView=new ModelAndView("artistArtwork");
-			
-	    //不是很清楚有没有 artist 这个Attribute
-		model.addAttribute("user", artist);
-		request.getSession().setAttribute("user", artist);
 		return modelAndView;
 	}
 }

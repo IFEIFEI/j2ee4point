@@ -38,8 +38,6 @@ public class UserController {
 	@Resource
 	private OrderService orderService;
 	
-	
-	
 	@ResponseBody
 	@RequestMapping("/userUpdateInfo")
 	public String userUpdateInfo(HttpServletRequest request,HttpServletResponse response){
@@ -99,32 +97,76 @@ public class UserController {
 	}
 	
 	//查询自己所有的购买记录
+	@ResponseBody
 	@RequestMapping("/userGetAllOrder")
-	public ModelAndView userGetAllOrder(HttpServletRequest request,Model model){
-		User user=(User)request.getSession().getAttribute("user");
-		List<Order> orderList=orderService.findAllOrderByUser(user);
+	public String userGetAllOrder(HttpServletRequest request,HttpServletResponse response){
 		
-		ModelAndView modelAndView =new ModelAndView();
-		modelAndView.addObject("orderList", orderList);
-		return modelAndView;
+		User user=(User)request.getSession().getAttribute("user");
+		//如果已登录
+		if(user!=null)
+		{
+			List<Order> orderList=orderService.findAllOrderByUser(user);
+			request.getSession().setAttribute("orderList", orderList);
+			
+			JSONObject data=new JSONObject();
+			data.put("state",1);
+			return data.toString();
+		}
+		else
+		{
+			JSONObject data=new JSONObject();
+			data.put("state",0);
+			data.put("url","userLoginByUserName");
+			return data.toString();
+		}
 	}
 	
 	//查询用户的具体信息
+	@ResponseBody
 	@RequestMapping("/userGetInfo")
-	public ModelAndView userGetInfo(HttpServletRequest request,Model model){
+	public String userGetInfo(HttpServletRequest request,HttpServletResponse response){
 		User user=(User)request.getSession().getAttribute("user");
-		ModelAndView modelAndView =new ModelAndView("userCenter");
-		modelAndView.addObject("user", user);
-		return modelAndView;
+		
+		if(user!=null)
+		{
+			request.getSession().setAttribute("user", user);
+			
+			JSONObject data=new JSONObject();
+			data.put("state",1);
+			return data.toString();
+		}
+		else
+		{
+			JSONObject data=new JSONObject();
+			data.put("state",0);
+			data.put("url","userLoginByUserName");
+			return data.toString();
+		}
 	}
 	
 	//查询用户的地址信息
+	@ResponseBody
 	@RequestMapping("/userGetAddress")
-	public ModelAndView userGetAddress(HttpServletRequest request,Model model){
+	public String userGetAddress(HttpServletRequest request,HttpServletResponse response){
+		
 		User user=(User)request.getSession().getAttribute("user");
-		Address address=user.getAddresses().get(0);
-		ModelAndView modelAndView =new ModelAndView();
-		modelAndView.addObject("address", address);
-		return modelAndView;
+		
+		if(user!=null)
+		{
+			Address address=user.getAddresses().get(0);
+			request.getSession().setAttribute("address", address);
+			
+			JSONObject data=new JSONObject();
+			data.put("state",1);
+			return data.toString();
+		}
+		else
+		{
+			JSONObject data=new JSONObject();
+			data.put("state",0);
+			data.put("url","userLoginByUserName");
+			return data.toString();
+		}
+
 	}
 }

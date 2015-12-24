@@ -79,9 +79,9 @@ public class RegisterLoginController {
 		String description=request.getParameter("description");
 		Artist artist=secureService.artistRegister(realName,IDNumber,userName,email,phoneNumber,password,country,education,description);
 		//返回页面
-		ModelAndView modelAndView=new ModelAndView("index");
-		model.addAttribute("artist",artist);
-		request.getSession().setAttribute("artist", artist);
+		ModelAndView modelAndView=new ModelAndView("artistCenter");
+		model.addAttribute("user",artist);
+		request.getSession().setAttribute("user", artist);
 		return modelAndView;
 	}
 	
