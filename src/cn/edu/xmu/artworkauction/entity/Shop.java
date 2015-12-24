@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.sql.rowset.JdbcRowSet;
 
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
@@ -26,7 +27,9 @@ import org.hibernate.annotations.DynamicUpdate;
 @DynamicInsert
 @DynamicUpdate
 @Table(name="tb_shop")
-public class Shop {
+public class Shop implements java.io.Serializable{
+	
+	private static final long serialVersionUID = -4828928765987122818L;
 	private Integer id;
 	private Artist artist;
 	private List<Artwork> artworks;
