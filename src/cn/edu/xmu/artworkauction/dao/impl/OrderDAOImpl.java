@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import cn.edu.xmu.artworkauction.dao.OrderDAO;
 import cn.edu.xmu.artworkauction.entity.Order;
 import cn.edu.xmu.artworkauction.entity.User;
+import cn.edu.xmu.artworkauction.utils.OrderState;
 
 /**OrderDAOImpl deal with all the things about order
  * 
@@ -57,23 +58,33 @@ private SessionFactory sessionFactory;
 
 	@Override
 	public void deleteOrder(Order order) {
-		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession()
+		.delete(order);
 		
 	}
 
 	@Override
 	public Order getOrderById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		return (Order)sessionFactory.getCurrentSession()
+				.getNamedQuery("@HQL_GetOrderById")
+				.setInteger(0, id)
+				.uniqueResult();
 	}
 	
 	//查询所有的订单
 	@Override
 	public List<Order> findAllOrderByUser(User user) {
-	    // TODO Auto-generated method stub
 		Query query=sessionFactory.getCurrentSession().getNamedQuery("@HQL_getOrderByUser");
 		query.setLong(0, user.getId());
 		List<Order> orderList=(List<Order>)query.uniqueResult();
 		return orderList;
+	}
+
+	@Override
+	public List<Order> getAllUncheckedOrder() {
+		return sessionFactory.getCurrentSession()
+				.getNamedQuery("@HQL_getOrderByState")
+				.setInteger(0, OrderState.unChecked)
+				.list();
 	}
 }

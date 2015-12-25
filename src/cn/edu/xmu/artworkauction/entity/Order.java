@@ -37,6 +37,8 @@ import org.hibernate.annotations.DynamicUpdate;
 					query="from Order"),
 			@NamedQuery(name="@HQL_GetOrderById",
 					query="from Order o where o.id=?"),
+			@NamedQuery(name="@HQL_getOrderByState",
+					query="from Order o where o.state=?"),
 			//按照用户查找订单
 			@NamedQuery(name="@HQL_getOrderByUser",
 			query="from Order a where a.user_id=?")

@@ -21,6 +21,7 @@ public interface OrderDAO
 	public void updateOrder(Order order);
 	public void deleteOrder(Order order);
 	public Order getOrderById(Integer id);
+	public List<Order> getAllUncheckedOrder();
 	public List<Order> findAllOrderByUser(User user);
 }
 
