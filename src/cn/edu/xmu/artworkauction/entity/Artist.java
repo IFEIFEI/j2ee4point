@@ -3,12 +3,18 @@
  */
 package cn.edu.xmu.artworkauction.entity;
 
+import java.util.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 /**
@@ -17,15 +23,66 @@ import javax.persistence.OneToOne;
  */
 @Entity
 @DiscriminatorValue("artist")
+@NamedQueries(
+		{ 
+			//艺术家注册的时候要求身份证号是唯一的
+			@NamedQuery(name = "@HQL_CheckArtistIDNumberUnique", 
+			query = "from Artist u where u.IDNumber=? "),
+			//艺术家注册的时候要求用户名是唯一的
+			@NamedQuery(name = "@HQL_CheckUserNameUnique", 
+			query = "from Artist u where u.userName=?"),
+			//艺术家注册的时候要求邮箱是唯一的
+			@NamedQuery(name = "@HQL_CheckEmailUnique", 
+			query = "from Artist u where u.email=?"),		
+		})
 public class Artist extends User{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	//身份证号
 	private String IDNumber;
+	//对自身的描述
 	private String description;
+	//对应的店铺
 	private Shop shop;
+	//国籍
+	private String country;
+    //出生日期
+	
+	@Column
+	@Temporal(value=TemporalType.TIMESTAMP)
+	private Date birthday;
+	//教育
+	private String education;
+
 	public Artist(){}
+
+	//注册使用
+	public Artist(String realname,String IDNumber,String userName,String email,String phoneNumber,String password,String country,String education,String description)
+	{
+		setRealName(realname);
+		setIDNumber(IDNumber);
+		setUserName(userName);
+		setEmail(email);
+		setPhoneNumber(phoneNumber);
+		setPassword(password);
+		setCountry(country);
+		setEducation(education);
+		setDescription(description);
+	}
+	
+	//更新艺术家个人信息
+	//返回更新后的艺术家
+	public void updateArtist(String userName,String email,String phoneNumber,String education,String description,String imageURL){
+		setUserName(userName);
+		setEmail(email);
+		setPhoneNumber(phoneNumber);
+	    setEducation(education);
+		setDescription(description);
+		setImageURL(imageURL);
+	}
+
 	@Column(length = 18,unique=true)
 	public String getIDNumber() {
 		return IDNumber;
@@ -34,14 +91,41 @@ public class Artist extends User{
 		IDNumber = iDNumber;
 	}
 	
-	@Column
+	@Column(length = 200)
 	public String getDescription() {
 		return description;
 	}
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+
+	@Column(length = 20)
+	public String getCountry(){
+		return country;
+	}
+	public void setCountry(String country)
+	{
+		this.country=country;
+	}
+
+
+    public Date getBirthday(){
+    	return birthday;
+    }
+    public void setBirthday(Date birthday)
+    {
+    	this.birthday=birthday;
+    }
+
+    @Column(length = 20)
+	public String getEducation(){
+		return education;
+	}
+	public void setEducation(String education)
+	{
+		this.education=education;
+	}
+
 	@OneToOne(cascade={CascadeType.ALL})
     @JoinColumn(name="shop_id")
 	public Shop getShop() {

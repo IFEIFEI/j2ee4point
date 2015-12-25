@@ -27,15 +27,15 @@ import org.hibernate.annotations.DynamicUpdate;
 @DynamicInsert
 @DynamicUpdate
 @Table(name="tb_shop")
-public class Shop implements java.io.Serializable
-{
-	/**
-	 * 
-	 */
+public class Shop implements java.io.Serializable{
+	
 	private static final long serialVersionUID = -4828928765987122818L;
 	private Integer id;
 	private Artist artist;
 	private List<Artwork> artworks;
+	//限定的最大的上传作品数目
+	private final Integer maxUploadNumber=10;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
@@ -60,5 +60,11 @@ public class Shop implements java.io.Serializable
 	}
 	public void setArtist(Artist artist) {
 		this.artist=artist;
+	}
+
+    //只能进行get没有方法
+	public Integer getMaxUploadNumber()
+	{
+		return maxUploadNumber;
 	}
 }

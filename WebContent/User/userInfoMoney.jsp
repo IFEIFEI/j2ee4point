@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <!--[if IE 8]>    <html class="ie8" lang="en"> <![endif]-->
 <!--[if gt IE 8]><!--><html lang="en-US" ><!--<![endif]-->
 
@@ -8,7 +9,7 @@
 
     <meta charset="UTF-8" />
 
-    <title>注册</title>
+    <title>用户个人中心</title>
 
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -16,7 +17,6 @@
 
     <meta name='viewport' content='width=device-width, initial-scale=0.7'>
     <meta name="format-detection" content="telephone=no">
-
     <style type="text/css">
 img.wp-smiley,
 img.emoji {
@@ -30,35 +30,16 @@ img.emoji {
   background: none !important;
   padding: 0 !important;
 }
+
 </style>
 
-<script>
-          function pw() {
-              var pw1 = document.getElementById("pw1").value;
-              var pw2 = document.getElementById("pw2").value;
-              if(pw1 == pw2) {
-                  document.getElementById("information").innerHTML=" ";
-                  document.getElementById("submit").disabled = false;
-              }
-              else {
-                document.getElementById("information").innerHTML="<font color=red>两次密码不相同</font>";
-                document.getElementById("submit").disabled = true;
-              }
-          }
-</script>
-
+<link rel='stylesheet' id='icons-css'  href='http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css?ver=4.3.1' type='text/css' media='all' />
 <script type='text/javascript' src='http://cdn.lamingtondrive.com/wp-includes/js/jquery/jquery.js?ver=1.11.3'></script>
 <script type='text/javascript' src='http://cdn.lamingtondrive.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
 <script type='text/javascript' src='http://cdn.lamingtondrive.com/wp-content/themes/lamingtondrive/js/min/init.min.js?ver=4.3.1'></script>
+
 <link rel='stylesheet' id='style-css'  href='css/style.css' type='text/css' media='all' />
-<link rel='stylesheet' id='icons-css'  href='http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css?ver=4.3.1' type='text/css' media='all' />
-
-<!--
-
-<link rel='canonical' href='http://lamingtondrive.com/' />
-<link rel='shortlink' href='http://lamingtondrive.com/' />
--->
-
+<link rel='stylesheet' id='style-css'  href='css/artistCenter.css' type='text/css' media='all' />
   </head>
 
   <body>
@@ -82,84 +63,110 @@ img.emoji {
 
         <nav class="clearfix">
           <div class="menu-menu-1-container">
-            <ul id="menu-menu-1" class="menu">
-                <li id="menu-item-50" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-50"><a href="index.jsp">首页</a></li>
-              <li id="menu-item-50" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-50"><a href="artworks.jsp">艺术品</a></li>
+          <ul id="menu-menu-1" class="menu">
+                            <li id="menu-item-50" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-50"><a href="index.jsp">首页</a></li>
+                            <li id="menu-item-98" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-98"><a href="artworks.jsp">艺术品</a></li>
                             <li id="menu-item-98" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-98"><a href="artists.jsp">艺术家</a></li>
                             <li id="menu-item-52" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-52"><a href="">艺术定制</a></li>
                             <li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="">拍卖</a></li>
                             <li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="">商城</a></li>
                             <li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="info_show.jsp">艺术资讯</a></li>
-                        </ul>
+                            <li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617">您好,XXX</li>
+                    </ul>
                     </div>        
                 </nav>
 
-        <div class="hamburger">
-          <i class="fa fa-bars"></i>
-        </div>
+        <div class="hamburger"><i class="fa fa-bars"></i></div>
 
       </div>
     </header>
 
-
-        <!--此处是手机端的菜单-->
-      <div id="mobile_menu">
+    <div id="mobile_menu">
       <div class="menu-menu-1-container">
-        <ul id="menu-menu-2" class="menu">
-            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-50"><a href="index.jsp">首页</a></li>
-          <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-50"><a href="artworks.jsp">艺术品</a></li>
+      <ul id="menu-menu-2" class="menu">
+              <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-50"><a href="index.jsp">首页</a></li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-98"><a href="artworks.jsp">艺术品</a></li>
                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-98"><a href="artists.jsp">艺术家</a></li>
                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-52"><a href="">艺术定制</a></li>
                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="">拍卖</a></li>
                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="">商城</a></li>
                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="info_show.jsp">艺术资讯</a></li>
-                </ul>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="">您好,XXX</a></li>
+            </ul>
             </div>      
-
             <div class="hamburger">
-              <i class="fa fa-bars"></i>
+            <i class="fa fa-bars"></i>
             </div>
     </div>
 
-    <section>
-    <div id="content" >
+  <section>
+    <div id="content">
       <div id="dynamic" class="page page-id-96 page-template page-template-_templates page-template-shows page-template-_templatesshows-php">
-          <div id="about_section" class="clearfix"       style="background-image: url('images/user/1.jpg');">
-            <div id="about_tabs" class="box" >
-              <div class="tab-content">
-                <div class="tab-pane fade in active" id="login_info1">
-                
-                  <form action="userRegister" id="">
 
-                  <b><span class="req">*</span>邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱：</b><input type="text" name="email" id="email"  required="required"><br><br>
+        <div class="container">    
+            <div class="artistInformation">
+                 <div class="artistTouxiang">
+                    <img src="images/user/huangjingzheTouxiang.jpg">
+                 </div>
+                 <div class="artistText"> 
+                    <h1>XXX</h1>    
+                 </div>
+            </div> 
+        </div>
 
-                  <b><span class="req">*</span>用&nbsp;户&nbsp;名：</b><input type="text" id="username"  name="userName"  required="required"/><br><br>
+        <div class="container">
+          <div id="tabs0"> 
+            <ul class="menu0" id="menu0"> 
+              <li><a href="userCenter.jsp" >个人信息</a></li> 
+              <li class="hover" ><a href="userInfoMoney.jsp">个人账户</a></li> 
+              <li><a href="userAddress.jsp">地址管理</a></li>   
+              <li><a href="userRecord.jsp">购买记录</a></li>  
+            </ul> 
+            <hr />
+          </div>
+        </div>
+        
+        <div class="container">
 
-                  <b>手&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;机：</b><input type="text" name="phoneNumber" id="phonenumber"/><br><br>
-
-                  <b><span class="req">*</span>密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：</b><input type="password" name="password" id="pw1"  required="required"/><br><br>
-
-                  <!--js确认密码-->
-                  <b><span class="req">*</span>确认密码：</b><input type="password" name="confirm_password" id="pw2"  required="required"  onkeyup="pw()"/><br><br><span id="information"></span><br><br>
-
-                  <input type="checkbox" name="agreement" value="1" checked="checked" id="agreement"/>我已看过并接受<a href="">《用户协议》</a>
-
-                  <input type="submit" value="注册" name="" id=""  class="button"><br><br>
+              <form action="" id="infoCenter">
+                   
+                  <b>余&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;额：</b><input type="text" id="realname"  name="realName"  disabled="disabled"/><br><br>
+                  
+                  <input type="submit" value="充值" name="" id="tijiao"  class="button"><br><br>
                       <!--<input type="submit" value="忘记密码" name="" id=""  class="button">-->
-                  </form>
+              </form>
+            
+        </div>  
+      
 
-                </div>
-              </div>
+        <footer data-type="background" data-speed="3" class="clearfix" id="contact"  style="background-image: url('images/user/1.jpg');">
 
+          <div id="content" class="clearfix">
+
+            <div class="one">
+              
+              
+            </div>
+            <div class="two">
+              
+              <p>
+                <span>联系我们</span><br>
+                13843214321<br>
+                <a href="artAuction@sina.com">artAuction@sina.com</a>
+              </p>
             </div>
           </div>
+          <div id="credit">
+            <p>&copy; 2015 <a href="">四点共圆</a></p>
           </div>
+        </footer>
+
+
       </div>
-      </section>
-
-    <script type='text/javascript' src='js/user/plugins.min.js'></script>
-        <script type='text/javascript' src='js/user/scripts.min.js'></script>
-
+    </div>
+  </section>
+<script type='text/javascript' src='js/user/plugins.min.js'></script>
+<script type='text/javascript' src='js/user/scripts.min.js'></script>
   </body>
 
 </html>

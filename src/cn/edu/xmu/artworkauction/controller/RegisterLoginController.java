@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import cn.edu.xmu.artworkauction.entity.ArtNews;
+import cn.edu.xmu.artworkauction.entity.Artist;
 import cn.edu.xmu.artworkauction.entity.User;
 import cn.edu.xmu.artworkauction.service.SecureService;
 
@@ -64,4 +65,27 @@ public class RegisterLoginController {
 			return modelAndView;
 		}
 	}
+	
+	@RequestMapping("/artistRegister")
+	public ModelAndView artistRegister(HttpServletRequest request,Model model){
+		String realName=request.getParameter("realname");
+		String IDNumber=request.getParameter("IDNumber");
+		String userName=request.getParameter("userName");
+		String email=request.getParameter("email");
+		String phoneNumber=request.getParameter("phoneNumber");
+		String password=request.getParameter("password");
+		String country=request.getParameter("country");
+		String education=request.getParameter("education");
+		String description=request.getParameter("description");
+		Artist artist=secureService.artistRegister(realName,IDNumber,userName,email,phoneNumber,password,country,education,description);
+		//返回页面
+		ModelAndView modelAndView=new ModelAndView("artistCenter");
+		model.addAttribute("user",artist);
+		request.getSession().setAttribute("user", artist);
+		return modelAndView;
+	}
+	
+	
+	
+	
 }

@@ -1,0 +1,223 @@
+
+.artistTouxiang{
+  float: left; 
+}
+
+.artistTouxiang img{
+  width: 200px;
+  height: 200px;
+  border-radius:200px
+}
+
+.artistText{
+  float: left;
+  margin-left: 60px;
+  position: relative;
+}
+
+.artistText h1{
+  float: left;
+  clear: left;
+  font-size: 24px;
+  font-weight: bolder;
+  display: block;
+  margin-bottom: 5px;
+}
+.artistText h2{
+  float: left;
+  clear: left;
+  font-size: 20px;
+  color: #c4c3c2;
+  display: block;
+  margin-bottom: 20px;
+}
+.artistText h3{
+  float: left;
+  clear: left;
+  font-size: 16px;
+  display: block;
+  margin-bottom: 5px;
+}
+.artistText h4{
+  float: left;
+  clear: left;
+  font-size: 16px;
+  display: block;
+}
+
+@media only screen and (max-width:600px) {
+    .artistTouxiang img{
+  width: 130px;
+  height: 130px;
+  border-radius:130px;
+  margin-left: 0;
+  }
+}
+
+@media only screen and (max-width:600px) {
+  .artistText{
+    margin-top:0;
+    width: calc(100% - 140px);
+    float: left;
+    margin-left: 10px;
+    margin-right: 0;
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width:600px) {
+  .artistText h1 h2 h3 h4{
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width:600px) {
+  .artistText h1 h2 h3 h4{
+    padding-left: 20px;
+    font-size: 16px;
+  }
+}
+
+.paixu{
+  margin-bottom: 30px;
+  width: 100%;
+}
+
+.paixu h4{
+   font-size: 20px;
+   display: inline;
+}
+
+.paixu .paixu-box{
+    font-size: 20px;
+    border:3px solid #dfdfdf;
+    display: inline;
+    margin-right: 4px;
+}
+
+.container #tabs0{
+  margin-bottom: 20px;
+  margin-top: 60px;
+}
+
+@media only screen and (max-width:600px) {
+  .container #tabs0{
+  margin-top: 0;
+ }
+}
+
+.container #tabs0 hr{
+  width: 100%;
+  margin-bottom: 0;
+}
+
+
+/*====================================================*/
+.menu0{ margin-left: 0;}
+.menu0 li { display:block; float: left; width:16%; text-align: center; cursor:pointer; background: #FFFFff; margin-bottom: 0;} 
+.menu0 li.hover { background: #dfdfdf; } 
+
+@media only screen and (max-width:600px) {
+  .menu0 li {
+    font-size: 12px;
+  }
+}
+
+
+/*====================================================*/
+#infoCenter input{
+  width: 300px;
+  height: 30px;
+  border-radius: 0;
+}
+
+#infoCenter textarea{
+  width: 300px;
+  height: 180px;
+  border-radius: 0;
+}
+
+@media only screen and (max-width:600px){
+  #infoCenter input{
+  width: 70%;
+  height: 25px;
+}
+}
+
+@media only screen and (max-width:600px){
+  #infoCenter textarea{
+  width: 70%;
+  height: 100px;
+}
+}
+
+#infoCenter .req{
+    color: red;
+}
+
+#infoCenter input.button {
+    font-family: "Graphik Web SemiBold", Helvetica, Arial;
+    -webkit-font-smoothing: antialiased;
+    -webkit-transition: all .2s ease-in 0s;
+    -moz-transition: all .2s ease-in 0s;
+    transition: all .2s ease-in 0s;
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: rgba(0, 0, 0, .5);
+    text-transform: uppercase;
+    padding: 12px 30px 10px;
+    display: inline-block;
+    background: #24324b;
+    color: #ffffff;
+    -moz-box-shadow: 0 4px 0 0 #dfdfcd;
+    -webkit-box-shadow: 0 4px 0 0 #dfdfcd;
+    box-shadow: 0 4px 0 0 #dfdfcd;
+    width: 40%;
+    float: center;
+    border-bottom: 0;
+    margin: 0 0 0 30px
+}
+
+
+
+
+@media only screen and (max-width:500px) {
+#infoCenter #zhucequ {
+        margin: 0;
+        padding: 10px 15px
+    }
+}
+
+
+#infoCenter  #agreement{
+    margin-left: 70px;
+    width: 10%;
+}
+
+@media only screen and (max-width:600px){
+    #infoCenter  #agreement{
+    margin-left: 10%;
+    width: 10%;
+}
+}
+
+
+#infoCenter  #tijiao{
+  margin-left: 100px;
+  width: 200px;
+  height: 50px;
+  float: left;
+}
+
+@media only screen and (max-width:600px){
+  #infoCenter  #tijiao{
+    width: 50%;
+    height: 40px;
+    margin-left: 20%;
+    margin-right: 20%;
+    float: center;
+    font-size: 12px;
+  }
+}
+
+

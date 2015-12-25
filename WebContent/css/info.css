@@ -91,6 +91,16 @@
 	}
 }
 
+@media only screen and (max-width:700px) {
+	.daohang .kind-of-news li.active-li
+    {
+	background-color: #24324b;
+	color:  #ffffff;
+	font-weight: bolder;
+	box-shadow: 0px 0px 0px #b0b0b0;
+    }
+}
+
 
 
 @media only screen and (max-width:700px) {

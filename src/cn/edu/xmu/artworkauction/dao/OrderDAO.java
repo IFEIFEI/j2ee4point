@@ -3,6 +3,7 @@ package cn.edu.xmu.artworkauction.dao;
 import java.util.List;
 
 import cn.edu.xmu.artworkauction.entity.Order;
+import cn.edu.xmu.artworkauction.entity.User;
 
 
 /**OrderDAO deal with all the things about order
@@ -20,4 +21,6 @@ public interface OrderDAO
 	public void updateOrder(Order order);
 	public void deleteOrder(Order order);
 	public Order getOrderById(Integer id);
+	public List<Order> findAllOrderByUser(User user);
 }
+
