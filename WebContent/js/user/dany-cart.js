@@ -28,6 +28,7 @@ $(document).ready(function () {
 						{
 							alert("订单提交成功！等待管理员确认订单");
 							$("div#cartArtwork").hide();
+							window.location.href="userCenter";
 						}
 					},"json");
 		});

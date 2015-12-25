@@ -190,13 +190,23 @@ public class ArtWorkController
 		return root.toString();
 	}
 	
+	@ResponseBody
 	@RequestMapping("windUpAnAccount")
-	public ModelAndView windUpAnAccount(HttpServletRequest request)
+	public String windUpAnAccount(HttpServletRequest request)
 	{
 		User user=(User)request.getSession().getAttribute("user");
 		artworkServiceImpl.addNewOrder(shopList,user);
 		shopList=null;
 		request.getSession().setAttribute("shopCar", null);
-		return new ModelAndView("User/userCenter.jsp");
+		JSONObject root=new JSONObject();
+		root.put("state", "1");
+		root.put("url", "userCenter");
+		return root.toString();
+	}
+	
+	@RequestMapping("userCenter")
+	public ModelAndView userCenter(HttpServletRequest request)
+	{
+		return new ModelAndView("User/userCenter");
 	}
 }

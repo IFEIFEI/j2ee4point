@@ -81,6 +81,7 @@ public class ArtworkServiceImpl implements ArtworkService
 			newOrderLineItem.setNumber(val);
 			orderLineItems.add(newOrderLineItem);
 		}
+		newOrder.setOrderLineItems(orderLineItems);
 		orderDAO.saveOrder(newOrder);
 	}
 

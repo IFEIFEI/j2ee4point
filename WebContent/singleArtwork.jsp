@@ -171,16 +171,20 @@ img.emoji {
 				<nav class="clearfix">
 					<div class="menu-menu-1-container">
 						<ul id="menu-menu-1" class="menu">
-							<li id="menu-item-50" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-50"><a href="index.html">首页</a></li>
-							<li id="menu-item-98" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-98"><a href="artworks.html">艺术品</a></li>
+							<li id="menu-item-50" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-50"><a href="index.jsp">首页</a></li>
+							<li id="menu-item-98" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-98"><a href="getArtwork">艺术品</a></li>
                             <li id="menu-item-98" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-98"><a href="">艺术家</a></li>
                             <li id="menu-item-52" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-52"><a href="">艺术定制</a></li>
                             <li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="">拍卖</a></li>
                             
                             <li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="info_show.html">艺术资讯</a></li>
                             <li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="lookForMyCart">购物车</a></li>
-                            <li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="login.html">登录</a></li>
-                            
+<c:if test="${empty user}">
+                    <li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="login.jsp">登录</a></li>
+                    </c:if>
+                    <c:if test="${! empty user}">
+                    <li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="userCenter.jsp">欢迎您,${user.userName}</a></li>
+                    </c:if>                            
                         </ul>
                     </div>				
                 </nav>
@@ -197,16 +201,22 @@ img.emoji {
   		<div id="mobile_menu">
 			<div class="menu-menu-1-container">
 				<ul id="menu-menu-2" class="menu">
-					<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-50"><a href="index.html">首页</a></li>
-					<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-50"><a href="artworks.html">艺术品</a></li>
+					<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-50"><a href="index.jsp">首页</a></li>
+					<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-50"><a href="getArtwork">艺术品</a></li>
                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-98"><a href="">艺术家</a></li>
                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-52"><a href="">艺术定制</a></li>
                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="">拍卖</a></li>
                     
                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="info_show.html">艺术资讯</a></li>
                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="lookForMyCart">购物车</a></li>
-                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="login.html">登录</a></li>
-                </ul>
+					
+                    <c:if test="${empty user}">
+                                    <li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="login.jsp">登录</a></li>
+                                    </c:if>
+                                    <c:if test="${! empty user}">
+                                    <li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="userCenter.jsp">欢迎您,${user.userName}</a></li>
+                    </c:if>                
+               </ul>
             </div>			
 
             <div class="hamburger">

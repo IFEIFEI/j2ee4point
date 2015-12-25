@@ -51,7 +51,7 @@ public class Order {
 	@OneToOne(cascade={CascadeType.ALL})
     @JoinColumn(name="shipment_id")
 	private Shipment shipment;
-	@OneToMany(mappedBy="order", targetEntity = OrderLineItem.class,
+	@OneToMany(targetEntity = OrderLineItem.class,
             cascade = CascadeType.ALL)
 	private List<OrderLineItem> orderLineItems;
 	@Column
