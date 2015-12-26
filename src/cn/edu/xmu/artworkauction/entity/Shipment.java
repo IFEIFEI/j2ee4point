@@ -27,6 +27,11 @@ public class Shipment {
 	private String shipmentCompany;
 	private Order order;
 	private Address address;
+	
+	public Shipment() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")

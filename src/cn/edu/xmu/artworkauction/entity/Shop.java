@@ -8,6 +8,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,11 +32,12 @@ public class Shop implements java.io.Serializable{
 	
 	private static final long serialVersionUID = -4828928765987122818L;
 	private Integer id;
-	private Artist artist;
 	private List<Artwork> artworks;
-	//限定的最大的上传作品数目
-	private final Integer maxUploadNumber=10;
+	private Artist artist;
 
+	public Shop() {
+	}
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
@@ -54,17 +56,12 @@ public class Shop implements java.io.Serializable{
 		this.artworks=artworks;
 	}
 	
-	@OneToOne(mappedBy="shop")
+	
+	@OneToOne(targetEntity=Artist.class, cascade = {CascadeType.ALL},fetch=FetchType.LAZY)
 	public Artist getArtist() {
 		return artist;
 	}
 	public void setArtist(Artist artist) {
 		this.artist=artist;
-	}
-
-    //只能进行get没有方法
-	public Integer getMaxUploadNumber()
-	{
-		return maxUploadNumber;
 	}
 }

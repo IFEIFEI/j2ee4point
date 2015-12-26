@@ -37,10 +37,10 @@ public class UserServiceImpl implements UserService{
 	
 	//更改用户的信息
 	@Override
-	public User updateUserInfo(User user,String email,String userName,String phoneNumber)
+	public User updateUserInfo(User user,String email,String userName,String phoneNumber,String imageURL)
 	{
 		// TODO Auto-generated method stub
-		user=userDAO.userUpdate(user, email, userName, phoneNumber);
+		user=userDAO.userUpdate(user, email, userName, phoneNumber,imageURL);
 		return user;
 	}
 

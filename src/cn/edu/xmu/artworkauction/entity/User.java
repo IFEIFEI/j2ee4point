@@ -68,6 +68,16 @@ public class User implements java.io.Serializable{
 		setPhoneNumber(phoneNumber);
 		setPassword(password);
 	}
+	
+	//用户信息的更新
+	public void updateUserInfo(String email,String userName,String phoneNumber,String imageURL)
+	{
+		setEmail(email);
+		setPhoneNumber(phoneNumber);
+		setUserName(userName);	
+		setImageURL(imageURL);
+	}
+	
 	@Column(name="userType",insertable=false,updatable=false)
 	public String getUserType(){
 		return this.userType;
@@ -75,6 +85,7 @@ public class User implements java.io.Serializable{
 	public void setUserType(String userType){
 		this.userType=userType;
 	}
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")

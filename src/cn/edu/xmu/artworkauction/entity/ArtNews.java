@@ -119,6 +119,7 @@ public class ArtNews implements java.io.Serializable
 	
 	@Column 
 	private String imageURL;
+	
 	public ArtNews(String title,Date createTime,Date editTime,String state,Editor editor,
 			String type,ArtNewsContent artNewsContent,String summary,String imageURL)
     {

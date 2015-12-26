@@ -10,6 +10,7 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
@@ -29,10 +30,10 @@ import javax.persistence.TemporalType;
 			@NamedQuery(name = "@HQL_CheckArtistIDNumberUnique", 
 			query = "from Artist u where u.IDNumber=? "),
 			//艺术家注册的时候要求用户名是唯一的
-			@NamedQuery(name = "@HQL_CheckUserNameUnique", 
+			@NamedQuery(name = "@HQL_CheckArtistNameUnique", 
 			query = "from Artist u where u.userName=?"),
 			//艺术家注册的时候要求邮箱是唯一的
-			@NamedQuery(name = "@HQL_CheckEmailUnique", 
+			@NamedQuery(name = "@HQL_CheckArtistEmailUnique", 
 			query = "from Artist u where u.email=?"),		
 		})
 public class Artist extends User{
@@ -44,14 +45,12 @@ public class Artist extends User{
 	private String IDNumber;
 	//对自身的描述
 	private String description;
-	//对应的店铺
-	private Shop shop;
 	//国籍
 	private String country;
     //出生日期
 	
-	@Column
-	@Temporal(value=TemporalType.TIMESTAMP)
+	private Shop shop;
+	
 	private Date birthday;
 	//教育
 	private String education;
@@ -108,7 +107,8 @@ public class Artist extends User{
 		this.country=country;
 	}
 
-
+	@Column
+	@Temporal(value=TemporalType.TIMESTAMP)
     public Date getBirthday(){
     	return birthday;
     }
@@ -125,13 +125,14 @@ public class Artist extends User{
 	{
 		this.education=education;
 	}
-
-	@OneToOne(cascade={CascadeType.ALL})
+	
+	
+	@OneToOne(mappedBy="artist")
     @JoinColumn(name="shop_id")
 	public Shop getShop() {
 		return shop;
 	}
 	public void setShop(Shop shop) {
-		this.shop=shop;
+		this.shop = shop;
 	}
 }

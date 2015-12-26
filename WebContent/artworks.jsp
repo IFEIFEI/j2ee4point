@@ -115,7 +115,7 @@ fieldset.search {
 	                        	<li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="login.jsp">登录</a></li>
 	                        </c:if>
 	                        <c:if test="${! empty user}">
-	                        	<li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="userCenter.jsp">欢迎您,${user.userName}</a></li>
+	                        	<li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="userCenter">欢迎您,${user.userName}</a></li>
 	                        </c:if>
                     </ul>
                     </div>				
@@ -139,7 +139,7 @@ fieldset.search {
                           <li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="login.jsp">登录</a></li>
                     </c:if>
                     <c:if test="${! empty user}">
-                         <li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="userCenter.jsp">欢迎您,${user.userName}</a></li>
+                         <li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="userCenter">欢迎您,${user.userName}</a></li>
                     </c:if>
             </ul>
             </div>			

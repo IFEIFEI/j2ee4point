@@ -37,6 +37,9 @@ public class DateAndPosition {
 	@Column
 	private String columnID;
 	
+	public DateAndPosition() {
+	}
+	
 	@ManyToOne(targetEntity=ArtNews.class,cascade = {CascadeType.ALL})
 	@JoinColumn(name="artNews_id",nullable=false)
 	private ArtNews artNews;

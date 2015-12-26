@@ -33,6 +33,8 @@ public class ArtNewsContent {
 	@JoinColumn(name="artNews_id")
 	private ArtNews artNews;
 	
+	public ArtNewsContent(){};
+	
 	public Integer getId() {
 		return id;
 	}

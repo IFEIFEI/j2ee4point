@@ -75,7 +75,7 @@ private SessionFactory sessionFactory;
 	@Override
 	public List<Order> findAllOrderByUser(User user) {
 		Query query=sessionFactory.getCurrentSession().getNamedQuery("@HQL_getOrderByUser");
-		query.setLong(0, user.getId());
+		query.setEntity(0, user);
 		List<Order> orderList=(List<Order>)query.uniqueResult();
 		return orderList;
 	}

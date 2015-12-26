@@ -14,6 +14,7 @@ import cn.edu.xmu.artworkauction.entity.Address;
 import cn.edu.xmu.artworkauction.entity.Artist;
 import cn.edu.xmu.artworkauction.entity.Artwork;
 import cn.edu.xmu.artworkauction.entity.User;
+import cn.edu.xmu.artworkauction.utils.shopMaxUploadNumber;
 
 /**
  * @author XiaWenSheng
@@ -104,7 +105,8 @@ public class ArtistDAOImpl implements ArtistDAO{
 	@Override
 	public boolean checkShopNumber(Artist artist) {
 		// TODO Auto-generated method stub
-		if(artist.getShop().getArtworks().size()<artist.getShop().getMaxUploadNumber())
+		
+		if(artist.getShop().getArtworks().size()< shopMaxUploadNumber.maxUploadNumber)
 		{
 			return true;
 		}

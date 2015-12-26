@@ -35,6 +35,8 @@ public class OrderLineItem {
 	@Column
 	private double  transactionPrice;
 	
+	public OrderLineItem(){}
+	
 	public Integer getId() {
 		return id;
 	}

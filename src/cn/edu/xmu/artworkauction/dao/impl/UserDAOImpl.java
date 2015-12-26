@@ -10,6 +10,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
 import cn.edu.xmu.artworkauction.dao.UserDAO;
+import cn.edu.xmu.artworkauction.entity.Address;
 import cn.edu.xmu.artworkauction.entity.Artist;
 import cn.edu.xmu.artworkauction.entity.User;
 
@@ -40,6 +41,34 @@ public class UserDAOImpl implements UserDAO{
 			return null;
 	}
 
+    //对用户信息进行更新
+    @Override
+    public User userUpdate(User user,String email,String userName,String phoneNumber,String imageURL)
+    { 	
+    	if(checkEmailUnique(email))
+    	{
+    		if(checkUserNameUnique(userName)){
+    			user.updateUserInfo(email,userName,phoneNumber,imageURL);
+    			updateUser(user);
+    			return user;
+    		}
+    		else
+    			return null;
+    	}
+    	return null;
+    }
+    
+    @Override
+	public User userUpdateAddress(User user, Address address) {
+    	//首先默认住址只有一个
+    	user.getAddresses().clear();
+    	user.getAddresses().add(address);
+    	return user;
+	}
+    
+    
+
+
 	@Override
 	public boolean checkUserNameUnique(String userName) {
 		// TODO Auto-generated method stub
@@ -57,6 +86,7 @@ public class UserDAOImpl implements UserDAO{
 		User user=(User)query.uniqueResult();
 		return user==null;
 	}
+	
 	@Override
 	public User findUserByUserNameAndPassword(String userName, String password) {
 		// TODO Auto-generated method stub
@@ -99,10 +129,11 @@ public class UserDAOImpl implements UserDAO{
 	}
 
 	@Override
-	public User updateUser(User user) {
+	public void updateUser(User user) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().saveOrUpdate(user);
-		return user;
 	}
+
+	
 	
 }

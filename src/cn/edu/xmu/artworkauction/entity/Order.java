@@ -41,7 +41,7 @@ import org.hibernate.annotations.DynamicUpdate;
 					query="from Order o where o.state=?"),
 			//按照用户查找订单
 			@NamedQuery(name="@HQL_getOrderByUser",
-			query="from Order a where a.user_id=?")
+			query="from Order a where a.user=?")
 		})
 public class Order {
 	@Id
@@ -63,6 +63,8 @@ public class Order {
 	private Integer state;
 	@Column
 	private String orderLineNum;
+	
+	public Order(){}
 	
 	public Integer getId() {
 		return id;

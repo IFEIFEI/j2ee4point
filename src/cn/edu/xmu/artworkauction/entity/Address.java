@@ -47,6 +47,10 @@ public class Address {
 	@JoinColumn(name="shipment_id")
 	private Shipment shipment; 
 	
+	public Address()
+	{
+	}
+	
 	public Address(String country,String province,String city,String detailedAddress)
 	{
 		setCountry(country);
