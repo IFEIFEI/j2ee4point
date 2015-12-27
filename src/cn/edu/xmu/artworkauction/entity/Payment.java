@@ -8,5 +8,7 @@ package cn.edu.xmu.artworkauction.entity;
  *
  */
 public class Payment {
-	
+	public Payment() {
+		// TODO Auto-generated constructor stub
+	}
 }

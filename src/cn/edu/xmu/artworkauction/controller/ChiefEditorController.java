@@ -11,6 +11,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -70,13 +71,21 @@ public class ChiefEditorController
 		return modelAndView;
 	}
 	@RequestMapping("getHistoryList")
-	public void getHistoryList(HttpServletRequest request)
+	public ModelAndView getHistoryList(HttpServletRequest request)
 	{
-		ChiefEditor chiefEditor=(ChiefEditor)request.getAttribute("chiefEditor");
+		ChiefEditor chiefEditor=(ChiefEditor)request.getSession().getAttribute("chiefEditor");
 		List<ArtNews> artNewsList=chiefEditorServiceImpl.getMyCheckedHistory(chiefEditor);	
 		request.getSession().setAttribute("CheckedAdvList", artNewsList);
+<<<<<<< HEAD
 	}*/
 	/*
+=======
+		ModelAndView modelAndView =new ModelAndView("ChiefEditor/ChiefEditor-History");
+		return modelAndView;
+	}
+
+	/**
+>>>>>>> bead75ea3c5c812e4683f57a1c3c4bb0fa802819
 	 * @checkArtNews JSON
 	 * @param artNewsId
 	 * @param state
@@ -88,12 +97,21 @@ public class ChiefEditorController
 	public String checkArtNews(HttpServletRequest request,HttpServletResponse response)
 	{
 		String artNewsId=request.getParameter("artNewsId");
-		String state=request.getParameter("statw");
-		ChiefEditor chiefEditor=(ChiefEditor)request.getAttribute("chiefEditor");
+		String state=request.getParameter("state");
+		System.out.println(artNewsId+state);
+		ChiefEditor chiefEditor=(ChiefEditor)request.getSession().getAttribute("chiefEditor");
 		if(chiefEditor!=null)
 		{
 			JSONObject data=new JSONObject();
-			chiefEditorServiceImpl.saveArtNewsState(Integer.parseInt(artNewsId), state, chiefEditor);
+			//chiefEditorServiceImpl.saveArtNewsState(Integer.parseInt(artNewsId), state, chiefEditor);
+			List<ArtNews> aList=(List<ArtNews>)request.getSession().getAttribute("CheckPendingList");
+			for(ArtNews a : aList)
+			{
+				if(a.getId()==Integer.parseInt(artNewsId))
+				{
+					chiefEditorServiceImpl.saveArtNewsState(a, state, chiefEditor);
+				}
+			}
 			data.put("state",1);
 			return data.toString();
 		}

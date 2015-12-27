@@ -3,6 +3,9 @@
  */
 package cn.edu.xmu.artworkauction.dao.impl;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.hibernate.Query;
@@ -10,6 +13,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
 import cn.edu.xmu.artworkauction.dao.UserDAO;
+import cn.edu.xmu.artworkauction.entity.Address;
 import cn.edu.xmu.artworkauction.entity.Artist;
 import cn.edu.xmu.artworkauction.entity.User;
 
@@ -40,6 +44,39 @@ public class UserDAOImpl implements UserDAO{
 			return null;
 	}
 
+    //对用户信息进行更新
+    @Override
+    public User userUpdate(User user,String email,String userName,String phoneNumber,String imageURL)
+    { 	
+    	if(checkEmailUnique(email))
+    	{
+    		if(checkUserNameUnique(userName)){
+    			user.updateUserInfo(email,userName,phoneNumber,imageURL);
+    			//updateUser(user);
+    			sessionFactory.getCurrentSession().merge(user);
+    			sessionFactory.getCurrentSession().flush();
+    			return user;
+    		}
+    		else
+    			return null;
+    	}
+    	return null;
+    }
+    
+    @Override
+	public User userUpdateAddress(User user, Address address) {
+    	//首先默认住址只有一个
+    	List<Address> list = new  LinkedList<Address>();
+    	list.add(address);
+    	user.setAddresses(list);
+    	user.getAddresses().add(address);
+    	updateAddress(address);
+    	return user;
+	}
+    
+    
+
+
 	@Override
 	public boolean checkUserNameUnique(String userName) {
 		// TODO Auto-generated method stub
@@ -57,6 +94,7 @@ public class UserDAOImpl implements UserDAO{
 		User user=(User)query.uniqueResult();
 		return user==null;
 	}
+	
 	@Override
 	public User findUserByUserNameAndPassword(String userName, String password) {
 		// TODO Auto-generated method stub
@@ -99,10 +137,44 @@ public class UserDAOImpl implements UserDAO{
 	}
 
 	@Override
-	public User updateUser(User user) {
+	public void updateUser(User user) {
 		// TODO Auto-generated method stub
-		sessionFactory.getCurrentSession().saveOrUpdate(user);
-		return user;
+		sessionFactory.getCurrentSession().merge(user);
 	}
+
+	@Override
+	public void saveAddress(Address address) {
+		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().save(address);
+	}
+
+	@Override
+	public void addAddress(Address address) {
+		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().save(address);
+	}
+
+	@Override
+	public void deleteAddress(Address address) {
+		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().delete(address);
+	}
+
+	@Override
+	public void updateAddress(Address address) {
+		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().saveOrUpdate(address);
+	}
+
+	@Override
+	public User getUserById(Integer userId) {
+		return (User) sessionFactory.getCurrentSession()
+				.getNamedQuery("@HQL_getUserById")
+				.setInteger(0, userId)
+				.uniqueResult();
+	}
+
+	
+	
 	
 }

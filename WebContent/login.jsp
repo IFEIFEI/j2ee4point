@@ -168,6 +168,9 @@ img.emoji {
     </div>
     
     </div>
+					     
+    
+    </div>
                    
 	   
 

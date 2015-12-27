@@ -43,7 +43,9 @@ import org.hibernate.annotations.DynamicUpdate;
 			@NamedQuery(name = "@HQL_FindUserByUserNameAndPassword", 
 			query = "from User u where u.userName=? and u.password=?"),
 			@NamedQuery(name = "@HQL_FindUserByEmailAndPassword",
-			query = "from User u where u.email=? and u.password=?")
+			query = "from User u where u.email=? and u.password=?"),
+			@NamedQuery(name = "@HQL_getUserById", 
+			query = "from User u where u.id=?"),
 		})
 public class User implements java.io.Serializable{
 	/**
@@ -68,6 +70,16 @@ public class User implements java.io.Serializable{
 		setPhoneNumber(phoneNumber);
 		setPassword(password);
 	}
+	
+	//用户信息的更新
+	public void updateUserInfo(String email,String userName,String phoneNumber,String imageURL)
+	{
+		setEmail(email);
+		setPhoneNumber(phoneNumber);
+		setUserName(userName);	
+		setImageURL(imageURL);
+	}
+	
 	@Column(name="userType",insertable=false,updatable=false)
 	public String getUserType(){
 		return this.userType;
@@ -75,6 +87,7 @@ public class User implements java.io.Serializable{
 	public void setUserType(String userType){
 		this.userType=userType;
 	}
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")

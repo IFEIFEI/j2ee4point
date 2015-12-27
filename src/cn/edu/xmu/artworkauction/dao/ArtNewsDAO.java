@@ -29,3 +29,4 @@ public interface ArtNewsDAO
 	public List<ArtNews> getArtNewsByState(String state);
 
 }
+

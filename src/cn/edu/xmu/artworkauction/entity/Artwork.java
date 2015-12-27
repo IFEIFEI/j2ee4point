@@ -4,23 +4,37 @@
 package cn.edu.xmu.artworkauction.entity;
 
 import java.math.BigDecimal;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapKeyClass;
+import javax.persistence.MapKeyColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
-
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.springframework.context.annotation.Lazy;
 
 /**
  * @author XiaWenSheng
@@ -30,33 +44,109 @@ import org.hibernate.annotations.DynamicUpdate;
 @DynamicInsert
 @DynamicUpdate
 @Table(name="tb_artwork")
+@NamedQueries(
+		{ 
+			@NamedQuery(name="@HQL_getAllArtwork",
+			query="from Artwork"),
+			@NamedQuery(name="@HQL_getArtworkById",
+			query="from Artwork a where a.id=?"),
+			@NamedQuery(name="@HQL_getArtworkByArtist",
+			query="from Artwork a where a.artist=?"),
+			@NamedQuery(name="@HQL_getArtworkByMaterial",
+			query="from Artwork a where a.material=?"),
+			@NamedQuery(name="@HQL_getArtworkBySize",
+			query="from Artwork a where a.size=?"),
+			@NamedQuery(name="@HQL_getArtworkByCreateTime",
+			query="from Artwork a where a.createTime=?"),
+			@NamedQuery(name="@HQL_getArtworkByDescription",
+			query="from Artwork a where a.description=?"),
+			@NamedQuery(name="@HQL_getArtworkByType",
+			query="from Artwork a where a.type=?"),
+			@NamedQuery(name="@HQL_getArtworkByTheme",
+			query="from Artwork a where a.theme=?"),
+			@NamedQuery(name="@HQL_getArtworkByShop",
+			query="from Artwork a where a.shop=?"),
+			@NamedQuery(name="@HQL_getArtworkByPrice",
+			query="from Artwork a where a.price between ? and ?")
+		})
 public class Artwork implements java.io.Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private Integer id;
-	private Artist artist;
-	private String material;
-	private String size;
-	private String creationTime;
-	private String descrition;
-	private List<String> imageURL;
-	private String type;
-	private String theme;
-	private Shop shop;
-	private BigDecimal price;
-	public Artwork(){}
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
+	private Integer id;
+	@Column
+	private String name;
+	@ManyToOne(targetEntity=Artist.class, cascade = {CascadeType.ALL})
+	@JoinColumn(name="artist_id")
+	private Artist artist;
+	@Column
+	private String artistName;
+	@Column(length=100)
+	private String material;
+	@Column(length=100)
+	private String size;
+	@Column
+	@Temporal(value=TemporalType.TIMESTAMP)
+	private Date createTime;
+	@Column(length=1000)
+	private String description;
+	//imageURL will keep for images for normal,small,medium,large 
+	@ElementCollection(targetClass=String.class)
+	@CollectionTable(name="artworkImageURL", joinColumns=@JoinColumn(name="artwork_id"))
+	@MapKeyColumn(name="size")
+	@MapKeyClass(String.class)
+	@Column(name="artworkImageURL")
+	private Map<String, String> imageURL;
+	@Column(length=100)
+	private String type;
+	@Column(length=100)
+	private String theme;
+	@ManyToOne(targetEntity = Shop.class, cascade = {CascadeType.ALL})
+    @JoinColumn(name = "shop_id", nullable = true)
+	private Shop shop;
+	@Column
+	private Double price;
+	@Column
+	private Integer inventory;
+	@Column
+	private String imageUrl;
+	
+	public Artwork(){}
+	
+	//进行上传艺术品时使用
+	public Artwork(String artistName,String name,String theme,Double price,String type,String material,String size,Date createTime,String imageUrl,String description){
+		setArtistName(artistName);
+		setName(name);
+		setTheme(theme);
+		setPrice(price);
+		setType(type);
+		setMaterial(material);
+		setSize(size);
+		setCreateTime(createTime);
+		setImageUrl(imageUrl);
+		setDescription(description);
+	}
+	
+	
 	public Integer getId() {
 		return id;
 	}
 	public void setId(Integer id) {
 		this.id = id;
+	}
+	
+	public String getName()
+	{
+		return this.name;
+	}
+	public void setName(String name)
+	{
+		this.name=name;
 	}
 	
 	public Artist getArtist() {
@@ -66,7 +156,15 @@ public class Artwork implements java.io.Serializable {
 		this.artist = artist;
 	}
 
-	@Column(length=100)
+	public String getArtistName()
+	{
+		return this.artistName;
+	}
+	public void setArtistName(String artistName)
+	{
+		this.artistName=artistName;
+	}
+	
 	public String getMaterial() {
 		return material;
 	}
@@ -74,7 +172,7 @@ public class Artwork implements java.io.Serializable {
 		this.material = material;
 	}
 
-	@Column(length=100)
+	
 	public String getSize() {
 		return size;
 	}
@@ -82,33 +180,28 @@ public class Artwork implements java.io.Serializable {
 		this.size = size;
 	}
 
-	@Column(length=100)
-	public String getCreationTime() {
-		return creationTime;
+	public Date getCreateTime() {
+		return createTime;
 	}
-	public void setCreationTime(String creationTime) {
-		this.creationTime = creationTime;
-	}
-
-	@Column(length=1000)
-	public String getDescrition() {
-		return descrition;
-	}
-	public void setDescrition(String descrition) {
-		this.descrition = descrition;
+	public void setCreateTime(Date creationTime) {
+		this.createTime = creationTime;
 	}
 
-	@ElementCollection
-	@CollectionTable(name="artworkImageURL", joinColumns=@JoinColumn(name="artwork_id"))
-	@Column(name="artworkImageURL")
-	public List<String> getImageURL() {
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	
+	public Map<String, String> getImageURL() {
 		return imageURL;
 	}
-	public void setImageURL(List<String> imageURL) {
-		this.imageURL = imageURL;
+	public void setImageURL(Map<String, String> imageURL2) {
+		this.imageURL = imageURL2;
 	}
 
-	@Column(length=100)
 	public String getType() {
 		return type;
 	}
@@ -116,7 +209,6 @@ public class Artwork implements java.io.Serializable {
 		this.type = type;
 	}
 
-	@Column(length=100)
 	public String getTheme() {
 		return theme;
 	}
@@ -124,8 +216,7 @@ public class Artwork implements java.io.Serializable {
 		this.theme = theme;
 	}
 	
-	@ManyToOne(targetEntity = Shop.class, cascade = {CascadeType.ALL})
-    @JoinColumn(name = "shop_id", nullable = false)
+	
 	public Shop getShop() {
 		return shop;
 	}
@@ -133,10 +224,28 @@ public class Artwork implements java.io.Serializable {
 		this.shop = shop;
 	}
 	
-	public BigDecimal getPrice() {
+	public Double getPrice() {
 		return price;
 	}
-	public void setPrice(BigDecimal price) {
+	public void setPrice(Double price) {
 		this.price=price;
+	}
+	
+	public Integer getInventory()
+	{
+		return this.inventory;
+	}
+	public void setInventory(Integer inventory)
+	{
+		this.inventory=inventory;
+	}
+	
+	public String getImageUrl()
+	{
+		return this.imageUrl;
+	}
+	public void setImageUrl(String imageUrl)
+	{
+		this.imageUrl=imageUrl;
 	}
 }

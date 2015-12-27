@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
  * @author Dany ifeifei@stu.xmu.edu.cn
  * Modified By XiaWenSheng 12/26
  */
-@Service
 public interface EditorService 
 {
 	public ArtNews saveDraft(String title,String content,Date createTime,Date editTime,String state,Editor editor ,

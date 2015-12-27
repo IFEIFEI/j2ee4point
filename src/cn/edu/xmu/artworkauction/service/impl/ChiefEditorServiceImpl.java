@@ -58,13 +58,23 @@ public class ChiefEditorServiceImpl implements ChiefEditorService
 	{		
 		artNewsDAO.test();
 	}
+	//该方法可能不能使用
 	@Override
 	public void saveArtNewsState(Integer artNewsId, String state, ChiefEditor chiefEditor) 
 	{
 		ArtNews artNews=artNewsDAO.getArtNewsById(artNewsId);
 		artNews.setState(state);
 		artNews.setChiefEditor(chiefEditor);
-		artNewsDAO.saveArtNews(artNews);		
+		artNewsDAO.saveArtNews(artNews);
+	}
+	@Override
+	public void saveArtNewsState(ArtNews artNews, String state, ChiefEditor chiefEditor) 
+	{
+		artNews.setState(state);
+		artNews.setChiefEditor(chiefEditor);
+		artNews.setCheckTime(new Date());
+		System.out.println(artNews.getCheckTime());
+		artNewsDAO.updateArtNews(artNews);
 	}
 	@Override
 	public List<ArtNews> getMyCheckedHistory(ChiefEditor chiefEditor) 

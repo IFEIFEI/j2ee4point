@@ -14,6 +14,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -23,21 +25,47 @@ import org.hibernate.annotations.DynamicUpdate;
 
 /**
  * @author XiaWenSheng
- *
+ *	@version D-1223_2.0.0
  */
 @Entity
 @DynamicInsert
 @DynamicUpdate
 @Table(name="tb_order")
+@NamedQueries(
+		{
+			@NamedQuery(name="@HQL_GetAllOrder",
+					query="from Order"),
+			@NamedQuery(name="@HQL_GetOrderById",
+					query="from Order o where o.id=?"),
+			@NamedQuery(name="@HQL_getOrderByState",
+					query="from Order o where o.state=?"),
+			//按照用户查找订单
+			@NamedQuery(name="@HQL_getOrderByUser",
+			query="from Order a where a.user=?")
+		})
 public class Order {
-	private Integer id;
-	private User user;
-	private Date orderDate;
-	private Shipment shipment;
-	private List<OrderLineItem> orderLineItems;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
+	private Integer id;
+	@ManyToOne(targetEntity=User.class, cascade = {CascadeType.ALL})
+	@JoinColumn(name="user_id")
+	private User user;
+	@Column
+	private Date orderDate;
+	@OneToOne(cascade={CascadeType.ALL})
+    @JoinColumn(name="shipment_id")
+	private Shipment shipment;
+	@OneToMany(targetEntity = OrderLineItem.class,
+            cascade = CascadeType.ALL)
+	private List<OrderLineItem> orderLineItems;
+	@Column
+	private Integer state;
+	@Column
+	private String orderLineNum;
+	
+	public Order(){}
+	
 	public Integer getId() {
 		return id;
 	}
@@ -45,31 +73,27 @@ public class Order {
 		this.id = id;
 	}
 	
-	@ManyToOne(targetEntity=User.class, cascade = {CascadeType.ALL})
-	@JoinColumn(name="user_id")
 	public User getUser() {
 		return user;
 	}
 	public void setUser(User user) {
 		this.user = user;
 	}
-	@Column
+	
 	public Date getOrderDate() {
 		return orderDate;
 	}
 	public void setOrderDate(Date orderDate) {
 		this.orderDate = orderDate;
 	}
-	@OneToOne(cascade={CascadeType.ALL})
-    @JoinColumn(name="shipment_id")
+	
 	public Shipment getShipment() {
 		return shipment;
 	}
 	public void setShipment(Shipment shipment) {
 		this.shipment = shipment;
 	}
-	@OneToMany(mappedBy="order", targetEntity = OrderLineItem.class,
-            cascade = CascadeType.ALL)
+	
 	public List<OrderLineItem> getOrderLineItems() {
 		return orderLineItems;
 	}
@@ -77,4 +101,17 @@ public class Order {
 		this.orderLineItems = orderLineItems;
 	}
 	
+	public Integer getState() {
+		return state;
+	}
+	public void setState(Integer state) {
+		this.state = state;
+	}
+
+	public void setOrderLineNum(String orderLineNum) {
+		this.orderLineNum = orderLineNum;
+	}
+	public String getOrderLineNum() {
+		return orderLineNum;
+	}
 }

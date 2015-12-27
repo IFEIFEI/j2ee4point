@@ -26,6 +26,9 @@ public class Editor extends User{
 	
 	private List<ArtNews> artNews;
 	
+	public Editor() {
+	}
+	
 	@OneToMany(mappedBy = "editor", targetEntity = ArtNews.class,
             cascade = CascadeType.ALL)
 	public List<ArtNews> getArtNews() {

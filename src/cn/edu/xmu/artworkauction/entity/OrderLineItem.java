@@ -1,6 +1,5 @@
 package cn.edu.xmu.artworkauction.entity;
 
-import java.math.BigDecimal;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -16,34 +15,33 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 /**
- * @author XiaWenSheng
- *
+ * 	@author XiaWenSheng
+ *	@version D-1223_2.0.0
  */
 @Entity
 @DynamicInsert
 @DynamicUpdate
 @Table(name="tb_orderLineItem")
 public class OrderLineItem {
-	private Integer id;
-	private Order order;
-	private Artwork artwork;
-	private BigDecimal transactionPrice;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
+	private Integer id;
+	@ManyToOne(targetEntity=User.class, cascade = {CascadeType.ALL})
+	@JoinColumn(name="artwork_id")
+	private Artwork artwork;
+	@Column
+	private Integer number;
+	@Column
+	private double  transactionPrice;
+	
+	public OrderLineItem(){}
+	
 	public Integer getId() {
 		return id;
 	}
 	public void setId(Integer id) {
 		this.id = id;
-	}
-	@ManyToOne(targetEntity = Order.class, cascade = {CascadeType.ALL})
-    @JoinColumn(name = "order_id", nullable = false)
-	public Order getOrder() {
-		return order;
-	}
-	public void setOrder(Order order) {
-		this.order = order;
 	}
 	
 	public Artwork getArtwork() {
@@ -52,12 +50,19 @@ public class OrderLineItem {
 	public void setArtwork(Artwork artwork) {
 		this.artwork = artwork;
 	}
-	@Column
-	public BigDecimal getTransactionPrice() {
+	public double getTransactionPrice() {
 		return transactionPrice;
 	}
-	public void setTransactionPrice(BigDecimal transactionPrice) {
+	public void setTransactionPrice(double transactionPrice) {
 		this.transactionPrice = transactionPrice;
 	}
 	
+	public Integer getNumber() 
+	{
+		return number;
+	}
+	public void setNumber(Integer number) 
+	{
+		this.number = number;
+	}
 }

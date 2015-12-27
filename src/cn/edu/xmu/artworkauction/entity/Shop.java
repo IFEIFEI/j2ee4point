@@ -8,12 +8,14 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.sql.rowset.JdbcRowSet;
 
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
@@ -26,10 +28,16 @@ import org.hibernate.annotations.DynamicUpdate;
 @DynamicInsert
 @DynamicUpdate
 @Table(name="tb_shop")
-public class Shop {
+public class Shop implements java.io.Serializable{
+	
+	private static final long serialVersionUID = -4828928765987122818L;
 	private Integer id;
-	private Artist artist;
 	private List<Artwork> artworks;
+	private Artist artist;
+
+	public Shop() {
+	}
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
@@ -48,7 +56,8 @@ public class Shop {
 		this.artworks=artworks;
 	}
 	
-	@OneToOne(mappedBy="shop")
+	
+	@OneToOne(targetEntity=Artist.class, cascade = {CascadeType.ALL},fetch=FetchType.LAZY)
 	public Artist getArtist() {
 		return artist;
 	}
