@@ -32,6 +32,48 @@ img.emoji {
 }
 
 
+.file {
+    position: relative;
+    display: inline-block;
+    background: #ffffff;
+    border: 1px solid #4f6d96;
+    border-radius: 0;
+    padding: 4px 12px;
+    overflow: hidden;
+    color: #fbf9d8;
+    text-decoration: none;
+    text-indent: 0;
+    line-height: 20px;
+    margin-left: 16%;
+    width: 300px;
+    height: 30px;
+    text-align: center;
+}
+.file input {
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+    text-align: center;
+}
+.file:hover {
+    background: #2c5183;
+    border-color: #4f6d96;
+    color: #ffffff;
+    text-decoration: none;
+    text-align: center;
+}
+
+@media only screen and (max-width:600px){
+  .file{
+  width: 70%;
+  height: 25px;
+  margin-left: 25%;
+}
+}
+
+
 </style>
 
 <link rel='stylesheet' id='icons-css'  href='http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css?ver=4.3.1' type='text/css' media='all' />
@@ -107,13 +149,13 @@ img.emoji {
         <div class="container">    
             <div class="artistInformation">
                  <div class="artistTouxiang">
-                    <img src="images/user/huangjingzheTouxiang.jpg">
+                    <img src="images/user/${user.imageURL }">
                  </div>
                  <div class="artistText"> 
-                    <h1>黄京哲</h1>
-                    <h2>1972，中国</h2>
-                    <h3>吉林，中国</h3>
-                    <h4>中央美院</h4>       
+                    <h1>${user.realName }</h1>
+                    <h2>${user.birthday.year },${user.country }</h2>
+                    <h3>${user.addresses[0].province }，${user.addresses[0].country }</h3>
+                    <h4>${user.education }</h4>       
                  </div>
             </div> 
         </div>
@@ -123,9 +165,9 @@ img.emoji {
             <ul class="menu0" id="menu0"> 
               <li class="hover" ><a href="artistCenter.jsp" >个人信息</a></li> 
               <li><a href="artistInfoMoney.jsp">个人账户</a></li> 
-              <li><a href="artistArtwork.jsp">艺术品</a></li> 
+              <li><a href="artistGetAllArtwork">正在售卖</a></li> 
               <li><a href="artistArtworkUpload.jsp">上传作品</a></li>
-              <li><a href="artistAddress.jsp">地址管理</a></li>   
+              <li><a href="artistGetAddress">地址管理</a></li>   
               <li><a href="artistRecord.jsp">购买记录</a></li>  
             </ul> 
             <hr />
@@ -136,26 +178,30 @@ img.emoji {
         
         <div class="container">
 
-              <form action="" id="infoCenter">
+              <form action="artistUpdateInfo" id="infoCenter" method="post"  enctype="multipart/form-data">
                    
-                  <b>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</b><input type="text" id="realname"  name="realName"  disabled="disabled"/><br><br>
+                  <b>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</b><input type="text" id="realName"  name="realName"  disabled="disabled" value="${user.realName }"/><br><br>
 
                   <!--可编辑-->
-                  <b>用&nbsp;&nbsp;户&nbsp;&nbsp;名:</b><input type="text" id="username"  name="userName"/><br><br>
+                  <b>用&nbsp;&nbsp;户&nbsp;&nbsp;名:</b><input type="text" id="userName"  name="userName" value="${user.userName }"/><br><br>
 
                   <!--可编辑-->
-                  <b>邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱：</b><input type="text" name="email" id="email"><br><br>
+                  <b>邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱：</b><input type="text" name="email" id="email" value="${user.email }"><br><br>
 
                   <!--可编辑-->
-                  <b>手&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;机：</b><input type="text" name="phoneNumber" id="phonenumber"/><br><br>
+                  <b>手&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;机：</b><input type="text" name="phoneNumber" id="phoneNumber" value="${user.phoneNumber }"/><br><br>
 
                   <!--可编辑-->
-                  <b>毕业院校：</b><input type="text" id="education"  name="education"/><br><br>
+                  <b>毕业院校：</b><input type="text" id="education"  name="education" value="${user.education}"/><br><br>
 
                   <!--可编辑-->
-                  <b>个人描述：</b><textarea name="descrition" id="descrition"></textarea><br><br>
+                  <b>个人描述：</b><textarea name="description" id="description" >${user.description}</textarea><br><br>
+                  </textarea><br><br>
 
                   <!--上传头像  还没有写-->
+                  <a href="javascript:;" class="file">选择图片
+                  <input type="file" onchange="javascript:setImagePreview();" id="doc" name="thefile"/>
+                  </a><br><br>
                   
                   <input type="submit" value="提交" name="" id="tijiao"  class="button"><br><br>
                       <!--<input type="submit" value="忘记密码" name="" id=""  class="button">-->

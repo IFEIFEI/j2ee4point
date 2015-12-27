@@ -15,4 +15,5 @@ public interface ArtistService {
 	public Artist updateArtistInfo(Artist artist,String userName,String email,String phoneNumber,String education,String description,String imageURL);
 	public Artist updateArtistAddress(Artist artist,Address address);
 	public Artist addArtwork(Artist artist,Artwork artwork);
+	public boolean deleteOneArtwork(String artworkId);
 }

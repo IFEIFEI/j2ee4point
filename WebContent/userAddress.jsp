@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!doctype html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!--[if IE 8]>    <html class="ie8" lang="en"> <![endif]-->
 <!--[if gt IE 8]><!--><html lang="en-US" ><!--<![endif]-->
 
@@ -31,228 +31,17 @@ img.emoji {
   padding: 0 !important;
 }
 
-.artistTouxiang{
-  float: left; 
-}
-
-.artistTouxiang img{
-  width: 200px;
-  height: 200px;
-  border-radius:200px
-}
-
-.artistText{
-  float: left;
-  margin-left: 60px;
-  position: relative;
-}
-
-.artistText h1{
-  float: left;
-  clear: left;
-  font-size: 24px;
-  font-weight: bolder;
-  display: block;
-  margin-top: 40px;
-  margin-bottom: 5px;
-}
-
-@media only screen and (max-width:600px) {
-    .artistTouxiang img{
-  width: 130px;
-  height: 130px;
-  border-radius:130px;
-  margin-left: 0;
-  }
-}
-
-@media only screen and (max-width:600px) {
-  .artistText{
-    margin-top:0;
-    width: calc(100% - 140px);
-    float: left;
-    margin-left: 10px;
-    margin-right: 0;
-    text-align: center;
-  }
-}
-
-@media only screen and (max-width:600px) {
-  .artistText h1 {
-    margin-top: 30px;
-    text-align: center;
-  }
-}
-
-@media only screen and (max-width:600px) {
-  .artistText h1 h2 h3 h4{
-    padding-left: 20px;
-    font-size: 16px;
-  }
-}
-
-.paixu{
-  margin-bottom: 30px;
-  width: 100%;
-}
-
-.paixu h4{
-   font-size: 20px;
-   display: inline;
-}
-
-.paixu .paixu-box{
-    font-size: 20px;
-    border:3px solid #dfdfdf;
-    display: inline;
-    margin-right: 4px;
-}
-
-.container #tabs0{
-  margin-bottom: 20px;
-  margin-top: 60px;
-}
-
-@media only screen and (max-width:600px) {
-  .container #tabs0{
-  margin-top: 30px;
- }
-}
-
-.container #tabs0 hr{
-  width: 100%;
-  margin-bottom: 0;
-}
-
-
-/*====================================================*/
-.menu0{ margin-left: 0;}
-.menu0 li { display:block; float: left; width:16%; text-align: center; cursor:pointer; background: #FFFFff; margin-bottom: 0;} 
-.menu0 li.hover { background: #dfdfdf; } 
-
-@media only screen and (max-width:600px) {
-  .menu0 li {
-    font-size: 12px;
-  }
-}
-
-
-/*====================================================*/
-
-input.button {
-    font-family: "Graphik Web SemiBold", Helvetica, Arial;
-    -webkit-font-smoothing: antialiased;
-    -webkit-transition: all .2s ease-in 0s;
-    -moz-transition: all .2s ease-in 0s;
-    transition: all .2s ease-in 0s;
-    font-size: 16px;
-    letter-spacing: 1px;
-    color: #FFFFFF;
-    text-transform: uppercase;
-    padding: 12px 30px 10px;
-    display: inline-block;
-    background: #2b4367;
-    -moz-box-shadow: 0 4px 0 0 #485c7a;
-    -webkit-box-shadow: 0 4px 0 0 #485c7a;
-    box-shadow: 0 4px 0 0 #485c7a;
-    width: auto;
-    float: center;
-    border-bottom: 0;
-    margin: 0 0 0 30px
-}
-
-input.button:hover {
-    background: #485c7a;
-    -moz-box-shadow: 0 4px 0 0 #485c7a;
-    -webkit-box-shadow: 0 4px 0 0 #485c7a;
-    box-shadow: 0 4px 0 0 #485c7a
-}
-
-#infoCenter{
-  margin-top: 20px;
-  float: left;
-  margin-left: 0;
-  width: 100%;
-}
-
-@media only screen and (max-width:600px){
-  #infoCenter {
-  margin-top: 0;
-}
-}
-
-
-
-#infoCenter b{
-  width: 15%;
-  margin-left: 0;
-  margin-right: 10px;
-  float: left;
-  font-size: 18px;
-  font-weight: normal;
-}
-
-#infoCenter  #tijiao{
-  margin-left: 20%;
-  width: 200px;
-  float: left;
-}
-
-@media only screen and (max-width:600px){
-  #infoCenter b{
-  width: 25%;
-  margin-left: 0;
-  margin-right: 0;
-  float: left;
-  font-size: 14px;
-}
-}
-
-#infoCenter input{
-  width: 300px;
-  height: 30px;
-  border-radius: 0;
-}
-
-#infoCenter textarea{
-  width: 300px;
-  height: 180px;
-  border-radius: 0;
-}
-
-@media only screen and (max-width:600px){
-  #infoCenter input{
-  width: 70%;
-  height: 25px;
-}
-}
-
-@media only screen and (max-width:600px){
-  #infoCenter textarea{
-  width: 70%;
-  height: 100px;
-}
-}
-
-@media only screen and (max-width:600px){
-  #infoCenter  #tijiao{
-    width: 50%;
-    height: 40px;
-    margin-left: 20%;
-    margin-right: 20%;
-    float: center;
-    font-size: 12px;
-  }
-}
-
 </style>
 
+<script src="js/jquery.js"></script>
+<script src="js/user/userAddress.js"></script>
 <link rel='stylesheet' id='icons-css'  href='http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css?ver=4.3.1' type='text/css' media='all' />
 <script type='text/javascript' src='http://cdn.lamingtondrive.com/wp-includes/js/jquery/jquery.js?ver=1.11.3'></script>
 <script type='text/javascript' src='http://cdn.lamingtondrive.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
 <script type='text/javascript' src='http://cdn.lamingtondrive.com/wp-content/themes/lamingtondrive/js/min/init.min.js?ver=4.3.1'></script>
 
 <link rel='stylesheet' id='style-css'  href='css/style.css' type='text/css' media='all' />
+<link rel='stylesheet' id='style-css'  href='css/artistCenter.css' type='text/css' media='all' />
   </head>
 
   <body>
@@ -262,7 +51,7 @@ input.button:hover {
       <div class="container clearfix">
 
         <div id="logo">
-          <a href="/">
+          <a href="index.jsp">
 <svg width="98px" height="98px" viewBox="0 0 98 98" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <defs></defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
@@ -278,13 +67,13 @@ input.button:hover {
           <div class="menu-menu-1-container">
           <ul id="menu-menu-1" class="menu">
                             <li id="menu-item-50" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-50"><a href="index.jsp">首页</a></li>
-                            <li id="menu-item-98" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-98"><a href="getArtwork">艺术品</a></li>
-                            <li id="menu-item-98" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-98"><a href="">艺术家</a></li>
+                            <li id="menu-item-98" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-98"><a href="artworks.jsp">艺术品</a></li>
+                            <li id="menu-item-98" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-98"><a href="artists.jsp">艺术家</a></li>
                             <li id="menu-item-52" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-52"><a href="">艺术定制</a></li>
                             <li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="">拍卖</a></li>
-                            <li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="">艺术资讯</a></li>
-                            <li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="cart.jsp">购物车</a></li>
-                            <li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617">欢迎您,${user.userName}</li>
+                            <li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="">商城</a></li>
+                            <li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="info_show.jsp">艺术资讯</a></li>
+                            <li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617">您好,XXX</li>
                     </ul>
                     </div>        
                 </nav>
@@ -298,13 +87,13 @@ input.button:hover {
       <div class="menu-menu-1-container">
       <ul id="menu-menu-2" class="menu">
               <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-50"><a href="index.jsp">首页</a></li>
-                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-98"><a href="getArtwork">艺术品</a></li>
-                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-98"><a href="">艺术家</a></li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-98"><a href="artworks.jsp">艺术品</a></li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-98"><a href="artists.jsp">艺术家</a></li>
                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-52"><a href="">艺术定制</a></li>
                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="">拍卖</a></li>
-                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="">艺术资讯</a></li>
-                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="cart.jsp">购物车</a></li>
-                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617">欢迎您,${user.userName}</li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="">商城</a></li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="info_show.jsp">艺术资讯</a></li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="">您好,XXX</a></li>
             </ul>
             </div>      
             <div class="hamburger">
@@ -319,10 +108,10 @@ input.button:hover {
         <div class="container">    
             <div class="artistInformation">
                  <div class="artistTouxiang">
-                    <img src="images/user/huangjingzheTouxiang.jpg">
+                    <img src="images/user/${user.imageURL }">
                  </div>
                  <div class="artistText"> 
-                    <h1>XXX</h1>        
+                    <h1>${user.userName }</h1>
                  </div>
             </div> 
         </div>
@@ -330,10 +119,11 @@ input.button:hover {
         <div class="container">
           <div id="tabs0"> 
             <ul class="menu0" id="menu0"> 
-              <li class="hover" ><a href="userCenter.html" >个人信息</a></li> 
-              <li><a href="userInfoMoney.html">个人账户</a></li> 
-              <li><a href="userAddress.html">地址管理</a></li>   
-              <li><a href="userRecord.html">购买记录</a></li>
+              <li><a href="userGetInfo" >个人信息</a></li> 
+              <li><a href="">个人账户</a></li> 
+              <li class="hover" ><a href="userAddress.jsp">地址管理</a></li>   
+              <li><a href="userGetAllOrder">购买记录</a></li>
+            </ul> 
             <hr />
           </div>
         </div>
@@ -341,26 +131,23 @@ input.button:hover {
         <!--排序方式（上市时间 更新世家）-->
         
         <div class="container">
-
-              <form action="" id="infoCenter">
-                   
-                  <b>编&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号：</b><input type="text" id="realname"  name="realName"  disabled="disabled"/><br><br>
+         
+         <div  id="infoCenter">
+                  <!--可编辑-->
+                  <b>国&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;家：</b><input type="text" id="country"  name="country"  required="required" value="${user.addresses[0].country }"/><br><br>
 
                   <!--可编辑-->
-                  <b>用&nbsp;&nbsp;户&nbsp;&nbsp;名:</b><input type="text" id="username"  name="userName"/><br><br>
+                  <b>省&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;份:</b><input type="text" id="province"  name="province"  required="required" value="${user.addresses[0].province }"/><br><br>
 
                   <!--可编辑-->
-                  <b>邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱：</b><input type="text" name="email" id="email"><br><br>
+                  <b>城&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;市:</b><input type="text" name="city" id="city"  required="required" value="${user.addresses[0].city }"><br><br>
 
                   <!--可编辑-->
-                  <b>手&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;机：</b><input type="text" name="phoneNumber" id="phonenumber"/><br><br>
+                  <b>具体地址:</b><textarea name="detailedAddress" id="detailedAddress"  required="required">${user.addresses[0].detailedAddress }</textarea><br><br>
 
-                  <!--上传头像  还没有写-->
-                  
                   <input type="submit" value="提交" name="" id="tijiao"  class="button"><br><br>
-                      <!--<input type="submit" value="忘记密码" name="" id=""  class="button">-->
-              </form>
-            
+               </div>   
+             
         </div>  
       
 

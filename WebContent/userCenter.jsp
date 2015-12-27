@@ -31,6 +31,47 @@ img.emoji {
   padding: 0 !important;
 }
 
+.file {
+    position: relative;
+    display: inline-block;
+    background: #ffffff;
+    border: 1px solid #4f6d96;
+    border-radius: 0;
+    padding: 4px 12px;
+    overflow: hidden;
+    color: #fbf9d8;
+    text-decoration: none;
+    text-indent: 0;
+    line-height: 20px;
+    margin-left: 16%;
+    width: 300px;
+    height: 30px;
+    text-align: center;
+}
+.file input {
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+    text-align: center;
+}
+.file:hover {
+    background: #2c5183;
+    border-color: #4f6d96;
+    color: #ffffff;
+    text-decoration: none;
+    text-align: center;
+}
+
+@media only screen and (max-width:600px){
+  .file{
+  width: 70%;
+  height: 25px;
+  margin-left: 25%;
+}
+}
+
 </style>
 
 <link rel='stylesheet' id='icons-css'  href='http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css?ver=4.3.1' type='text/css' media='all' />
@@ -39,7 +80,7 @@ img.emoji {
 <script type='text/javascript' src='http://cdn.lamingtondrive.com/wp-content/themes/lamingtondrive/js/min/init.min.js?ver=4.3.1'></script>
 
 <link rel='stylesheet' id='style-css'  href='css/style.css' type='text/css' media='all' />
-<link rel='stylesheet' id='style-css'  href='css/artistRecord.css' type='text/css' media='all' />
+<link rel='stylesheet' id='style-css'  href='css/artistCenter.css' type='text/css' media='all' />
   </head>
 
   <body>
@@ -69,9 +110,14 @@ img.emoji {
                             <li id="menu-item-98" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-98"><a href="artists.jsp">艺术家</a></li>
                             <li id="menu-item-52" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-52"><a href="">艺术定制</a></li>
                             <li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="">拍卖</a></li>
-                            <li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="">商城</a></li>
                             <li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="info_show.jsp">艺术资讯</a></li>
-                            <li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617">您好,XXX</li>
+                            <li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="cart.jsp">购物车</a></li>
+                            <c:if test="${empty user}">
+	                        	<li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="login.jsp">登录</a></li>
+	                        </c:if>
+	                        <c:if test="${! empty user}">
+	                        	<li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="userCenter.jsp">欢迎您,${user.userName}</a></li>
+	                        </c:if>
                     </ul>
                     </div>        
                 </nav>
@@ -89,9 +135,14 @@ img.emoji {
                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-98"><a href="artists.jsp">艺术家</a></li>
                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-52"><a href="">艺术定制</a></li>
                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="">拍卖</a></li>
-                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="">商城</a></li>
                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="info_show.jsp">艺术资讯</a></li>
-                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="">您好,XXX</a></li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="cart.jsp">购物车</a></li>
+                    <c:if test="${empty user}">
+	                        	<li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="login.jsp">登录</a></li>
+	                        </c:if>
+	                        <c:if test="${! empty user}">
+	                        	<li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="userCenter.jsp">欢迎您,${user.userName}</a></li>
+	                        </c:if>
             </ul>
             </div>      
             <div class="hamburger">
@@ -106,10 +157,10 @@ img.emoji {
         <div class="container">    
             <div class="artistInformation">
                  <div class="artistTouxiang">
-                    <img src="images/user/huangjingzheTouxiang.jpg">
+                    <img src="images/user/${user.imageURL }">
                  </div>
                  <div class="artistText"> 
-                    <h1>XXX</h1>           
+                    <h1>${user.userName }</h1>
                  </div>
             </div> 
         </div>
@@ -117,11 +168,10 @@ img.emoji {
         <div class="container">
           <div id="tabs0"> 
             <ul class="menu0" id="menu0"> 
-              <li><a href="userCenter.jsp" >个人信息</a></li> 
-              <li><a href="userInfoMoney.jsp">个人账户</a></li> 
+              <li class="hover" ><a href="userGetInfo" >个人信息</a></li> 
+              <li><a href="">个人账户</a></li> 
               <li><a href="userAddress.jsp">地址管理</a></li>   
-              <li class="hover" ><a href="userRecord.jsp">购买记录</a></li>  
-            </ul> 
+              <li><a href="userGetAllOrder">购买记录</a></li>
             <hr />
           </div>
         </div>
@@ -129,41 +179,27 @@ img.emoji {
         <!--排序方式（上市时间 更新世家）-->
         
         <div class="container">
-              <div class="cartItem">
-                  <div class="cartArtwork">
-                      <ul>
-                          <li><img src="images/user/artwork1.jpg"/></li>
-                          <li id="artistName"><p>无名</p></li>
-                          <li id="artworkPrice" class="artworkPrice"><p class="price">1100</p></li>
-                          <li id="artworkEdit"><a href="">15/12/11</a></li>
-                      </ul>
-                  </div>
-                  <div class="cartArtwork">
-                      <ul>
-                          <li><img src="images/user/artwork1.jpg"/></li>
-                          <li id="artistName"><p>无名</p></li>
-                          <li id="artworkPrice" class="artworkPrice"><p class="price">1100</p></li>
-                          <li id="artworkEdit"><a href="">15/12/11</a></li>
-                      </ul>
-                  </div>
-                  <div class="cartArtwork">
-                      <ul>
-                          <li><img src="images/user/artwork1.jpg"/></li>
-                          <li id="artistName"><p>无名</p></li>
-                          <li id="artworkPrice" class="artworkPrice"><p class="price">1100</p></li>
-                          <li id="artworkEdit"><a href="">15/12/11</a></li>
-                      </ul>
-                  </div>
-                  <div class="cartArtwork">
-                      <ul>
-                          <li><img src="images/user/artwork1.jpg"/></li>
-                          <li id="artistName"><p>无名</p></li>
-                          <li id="artworkPrice" class="artworkPrice"><p class="price">1100</p></li>
-                          <li id="artworkEdit"><a href="">15/12/11</a></li>
-                      </ul>
-                  </div>
 
-              </div>
+              <form action="userUpdateInfo" id="infoCenter">
+
+                  <!--可编辑-->   
+                  <b>用&nbsp;&nbsp;户&nbsp;&nbsp;名:</b><input type="text" id="username"  name="userName" value="${user.userName}"/><br><br>
+
+                  <!--可编辑-->
+                  <b>邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱：</b><input type="text" name="email" id="email" value="${user.email}"><br><br>
+
+                  <!--可编辑-->
+                  <b>手&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;机：</b><input type="text" name="phoneNumber" id="phonenumber" value="${user.phoneNumber}"/><br><br>
+
+                  <!--上传头像  还没有写-->
+                  <asp:Image ID="img_name" runat="server" />
+    			  <a href="javascript:;" class="file">选择图片
+                  <input type="file" onchange="javascript:setImagePreview();" id="doc" name="thefile"/>
+                  </a><br><br>
+                  
+                  <input type="submit" value="提交" name="" id="tijiao"  class="button"><br><br>
+                      <!--<input type="submit" value="忘记密码" name="" id=""  class="button">-->
+              </form>
             
         </div>  
       

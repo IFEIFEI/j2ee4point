@@ -13,8 +13,10 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import cn.edu.xmu.artworkauction.dao.ArtistDAO;
 import cn.edu.xmu.artworkauction.dao.ArtworkDAO;
 import cn.edu.xmu.artworkauction.dao.OrderDAO;
+import cn.edu.xmu.artworkauction.entity.Artist;
 import cn.edu.xmu.artworkauction.entity.Artwork;
 import cn.edu.xmu.artworkauction.entity.Order;
 import cn.edu.xmu.artworkauction.entity.OrderLineItem;
@@ -35,6 +37,7 @@ public class ArtworkServiceImpl implements ArtworkService
 {
 	private ArtworkDAO artworkDAO;
 	private OrderDAO orderDAO;
+	private ArtistDAO artistDAO;
 	
 	@Resource(name="artworkDAO")
 	public void setArtworkDAO(ArtworkDAO artworkDAO) 
@@ -46,6 +49,11 @@ public class ArtworkServiceImpl implements ArtworkService
 	public void setOrderDAO(OrderDAO orderDAO) 
 	{
 		this.orderDAO = orderDAO;
+	}
+	
+	@Resource(name="artistDAO")
+	public void setArtistDAO(ArtistDAO artistDAO) {
+		this.artistDAO = artistDAO;
 	}
 	
 	@Override
@@ -83,6 +91,12 @@ public class ArtworkServiceImpl implements ArtworkService
 		}
 		newOrder.setOrderLineItems(orderLineItems);
 		orderDAO.saveOrder(newOrder);
+	}
+
+	@Override
+	public List<Artwork> getAllArtworkByArtist(String artistId) {
+		Artist artist=artistDAO.getArtistById(Integer.parseInt(artistId));
+		return artworkDAO.getArtworkByArtist(artist);
 	}
 
 }

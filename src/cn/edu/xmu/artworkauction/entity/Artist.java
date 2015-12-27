@@ -34,7 +34,9 @@ import javax.persistence.TemporalType;
 			query = "from Artist u where u.userName=?"),
 			//艺术家注册的时候要求邮箱是唯一的
 			@NamedQuery(name = "@HQL_CheckArtistEmailUnique", 
-			query = "from Artist u where u.email=?"),		
+			query = "from Artist u where u.email=?"),
+			@NamedQuery(name = "@HQL_getArtistById", 
+			query = "from Artist u where u.id=?"),
 		})
 public class Artist extends User{
 	/**

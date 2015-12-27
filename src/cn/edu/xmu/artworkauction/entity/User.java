@@ -43,7 +43,9 @@ import org.hibernate.annotations.DynamicUpdate;
 			@NamedQuery(name = "@HQL_FindUserByUserNameAndPassword", 
 			query = "from User u where u.userName=? and u.password=?"),
 			@NamedQuery(name = "@HQL_FindUserByEmailAndPassword",
-			query = "from User u where u.email=? and u.password=?")
+			query = "from User u where u.email=? and u.password=?"),
+			@NamedQuery(name = "@HQL_getUserById", 
+			query = "from User u where u.id=?"),
 		})
 public class User implements java.io.Serializable{
 	/**

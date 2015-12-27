@@ -11,4 +11,5 @@ public interface ArtworkService
 	public List<Artwork> getAllArtwork();
 	public Artwork getSingelArtwork(Integer id);
 	public void addNewOrder(HashMap<String, Integer> shopList,User user);
+	public List<Artwork> getAllArtworkByArtist(String artistId);
 }

@@ -49,6 +49,6 @@ public class UserServiceImpl implements UserService{
 	public User updateUserAddress(User user, Address address) {
 		// TODO Auto-generated method stub
 		user=userDAO.userUpdateAddress(user, address);
-		return null;
+		return user;
 	}
 }

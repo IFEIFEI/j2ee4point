@@ -25,6 +25,7 @@ public interface ArtistDAO {
 	public void saveArtist(Artist artist);
 	public void deleteArtist(Artist artist);
 	public void updateArtist(Artist artist);
+	public Artist getArtistById(Integer artistId);
 	public void addartwork(Artwork artwork);
 	public void saveArtwork(Artwork artwork);
 	public void deleteArtwork(Artwork artwork);

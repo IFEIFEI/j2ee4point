@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!--[if IE 8]>    <html class="ie8" lang="en"> <![endif]-->
 <!--[if gt IE 8]><!--><html lang="en-US" ><!--<![endif]-->
@@ -32,11 +35,13 @@ img.emoji {
 }
 
 </style>
-
+<script src="js/jquery.js"></script>
+<script src="js/artist/dany-artist.js"></script>
 <link rel='stylesheet' id='icons-css'  href='http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css?ver=4.3.1' type='text/css' media='all' />
 <script type='text/javascript' src='http://cdn.lamingtondrive.com/wp-includes/js/jquery/jquery.js?ver=1.11.3'></script>
 <script type='text/javascript' src='http://cdn.lamingtondrive.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
 <script type='text/javascript' src='http://cdn.lamingtondrive.com/wp-content/themes/lamingtondrive/js/min/init.min.js?ver=4.3.1'></script>
+
 
 <link rel='stylesheet' id='style-css'  href='css/style.css' type='text/css' media='all' />
 <link rel='stylesheet' id='style-css'  href='css/artistArtwork.css' type='text/css' media='all' />
@@ -103,16 +108,16 @@ img.emoji {
     <div id="content">
       <div id="dynamic" class="page page-id-96 page-template page-template-_templates page-template-shows page-template-_templatesshows-php">
 
-        <div class="container">    
+       <div class="container">    
             <div class="artistInformation">
                  <div class="artistTouxiang">
-                    <img src="images/user/huangjingzheTouxiang.jpg">
+                    <img src="images/user/${user.imageURL }">
                  </div>
                  <div class="artistText"> 
-                    <h1>黄京哲</h1>
-                    <h2>1972，中国</h2>
-                    <h3>吉林，中国</h3>
-                    <h4>中央美院</h4>       
+                    <h1>${user.realName }</h1>
+                    <h2>${user.birthday.year },${user.country }</h2>
+                    <h3>${user.addresses[0].province }，${user.addresses[0].country }</h3>
+                    <h4>${user.education }</h4>       
                  </div>
             </div> 
         </div>
@@ -122,9 +127,9 @@ img.emoji {
             <ul class="menu0" id="menu0"> 
               <li><a href="artistCenter.jsp" >个人信息</a></li> 
               <li><a href="artistInfoMoney.jsp">个人账户</a></li> 
-              <li class="hover" ><a href="artistArtwork.jsp">艺术品</a></li> 
+              <li class="hover" ><a href="artistArtwork.jsp">正在售卖</a></li> 
               <li><a href="artistArtworkUpload.jsp">上传作品</a></li>
-              <li><a href="artistAddress.jsp">地址管理</a></li>   
+              <li><a href="artistGetAddress">地址管理</a></li>   
               <li><a href="artistRecord.jsp">购买记录</a></li>  
             </ul> 
             <hr />
@@ -135,42 +140,17 @@ img.emoji {
         
         <div class="container">
               <div class="cartItem">
-                  <div class="cartArtwork">
+              	<c:forEach items="${artworkList}" var="artwork">
+                  <div class="cartArtwork" >
                       <ul>
-                          <li><img src="images/user/artwork1.jpg"/></li>
-                          <li id="artistName"><p>无名</p></li>
-                          <li id="artworkPrice" class="artworkPrice"><p class="price">1100</p></li>
-                          <li id="artworkEdit"><a href="">删除</a></li>
+                       
+                          <li><img src="images/user/${artwork.imageUrl}"/></li>
+                          <li id="artistName"><p>${artwork.name}</p></li>
+                          <li id="artworkPrice" class="artworkPrice"><p class="price">${artwork.price}</p></li>
+                          <li id="artworkEdit"><a href="" artworkId="${artwork.id}" class="delete">停止售卖</a></li>
                       </ul>
                   </div>
-
-                  <div class="cartArtwork">
-                      <ul>
-                          <li><img src="images/user/artwork1.jpg"/></li>
-                          <li id="artistName"><p>无名</p></li>
-                          <li id="artworkPrice" class="artworkPrice"><p class="price">1100</p></li>
-                          <li id="artworkEdit"><a href="">删除</a></li>
-                      </ul>
-                  </div>
-
-                  <div class="cartArtwork">
-                      <ul>
-                          <li><img src="images/user/artwork1.jpg"/></li>
-                          <li id="artistName"><p>无名</p></li>
-                          <li id="artworkPrice" class="artworkPrice"><p class="price">1100</p></li>
-                          <li id="artworkEdit"><a href="">删除</a></li>
-                      </ul>
-                  </div>
-
-                  <div class="cartArtwork">
-                      <ul>
-                          <li><img src="images/user/artwork1.jpg"/></li>
-                          <li id="artistName"><p>无名</p></li>
-                          <li id="artworkPrice" class="artworkPrice"><p class="price">1100</p></li>
-                          <li id="artworkEdit"><a href="">删除</a></li>
-                      </ul>
-                  </div>
-
+                 </c:forEach>
               </div>
             
         </div>  

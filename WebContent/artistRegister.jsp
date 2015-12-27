@@ -128,7 +128,7 @@ img.emoji {
         
         <div class="container">
 
-              <form action="" id="infoCenter">
+              <form action="artistRegister" id="infoCenter">
                    
                   <b><span class="req">*</span>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</b><input type="text" id="realname"  name="realname" required="required"/><br><br>
 
@@ -159,8 +159,8 @@ img.emoji {
 
 
                   <!--上传作品  还没有写-->
-                  
-                  <input type="submit" value="提交" name="" id="tijiao"  class="button"><br><br>
+                  <input type="submit" value="注册" name="" id="tijiao"  class="button">
+                 
                       <!--<input type="submit" value="忘记密码" name="" id=""  class="button">-->
               </form>
         </div>  

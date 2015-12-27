@@ -5,8 +5,15 @@ package cn.edu.xmu.artworkauction.controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+import java.util.stream.Collectors;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,8 +29,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import cn.edu.xmu.artworkauction.service.ArtistService;
+import cn.edu.xmu.artworkauction.service.ArtworkService;
 import cn.edu.xmu.artworkauction.service.OrderService;
 import cn.edu.xmu.artworkauction.entity.Address;
 import cn.edu.xmu.artworkauction.entity.Artist;
@@ -44,10 +54,11 @@ public class ArtistController {
 	private ArtistService artistService;
 	@Resource
 	private OrderService orderService;
-	
-	@ResponseBody
+	@Resource
+	private ArtworkService artworkService;
+
 	@RequestMapping("/artistUpdateInfo")
-	public String artistUpdateInfo(HttpServletRequest request,HttpServletResponse response){
+	public ModelAndView artistUpdateInfo(HttpServletRequest request,HttpServletResponse response){
 		
 		Artist artist=(Artist)request.getSession().getAttribute("user");
 		
@@ -58,23 +69,47 @@ public class ArtistController {
 			String phoneNumber=request.getParameter("phoneNumber");
 			String education=request.getParameter("education");
 			String description=request.getParameter("description");
-			String imageURL=request.getParameter("imageURL");
+			
+			MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+	        SimpleDateFormat dateformat = new SimpleDateFormat("yyyy/MM/dd/HH");
+	        /** 构建文件保存的目录* */
+	        String logoPathDir = "/artist/image/upload/"
+	                + dateformat.format(new Date());
+	        /** 得到文件保存目录的真实路径* */
+	        String logoRealPathDir = request.getSession().getServletContext()
+	                .getRealPath(logoPathDir);
+	        /** 根据真实路径创建目录* */
+	        File logoSaveFile = new File(logoRealPathDir);
+	        if (!logoSaveFile.exists())
+	            logoSaveFile.mkdirs();
+	        /** 页面控件的文件流* */
+	        MultipartFile multipartFile = multipartRequest.getFile("thefile");
+	        /** 获取文件的后缀* */
+	        String suffix = multipartFile.getOriginalFilename().substring(
+	                multipartFile.getOriginalFilename().lastIndexOf("."));
+	        /** 使用UUID生成文件名称* */
+	        String logImageName = UUID.randomUUID().toString() + suffix;// 构建文件名称
+	        
+	        /** 拼成完整的文件保存路径加文件* */
+	        String imageURL1 = logoRealPathDir + File.separator + logImageName;
+	        File file = new File(imageURL1);
+	        String imageURL=logoRealPathDir+logImageName;
+			
+	        try {
+	            multipartFile.transferTo(file);
+	        } catch (IllegalStateException e) {
+	            e.printStackTrace();
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
 			
 			artistService.updateArtistInfo(artist, userName, email, phoneNumber, education, description, imageURL);
 			
 			request.getSession().setAttribute("user", artist);
 			
-			JSONObject data=new JSONObject();
-			data.put("state",1);
-			return data.toString();	
+			return new ModelAndView("artistCenter");
 		}
-		else
-		{
-			JSONObject data=new JSONObject();
-			data.put("state",0);
-			data.put("url","userLoginByUserName");
-			return data.toString();
-		}
+		return new ModelAndView("artistCenter");
 	}
 	
 	
@@ -99,31 +134,24 @@ public class ArtistController {
 			data.put("url","userLoginByUserName");
 			return data.toString();
 		}
-	
 	}
 	
 	//查询艺术家的地址信息
-	@ResponseBody
 	@RequestMapping("/artistGetAddress")
-	public String userGetAddress(HttpServletRequest request,HttpServletResponse response){
+	public ModelAndView userGetAddress(HttpServletRequest request,HttpServletResponse response){
 		
 		Artist artist=(Artist)request.getSession().getAttribute("user");
 		
 		if(artist!=null)
 		{
-			Address address=artist.getAddresses().get(0);
+			List<Address> addresses=artist.getAddresses();
+			Address address=addresses.isEmpty()?null:addresses.get(0);
 			request.getSession().setAttribute("address", address);
-			
-			JSONObject data=new JSONObject();
-			data.put("state",1);
-			return data.toString();
+			return new ModelAndView("artistAddress");
 		}
 		else
 		{
-			JSONObject data=new JSONObject();
-			data.put("state",0);
-			data.put("url","userLoginByUserName");
-			return data.toString();
+			return new ModelAndView("login");
 		}
 	}
 	
@@ -133,7 +161,7 @@ public class ArtistController {
 		User user=(User)request.getSession().getAttribute("user");
 		List<Order> orderList=orderService.findAllOrderByUser(user);
 		request.getSession().setAttribute("orderList", orderList);
-		ModelAndView modelAndView =new ModelAndView("");
+		ModelAndView modelAndView =new ModelAndView("artistRecord");
 		return modelAndView;
 	}
 	
@@ -141,10 +169,13 @@ public class ArtistController {
 	@RequestMapping("/artistGetAllArtwork")
 	public ModelAndView artistGetAllArtwork(HttpServletRequest request,Model model){
 		Artist artist=(Artist)request.getSession().getAttribute("user");
-		List<Artwork> artworkList=artist.getShop().getArtworks();
+		List<Artwork> artworkList=(artworkService.getAllArtworkByArtist(artist.getId().toString()))
+				.stream()
+				.filter(a->a.getInventory()!=0)
+				.collect(Collectors.toList());
 		request.getSession().setAttribute("artworkList", artworkList);
 		
-		ModelAndView modelAndView =new ModelAndView("");
+		ModelAndView modelAndView =new ModelAndView("artistArtwork");
 		modelAndView.addObject("artworkList", artworkList);
 		return modelAndView;
 	}
@@ -163,9 +194,14 @@ public class ArtistController {
 			String city=request.getParameter("city");
 			String detailedAddress=request.getParameter("detailedAddress");
 			
-			Address address=new Address(country,province,city,detailedAddress);
-			
+			Address address=artist.getAddresses().isEmpty()?new Address():artist.getAddresses().get(0);
+			address.setUser(artist);
+			address.setCountry(country);
+			address.setProvince(province);
+			address.setCity(city);
+			address.setDetailedAddress(detailedAddress);			
 			artistService.updateArtistAddress(artist, address);
+			
 			request.getSession().setAttribute("user", artist);
 			
 			JSONObject data=new JSONObject();
@@ -197,13 +233,60 @@ public class ArtistController {
 		SimpleDateFormat formatter = new SimpleDateFormat( "yyyy-MM-dd ");
 		Date createTime=formatter.parse(request.getParameter("createTime"));
 		
-		String imageUrl=request.getParameter("imageUrl");
+		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+        SimpleDateFormat dateformat = new SimpleDateFormat("yyyy/MM/dd/HH");
+        /** 构建文件保存的目录* */
+        String logoPathDir = "/Artnews/image/upload/"
+                + dateformat.format(new Date());
+        /** 得到文件保存目录的真实路径* */
+        String logoRealPathDir = request.getSession().getServletContext()
+                .getRealPath(logoPathDir);
+        /** 根据真实路径创建目录* */
+        File logoSaveFile = new File(logoRealPathDir);
+        if (!logoSaveFile.exists())
+            logoSaveFile.mkdirs();
+        /** 页面控件的文件流* */
+        MultipartFile multipartFile = multipartRequest.getFile("thefile");
+        /** 获取文件的后缀* */
+        String suffix = multipartFile.getOriginalFilename().substring(
+                multipartFile.getOriginalFilename().lastIndexOf("."));
+        /** 使用UUID生成文件名称* */
+        String logImageName = UUID.randomUUID().toString() + suffix;// 构建文件名称
+        
+        /** 拼成完整的文件保存路径加文件* */
+        String imageURL1 = logoRealPathDir + File.separator + logImageName;
+        File file = new File(imageURL1);
+        String imageURL=logoRealPathDir+logImageName;
+        
 		String description=request.getParameter("description");
 		
-		Artwork artwork=new Artwork(artist.getRealName(),name,theme,price,type,material,size,createTime,imageUrl,description);
+		Artwork artwork=new Artwork(artist.getRealName(),name,theme,price,type,material,size,createTime,imageURL,description);
 		
 		artistService.addArtwork(artist, artwork);
 		ModelAndView modelAndView=new ModelAndView("artistArtwork");
 		return modelAndView;
+	}
+	
+	@ResponseBody
+	@RequestMapping("deleteMyArtwork")
+	public String deleteMyArtwork(HttpServletRequest request)
+	{
+		List<Artwork> artworks;
+		String artworkId=request.getParameter("artworkId");
+		System.out.println(artworkId);
+		artworks=((List<Artwork>)request.getSession()
+				.getAttribute("artworkList"))
+				.stream()
+				.filter(a->a.getId()!=Integer.parseInt(artworkId))
+				.collect(Collectors.toList());
+		request.getSession().setAttribute("artworkList", artworks);	
+		JSONObject root=new JSONObject();
+		if(artistService.deleteOneArtwork(artworkId))
+		{
+			root.put("state", "1");
+			return root.toString();
+		}
+		root.put("state", "0");
+		return root.toString();
 	}
 }

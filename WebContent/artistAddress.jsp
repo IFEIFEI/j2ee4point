@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!--[if IE 8]>    <html class="ie8" lang="en"> <![endif]-->
 <!--[if gt IE 8]><!--><html lang="en-US" ><!--<![endif]-->
 
@@ -33,7 +33,8 @@ img.emoji {
 
 
 </style>
-
+<script src="js/jquery.js"></script>
+<script src="js/artist/dany-artistAddress.js"></script>
 <link rel='stylesheet' id='icons-css'  href='http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css?ver=4.3.1' type='text/css' media='all' />
 <script type='text/javascript' src='http://cdn.lamingtondrive.com/wp-includes/js/jquery/jquery.js?ver=1.11.3'></script>
 <script type='text/javascript' src='http://cdn.lamingtondrive.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
@@ -107,13 +108,13 @@ img.emoji {
         <div class="container">    
             <div class="artistInformation">
                  <div class="artistTouxiang">
-                    <img src="images/user/huangjingzheTouxiang.jpg">
+                    <img src="images/user/${user.imageURL }">
                  </div>
                  <div class="artistText"> 
-                    <h1>黄京哲</h1>
-                    <h2>1972，中国</h2>
-                    <h3>吉林，中国</h3>
-                    <h4>中央美院</h4>       
+                    <h1>${user.realName }</h1>
+                    <h2>${user.birthday.year },${user.country }</h2>
+                    <h3>${user.addresses[0].province }，${user.addresses[0].country }</h3>
+                    <h4>${user.education }</h4>       
                  </div>
             </div> 
         </div>
@@ -123,9 +124,9 @@ img.emoji {
             <ul class="menu0" id="menu0"> 
               <li><a href="artistCenter.jsp" >个人信息</a></li> 
               <li><a href="artistInfoMoney.jsp">个人账户</a></li> 
-              <li><a href="artistArtwork.jsp">艺术品</a></li> 
+              <li><a href="artistGetAllArtwork">正在售卖</a></li> 
               <li ><a href="artistArtworkUpload.jsp">上传作品</a></li>
-              <li class="hover" ><a href="artistAddress.jsp">地址管理</a></li>   
+              <li class="hover" ><a href="artistGetAddress">地址管理</a></li>   
               <li><a href="artistRecord.jsp">购买记录</a></li>  
             </ul> 
             <hr />
@@ -135,23 +136,22 @@ img.emoji {
         <!--排序方式（上市时间 更新世家）-->
         
         <div class="container">
-
-              <form action="" id="infoCenter">
-                  <!--可编辑-->
-                  <b>国&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;家：</b><input type="text" id="country"  name="country"  required="required"/><br><br>
-
-                  <!--可编辑-->
-                  <b>省&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;份:</b><input type="text" id="province"  name="province"  required="required"/><br><br>
-
-                  <!--可编辑-->
-                  <b>城&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;市:</b><input type="text" name="city" id="city"  required="required"><br><br>
-
-                  <!--可编辑-->
-                  <b>具体地址:</b><textarea name="detailedAddress" id="detailedAddress"  required="required"></textarea><br><br>
-
-                  <input type="submit" value="提交" name="" id="tijiao"  class="button"><br><br>
-                  
-              </form>
+        
+	              <div  id="infoCenter">
+	                  <!--可编辑-->
+	                  <b>国&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;家：</b><input type="text" id="country"  name="country"  required="required" value="${address.country}"/><br><br>
+	
+	                  <!--可编辑-->
+	                  <b>省&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;份:</b><input type="text" id="province"  name="province"  required="required" value="${address.province}"/><br><br>
+	
+	                  <!--可编辑-->
+	                  <b>城&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;市:</b><input type="text" name="city" id="city"  required="required" value="${address.city}"><br><br>
+	
+	                  <!--可编辑-->
+	                  <b>具体地址:</b><textarea name="detailedAddress" id="detailedAddress"  required="required" >${address.detailedAddress}</textarea><br><br>
+	
+	                  <input type="submit" value="提交" name="" id="tijiao"  class="button"><br><br>
+	              </div>
             
         </div>  
       

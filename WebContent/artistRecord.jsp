@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!--[if IE 8]>    <html class="ie8" lang="en"> <![endif]-->
 <!--[if gt IE 8]><!--><html lang="en-US" ><!--<![endif]-->
 
@@ -107,13 +107,13 @@ img.emoji {
         <div class="container">    
             <div class="artistInformation">
                  <div class="artistTouxiang">
-                    <img src="images/user/huangjingzheTouxiang.jpg">
+                    <img src="images/user/${user.imageURL }">
                  </div>
                  <div class="artistText"> 
-                    <h1>黄京哲</h1>
-                    <h2>1972，中国</h2>
-                    <h3>吉林，中国</h3>
-                    <h4>中央美院</h4>       
+                    <h1>${user.realName }</h1>
+                    <h2>${user.birthday.year },${user.country }</h2>
+                    <h3>${user.addresses[0].province }，${user.addresses[0].country }</h3>
+                    <h4>${user.education }</h4>       
                  </div>
             </div> 
         </div>
@@ -123,9 +123,9 @@ img.emoji {
             <ul class="menu0" id="menu0"> 
               <li><a href="artistCenter.jsp" >个人信息</a></li> 
               <li><a href="artistInfoMoney.jsp">个人账户</a></li> 
-              <li><a href="artistArtwork.jsp">艺术品</a></li> 
+              <li><a href="artistGetAllArtwork">正在售卖</a></li> 
               <li><a href="artistArtworkUpload.jsp">上传作品</a></li>
-              <li><a href="artistAddress.jsp">地址管理</a></li>   
+              <li><a href="artistGetAddress">地址管理</a></li>   
               <li class="hover" ><a href="artistRecord.jsp">购买记录</a></li>  
             </ul> 
             <hr />
@@ -136,41 +136,17 @@ img.emoji {
         
         <div class="container">
               <div class="cartItem">
+               <c:forEach items="${orderList}" var="order" varStatus="status">
                   <div class="cartArtwork">
                       <ul>
-                          <li><img src="images/user/artwork1.jpg"/></li>
-                          <li id="artistName"><p>无名</p></li>
-                          <li id="artworkPrice" class="artworkPrice"><p class="price">1100</p></li>
-                          <li id="artworkEdit"><a href="">15/12/11</a></li>
+                          <li><img src="images/user/${order.orderLineItem.artwork.imageUrl }"/></li>
+                          <li id="artistName"><p>${order.orderLineItem.artwork.name }</p></li>
+                          <li id="artworkPrice" class="artworkPrice"><p class="price">${order.orderLineItem.transactionPrice}</p></li>
+                          <li id="artworkEdit"><a href="">${order.orderDate }</a></li>
                       </ul>
                   </div>
-                  <div class="cartArtwork">
-                      <ul>
-                          <li><img src="images/user/artwork1.jpg"/></li>
-                          <li id="artistName"><p>无名</p></li>
-                          <li id="artworkPrice" class="artworkPrice"><p class="price">1100</p></li>
-                          <li id="artworkEdit"><a href="">15/12/11</a></li>
-                      </ul>
-                  </div>
-                  <div class="cartArtwork">
-                      <ul>
-                          <li><img src="images/user/artwork1.jpg"/></li>
-                          <li id="artistName"><p>无名</p></li>
-                          <li id="artworkPrice" class="artworkPrice"><p class="price">1100</p></li>
-                          <li id="artworkEdit"><a href="">15/12/11</a></li>
-                      </ul>
-                  </div>
-                  <div class="cartArtwork">
-                      <ul>
-                          <li><img src="images/user/artwork1.jpg"/></li>
-                          <li id="artistName"><p>无名</p></li>
-                          <li id="artworkPrice" class="artworkPrice"><p class="price">1100</p></li>
-                          <li id="artworkEdit"><a href="">15/12/11</a></li>
-                      </ul>
-                  </div>
-
+              </c:forEach>
               </div>
-            
         </div>  
       
 

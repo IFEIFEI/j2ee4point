@@ -72,7 +72,7 @@
 				<nav class="clearfix">
 					<div class="menu-menu-1-container">
 						<ul id="menu-menu-1" class="menu">
-							<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-50"><a href="">艺术品</a></li>
+							<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-50"><a href="artistRegister.jsp">艺术家注册</a></li>
 	                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-98"><a href="">艺术家</a></li>
 	                		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-52"><a href="">艺术定制</a></li>
 	                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="">拍卖</a></li>
@@ -82,7 +82,12 @@
 	                        	<li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="login.jsp">登录</a></li>
 	                        </c:if>
 	                        <c:if test="${! empty user}">
+	                        	<c:if test="${user.userType=='user'}">
 	                        	<li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="userCenter.jsp">欢迎您,${user.userName}</a></li>
+	                        	</c:if>
+	                        	<c:if test="${user.userType=='artist'}">
+	                        	<li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="artistCenter.jsp">欢迎您,${user.userName}</a></li>
+	                        	</c:if>
 	                        </c:if>
 	                    </ul>
 	                </div>				
@@ -99,7 +104,7 @@
   		<div id="mobile_menu">
 			<div class="menu-menu-1-container">
 				<ul id="menu-menu-2" class="menu">
-					<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-50"><a href="">艺术品</a></li>
+					<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-50"><a href="artistRegister.jsp">艺术家注册</a></li>
                                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-98"><a href="">艺术家</a></li>
                                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-52"><a href="">艺术定制</a></li>
                                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="">拍卖</a></li>
@@ -109,7 +114,12 @@
                                     <li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="login.jsp">登录</a></li>
                                     </c:if>
                                     <c:if test="${! empty user}">
-                                    <li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="userCenter.jsp">欢迎您,${user.userName}</a></li>
+                                    	<c:if test="${user.userType=='user'}">
+                                    		<li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="userCenter.jsp">欢迎您,${user.userName}</a></li>
+                                    	</c:if>
+                                    	<c:if test="${user.userType=='artist'}">
+                                    		<li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="artistCenter.jsp">欢迎您,${user.userName}</a></li>
+                                    	</c:if>
                                     </c:if>
                 </ul>
             </div>			
@@ -131,7 +141,7 @@
 						<nav class="clearfix">
 							<div class="menu-menu-1-container">
 								<ul id="menu-menu-3" class="menu">
-									<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-50"><a href="">艺术品</a></li>
+									<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-50"><a href="artistRegister.jsp">艺术家注册</a></li>
                                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-98"><a href="">艺术家</a></li>
                                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-52"><a href="">艺术定制</a></li>
                                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="">拍卖</a></li>
@@ -141,7 +151,12 @@
                                     <li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="login.jsp">登录</a></li>
                                     </c:if>
                                     <c:if test="${! empty user}">
-                                    <li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="userCenter.jsp">欢迎您,${user.userName}</a></li>
+                                    	<c:if test="${user.userType=='user'}">
+                                    		<li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="userCenter.jsp">欢迎您,${user.userName}</a></li>
+                                    	</c:if>
+                                    	<c:if test="${user.userType=='artist'}">
+                                    		<li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="artistCenter.jsp">欢迎您,${user.userName}</a></li>
+                                    	</c:if>
                                     </c:if>
                                 </ul>
                             </div>						

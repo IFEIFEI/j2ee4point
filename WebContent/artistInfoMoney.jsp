@@ -103,16 +103,16 @@ img.emoji {
     <div id="content">
       <div id="dynamic" class="page page-id-96 page-template page-template-_templates page-template-shows page-template-_templatesshows-php">
 
-        <div class="container">    
+       <div class="container">    
             <div class="artistInformation">
                  <div class="artistTouxiang">
-                    <img src="images/user/huangjingzheTouxiang.jpg">
+                    <img src="images/user/${user.imageURL }">
                  </div>
                  <div class="artistText"> 
-                    <h1>黄京哲</h1>
-                    <h2>1972，中国</h2>
-                    <h3>吉林，中国</h3>
-                    <h4>中央美院</h4>       
+                    <h1>${user.realName }</h1>
+                    <h2>${user.birthday.year },${user.country }</h2>
+                    <h3>${user.addresses[0].province }，${user.addresses[0].country }</h3>
+                    <h4>${user.education }</h4>       
                  </div>
             </div> 
         </div>
@@ -122,9 +122,9 @@ img.emoji {
             <ul class="menu0" id="menu0"> 
               <li><a href="artistCenter.jsp" >个人信息</a></li> 
               <li class="hover" ><a href="artistInfoMoney.jsp">个人账户</a></li> 
-              <li><a href="artistArtwork.jsp">艺术品</a></li> 
+              <li><a href="artistGetAllArtwork">正在售卖</a></li> 
               <li><a href="artistArtworkUpload.jsp">上传作品</a></li>
-              <li><a href="artistAddress.jsp">地址管理</a></li>   
+              <li><a href="artistGetAddress">地址管理</a></li>   
               <li><a href="artistRecord.jsp">购买记录</a></li>  
             </ul> 
             <hr />

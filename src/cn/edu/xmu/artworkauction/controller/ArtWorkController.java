@@ -207,6 +207,6 @@ public class ArtWorkController
 	@RequestMapping("userCenter")
 	public ModelAndView userCenter(HttpServletRequest request)
 	{
-		return new ModelAndView("User/userCenter");
+		return new ModelAndView("userCenter");
 	}
 }

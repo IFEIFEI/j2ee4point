@@ -35,7 +35,7 @@ public class RegisterLoginController {
 		String phoneNumber=request.getParameter("phoneNumber");
 		String password=request.getParameter("password");
 		User user=secureService.userRegister(email, userName, phoneNumber, password);
-		ModelAndView modelAndView=new ModelAndView("userindex");
+		ModelAndView modelAndView=new ModelAndView("userCenter");
 		model.addAttribute("user", user);
 		request.getSession().setAttribute("user", user);
 		return modelAndView;
@@ -59,9 +59,15 @@ public class RegisterLoginController {
 			modelAndView =new ModelAndView("Editor/editArtNews");
 			request.getSession().setAttribute("user", user);
 			return modelAndView;
+		case "artist":
+			modelAndView =new ModelAndView("artistCenter");
+			request.getSession().setAttribute("user", user);
+			System.out.println(user.getAddresses());
+			return modelAndView;
 		default:
 			modelAndView =new ModelAndView("index");
 			request.getSession().setAttribute("user", user);
+			System.out.println(user.getAddresses());
 			return modelAndView;
 		}
 	}
@@ -74,9 +80,28 @@ public class RegisterLoginController {
 		String email=request.getParameter("email");
 		String phoneNumber=request.getParameter("phoneNumber");
 		String password=request.getParameter("password");
-		String country=request.getParameter("country");
-		String education=request.getParameter("education");
-		String description=request.getParameter("description");
+		String country=null;
+		String education=null;
+		String description=null;
+		
+		if(request.getParameter("country")!=null)
+		{
+			country=request.getParameter("country");
+		}
+		
+		
+		if(request.getParameter("education")!=null)
+		{
+			education=request.getParameter("education");
+		}
+		
+		
+		if(request.getParameter("description")!=null)
+		{
+		    description=request.getParameter("description");
+		}
+		
+		
 		Artist artist=secureService.artistRegister(realName,IDNumber,userName,email,phoneNumber,password,country,education,description);
 		//返回页面
 		ModelAndView modelAndView=new ModelAndView("artistCenter");

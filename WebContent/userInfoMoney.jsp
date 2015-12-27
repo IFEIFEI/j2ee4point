@@ -106,10 +106,10 @@ img.emoji {
         <div class="container">    
             <div class="artistInformation">
                  <div class="artistTouxiang">
-                    <img src="images/user/huangjingzheTouxiang.jpg">
+                    <img src="images/user/${user.imageURL }">
                  </div>
                  <div class="artistText"> 
-                    <h1>XXX</h1>    
+                    <h1>${user.userName }</h1>
                  </div>
             </div> 
         </div>

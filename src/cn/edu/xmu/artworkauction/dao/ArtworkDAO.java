@@ -30,4 +30,5 @@ public interface ArtworkDAO
 	public List<Artwork> getArtworkByTheme(String theme);
 	public List<Artwork> getArtworkByShop(Shop shop);
 	public List<Artwork> getArtworkByPrice(Double low,Double high);
+	public void artworkSaleOff(String artworkId);
 }

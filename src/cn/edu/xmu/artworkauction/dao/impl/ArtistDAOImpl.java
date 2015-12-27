@@ -3,6 +3,10 @@
  */
 package cn.edu.xmu.artworkauction.dao.impl;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.hibernate.Query;
@@ -78,8 +82,10 @@ public class ArtistDAOImpl implements ArtistDAO{
 	//更新艺术家的地址
 	@Override
 	public Artist artistUpdateAddress(Artist artist, Address address) {
-		artist.getAddresses().clear();
-		artist.getAddresses().add(address);
+		List<Address> list = new  ArrayList<>();
+    	list.add(address);
+		artist.setAddresses(list);
+		//sessionFactory.getCurrentSession().saveOrUpdate(artist);
 		updateArtist(artist);
 		return artist;
 	}
@@ -187,6 +193,14 @@ public class ArtistDAOImpl implements ArtistDAO{
 	public void updateArtwork(Artwork artwork) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().update(artwork);
+	}
+
+	@Override
+	public Artist getArtistById(Integer artistId) {
+		return (Artist) sessionFactory.getCurrentSession()
+				.getNamedQuery("@HQL_getArtistById")
+				.setInteger(0, artistId)
+				.uniqueResult();
 	}
 
 	

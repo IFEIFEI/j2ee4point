@@ -166,4 +166,12 @@ public class ArtworkDAOImpl implements ArtworkDAO
 				.list();
 	}
 
+	@Override
+	public void artworkSaleOff(String artworkId) {
+		((Artwork) sessionFactory.getCurrentSession()
+			.getNamedQuery("@HQL_getArtworkById")
+			.setInteger(0, Integer.parseInt(artworkId))
+			.uniqueResult()).setInventory(0);
+	}
+
 }

@@ -5,6 +5,7 @@ package cn.edu.xmu.artworkauction.dao;
 
 import cn.edu.xmu.artworkauction.entity.User;
 import cn.edu.xmu.artworkauction.entity.Address;
+import cn.edu.xmu.artworkauction.entity.Artist;
 
 /**
  * @author XiaWenSheng
@@ -24,5 +25,12 @@ public interface UserDAO {
 	public void addUser(User user);
 	public void deleteUser(User user);
 	public void updateUser(User user);
+	
+	public void saveAddress(Address address);
+	public void addAddress(Address address);
+	public void deleteAddress(Address address);
+	public void updateAddress(Address address);
+	
+	public User getUserById(Integer userId);
 	
 }

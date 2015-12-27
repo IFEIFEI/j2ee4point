@@ -135,7 +135,7 @@ img.emoji {
 
                   <b><span class="req">*</span>用&nbsp;户&nbsp;名：</b><input type="text" id="username"  name="userName"  required="required"/><br><br>
 
-                  <b>手&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;机：</b><input type="text" name="phoneNumber" id="phonenumber"/><br><br>
+                  <b>手&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;机：</b><input type="text" name="phoneNumber" id="phoneNumber"/><br><br>
 
                   <b><span class="req">*</span>密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：</b><input type="password" name="password" id="pw1"  required="required"/><br><br>
 

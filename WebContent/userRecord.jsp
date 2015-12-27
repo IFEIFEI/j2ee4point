@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!--[if IE 8]>    <html class="ie8" lang="en"> <![endif]-->
 <!--[if gt IE 8]><!--><html lang="en-US" ><!--<![endif]-->
 
@@ -39,7 +39,7 @@ img.emoji {
 <script type='text/javascript' src='http://cdn.lamingtondrive.com/wp-content/themes/lamingtondrive/js/min/init.min.js?ver=4.3.1'></script>
 
 <link rel='stylesheet' id='style-css'  href='css/style.css' type='text/css' media='all' />
-<link rel='stylesheet' id='style-css'  href='css/artistCenter.css' type='text/css' media='all' />
+<link rel='stylesheet' id='style-css'  href='css/artistRecord.css' type='text/css' media='all' />
   </head>
 
   <body>
@@ -106,10 +106,10 @@ img.emoji {
         <div class="container">    
             <div class="artistInformation">
                  <div class="artistTouxiang">
-                    <img src="images/user/huangjingzheTouxiang.jpg">
+                    <img src="images/user/${user.imageURL }">
                  </div>
                  <div class="artistText"> 
-                    <h1>XXX</h1>
+                    <h1>${user.userName }</h1>
                  </div>
             </div> 
         </div>
@@ -117,10 +117,10 @@ img.emoji {
         <div class="container">
           <div id="tabs0"> 
             <ul class="menu0" id="menu0"> 
-              <li><a href="userCenter.jsp" >个人信息</a></li> 
-              <li><a href="userInfoMoney.jsp">个人账户</a></li> 
-              <li class="hover" ><a href="userAddress.jsp">地址管理</a></li>   
-              <li><a href="userRecord.jsp">购买记录</a></li>
+              <li><a href="userGetInfo" >个人信息</a></li> 
+              <li><a href="">个人账户</a></li> 
+              <li><a href="userAddress.jsp">地址管理</a></li>   
+              <li class="hover" ><a href="userGetAllOrder">购买记录</a></li>  
             </ul> 
             <hr />
           </div>
@@ -129,24 +129,20 @@ img.emoji {
         <!--排序方式（上市时间 更新世家）-->
         
         <div class="container">
-
-              <form action="" id="infoCenter">
-                  <!--可编辑-->
-                  <b>国&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;家：</b><input type="text" id="country"  name="country"  required="required"/><br><br>
-
-                  <!--可编辑-->
-                  <b>省&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;份:</b><input type="text" id="province"  name="province"  required="required"/><br><br>
-
-                  <!--可编辑-->
-                  <b>城&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;市:</b><input type="text" name="city" id="city"  required="required"><br><br>
-
-                  <!--可编辑-->
-                  <b>具体地址:</b><textarea name="detailedAddress" id="detailedAddress"  required="required"></textarea><br><br>
-
-                  <input type="submit" value="提交" name="" id="tijiao"  class="button"><br><br>
-                  
-              </form>
-            
+              <div class="cartItem">    
+              <c:forEach items="${orderList}" var="order">
+                  <c:forEach items="${order.orderLineItems}" var="orderLineItem">
+                  <div class="cartArtwork">
+                      <ul>
+                          <li><img src="images/user/${orderLineItem.artwork.imageUrl }"/></li>
+                          <li id="artistName"><p>${orderLineItem.artwork.name }</p></li>
+                          <li id="artworkPrice" class="artworkPrice"><p class="price">${orderLineItem.transactionPrice}</p></li>
+                          <li id="artworkEdit"><a href="">${order.orderDate }</a></li>
+                      </ul>
+                  </div>
+                  </c:forEach>
+              </c:forEach>
+              </div>   
         </div>  
       
 

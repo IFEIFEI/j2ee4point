@@ -3,6 +3,9 @@
  */
 package cn.edu.xmu.artworkauction.dao.impl;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.hibernate.Query;
@@ -61,8 +64,11 @@ public class UserDAOImpl implements UserDAO{
     @Override
 	public User userUpdateAddress(User user, Address address) {
     	//首先默认住址只有一个
-    	user.getAddresses().clear();
+    	List<Address> list = new  LinkedList<Address>();
+    	list.add(address);
+    	user.setAddresses(list);
     	user.getAddresses().add(address);
+    	updateAddress(address);
     	return user;
 	}
     
@@ -134,6 +140,39 @@ public class UserDAOImpl implements UserDAO{
 		sessionFactory.getCurrentSession().saveOrUpdate(user);
 	}
 
+	@Override
+	public void saveAddress(Address address) {
+		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().save(address);
+	}
+
+	@Override
+	public void addAddress(Address address) {
+		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().save(address);
+	}
+
+	@Override
+	public void deleteAddress(Address address) {
+		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().delete(address);
+	}
+
+	@Override
+	public void updateAddress(Address address) {
+		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().saveOrUpdate(address);
+	}
+
+	@Override
+	public User getUserById(Integer userId) {
+		return (User) sessionFactory.getCurrentSession()
+				.getNamedQuery("@HQL_getUserById")
+				.setInteger(0, userId)
+				.uniqueResult();
+	}
+
+	
 	
 	
 }

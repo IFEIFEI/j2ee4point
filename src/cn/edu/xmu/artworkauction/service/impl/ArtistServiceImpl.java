@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import cn.edu.xmu.artworkauction.dao.ArtistDAO;
+import cn.edu.xmu.artworkauction.dao.ArtworkDAO;
 import cn.edu.xmu.artworkauction.entity.Address;
 import cn.edu.xmu.artworkauction.entity.Artist;
 import cn.edu.xmu.artworkauction.entity.Artwork;
@@ -36,6 +37,13 @@ public class ArtistServiceImpl implements ArtistService{
 		this.artistDAO=artistDAO;
 	}
 	
+	private ArtworkDAO artworkDAO;
+
+	@Resource(name="artworkDAO")
+	public void setArtworkDAO(ArtworkDAO artworkDAO){
+		this.artworkDAO=artworkDAO;
+	}
+	
 	//更改用户的信息
 	@Override
 	public Artist updateArtistInfo(Artist artist,String userName,String email,String phoneNumber,String education,String description,String imageURL)
@@ -47,7 +55,6 @@ public class ArtistServiceImpl implements ArtistService{
 
 	@Override
 	public Artist updateArtistAddress(Artist artist, Address address) {
-		// TODO Auto-generated method stub
 		artist=artistDAO.artistUpdateAddress(artist, address);
 		return artist;
 	}
@@ -58,6 +65,12 @@ public class ArtistServiceImpl implements ArtistService{
 		// TODO Auto-generated method stub
 		artist=artistDAO.addArtwork(artist, artwork);
 		return null;
+	}
+	
+	@Override
+	public boolean deleteOneArtwork(String artworkId) {
+		artworkDAO.artworkSaleOff(artworkId);
+		return true;
 	}
 
 }
