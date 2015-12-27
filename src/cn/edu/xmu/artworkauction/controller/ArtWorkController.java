@@ -43,7 +43,6 @@ public class ArtWorkController
 			List<Artwork> aList=artworkServiceImpl.getAllArtwork();
 			allArtworkList=aList;
 			request.getSession().setAttribute("allArtworkList", aList);
-			System.out.println(aList.get(0).getImageUrl());
 		}
 		ModelAndView modelAndView=new ModelAndView("/artworks");
 		return modelAndView;
@@ -56,7 +55,6 @@ public class ArtWorkController
 		String price=request.getParameter("price");
 		String size=request.getParameter("size");
 		String years=request.getParameter("years");
-		System.out.println(kind+price);
 		List<Artwork> aList=allArtworkList.stream()
 				.filter(a->{
 					boolean kindflag=true;
@@ -82,7 +80,6 @@ public class ArtWorkController
 					return kindflag&&priceflag&&sizeFlag&&yearsFlag;
 				})
 				.collect(Collectors.toList());
-		System.out.println(aList);
 		request.getSession().setAttribute("allArtworkList", aList);
 		ModelAndView modelAndView=new ModelAndView("/artworks");
 		return modelAndView;
@@ -184,7 +181,6 @@ public class ArtWorkController
 		String artworkId=(String)request.getParameter("artworkId");
 		String num=(String)request.getParameter("num");
 		shopList.put(artworkId, Integer.parseInt(num));
-		System.out.println(shopList);
 		JSONObject root=new JSONObject();
 		root.put("state", "1");
 		return root.toString();

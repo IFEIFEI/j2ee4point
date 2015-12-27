@@ -62,12 +62,10 @@ public class RegisterLoginController {
 		case "artist":
 			modelAndView =new ModelAndView("artistCenter");
 			request.getSession().setAttribute("user", user);
-			System.out.println(user.getAddresses());
 			return modelAndView;
 		default:
 			modelAndView =new ModelAndView("index");
 			request.getSession().setAttribute("user", user);
-			System.out.println(user.getAddresses());
 			return modelAndView;
 		}
 	}

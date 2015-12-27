@@ -273,7 +273,6 @@ public class ArtistController {
 	{
 		List<Artwork> artworks;
 		String artworkId=request.getParameter("artworkId");
-		System.out.println(artworkId);
 		artworks=((List<Artwork>)request.getSession()
 				.getAttribute("artworkList"))
 				.stream()
