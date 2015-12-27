@@ -107,7 +107,7 @@ public class Artwork implements java.io.Serializable {
 	@Column(length=100)
 	private String theme;
 	@ManyToOne(targetEntity = Shop.class, cascade = {CascadeType.ALL})
-    @JoinColumn(name = "shop_id", nullable = false)
+    @JoinColumn(name = "shop_id", nullable = true)
 	private Shop shop;
 	@Column
 	private Double price;
