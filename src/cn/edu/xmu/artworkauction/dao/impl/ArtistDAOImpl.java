@@ -29,7 +29,7 @@ public class ArtistDAOImpl implements ArtistDAO{
 	}
 
 	@Override
-	public Artist toBeArtist(User user,String IDNumber) {
+	public Artist applyToBeArtist(User user,String IDNumber) {
 		// TODO Auto-generated method stub
 		
 		return null;

@@ -1,6 +1,7 @@
 package cn.edu.xmu.artworkauction.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -22,12 +23,32 @@ public class ArtNewsDisplayServiceImpl implements ArtNewsDisplayService
 	@Override
 	public List<ArtNews> getTodayArtNews(String columnId) {
 		// TODO Auto-generated method stub
-		return null;
+		return artNewsDAO.getTodayArtNews(columnId);
 	}
 	@Override
 	public List<ArtNews> getTodayAdvertisement(String columnId) {
 		// TODO Auto-generated method stub
-		return null;
+		return artNewsDAO.getTodayAdvertisement(columnId);
+	}
+	@Override
+	public Map getArtNewsDetailById(String artNewsId) {
+		// TODO Auto-generated method stub
+		return artNewsDAO.getArtNewsDetailById(artNewsId);
+	}
+	@Override
+	public String deleteArtNewsById(String artNewsId) {
+		// TODO Auto-generated method stub
+		return artNewsDAO.deleteArtNewsById(artNewsId);
+	}
+	@Override
+	public ArtNews getArtNewsById(String artNewsId) {
+		// TODO Auto-generated method stub
+		return artNewsDAO.getArtNewsById(artNewsId);
+	}
+	@Override
+	public List<ArtNews> getArtNewsByState(String state) {
+		// TODO Auto-generated method stub
+		return artNewsDAO.getArtNewsByState(state);
 	}
 
 	

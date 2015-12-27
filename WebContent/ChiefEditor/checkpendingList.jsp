@@ -1,84 +1,74 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+	
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 	<head>
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-		<title>采编后台-草稿箱</title>
+		<title>主编后台-待审核列表</title>
 		<style type="text/css">
 			h1 {line-height: 300%}
 		</style>
-		<link rel="stylesheet" href="../css/admin/960.css" type="text/css" media="screen" charset="utf-8" />
-		<link rel="stylesheet" href="../css/admin/template.css" type="text/css" media="screen" charset="utf-8" />
-		<link rel="stylesheet" href="../css/admin/colour.css" type="text/css" media="screen" charset="utf-8" />
-		
+		<link rel="stylesheet" href="css/admin/960.css" type="text/css" media="screen" charset="utf-8" />
+		<link rel="stylesheet" href="css/admin/template.css" type="text/css" media="screen" charset="utf-8" />
+		<link rel="stylesheet" href="css/admin/colour.css" type="text/css" media="screen" charset="utf-8" />
 	</head>
 	<body>
 	<h1 id="head">艺术品定制网站后台管理系统</h1>
 	
 	<ul id="navigation">
-			<li><a href="ReportingStaffs-SubmitNews.html">我要写稿</a></li>
-			<li><a href="ReportingStaffs-History.html">提交记录</a></li>
-			<li><span class="active">草稿箱</span></li>
-		</ul>
-			<div id="content" class="container_16 clearfix">
-				
-				<div class="grid_16">
-					<form action="" method="post">
-					<p>
-						<input name="searchbykey" type="text" placeholder="输入关键字进行查找" style="width:300px; height:30px"/>
-						<input type="submit" value="查找" />
-					</p>
-					</form>
-				</div>
-				
-				<div class="grid_16">
-					<table>
-						<thead>
-							<tr>
-								<th>题目</th>
-								<th>软文类型</th>
-								<th>上次修改时间</th>
-								<th colspan="2" width="20%">操作</th>
-							</tr>
-						</thead>
-						
-						<tbody  id="dtable">
-							<c:forEach items='${ EditorAdvList }' var="result">							
+			<li><span class="active">待审核列表</span></li>
+			<!--<li><a href="ChifeEditor-CheckAdsList.html">待审核广告</a></li>-->
+			<li><a href="getArtNewsByChiefEditor">我的审核记录</a></li>
+	</ul>
+	<div id="content" class="container_16 clearfix">			
+		<div class="grid_16">
+			<table>
+				<thead>
+					<tr>
+						<th>题目</th>
+						<th>软文类型</th>
+						<th>提交者</th>
+						<th>提交时间</th>
+						<th >操作</th>
+					</tr>
+				</thead>				
+				<tbody  id="ctable">
+						<c:forEach items='${ checkpendingList }' var="result" varStatus="status">								
 							<tr class="alt">
 								<td>${result.title}</td>
 								<td>${result.type}</td>
-								<td>${result.lasttime}</td>
-								<td><a href="#" class="edit">编辑</a></td>
-								<td><a class="delete" href="javascript:void(0)" onclick="if(window.confirm('确定删除该草稿吗？')) 
-    this.href='EditServlet?method=delDraft&advertorial_id=${ result.advertorial_id }'">删除</a></td>
+								<td>${result.editor.userName}</td>
+								<td>${result.editTime}</td>
+								<td><a href="getArtNewsAllDetailByArtNewsId?artNewsId=${result.id }" class="edit">审核</a></td>
 							</tr>
-							</c:forEach>
-						</tbody>
-						<tfoot>
-							<tr>
-								<td colspan="5" class="pagination">
-									<span id="spanFirst">首页</span> 
-									<span id="spanPre">上一页</span> 
-									<span id="spanNext">下一页</span> 
-									<span id="spanLast">尾页</span> 
-									第<span id="spanPageNum"></span>页/共<span id="spanTotalPage"></span>页      
-								</td>
-							</tr>
-						</tfoot>
-					</table>
-				</div>
-				
-			</div>
-		
-		<div id="foot">
-					<a href="#">联系我们</a>
+						</c:forEach>
+				</tbody>
+				<tfoot>
+						<tr>
+							<td colspan="5" class="pagination">
+								<span id="spanFirst">首页</span> 
+								<span id="spanPre">上一页</span> 
+								<span id="spanNext">下一页</span> 
+								<span id="spanLast">尾页</span> 
+								第<span id="spanPageNum"></span>页/共<span id="spanTotalPage"></span>页      
+							</td>
+						</tr>
+				</tfoot>
+			</table>
 		</div>
+	</div>
+		
+	<div id="foot">
+		<a href="#">联系我们</a>
+	</div>
 	</body>
 	<script>
-	var theTable = document.getElementById("dtable");    
+	var theTable = document.getElementById("ctable");    
 	var totalPage = document.getElementById("spanTotalPage");    
 	var pageNum = document.getElementById("spanPageNum");    
    
@@ -90,7 +80,9 @@
 	var numberRowsInTable = theTable.rows.length;    
 	var pageSize = 10;    
 	var page = 1;
-
+	var currentRow;
+	var maxRow;
+	
 	//下一页    
 	function next(){    
    
@@ -213,5 +205,5 @@
 	}    
    
 	hide();
-	</script>
+	</script>	
 </html>

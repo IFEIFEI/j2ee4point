@@ -1,78 +1,88 @@
-<%@page import="cn.edu.xmu.artworkauction.entity.ArtNews"%>
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-	
-<%--
-<%@ page contentType="text/html; charset=UTF-8" %>
-<%@ taglib prefix="s" uri="/struts-tags" %>
---%>
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 	<head>
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-		<title>主编后台-待审核列表</title>
+		<title>采编后台-提交记录</title>
 		<style type="text/css">
 			h1 {line-height: 300%}
 		</style>
-		<link rel="stylesheet" href="../css/admin/960.css" type="text/css" media="screen" charset="utf-8" />
-		<link rel="stylesheet" href="../css/admin/template.css" type="text/css" media="screen" charset="utf-8" />
-		<link rel="stylesheet" href="../css/admin/colour.css" type="text/css" media="screen" charset="utf-8" />
+		<link rel="stylesheet" href="css/admin/960.css" type="text/css" media="screen" charset="utf-8" />
+		<link rel="stylesheet" href="css/admin/template.css" type="text/css" media="screen" charset="utf-8" />
+		<link rel="stylesheet" href="css/admin/colour.css" type="text/css" media="screen" charset="utf-8" />
+		
 	</head>
 	<body>
 	<h1 id="head">艺术品定制网站后台管理系统</h1>
 	
 	<ul id="navigation">
-			<li><span class="active">待审核列表</span></li>
-			<!--<li><a href="ChifeEditor-CheckAdsList.html">待审核广告</a></li>-->
-			<li><a href="ChiefEditor-History.html">我的审核记录</a></li>
-	</ul>
-	<div id="content" class="container_16 clearfix">			
-		<div class="grid_16">
-			<table>
-				<thead>
-					<tr>
-						<th>题目</th>
-						<th>软文类型</th>
-						<th>提交者</th>
-						<th>提交时间</th>
-						<th>操作</th>
-					</tr>
-				</thead>				
-				<tbody  id="ctable">
-						<c:forEach items='${ CheckPendingList }' var="result" varStatus="status">								
-							<tr class="alt">
-								<td>${result.title}</td>
-								<td>${result.type}</td>
-								<td>${result.editor.userName}</td>
-								<td>${result.createTime}</td>
-								<td><a href="#" class="edit">审核</a></td>
+			<li><a href="editArtNews">我要写稿</a></li>
+			<li><span class="active">提交记录</span></li>
+			<li><a href="getAllDraftByEditor">草稿箱</a></li>
+		</ul>
+			<div id="content" class="container_16 clearfix">
+				
+				<div class="grid_16">
+					<form action="" method="post">
+					<p>
+						<input name="searchbykey" type="text" placeholder="输入关键字进行查找" style="width:300px; height:30px"/>
+						<input type="submit" value="查找" />
+					</p>
+					</form>
+				</div>
+				
+				<div class="grid_16">
+					<table>
+						<thead>
+							<tr>
+								<th>题目</th>
+								<th>软文类型</th>
+								<th>状态</th>
+								<th>上次修改时间</th>
+								<th colspan="2" width="20%">操作</th>
 							</tr>
-						</c:forEach>
-				</tbody>
-				<tfoot>
-						<tr>
-							<td colspan="5" class="pagination">
-								<span id="spanFirst">首页</span> 
-								<span id="spanPre">上一页</span> 
-								<span id="spanNext">下一页</span> 
-								<span id="spanLast">尾页</span> 
-								第<span id="spanPageNum"></span>页/共<span id="spanTotalPage"></span>页      
-							</td>
-						</tr>
-				</tfoot>
-			</table>
-		</div>
-	</div>
+						</thead>
+						
+						<tbody  id="dtable">
+							<c:forEach items='${ draftList }' var="draft">							
+							<tr class="alt">
+								<td>${draft.title}</td>
+								<td>${draft.type}</td>
+								<td>${draft.state}</td>
+								<td>${draft.editTime}</td>
+								<td><a href="getArtNewsAllDetailByArtNewsId?artNewsId=${draft.id }" class="edit">查看</a></td>
+								<td><a class="delete" href="javascript:void(0)" onclick="if(window.confirm('确定删除该草稿吗？')) 
+    this.href='deleteArtNewsById?artNewsId=${draft.id}'">删除</a></td>
+							</tr>
+							</c:forEach>
+						</tbody>
+						<tfoot>
+							<tr>
+								<td colspan="5" class="pagination">
+									<span id="spanFirst">首页</span> 
+									<span id="spanPre">上一页</span> 
+									<span id="spanNext">下一页</span> 
+									<span id="spanLast">尾页</span> 
+									第<span id="spanPageNum"></span>页/共<span id="spanTotalPage"></span>页      
+								</td>
+							</tr>
+						</tfoot>
+					</table>
+				</div>
+				
+			</div>
 		
-	<div id="foot">
-		<a href="#">联系我们</a>
-	</div>
+		<div id="foot">
+					<a href="#">联系我们</a>
+		</div>
 	</body>
 	<script>
-	var theTable = document.getElementById("ctable");    
+	var theTable = document.getElementById("htable");    
 	var totalPage = document.getElementById("spanTotalPage");    
 	var pageNum = document.getElementById("spanPageNum");    
    
@@ -84,9 +94,7 @@
 	var numberRowsInTable = theTable.rows.length;    
 	var pageSize = 10;    
 	var page = 1;
-	var currentRow;
-	var maxRow;
-	
+
 	//下一页    
 	function next(){    
    
@@ -209,5 +217,5 @@
 	}    
    
 	hide();
-	</script>	
+	</script>
 </html>

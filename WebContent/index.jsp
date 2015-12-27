@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <!--[if IE 8]>    <html class="ie8" lang="en"> <![endif]-->
@@ -40,9 +40,6 @@ img.emoji {
 
 
 <link rel='stylesheet' id='style-css'  href='css/style.css' type='text/css' media='all' />
-<script type='text/javascript' src='js/user/jquery.js'></script>
-<script type='text/javascript' src='js/user/jquery-migrate.min.js'></script>
-<script type='text/javascript' src='js/user/init.min.js'></script>
 <link rel='stylesheet' id='icons-css'  href='http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css?ver=4.3.1' type='text/css' media='all' />
 
 	</head>
@@ -81,6 +78,8 @@ img.emoji {
                                     <c:if test="${! empty user}">
                                     <li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="userCenter.jsp">欢迎您,${user.userName}</a></li>
                                     </c:if>
+
+                            
                         </ul>
                     </div>				
                 </nav>
@@ -109,6 +108,7 @@ img.emoji {
                                     <c:if test="${! empty user}">
                                     <li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="userCenter.jsp">欢迎您,${user.userName}</a></li>
                                     </c:if>
+
                 </ul>
             </div>			
 
@@ -141,6 +141,7 @@ img.emoji {
                                     <c:if test="${! empty user}">
                                     <li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="userCenter.jsp">欢迎您,${user.userName}</a></li>
                                     </c:if>
+
 
                                 </ul>
                             </div>						
@@ -182,7 +183,7 @@ img.emoji {
 							<div class="show_panel"  id="column1">
 								<div class="caption">当代中国画邀请展亮相太庙<i class="fa fa-angle-right"></i></div>
 								    <!--此处的链接应该是该展览的详情-->														
-								    <a href="">
+								    <a href="getTodayArtNews&columnID=show">
 										<div class="hover">
 											<div class="text">
 												<p class="art"></p>
@@ -196,8 +197,8 @@ img.emoji {
 
 							<div class="show_panel" id="column2">
 
-								<div class="caption">专访油画家洪凌先生<i class="fa fa-angle-right"></i></div>		
-										<a href="getTodayArtNews">
+								<div class="caption">专访油画家洪凌先生<i class="fa fa-angle-right"></i></div>					
+									<a href="getTodayArtNews?columnID=artist">
 										<div class="hover">
 											<div class="text">
 												<p class="art"></p>
@@ -216,7 +217,7 @@ img.emoji {
 
 								<div class="caption">藏品撷英：《仪礼》简与铜奔马<i class="fa fa-angle-right"></i></div>
 								    <!--此处的链接应该是该展览的详情-->																						
-									<a href="">
+									<a href="getTodayArtNews&columnID=artwork">
 										<div class="hover">
 											<div class="text">
 												<p class="art"></p>
@@ -232,7 +233,7 @@ img.emoji {
 
 								<div class="caption">李迪－对冲 空间的再造艺术展<i class="fa fa-angle-right"></i></div>
 									<!--此处的链接应该是该展览的详情-->																							
-									<a href="">
+									<a href="getTodayArtNews&columnID=other">
 										<div class="hover">
 											<div class="text">
 												<p class="art"></p>

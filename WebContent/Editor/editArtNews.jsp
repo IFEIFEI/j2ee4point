@@ -2,6 +2,7 @@
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 	
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 	<head>
@@ -21,27 +22,27 @@
 	
 	<ul id="navigation">
 			<li><span class="active">我要写稿</span></li>
-			<li><a href="ReportingStaffs-History.html">提交记录</a></li>
-			<li><a href="ReportingStaffs-Drafts.html">草稿箱</a></li>
+			<li><a href="getAllCommittedArtNewsByEditor">提交记录</a></li>
+			<li><a href="getAllDraftByEditor">草稿箱</a></li>
 	</ul>
 	<div id="content" name="content" class="container_16 clearfix">
 		<div class="grid_16">
 					<h2>编写新文章</h2>
 		</div>
 			
-		<form name="newArticle" action="saveDraft" onsubmit="return validate_form(this)" method="post">
-			<div class="grid_16">
-					<p onclick="selectType();">
-						文章类型<br/>
-						<input type="radio" name="Advertorialtype" id="Advertorialtype" checked="checked" value="广告" style="width:5px"/>广告 &nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="radio" name="Advertorialtype" id="Advertorialtype" value="资讯" style="width:5px"/>资讯
-					</p>
+		<form name="newArticle" id="draftform"  onsubmit="return validate_form(this)" method="post"  enctype="multipart/form-data">
+			<div>
+				<p>
+					&nbsp;&nbsp;&nbsp;&nbsp;文章类型<br/>&nbsp;&nbsp;
+					<input type="radio" name="Advertorialtype" id="Advertorialtype" checked="checked" value="ads"/>广告&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="radio" name="Advertorialtype" id="Advertorialtype" value="article" />资讯
+				</p>
 			</div>
-			<br/>
 						
 			<div class="grid_5" name="startdate">
 				<p name="reg_testdate">
 				上线时间<br/>
+				  <!--  
 				<select name="SYYYY" id="SYYYY" onchange="SYYYYDD(this.value)" style="width:90px">
     				<option value="">请选择 年</option>
   				</select>
@@ -51,6 +52,8 @@
   				<select name="SDD" id="SDD" style="width:80px">
     				<option value="">选择 日</option>
   				</select>
+  				-->
+  				<input type="date" name="startDate"/>
 				<br />
 				</p>
 			</div>
@@ -58,6 +61,7 @@
 			<div class="grid_5" name="enddate">
 				<p name="reg_testdate">
 				下线时间<br/>
+				<!--  
 				<select name="EYYYY" id="EYYYY" onchange="EYYYYDD(this.value)" style="width:90px">
     				<option value="">请选择 年</option>
   				</select>
@@ -67,48 +71,62 @@
   				<select name="EDD" id="EDD" style="width:80px">
     				<option value="">选择 日</option>
   				</select>
+  				-->
+  				<input type="date" name="endDate"/>
 				<br />
 				</p>
 			</div>
 			
-			
-			<div class="grid_6" name="ads_div" id="ads_div" >
+			<div class="grid_3" name="article_div1" id="article_div1">
 				<p>
-				广告位置<br/>
-				<select id="ads_pos" name="ads_pos">
-					<option>位置1</option>
-					<option>位置2</option>
-					<option>位置3</option>
-					<option>位置4</option>
+				所在栏目
+				<select id="article_type" name="columnID" style="width:140px">
+					<option>artist</option>
+					<option>artwork</option>
+					<option>show</option>
+					<option>other</option>
 				</select>
 				</p>
 			</div>
 			
-			<div class="grid_3" name="article_div1" id="article_div1" style="display:none">
+			<div class="grid_3" name="article_div2" id="article_div2">
 				<p>
-				资讯类型
-				<select id="article_type" name="article_type" style="width:140px">
-					<option>艺术家</option>
-					<option>艺术品</option>
-					<option>艺术活动</option>
-					<option>类型4</option>
-				</select>
-				</p>
-			</div>
-			
-			<div class="grid_3" name="article_div2" id="article_div2" style="display:none">
-				<p>
-				在栏目中的排序
+				资讯/广告顺序
 				<input type="text" id="article_pos" name="article_pos" placeholder="请输入数字" oninput="checkAticle_pos()" style="width:140px">
 				<lable><small id="err" style="color:red">&nbsp;</small></lable>
 				</p>
 			</div>
 			
+			<div class="grid_9">
+				<p>
+				<label>标题</label>
+				<input type="text" name="title" id="title" placeholder="your title..." style="width:460px; height:25px;"/>
+				<br/><br/>
+				<label>标题图片</label>
+				<!--
+				<a href="javascript:;" class="file">选择文件
+					<input type="file" name="thefile" id="doc" onchange="javascript:setImagePreview();"/> 
+				</a>
+				-->
+				<asp:Image ID="img_name" runat="server" />
+    			<input type="file" onchange="javascript:setImagePreview();" id="doc" name="thefile" style="width:460px; height:25px;"/>
+				</p>
+			</div>
+			
+			<div class="grid_7">
+				<p>
+				图片预览<br/>
+				<img id="preview" name="preview" src=""/>
+				<br/>
+				</p>
+			</div>
+			
 			<div class="grid_16">
 				<p>
-				<label>题目</label>
-				<input type="text" name="title" id="title" placeholder="your title..." style="width:460px;"/>
-				<br />
+				<label>文章简介</label>
+				<textarea name="adv_dis" id="adv_dis" rows="4" style="resize:none">
+				</textarea>
+				<br/>
 				</p>
 			</div>
 			
@@ -120,9 +138,9 @@
            
         		</script>
 -->
-				<script type="text/javascript" charset="utf-8" src="./ueditor/ueditor.config.js"></script>
-                <script type="text/javascript" charset="utf-8" src="./ueditor/ueditor.all.min.js"> </script>
-                <script type="text/javascript" charset="utf-8" src="./ueditor/lang/zh-cn/zh-cn.js"></script>
+				<script type="text/javascript" charset="utf-8" src="ueditor/ueditor.config.js"></script>
+                <script type="text/javascript" charset="utf-8" src="ueditor/ueditor.all.min.js"> </script>
+                <script type="text/javascript" charset="utf-8" src="ueditor/lang/zh-cn/zh-cn.js"></script>
                 <script id="ueditor"   name="ueditor" type="text/plain" style="width:950px;height:500px;"></script>
                 <script type="text/javascript">
 //实例化编辑器
@@ -134,9 +152,9 @@
 				
 			<div class="grid_16">
 			<p align="right">
-				<input type="submit" class="btn" style="width:100px;height:30px;" value="存入草稿箱" onclick="javascript:this.form.action='';"/>
+				<input type="submit" class="btn" style="width:100px;height:30px;" value="存入草稿箱" onclick="buttonsave()"/>
 				&nbsp;&nbsp;
-				<input type="submit" class="btn" style="width:100px;height:30px;" value="提交" onclick="javascript:this.form.action='';"/>
+				<input type="submit" class="btn" style="width:100px;height:30px;" value="提交" onclick="buttonsubmit()"/>
 			</p>
 			</div>	
 			
@@ -147,19 +165,6 @@
 					<a href="#">联系我们</a>
 		</div>
 	</body>
-	<script type="text/javascript">
-		function selectType(){
-    		if(document.getElementsByName("Advertorialtype")[0].checked){
-      			document.getElementById("ads_div").style.display="";
-      			document.getElementById("article_div1").style.display="none";
-				document.getElementById("article_div2").style.display="none";
-   			}else{
-     		  	document.getElementById("ads_div").style.display="none";
-       			document.getElementById("article_div1").style.display="";
-				document.getElementById("article_div2").style.display="";
-    		}
-		}
-	</script>
 	<script type="text/javascript">
 		function checkAticle_pos(){
 			var pos = document.getElementById("article_pos").value;
@@ -193,6 +198,18 @@
     				{article_pos.focus();return false}
   			}
 		}
+		function buttonsave()
+	     {
+	    	 alert("保存成功");
+	document.getElementById("draftform").action="saveDraft";
+	document.getElementById("draftform").submit();
+	     }
+	     function buttonsubmit()
+	     {
+	    	 alert("提交成功");
+	document.getElementById("draftform").action="submitDraft";
+	document.getElementById("draftform").submit();
+	     }
 	</script>
 	<script type="text/javascript">  
    		function YYYYMMDDstart()   
@@ -292,5 +309,66 @@
         	e.options.length = 1;   
    		}   
    </script>
+   <script type="text/javascript">
+    function checkPic() {
+            var picPath = document.getElementById("picPath").value;
+            var type = picPath.substring(picPath.lastIndexOf(".") + 1, picPath.length).toLowerCase();
+            if (type != "jpg" && type != "bmp" && type != "gif" && type != "png") {
+                alert("请上传正确的图片格式");
+                return false;
+            }
+            return true;
+        }
+        function showimg() {
+            if(checkPic()){
+            var img = document.getElementById("cardpic").value;
+            document.getElementById("img_name").src =img;
+        }
+        }
+  </script>
+  
+  <script type="text/javascript">
+	//下面用于图片上传预览功能
+	function setImagePreview(avalue) {
+	var docObj=document.getElementById("doc");
+ 
+	var imgObjPreview=document.getElementById("preview");
+	if(docObj.files &&docObj.files[0])
+	{
+		//火狐下，直接设img属性
+		imgObjPreview.style.display = 'block';
+		imgObjPreview.style.width = '320px';
+		imgObjPreview.style.height = '240px'; 
+		//imgObjPreview.src = docObj.files[0].getAsDataURL();
+ 
+		//火狐7以上版本不能用上面的getAsDataURL()方式获取，需要一下方式
+		imgObjPreview.src = window.URL.createObjectURL(docObj.files[0]);
+	}
+	else
+	{
+		//IE下，使用滤镜
+		docObj.select();
+		var imgSrc = document.selection.createRange().text;
+		var localImagId = document.getElementById("localImag");
+		//必须设置初始大小
+		localImagId.style.width = "320px";
+		localImagId.style.height = "240px";
+		//图片异常的捕捉，防止用户修改后缀来伪造图片
+		try{
+		localImagId.style.filter="progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)";
+		localImagId.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = imgSrc;
+	}
+	catch(e)
+	{
+		alert("您上传的图片格式不正确，请重新选择!");
+		return false;
+	}
+	imgObjPreview.style.display = 'none';
+	document.selection.empty();
+	}
+	return true;
+}
+ 
+</script>
 
 </html>

@@ -1,45 +1,35 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-	
-<!--
-<%@ page contentType="text/html; charset=UTF-8" %>
-<%@ taglib prefix="s" uri="/struts-tags" %>
--->
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 	<head>
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-		<title>主编后台-审核记录</title>
+		<title>采编后台-草稿箱</title>
 		<style type="text/css">
 			h1 {line-height: 300%}
 		</style>
-		<link rel="stylesheet" href="../css/admin/960.css" type="text/css" media="screen" charset="utf-8" />
-		<link rel="stylesheet" href="../css/admin/template.css" type="text/css" media="screen" charset="utf-8" />
-		<link rel="stylesheet" href="../css/admin/colour.css" type="text/css" media="screen" charset="utf-8" />
+		<link rel="stylesheet" href="css/admin/960.css" type="text/css" media="screen" charset="utf-8" />
+		<link rel="stylesheet" href="css/admin/template.css" type="text/css" media="screen" charset="utf-8" />
+		<link rel="stylesheet" href="css/admin/colour.css" type="text/css" media="screen" charset="utf-8" />
 		
 	</head>
 	<body>
 	<h1 id="head">艺术品定制网站后台管理系统</h1>
 	
 	<ul id="navigation">
-			<li><a href="ChiefEditor-CheckPendingList.html">待审核列表</a></li>
-			<!--<li><a href="ChifeEditor-CheckAdsList.html">待审核广告</a></li>-->
-			<li><span class="active">我的审核记录</span></li>
+			<li><a href="editArtNews">我要写稿</a></li>
+			<li><a href="getAllCommittedArtNewsByEditor">提交记录</a></li>
+			<li><span class="active">草稿箱</span></li>
 		</ul>
 			<div id="content" class="container_16 clearfix">
 				
 				<div class="grid_16">
 					<form action="" method="post">
 					<p>
-						<input name="searchbykey" type="text" placeholder="输入关键字进行查找" style="width:300px; height:25px"/>
-						<input type="submit" value="查找"/>
+						<input name="searchbykey" type="text" placeholder="输入关键字进行查找" style="width:300px; height:30px"/>
+						<input type="submit" value="查找" />
 					</p>
 					</form>
 				</div>
@@ -50,23 +40,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<tr>
 								<th>题目</th>
 								<th>软文类型</th>
-								<th>作者</th>
-								<th>审核时间</th>
 								<th>状态</th>
-								<th>操作</th>
+								<th>上次修改时间</th>
+								<th colspan="2" width="20%">操作</th>
 							</tr>
 						</thead>
-						<!--jsp分页;查看艺术资讯-->
-						<tbody id="htable">
-							<c:forEach items='${ CheckedAdvList }' var="result">
-
+						
+						<tbody  id="dtable">
+							<c:forEach items='${ draftList }' var="draft">							
 							<tr class="alt">
-								<td>${result.title}</td>
-								<td>${result.type}</td>
-								<td>${result.author}</td>
-								<td>${result.checktime}</td>
-								<td>${result.status}</td>
-								<td><a href="#" class="edit">查看</a></td>
+								<td>${draft.title}</td>
+								<td>${draft.type}</td>
+								<td>${draft.state}</td>
+								<td>${draft.editTime}</td>
+								<td><a href="getArtNewsAllDetailByArtNewsId?artNewsId=${draft.id }" class="edit">编辑</a></td>
+								<td><a class="delete" href="javascript:void(0)" onclick="if(window.confirm('确定删除该草稿吗？')) 
+    this.href='deleteArtNewsById?artNewsId=${draft.id}'">删除</a></td>
 							</tr>
 							</c:forEach>
 						</tbody>
@@ -91,7 +80,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 	</body>
 	<script>
-	var theTable = document.getElementById("htable");    
+	var theTable = document.getElementById("dtable");    
 	var totalPage = document.getElementById("spanTotalPage");    
 	var pageNum = document.getElementById("spanPageNum");    
    

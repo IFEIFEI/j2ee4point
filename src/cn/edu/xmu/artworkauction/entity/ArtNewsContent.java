@@ -30,9 +30,13 @@ public class ArtNewsContent {
 	private String content;
 	
 	@OneToOne(mappedBy="artNewsContent")
-	@JoinColumn(name="artNews_id")
 	private ArtNews artNews;
 	
+	public ArtNewsContent(String content) {
+		//this.artNews=artNews;
+		this.content=content;
+	}
+	public ArtNewsContent() {}
 	public Integer getId() {
 		return id;
 	}

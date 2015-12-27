@@ -13,7 +13,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
@@ -22,6 +26,14 @@ import org.hibernate.annotations.DynamicUpdate;
 @DynamicInsert
 @DynamicUpdate
 @Table(name="tb_dateAndPosition")
+@NamedQueries(
+		{
+			@NamedQuery(name="@HQL_DeleteArtNewsById",
+			query="from ArtNews dp where dp.id=:id"),
+			@NamedQuery(name="@HQL_GetDateAndPositionListByArtNews",
+			query="from DateAndPosition dp where dp.artNews=:artNews")
+		}
+		)
 public class DateAndPosition {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,6 +41,7 @@ public class DateAndPosition {
 	private Integer id;
 
 	@Column
+	@Temporal(TemporalType.DATE)
 	private Date publishDate;
 	
 	@Column
@@ -37,9 +50,19 @@ public class DateAndPosition {
 	@Column
 	private String columnID;
 	
-	@ManyToOne(targetEntity=ArtNews.class,cascade = {CascadeType.ALL})
-	@JoinColumn(name="artNews_id",nullable=false)
+	@Column
+	private Integer priority;
+	
+	@ManyToOne(targetEntity=ArtNews.class,cascade = {CascadeType.ALL},optional=true)
+	@JoinColumn(name="artNews_id")
 	private ArtNews artNews;
+	public DateAndPosition() {}
+	public DateAndPosition(Date publishDate,String position,String columnID,String priority) {
+		this.publishDate=publishDate;
+		this.position=position;
+		this.columnID=columnID;
+		this.priority=Integer.parseInt(priority);
+	}
 	public Integer getId() {
 		return id;
 	}
@@ -78,4 +101,11 @@ public class DateAndPosition {
 	public void setArtNews(ArtNews artNews) {
 		this.artNews=artNews;
 	}
+	public Integer getPriority() {
+		return priority;
+	}
+	public void setPriority(Integer priority) {
+		this.priority = priority;
+	}
+	
 }

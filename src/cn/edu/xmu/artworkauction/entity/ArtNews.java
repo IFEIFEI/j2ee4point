@@ -25,6 +25,7 @@ import org.hibernate.annotations.DynamicUpdate;
 import cn.edu.xmu.artworkauction.utils.Constants;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -44,27 +45,27 @@ import java.util.List;
 			query = "from ArtNews a where a.type=?"),
 			@NamedQuery(name = "@HQL_GetArtNewsByTitle", 
 			query = "from ArtNews a where a.title=?"),
-			@NamedQuery(name = "@HQL_GetAllArtNews", 
-			query = "from ArtNews"),
 			@NamedQuery(name="@HQL_GetArtNewsById",
-			query="from ArtNews a where a.id=?"),
+			query="from ArtNews a where a.id=:id"),
 			@NamedQuery(name="@HQL_GetArtNewsByState",
-			query="from ArtNews a where a.state=?"),
+			query="from ArtNews a where a.state=:state"),
 			@NamedQuery(name="@HQL_GetArtNewsByChiefEditor",
-			query="from ArtNews a where a.chiefEditor=?"),
+			query="from ArtNews a where a.chiefEditor=:chiefEditor"),
 			@NamedQuery(name="@HQL_GetArtNewsByEditor",
 			query="from ArtNews a where a.editor=?"),
 			@NamedQuery(name="@HQL_GetAllDraftByEditor",
-			query = "from ArtNews a Where a.editor=:editor"),
-			@NamedQuery(name="@HQl_GetArtNewsById",
-			query="from ArtNews a where a.id=?"),
+			query = "from ArtNews a Where a.editor=:editor and a.state=:state"),
 			@NamedQuery(name="@HQL_GetAllApprovedArtNewsByEditor",
-			query = "from ArtNews a where a.editor=:ediitor and a.state=:state"),
+			query = "from ArtNews a where a.editor=:editor and a.state=:state"),
 			@NamedQuery(name="@HQL_GetAllDisApprovedArtNewsByEditor",
-			query = "from ArtNews a where a.editor=:ediitor and a.state=:state"),
+			query = "from ArtNews a where a.editor=:editor and a.state=:state"),
 			@NamedQuery(name="@HQL_GetTodayArtNews",
 			query="select a from DateAndPosition dp inner join dp.artNews a where dp.publishDate "
-					+ "between :startTime and :endTime and dp.columnID=:columnId order by cast(dp.position as integer) asc"),
+					+ "=:Today and dp.columnID=:columnId and a.state=:state and a.type=:type order by priority asc"),
+			@NamedQuery(name="@HQL_GetArtNewsDetailById",
+			query="from ArtNews a where a.id=:id"),
+			@NamedQuery(name="@HQL_GetAllCommittedArtNewsByEditor",
+			query="from ArtNews a where a.editor=:editor and a.state !=:state")
 		})
 public class ArtNews implements java.io.Serializable 
 {
@@ -85,29 +86,29 @@ public class ArtNews implements java.io.Serializable
 	private String type;
 	
 	@Column
-	@Temporal(value=TemporalType.TIME)
+	@Temporal(TemporalType.DATE)
 	private Date createTime;
 	
 	@Column
-	@Temporal(value=TemporalType.TIME)
+	@Temporal(TemporalType.DATE)
 	private Date editTime;
 	
     @Column
     private String state;
 	    
-	@ManyToOne(targetEntity=Editor.class, cascade = {CascadeType.ALL})
+	@ManyToOne(targetEntity=Editor.class)
 	@JoinColumn(name="editor_id")
 	private Editor editor;
 	
-	@ManyToOne(targetEntity=ChiefEditor.class, cascade = {CascadeType.ALL})
+	@ManyToOne(targetEntity=ChiefEditor.class)
 	@JoinColumn(name="chiefEditor_id")
 	private ChiefEditor chiefEditor;
 	
-	@OneToMany(mappedBy = "artNews", targetEntity = DateAndPosition.class,
-            cascade = CascadeType.ALL)
-    private List<DateAndPosition> dateAndPositions;
+	@OneToMany(mappedBy = "artNews", targetEntity = DateAndPosition.class,cascade={CascadeType.REMOVE})
+    private List<DateAndPosition> dateAndPositions;//=new ArrayList<DateAndPosition>();
 	
 	@OneToOne(targetEntity=ArtNewsContent.class, cascade = {CascadeType.ALL},fetch=FetchType.LAZY)
+	@JoinColumn(name="artNewsContent_id")
 	private ArtNewsContent artNewsContent;
 	
 	@Column
@@ -116,16 +117,17 @@ public class ArtNews implements java.io.Serializable
 	@Column 
 	private String imageURL;
 	public ArtNews(String title,Date createTime,Date editTime,String state,Editor editor,
-			String type,ArtNewsContent artNewsContent,String summary,String imageURL)
+			String type,String summary,String imageURL)
     {
 		setTitle(title);
 		setCreateTime(createTime);
 		setEditTime(editTime);
 		setEditor(editor);
 		setType(type);
-		setArtNewsContent(artNewsContent);
+		//setArtNewsContent(artNewsContent);
 		setSummary(summary);
 		setImageURL(imageURL);
+		//setDateAndPositions(dateAndPositionList);
 	}
 
 	public ArtNews(){}	
@@ -218,5 +220,24 @@ public class ArtNews implements java.io.Serializable
 
 	public void setImageURL(String imageURL) {
 		this.imageURL = imageURL;
+	}
+	
+	/**
+	 * the method is a static method which is aimed to mix the artNews and the advertisement
+	 * @param artNews
+	 * @param ads
+	 * @return mixedArtNewsList 
+	 */
+	public static List<ArtNews> mixArtNewsAndAdvertisement(List<ArtNews> artNews,List<ArtNews> ads) {
+		List<ArtNews> mixedArtNewsList=new ArrayList<ArtNews>();
+		int k=1;
+		for(int i=1;i<=artNews.size();i++) {
+			mixedArtNewsList.add(artNews.get(i-1));
+			if(i%5==0) {
+				mixedArtNewsList.add(ads.get(k-1));
+				k++;
+			}
+		}
+		return mixedArtNewsList;
 	}
 }

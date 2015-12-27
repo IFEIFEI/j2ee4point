@@ -1,6 +1,24 @@
+.news
+{
+    width: 86%;
+    margin-right: 7%;
+    margin-left: 7%;
+    margin-bottom: 60px;
+}
+
+@media only screen and (max-width:700px) {
+	.news
+    {
+    	float: left;
+        width: 100%;
+        margin-right: 0;
+        margin-left: 0;
+    }
+}
+
 .daohang
 {
-    margin-top: 40px;
+    margin-top: 80px;
     margin-bottom: 60px;
 }
 
@@ -14,8 +32,11 @@
 .daohang .kind-of-news{
 	font-size: 16px;
 	float: right;
-	margin-right: 10px;
+	margin-right: 7%;
+	border: 1px;	
 }
+
+
 
 .daohang .kind-of-news ul{
 	list-style:none;
@@ -26,6 +47,13 @@
 	float: left;
 	margin-right: 5px;
 	background-color: #f3f3ec;
+	border: 1px;
+	box-shadow: 1px 4px 3px #b0b0b0;
+	width: 60px;
+}
+
+.daohang .kind-of-news li a:hover {
+	color:#b0b0b0;
 }
 
 .daohang .kind-of-news li.active-li
@@ -33,14 +61,46 @@
 	background-color: #24324b;
 	color:  #ffffff;
 	font-weight: bolder;
+	box-shadow: 1px 4px 3px #b0b0b0;
+}
+
+@media only screen and (max-width:700px) {
+	.daohang{
+        width: 100%;
+        float: left;
+        margin-top: 40px;
+        margin-bottom: 20px;
+	}
 }
 
 @media only screen and (max-width:700px) {
 	.daohang .kind-of-news{
-    font-size: 12px;
-    float: right;
+        width: 100%;
+        float: left;
+	}
 }
+
+
+@media only screen and (max-width:700px) {
+	.daohang .kind-of-news li{
+		font-size: 16px;
+		width: 70px;
+        float: left;
+        margin-left: 0;
+        box-shadow: 0px 0px 0px #b0b0b0;
+	}
 }
+
+@media only screen and (max-width:700px) {
+	.daohang .kind-of-news li.active-li
+    {
+	background-color: #24324b;
+	color:  #ffffff;
+	font-weight: bolder;
+	box-shadow: 0px 0px 0px #b0b0b0;
+    }
+}
+
 
 
 @media only screen and (max-width:700px) {
@@ -50,7 +110,7 @@
     margin-left: 20px;
     margin-right: 20px;
     float: left;
-}
+   }
 }
 
 
@@ -60,13 +120,18 @@
 	width: 100%;
 	height: 200px;
 	display: inline-block;
-	margin-top: 10px;
-	margin-bottom: 10px;
+	/*margin-top: 10px;
+	margin-bottom: 10px;*/
+	position:relative;
+	border-color: #ffffff;
+	border:0.1px;
+	margin: 0;
 }
 
 @media only screen and (max-width:700px) {
 	.newsblock{
 		height: 120px;
+		/*margin-bottom: 1px;*/
 	}
 }
 
@@ -93,6 +158,16 @@
   }
 }
 
+@media only screen and (max-width:480px){
+	.newsblock .thumb img{
+	float: left;
+	width: 120px;
+	height: 90px;
+	margin-top: 1px;
+	margin-bottom: 1px;
+  }
+}
+
 @media only screen and (max-width:600px){
 	.newsblock{
 		width: 100%;
@@ -100,12 +175,15 @@
 	}
 }
 
+
+
 .newsblock .text{
 	width: cal(60%-20px);
-	height: cal(100%-20px);
+	height: 100%;
 	float: left;
 	margin: 10px;
 	vertical-align: left;
+	
 }
 
 .newsblock .text h4{
@@ -117,6 +195,13 @@
 	font-size: 14px;
 	margin: 0;
 }
+
+.newsblock .text p{
+	font-size: 14px;
+	margin: 0;
+}
+
+
 
 @media only screen and (max-width:700px) {
     .newsblock .text h4{
@@ -132,6 +217,13 @@
 }
 }
 
+@media only screen and (max-width:700px) {
+    .newsblock .text p {
+	font-size: 12px;
+	margin: 0;
+}
+}
+
 /*==================================================*/
 .container{
     height: 430px;
@@ -139,7 +231,9 @@
 }
 
 .unslider {
-    overflow: auto
+    overflow: auto;
+    height:350px;
+    position: relative;
 }
 
 @media only screen and (max-width:700px) {
@@ -191,12 +285,15 @@
     list-style: none;
     margin: 0;
     padding: 0;
+    left: 0;
+    top: 0;
+    right: 0;
     border: none
 }
 
 .unslider-arrow {
     position: absolute;
-    left: 20px;
+    left: 0;
     z-index: 2;
     cursor: pointer
 }
@@ -209,21 +306,23 @@
     
 
 	.demo img {
-		width: 700px;
+		width: 100%;
 		height: 350px;
 	}
+
 
 	@media only screen and (max-width:700px) {
 	    .demo img {
 		width: 100%;
-		height: 200px;
+		height: 300px;
+		
 	    }
     }
 
     @media only screen and (max-width:400px) {
 	    .demo img {
 		width: 100%;
-		height: 168px;
+		height: 270px;
 	    }
     }
 
@@ -256,8 +355,8 @@
 
 	.demo .unslider-arrow {
 		display: block;
-		width: 32px;
-		height: 32px;
+		width: 0;
+		height: 0;
 
 		top: 50%;
 		right: -50px;
@@ -296,19 +395,19 @@
 		color: #666;
 		text-align: center;
 		text-shadow: none;
-		box-shadow: 0 4px 6px rgba(0,0,0,.1);
+		box-shadow: 0 4px 6px #ffffff;
 	}
 
 	@media only screen and (max-width:400px) {
 		.demo > div {
 		position: relative;
-		padding: 0;
+		padding: 0 0 0 0;
 		margin:0;
 		background: #fff;
 		color: #666;
 		text-align: center;
 		text-shadow: none;
-		box-shadow: 0 4px 6px rgba(0,0,0,.1);
+		box-shadow: 0 0 6px #ffffff;
 	    }
 	}
 

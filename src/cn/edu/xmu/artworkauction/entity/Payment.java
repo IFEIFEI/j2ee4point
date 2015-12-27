@@ -8,5 +8,5 @@ package cn.edu.xmu.artworkauction.entity;
  *
  */
 public class Payment {
-
+	
 }

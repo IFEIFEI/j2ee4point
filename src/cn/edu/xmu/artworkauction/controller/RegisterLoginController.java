@@ -3,7 +3,6 @@
  */
 package cn.edu.xmu.artworkauction.controller;
 
-import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -12,8 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
-import cn.edu.xmu.artworkauction.entity.ArtNews;
 import cn.edu.xmu.artworkauction.entity.User;
 import cn.edu.xmu.artworkauction.service.SecureService;
 
@@ -47,18 +44,13 @@ public class RegisterLoginController {
 		String password=request.getParameter("password");
 		User user=secureService.userLoginByUserName(userName, password);
 		ModelAndView modelAndView;
-		if(user.getUserType().equals("chiefEditor"))
-		{
-			request.getSession().setAttribute("chiefEditor", user);
-			modelAndView=new ModelAndView();
-			modelAndView.setViewName("redirect:/getCheckPendingList");
-			return modelAndView;
-		}
-		else //这部分返回采编
-		{
+		request.getSession().setAttribute("user", user);
+		if(user.getUserType().equals("user"))
+			modelAndView=new ModelAndView("index");
+		else if(user.getUserType().equals("editor"))
 			modelAndView =new ModelAndView("Editor/editArtNews");
-			request.getSession().setAttribute("user", user);
-			return modelAndView;
-		}
+		else
+			modelAndView =new ModelAndView("forward:getCheckPendingList");
+		return modelAndView;
 	}
 }

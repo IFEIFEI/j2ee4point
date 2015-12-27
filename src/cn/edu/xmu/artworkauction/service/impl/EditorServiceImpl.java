@@ -1,7 +1,11 @@
 package cn.edu.xmu.artworkauction.service.impl;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
@@ -16,14 +20,16 @@ import cn.edu.xmu.artworkauction.dao.EditorDAO;
 
 import org.springframework.transaction.annotation.Transactional;
 import cn.edu.xmu.artworkauction.entity.ArtNews;
+import cn.edu.xmu.artworkauction.entity.ArtNewsContent;
+import cn.edu.xmu.artworkauction.entity.DateAndPosition;
 import cn.edu.xmu.artworkauction.entity.Editor;
 import cn.edu.xmu.artworkauction.service.EditorService;
 import cn.edu.xmu.artworkauction.utils.Constants;
 
 /**
- * EditorServiceImpl
- * @author  Dany ifeifei@stu.xmu.edu.cn
- * Modified By XiaWenSheng 12/13
+ * 
+ * @author  Dany ifeifei@stu.xmu.edu.cn</br>
+ * Modified By XiaWenSheng 12/26
  */
 @Transactional
 @Service("editorService")
@@ -40,27 +46,79 @@ public class EditorServiceImpl implements EditorService
 		this.editorDAO=editorDAO;
 	}
 	@Override
-	public ArtNews saveDraft(String title,String content,Date createTime,Date editTime,String state,Editor editor ,String type)
+	public ArtNews saveDraft(String title,String content,Date createTime,Date editTime,String state,Editor editor ,
+			String type,String startTime,String endTime,String imageURL,String summary,String order,String columnID,String position)
 	{
-		return null;//editorDAO.saveDraft(new ArtNews(title,content,createTime,editTime,state,editor,type));
+		ArtNewsContent artNewsContent=new ArtNewsContent();
+		artNewsContent.setContent(content);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");  
+	    try {
+			Date startDate = sdf.parse(startTime);
+			Date endDate = sdf.parse(endTime);
+			if(startDate.after(endDate)) {
+				Date cal=startDate;
+	            startDate=endDate;
+	            endDate=cal;
+			}
+			long sl=startDate.getTime();
+	        long el=endDate.getTime();       
+	        long ei=el-sl;           
+	        int interval= (int)(ei/(1000*60*60*24));
+	        List<DateAndPosition> dateAndPositionList=new ArrayList<DateAndPosition>();
+	        ArtNews artNews=new ArtNews(title, createTime, editTime, state, editor,
+	    			 type, summary, imageURL);
+	        for(int i=0;i<interval;i++) {
+	        	startDate.setDate(startDate.getDate()+i);
+	        	Date startDate1=new Date(startDate.getYear(),startDate.getMonth(),startDate.getDate());
+	        	DateAndPosition dateAndPosition=new DateAndPosition(
+	        			startDate1,position,columnID,order);
+	        	dateAndPositionList.add(dateAndPosition);
+	         }
+	        return editorDAO.saveDraft(artNews, artNewsContent,dateAndPositionList);
+	       
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;  
 	}
 	@Override
-	public ArtNews submitDraft(String title, String article, Date createTime, Date editTime, String state,
-			Editor editor,String type) {
-		return null;//editorDAO.submitDraft(new ArtNews(title,article,createTime,editTime,state,editor,type));
+	public ArtNews submitDraft(String title,String content,Date createTime,Date editTime,String state,Editor editor ,
+			String type,String startTime,String endTime,String imageURL,String summary,String order,String columnID,String position) {
+		ArtNewsContent artNewsContent=new ArtNewsContent();
+		artNewsContent.setContent(content);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");  
+	    try {
+			Date startDate = sdf.parse(startTime);
+			Date endDate = sdf.parse(endTime);
+			if(startDate.after(endDate)) {
+				Date cal=startDate;
+	            startDate=endDate;
+	            endDate=cal;
+			}
+			long sl=startDate.getTime();
+	        long el=endDate.getTime();       
+	        long ei=el-sl;           
+	        int interval= (int)(ei/(1000*60*60*24));
+	        List<DateAndPosition> dateAndPositionList=new ArrayList<DateAndPosition>();
+	        ArtNews artNews=new ArtNews(title, createTime, editTime, state, editor,
+	    			 type, summary, imageURL);
+	        for(int i=0;i<interval;i++) {
+	        	startDate.setDate(startDate.getDate()+i);
+	        	Date startDate1=new Date(startDate.getYear(),startDate.getMonth(),startDate.getDate());
+	        	DateAndPosition dateAndPosition=new DateAndPosition(
+	        			startDate1,position,columnID,order);
+	        	dateAndPositionList.add(dateAndPosition);
+	         }
+	        return editorDAO.submitDraft(artNews, artNewsContent,dateAndPositionList);
+	       
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;  
 	}
-	/*
-	@Override
-	public List<ArtNews> getDraft(Editor editor) 
-	{
-		List<ArtNews> draftlist=artNewsDAO
-				.getUnCheckedArtNews()
-				.stream()
-				.filter(e->e.getEditor().getId()==editor.getId())
-				.collect(Collectors.toList());
-		return draftlist;
-	}
-	*/
+
 	public List<ArtNews> getAllDraftByEditor(Editor editor) {
 		return editorDAO.getAllDraftByEditor(editor);
 	}
@@ -74,5 +132,19 @@ public class EditorServiceImpl implements EditorService
 		// TODO Auto-generated method stub
 		return editorDAO.getAllDisApprovedArtNewsByEditor(editor);
 	}
-	
+	@Override
+	public List<ArtNews> getAllCommittedArtNewsByEditor(Editor editor) {
+		// TODO Auto-generated method stub
+		return editorDAO.getAllCommittedArtNewsByEditor(editor);
+	}
+	@Override
+	public Map getArtNewsAllDetailById(String artNewsId) {
+		// TODO Auto-generated method stub
+		return editorDAO.getArtNewsAllDetailById(artNewsId);
+	}
+	@Override
+	public void updateDraft(ArtNews artNews, String title, String type, String summary, String content, String state) {
+		// TODO Auto-generated method stub
+		 editorDAO.updateDraft(artNews,title,type,summary,content,state);
+	}	
 }

@@ -17,16 +17,24 @@ import cn.edu.xmu.artworkauction.dao.ChiefEditorDAO;
 import cn.edu.xmu.artworkauction.entity.ArtNews;
 import cn.edu.xmu.artworkauction.entity.ChiefEditor;
 import cn.edu.xmu.artworkauction.service.ChiefEditorService;
+import cn.edu.xmu.artworkauction.utils.Constants;
 @Transactional
 @Service("chiefEditorService")
 public class ChiefEditorServiceImpl implements ChiefEditorService
 {
+	private ChiefEditorDAO chiefEditorDAO;
+	@Resource(name="chiefEditorDAO")
+	public void setChiefEditorDAO(ChiefEditorDAO chiefEditorDAO)
+	{
+		this.chiefEditorDAO=chiefEditorDAO;
+	}
 	private ArtNewsDAO artNewsDAO;
 	@Resource(name="artNewsDAO")
 	public void setArtNewsDAO(ArtNewsDAO artNewsDAO)
 	{
 		this.artNewsDAO=artNewsDAO;
 	}
+	/*
 	@Override
 	public List<ArtNews> getUncheckedArtNews()
 	{
@@ -62,5 +70,26 @@ public class ChiefEditorServiceImpl implements ChiefEditorService
 	public List<ArtNews> getMyCheckedHistory(ChiefEditor chiefEditor) 
 	{
 		return artNewsDAO.getHistoryArtNewsByChiefEditor(chiefEditor);
+	}
+	*/
+	@Override
+	public void approveArtNews(ArtNews artNews, String title, String type, String summary, String content) {
+		// TODO Auto-generated method stub
+		artNews.setState(Constants.APPROVED);
+		artNews.setSummary(summary);
+		artNews.setType(type);
+		artNews.setTitle(title);
+		chiefEditorDAO.approveArtNews(artNews);
+	}
+	@Override
+	public void disapproveArtNews(ArtNews artNews) {
+		// TODO Auto-generated method stub
+		artNews.setState(Constants.DISAPPROVED);
+		chiefEditorDAO.disapproveArtNews(artNews);
+	}
+	@Override
+	public List<ArtNews> getArtNewsByChiefEditor(ChiefEditor chiefEditor) {
+		// TODO Auto-generated method stub
+		return chiefEditorDAO.getArtNewsByChiefEditor(chiefEditor);
 	}
 }

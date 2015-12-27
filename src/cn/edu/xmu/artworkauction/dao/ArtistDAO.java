@@ -11,5 +11,5 @@ import cn.edu.xmu.artworkauction.entity.User;
  *
  */
 public interface ArtistDAO {
-	public Artist toBeArtist(User user,String IDNumber);
+	public Artist applyToBeArtist(User user,String IDNumber);
 }
