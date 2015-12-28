@@ -203,6 +203,14 @@ public class ArtistDAOImpl implements ArtistDAO{
 				.uniqueResult();
 	}
 
+	@Override
+	public List<Artist> getAllArtist() 
+	{
+		return (List<Artist>)sessionFactory.getCurrentSession()
+				.getNamedQuery("@HQL_getAllArtist")
+				.list();
+	}
+
 	
 	
 }

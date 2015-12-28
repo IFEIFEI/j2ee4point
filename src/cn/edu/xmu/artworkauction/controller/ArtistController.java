@@ -57,6 +57,8 @@ public class ArtistController {
 	@Resource
 	private ArtworkService artworkService;
 
+	private List<Artist> allArtistList;
+	
 	@RequestMapping("/artistUpdateInfo")
 	public ModelAndView artistUpdateInfo(HttpServletRequest request,HttpServletResponse response){
 		
@@ -159,8 +161,10 @@ public class ArtistController {
 	@RequestMapping("/artistGetAllOrder")
 	public ModelAndView artistGetAllOrder(HttpServletRequest request,Model model){
 		User user=(User)request.getSession().getAttribute("user");
+		System.out.println(user.getUserName());
 		List<Order> orderList=orderService.findAllOrderByUser(user);
 		request.getSession().setAttribute("orderList", orderList);
+		System.out.println(orderList.get(0).getOrderDate());
 		ModelAndView modelAndView =new ModelAndView("artistRecord");
 		return modelAndView;
 	}
@@ -288,4 +292,33 @@ public class ArtistController {
 		root.put("state", "0");
 		return root.toString();
 	}
+	
+	@RequestMapping("/getArtist")
+	public ModelAndView getArtist(HttpServletRequest request,Model model)
+	{
+		if(allArtistList==null)
+		{
+			List<Artist> aList=artistService.getAllArtist();
+			allArtistList=aList;
+			request.getSession().setAttribute("allArtistList", aList);
+		}
+		ModelAndView modelAndView=new ModelAndView("artists");
+		return modelAndView;
+	}
+	
+	@RequestMapping("/singleArtist")
+	public ModelAndView getSingleArtist(HttpServletRequest request,Model model)
+	{
+		String artistId=request.getParameter("id");
+		Artist singleArtist=allArtistList.stream()
+				.filter(a->a.getId()==Integer.parseInt(artistId))
+				.collect(Collectors.toList())
+				.get(0);
+		List<Artwork> singleArtistArtworkList=artistService.getArtistArtworks(singleArtist);
+		request.getSession().setAttribute("singleArtist", singleArtist);
+		request.getSession().setAttribute("singleArtistArtworkList", singleArtistArtworkList);
+		ModelAndView modelAndView=new ModelAndView("singleArtist");
+		return modelAndView;
+	}
+	
 }

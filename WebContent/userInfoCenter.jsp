@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <!--[if IE 8]>    <html class="ie8" lang="en"> <![endif]-->
 <!--[if gt IE 8]><!--><html lang="en-US" ><!--<![endif]-->
 
@@ -9,7 +9,7 @@
 
     <meta charset="UTF-8" />
 
-    <title>艺术家</title>
+    <title>艺术家个人中心</title>
 
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -29,16 +29,6 @@ img.emoji {
   vertical-align: -0.1em !important;
   background: none !important;
   padding: 0 !important;
-}
-
-.container
-{
-  padding-bottom: 50px;
-}
-
-/*====================================================*/
-.artistInformation{
-
 }
 
 .artistTouxiang{
@@ -89,18 +79,21 @@ img.emoji {
 
 @media only screen and (max-width:600px) {
     .artistTouxiang img{
-  margin-left:15%;
-  margin-right:15%; 
+  width: 130px;
+  height: 130px;
+  border-radius:130px;
+  margin-left: 0;
+  margin-bottom: 30px;
   }
 }
 
 @media only screen and (max-width:600px) {
   .artistText{
-    margin-top:40px;
-    width: 70%;
+    margin-top:0;
+    width: calc(100% - 140px);
     float: left;
-    margin-left: 15%;
-    margin-right: 15%;
+    margin-left: 10px;
+    margin-right: 0;
     text-align: center;
   }
 }
@@ -108,6 +101,13 @@ img.emoji {
 @media only screen and (max-width:600px) {
   .artistText h1 h2 h3 h4{
     text-align: center;
+  }
+}
+
+@media only screen and (max-width:600px) {
+  .artistText h1 h2 h3 h4{
+    padding-left: 20px;
+    font-size: 16px;
   }
 }
 
@@ -130,6 +130,13 @@ img.emoji {
 
 .container #tabs0{
   margin-bottom: 20px;
+  margin-top: 60px;
+}
+
+@media only screen and (max-width:600px) {
+  .container #tabs0{
+  margin-top: 0;
+ }
 }
 
 .container #tabs0 hr{
@@ -140,9 +147,138 @@ img.emoji {
 
 /*====================================================*/
 .menu0{ margin-left: 0;}
-.menu0 li { display:block; float: left; width:80px; text-align: center; cursor:pointer; background: #FFFFff; margin-bottom: 0;} 
+.menu0 li { display:block; float: left; width:16%; text-align: center; cursor:pointer; background: #FFFFff; margin-bottom: 0;} 
 .menu0 li.hover { background: #dfdfdf; } 
-/*====================================================*/
+
+@media only screen and (max-width:600px) {
+  .menu0 li {
+    font-size: 12px;
+  }
+}
+
+
+.auction{
+  display: inline-block;
+    width: 100%;
+    margin-bottom: 60px;
+}
+
+@media only screen and (max-width:700px){
+  .auction{
+  margin-bottom: 20px;
+}
+}
+
+.auction .auctionItem{
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.auctionItem ul{
+  width: 100%;
+  list-style:none;
+} 
+
+.auctionItem ul li{
+  float: left;
+  height: 50px;
+  margin-right: 20px;
+}
+
+
+@media only screen and (max-width:700px) {
+  .auctionItem ul li{
+  float: left;
+  height: 30px;
+  margin-right: 10px;
+   }
+}
+
+
+.auctionItem #artistName{
+  width: calc(25% - 20px);
+  margin-left: 0;
+}
+
+@media only screen and (max-width:700px) {
+  .auctionItem #artistName{
+  width: calc(45% - 100px);
+}
+}
+
+.auctionItem #artistName p{
+  text-align:left;
+}
+
+@media only screen and (max-width:700px) {
+  .auctionItem #artistName p{
+  font-size: 12px;
+}
+}
+
+.auctionItem #artworkName{
+  width: calc(40% - 20px);
+}
+
+@media only screen and (max-width:700px) {
+  .auctionItem #artworkName{
+  width: calc(45% - 40px);
+}
+}
+
+
+.auctionItem #artworkName p{
+  text-align:left;
+}
+
+@media only screen and (max-width:700px) {
+  .auctionItem #artworkName p{
+  font-size: 12px;
+}
+}
+
+.auctionItem #artworkPrice{
+  width: calc(10% - 20px);
+}
+
+.auctionItem #artworkPrice p{
+  text-align:left;
+}
+
+@media only screen and (max-width:700px) {
+  .auctionItem #artworkPrice {
+  width: 40px;
+}
+}
+
+@media only screen and (max-width:700px) {
+  .auctionItem #artworkPrice p{
+  font-size: 12px;
+}
+}
+
+.auctionItem #artworkState{
+  width: calc(25% - 20px);
+}
+
+.auctionItem #artworkState p{
+  text-align:left;
+}
+
+@media only screen and (max-width:700px){
+  .auctionItem #artworkState{
+  width: 80px;
+  font-size: 12px;
+}
+}
+
+@media only screen and (max-width:700px){
+  .auctionItem #artworkState p{
+  font-size: 12px;
+}
+}
+
 
 </style>
 
@@ -152,6 +288,7 @@ img.emoji {
 <script type='text/javascript' src='http://cdn.lamingtondrive.com/wp-content/themes/lamingtondrive/js/min/init.min.js?ver=4.3.1'></script>
 
 <link rel='stylesheet' id='style-css'  href='css/style.css' type='text/css' media='all' />
+
   </head>
 
   <body>
@@ -161,7 +298,7 @@ img.emoji {
       <div class="container clearfix">
 
         <div id="logo">
-          <a href="index.jsp">
+          <a href="/">
 <svg width="98px" height="98px" viewBox="0 0 98 98" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <defs></defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
@@ -176,13 +313,14 @@ img.emoji {
         <nav class="clearfix">
           <div class="menu-menu-1-container">
           <ul id="menu-menu-1" class="menu">
-                            <li id="menu-item-50" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-50"><a href="index.jsp">首页</a></li>
-                            <li id="menu-item-98" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-98"><a href="artworks.jsp">艺术品</a></li>
+                            <li id="menu-item-50" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-50"><a href="index.html">首页</a></li>
+                            <li id="menu-item-98" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-98"><a href="artwork.html">艺术品</a></li>
+                            <li id="menu-item-98" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-98"><a href="">艺术家</a></li>
                             <li id="menu-item-52" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-52"><a href="">艺术定制</a></li>
                             <li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="">拍卖</a></li>
                             <li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="">商城</a></li>
-                            <li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="info_show.jsp">艺术资讯</a></li>
-                            <li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="login.jsp">登录</a></li>
+                            <li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="">艺术资讯</a></li>
+                            <li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617">您好,XXX</li>
                     </ul>
                     </div>        
                 </nav>
@@ -195,13 +333,14 @@ img.emoji {
     <div id="mobile_menu">
       <div class="menu-menu-1-container">
       <ul id="menu-menu-2" class="menu">
-              <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-50"><a href="index.jsp">首页</a></li>
-                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-98"><a href="artworks.jsp">艺术品</a></li>
+              <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-50"><a href="index.html">首页</a></li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-98"><a href="artwork.html">艺术品</a></li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-98"><a href="">艺术家</a></li>
                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-52"><a href="">艺术定制</a></li>
                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="">拍卖</a></li>
                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="">商城</a></li>
-                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="info_show.jsp">艺术资讯</a></li>
-                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="login.jsp">登录</a></li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="">艺术资讯</a></li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="">您好,XXX</a></li>
             </ul>
             </div>      
             <div class="hamburger">
@@ -219,68 +358,65 @@ img.emoji {
                     <img src="images/user/huangjingzheTouxiang.jpg">
                  </div>
                  <div class="artistText"> 
-                    <h1>${singleArtist.realName }</h1>
-                    <h2>${singleArtist.birthday },${singleArtist.country }</h2>
-                    <h3>${singleArtist.description}</h3>
-                    <h4>${singleArtist.education }</h4>       
+                    <h1>XXX</h1>           
                  </div>
             </div> 
-          
         </div>
 
         <div class="container">
           <div id="tabs0"> 
             <ul class="menu0" id="menu0"> 
-              <li class="hover" ><a href="" onclick="setTab(0,0)">全部</a></li> 
-              <li><a href="" onclick="setTab(0,1)">油画</a></li>  
-            </ul> 
+              <li><a href="userCenter.html" >个人信息</a></li> 
+              <li class="hover" ><a href="userInfoCenter.html">信息中心</a></li> 
+              <li><a href="userAddress.html">地址管理</a></li>   
+              <li><a href="userRecord.html">购买记录</a></li>
             <hr />
           </div>
-          
-          <div class="paixu">
-              <h4>排序：</h4>
-              <div class="paixu-box"><a href="">上市时间</a></div>
-              <div class="paixu-box"><a href="">更新时间</a></div>
-              <div class="paixu-box"><a href="">价格</a></div>
-           </div>
         </div>
         <!--此处放tab  艺术品的分类-->
         <!--排序方式（上市时间 更新世家）-->
         
+        <div class="container">
+              <div class="auction">
+  
+                  <div class="auctionItem">
+                      <ul>
+                          <li id="artistName"><p>艺术家</p></li>
+                          <li id="artworkName"><p>艺术品名称</p></li>
+                          <li id="artworkPrice"><p>状态</p></li>
+                          <li id="artworkState"><p>操作</p></li>
+                      </ul>
+                  </div>
+
+                  <div class="auctionItem">
+                      <ul>
+                          <li id="artistName"><p>黄京哲</p></li>
+                          <li id="artworkName"><p>XXXXXXXXXXXXX</p></li>
+                          <li id="artworkPrice"><p>待付款</p></li>
+                          <li id="artworkState"><p><a href="">付款</a></p></li>
+                      </ul>
+                  </div>
+
+                  <div class="auctionItem">
+                      <ul>
+                          <li id="artistName"><p>黄京哲</p></li>
+                          <li id="artworkName"><p>XXXXXXXXXXXXX</p></li>
+                          <li id="artworkPrice"><p>进行中</p></li>
+                          <li id="artworkState"><p><a href="">查看</a></p></li>
+                      </ul>
+                  </div>
+
+                  <div class="auctionItem">
+                      <ul>
+                          <li id="artistName"><p>黄京哲</p></li>
+                          <li id="artworkName"><p>XXXXXXXXXXXXX</p></li>
+                          <li id="artworkPrice"><p>进行中</p></li>
+                          <li id="artworkState"><p><a href="">查看</a></p></li>
+                      </ul>
+                  </div>
+
+              </div>
             
-        <div id="show_area" class="clearfix">
-
-          <div class="container clearfix">
-
-              <a href="" class="past_show clearfix">
-              <div class="thumb" style="background-image: url('images/user/artwork1.jpg'); opacity:;"></div>
-            <div class="text">
-              <h4>黄京哲</h4>
-              <h3 style="color:#3e4251;">星夜4<br />
-</h3>
-            </div>
-             </a>
-
-             <a href="" class="past_show clearfix">
-              <div class="thumb" style="background-image: url('images/user/artwork2.jpg'); opacity:;"></div>
-            <div class="text">
-              <h4>黄京哲</h4>
-              <h3 style="color:#3e4251;">归歌13<br />
-</h3>
-            </div>
-             </a>
-
-			<c:forEach items='${ singleArtistArtworkList }' var="artwork" varStatus="status">
-					<a href="singleArtwork?id=${ artwork.id}" class="past_show clearfix" id='${ artwork.id}'>
-						<div class="thumb" style="background-image: url('images/user/${ artwork.imageUrl }'); opacity:;"></div>
-						<div class="text">
-							<h4>${ artwork.name }</h4>
-								<h3 style="color:#3e4251;">${ artwork.artistName} <br /></h3>
-						</div>
-					</a>								
-			</c:forEach>
-
-            </div>
         </div>  
       
 
@@ -310,17 +446,6 @@ img.emoji {
       </div>
     </div>
   </section>
-
-<script>
-function setTab(m,n){ 
-var tli=document.getElementById("menu"+m).getElementsByTagName("li"); 
-for(i=0;i<tli.length;i++){ 
-tli[i].className=i==n?"hover":""; 
-} 
-} 
-</script>
-
-
 <script type='text/javascript' src='js/user/plugins.min.js'></script>
 <script type='text/javascript' src='js/user/scripts.min.js'></script>
   </body>

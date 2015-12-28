@@ -494,7 +494,7 @@ img.emoji {
 						<div id="artist_list">
 							<div class="clearfix">
 								<h3><i class="fa fa-shopping-cart"></i>艺术家</h3>
-								<a href="" class="button">查看全部艺术家<i class="fa fa-external-link-square"></i></a>
+								<a href="getArtist" class="button">查看全部艺术家<i class="fa fa-external-link-square"></i></a>
 							</div>
 							<div id="list_box" class="clearfix">
 						    <!--此处要链接具体艺术家主页-->

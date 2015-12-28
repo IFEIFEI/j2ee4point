@@ -245,7 +245,12 @@ img.emoji {
 
                                 <!--此处是艺术品的状态 商城/拍卖/仅作展示-->
 							    <div class="desc">
-							        <p class="p1">商城售卖</p>
+							    	<c:if test="${singleArtwork.inventory==0}">
+							    		<p class="p1">已停止售卖</p>
+	                        		</c:if>
+							        <c:if test="${singleArtwork.inventory!=0}">
+							    		<p class="p1">商城售卖/${singleArtwork.inventory}可选</p>
+	                        		</c:if>
 							    </div>
 			
 			                    <div class="clearfix">
@@ -256,13 +261,14 @@ img.emoji {
                                 
                                 <!--此处是尚待修改的加入购物车js-->
                                 <!--此处的链接是使用的方法-->
+                                <c:if test="${singleArtwork.inventory!=0}">
 								<a class="add_to_cart" href="addOneOrderRecord"
 							onclick="var f = document.createElement('form'); f.style.display = 'none'; this.parentNode.appendChild(f);
 								f.method = 'POST'; f.action = this.href; var v = document.createElement('input'); v.setAttribute('type', 'hidden');
 								v.setAttribute('name', 'id'); v.setAttribute('value', 3632712772);
 								f.appendChild(v); var r = document.createElement('input'); r.setAttribute('type', 'hidden');
 								r.setAttribute('name', 'return_to'); r.setAttribute('value', 'back'); f.appendChild(r);
-								f.submit(); return false;"><i class="fa fa-shopping-cart"></i>加入购物车</a>
+								f.submit(); return false;"><i class="fa fa-shopping-cart"></i>加入购物车</a></c:if>
 			                    </div>
                             </div>
                     </div>

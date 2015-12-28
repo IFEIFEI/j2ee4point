@@ -125,7 +125,7 @@ img.emoji {
               <li><a href="artistGetAllArtwork">正在售卖</a></li> 
               <li><a href="artistArtworkUpload.jsp">上传作品</a></li>
               <li><a href="artistGetAddress">地址管理</a></li>   
-              <li><a href="artistRecord.jsp">购买记录</a></li>  
+              <li><a href="artistGetAllOrder">购买记录</a></li>  
             </ul> 
             <hr />
           </div>

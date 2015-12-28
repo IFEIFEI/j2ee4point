@@ -3,6 +3,9 @@
  */
 package cn.edu.xmu.artworkauction.service;
 import cn.edu.xmu.artworkauction.entity.Artist;
+
+import java.util.List;
+
 import cn.edu.xmu.artworkauction.entity.Address;
 import cn.edu.xmu.artworkauction.entity.Artwork;
 /**
@@ -16,4 +19,6 @@ public interface ArtistService {
 	public Artist updateArtistAddress(Artist artist,Address address);
 	public Artist addArtwork(Artist artist,Artwork artwork);
 	public boolean deleteOneArtwork(String artworkId);
+	public List<Artist> getAllArtist();
+	public List<Artwork> getArtistArtworks(Artist artist);
 }

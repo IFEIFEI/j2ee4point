@@ -191,12 +191,16 @@ public class ArtWorkController
 	public String windUpAnAccount(HttpServletRequest request)
 	{
 		User user=(User)request.getSession().getAttribute("user");
+		System.out.println(user.getUserName());
 		artworkServiceImpl.addNewOrder(shopList,user);
 		shopList=null;
 		request.getSession().setAttribute("shopCar", null);
 		JSONObject root=new JSONObject();
 		root.put("state", "1");
+		if(user.getUserType().equals("user"))
 		root.put("url", "userCenter");
+		else
+			root.put("url", "artistCenter");
 		return root.toString();
 	}
 	
@@ -204,5 +208,11 @@ public class ArtWorkController
 	public ModelAndView userCenter(HttpServletRequest request)
 	{
 		return new ModelAndView("userCenter");
+	}
+	
+	@RequestMapping("artistCenter")
+	public ModelAndView artistCenter(HttpServletRequest request)
+	{
+		return new ModelAndView("artistCenter");
 	}
 }

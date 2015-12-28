@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+        <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <!--[if IE 8]>    <html class="ie8" lang="en"> <![endif]-->
 <!--[if gt IE 8]><!--><html lang="en-US" ><!--<![endif]-->
@@ -251,6 +252,15 @@ fieldset.search {
 							<h3 style="color:#3e4251;">Banksy <br /></h3>
 						</div>
 					   </a>
+
+						<c:forEach items='${ allArtistList }' var="artist" varStatus="status">
+							<a href="singleArtist?id=${artist.id }" class="past_show clearfix">
+							<div class="thumb" style="background-image: url('images/user/${artist.imageURL}'); opacity:;"></div>
+							<div class="text">
+								<h3 style="color:#3e4251;">${artist.realName }<br /></h3>
+							</div>
+						   </a>						
+						</c:forEach>
 
 				    </div>
 				</div>	
