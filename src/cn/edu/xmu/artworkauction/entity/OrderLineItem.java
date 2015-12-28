@@ -27,7 +27,7 @@ public class OrderLineItem {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
 	private Integer id;
-	@ManyToOne(targetEntity=User.class, cascade = {CascadeType.ALL})
+	@ManyToOne(targetEntity=Artwork.class, cascade = {CascadeType.ALL})
 	@JoinColumn(name="artwork_id")
 	private Artwork artwork;
 	@Column

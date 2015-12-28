@@ -76,7 +76,7 @@ private SessionFactory sessionFactory;
 	public List<Order> findAllOrderByUser(User user) {
 		Query query=sessionFactory.getCurrentSession().getNamedQuery("@HQL_getOrderByUser");
 		query.setEntity(0, user);
-		List<Order> orderList=(List<Order>)query.uniqueResult();
+		List<Order> orderList=(List<Order>)query.list();
 		return orderList;
 	}
 

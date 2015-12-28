@@ -126,25 +126,29 @@ img.emoji {
               <li><a href="artistGetAllArtwork">正在售卖</a></li> 
               <li><a href="artistArtworkUpload.jsp">上传作品</a></li>
               <li><a href="artistGetAddress">地址管理</a></li>   
-              <li class="hover" ><a href="artistRecord.jsp">购买记录</a></li>  
+              <li class="hover" ><a href="artistGetAllOrder">购买记录</a></li>  
             </ul> 
-            <hr />
+           <hr />
           </div>
+          
         </div>
+         
         <!--此处放tab  艺术品的分类-->
         <!--排序方式（上市时间 更新世家）-->
         
         <div class="container">
               <div class="cartItem">
-               <c:forEach items="${orderList}" var="order" varStatus="status">
+               <c:forEach items="${orderList}" var="order">
+                  <c:forEach items="${order.orderLineItems}" var="orderLineItem">
                   <div class="cartArtwork">
                       <ul>
-                          <li><img src="images/user/${order.orderLineItem.artwork.imageUrl }"/></li>
-                          <li id="artistName"><p>${order.orderLineItem.artwork.name }</p></li>
-                          <li id="artworkPrice" class="artworkPrice"><p class="price">${order.orderLineItem.transactionPrice}</p></li>
+                          <li><img src="images/user/${orderLineItem.artwork.imageUrl }"/></li>
+                          <li id="artistName"><p>${orderLineItem.artwork.name }</p></li>
+                          <li id="artworkPrice" class="artworkPrice"><p class="price">${orderLineItem.transactionPrice}</p></li>
                           <li id="artworkEdit"><a href="">${order.orderDate }</a></li>
                       </ul>
                   </div>
+                  </c:forEach>
               </c:forEach>
               </div>
         </div>  

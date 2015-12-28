@@ -37,6 +37,9 @@ import javax.persistence.TemporalType;
 			query = "from Artist u where u.email=?"),
 			@NamedQuery(name = "@HQL_getArtistById", 
 			query = "from Artist u where u.id=?"),
+			@NamedQuery(name="@HQL_getAllArtist",
+			query="from Artist")
+			
 		})
 public class Artist extends User{
 	/**

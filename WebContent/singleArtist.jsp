@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <!--[if IE 8]>    <html class="ie8" lang="en"> <![endif]-->
 <!--[if gt IE 8]><!--><html lang="en-US" ><!--<![endif]-->
@@ -218,10 +219,10 @@ img.emoji {
                     <img src="images/user/huangjingzheTouxiang.jpg">
                  </div>
                  <div class="artistText"> 
-                    <h1>黄京哲</h1>
-                    <h2>1972，中国</h2>
-                    <h3>吉林，中国</h3>
-                    <h4>中央美院</h4>       
+                    <h1>${singleArtist.realName }</h1>
+                    <h2>${singleArtist.birthday },${singleArtist.country }</h2>
+                    <h3>${singleArtist.description}</h3>
+                    <h4>${singleArtist.education }</h4>       
                  </div>
             </div> 
           
@@ -269,6 +270,15 @@ img.emoji {
             </div>
              </a>
 
+			<c:forEach items='${ singleArtistArtworkList }' var="artwork" varStatus="status">
+					<a href="singleArtwork?id=${ artwork.id}" class="past_show clearfix" id='${ artwork.id}'>
+						<div class="thumb" style="background-image: url('images/user/${ artwork.imageUrl }'); opacity:;"></div>
+						<div class="text">
+							<h4>${ artwork.name }</h4>
+								<h3 style="color:#3e4251;">${ artwork.artistName} <br /></h3>
+						</div>
+					</a>								
+			</c:forEach>
 
             </div>
         </div>  

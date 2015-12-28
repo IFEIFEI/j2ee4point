@@ -3,11 +3,15 @@
  */
 package cn.edu.xmu.artworkauction.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.sun.org.apache.bcel.internal.generic.RETURN;
 
 import cn.edu.xmu.artworkauction.dao.ArtistDAO;
 import cn.edu.xmu.artworkauction.dao.ArtworkDAO;
@@ -24,12 +28,7 @@ import cn.edu.xmu.artworkauction.service.ArtistService;
 @Service("artistService")
 public class ArtistServiceImpl implements ArtistService{
 	
-    private SessionFactory sessionFactory;
-	@Resource(name="sessionFactory")
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
-	
+ 
 	private ArtistDAO artistDAO;
 
 	@Resource(name="artistDAO")
@@ -71,6 +70,18 @@ public class ArtistServiceImpl implements ArtistService{
 	public boolean deleteOneArtwork(String artworkId) {
 		artworkDAO.artworkSaleOff(artworkId);
 		return true;
+	}
+
+	@Override
+	public List<Artist> getAllArtist() 
+	{
+		return artistDAO.getAllArtist();
+	}
+
+	@Override
+	public List<Artwork> getArtistArtworks(Artist artist) 
+	{
+		return artworkDAO.getArtworkByArtist(artist);
 	}
 
 }
