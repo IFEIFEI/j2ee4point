@@ -163,9 +163,10 @@ public class ChiefEditorController
 		return modelAndView;
 	}
 	/**
-	 * The method 
+	 * The method getCheckPendingList is to get the unchecked artNews
+	 * from the database and return the checkpendingList page.
 	 * @param request
-	 * @return
+	 * @return modelAndView
 	 */
 	@RequestMapping("getCheckPendingList")
 	public ModelAndView getCheckPendingList(HttpServletRequest request) {
@@ -176,6 +177,12 @@ public class ChiefEditorController
 		return modelAndView;
 	}
 	
+	/**
+	 * The method getArtNewsByChiefEditor is to get all history record which
+	 * the chiefEditor has audited and return the auditArtNewsHistory page.
+	 * @param request
+	 * @return modelAndView
+	 */
 	@RequestMapping("getArtNewsByChiefEditor")
 	public ModelAndView getArtNewsByChiefEditor(HttpServletRequest request) {
 		ChiefEditor chiefEditor=(ChiefEditor)request.getSession().getAttribute("user");
@@ -183,5 +190,15 @@ public class ChiefEditorController
 		ModelAndView modelAndView=new ModelAndView("ChiefEditor/auditArtNewsHistoryList");
 		modelAndView.addObject("artNewsList",artNewsList);
 		return modelAndView;
+	}
+	
+	/**
+	 * The method chiefEditorIndex is aimed to return the chiefEditorIndex page.
+	 * @param request
+	 * @return modelAndView
+	 */
+	@RequestMapping("chiefEditorIndex")
+	public ModelAndView chiefEditorIndex(HttpServletRequest request) {
+		return new ModelAndView("ChiefEditor/chiefEditorIndex");
 	}
 }

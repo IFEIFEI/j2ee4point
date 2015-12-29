@@ -19,15 +19,23 @@ import cn.edu.xmu.artworkauction.entity.User;
 import cn.edu.xmu.artworkauction.service.SecureService;
 
 /**
+ * The class RegiserLoginController is to deal with 
+ * the user login ,register and logout and invokes the
+ * class {@link secureService}' method. 
  * @author XiaWenSheng
- *
  */
 @Controller
 public class RegisterLoginController {
 
 	@Resource
 	private SecureService secureService;
-	
+	/**
+	 * The method userRegister is to complete the user register and return the 
+	 * userCenter page. 
+	 * @param request
+	 * @param model
+	 * @return modelAndView
+	 */
 	@RequestMapping("/userRegister")
 	public ModelAndView userRegister(HttpServletRequest request,Model model){
 		String email=request.getParameter("email");
@@ -40,7 +48,12 @@ public class RegisterLoginController {
 		request.getSession().setAttribute("user", user);
 		return modelAndView;
 	}
-	
+	/**
+	 * The method userLoginByUserName is to complete the user login and return 
+	 * the corresponding page according the user's role.
+	 * @param request
+	 * @return modelAndView
+	 */
 	@RequestMapping ("/userLoginByUserName")
 	public ModelAndView userLoginByUserName(HttpServletRequest request)
 	{
@@ -52,10 +65,10 @@ public class RegisterLoginController {
 		switch (user.getUserType()) 
 		{
 		case "chiefEditor":
-			modelAndView =new ModelAndView("forward:getCheckPendingList");
+			modelAndView =new ModelAndView("forward:chiefEditorIndex");
 			break;
 		case "editor":
-			modelAndView =new ModelAndView("Editor/editArtNews");
+			modelAndView =new ModelAndView("forward:editorIndex");
 			break;
 		case "artist":
 			modelAndView =new ModelAndView("artistCenter");
@@ -66,6 +79,12 @@ public class RegisterLoginController {
 		return modelAndView;
 	}
 	
+	/**
+	 * The method artistRegister is to complete the artist register.
+	 * @param request
+	 * @param model
+	 * @return modelAndView
+	 */
 	@RequestMapping("/artistRegister")
 	public ModelAndView artistRegister(HttpServletRequest request,Model model){
 		String realName=request.getParameter("realname");
@@ -97,7 +116,6 @@ public class RegisterLoginController {
 		
 		
 		Artist artist=secureService.artistRegister(realName,IDNumber,userName,email,phoneNumber,password,country,education,description);
-		//返回页面
 		ModelAndView modelAndView=new ModelAndView("artistCenter");
 		model.addAttribute("user",artist);
 		request.getSession().setAttribute("user", artist);

@@ -11,8 +11,10 @@ import cn.edu.xmu.artworkauction.entity.ChiefEditor;
 import cn.edu.xmu.artworkauction.entity.DateAndPosition;
 
 /**
+ * The interface ChiefEditorDAO contains the methods 
+ * which are about the chiefEditor and is inherited by
+ * the class {@link ChiefEditorDAOImpl}.
  * @author XiaWenSheng 
- *
  */
 public interface ChiefEditorDAO {
 	public void approveArtNews(ArtNews artNews);

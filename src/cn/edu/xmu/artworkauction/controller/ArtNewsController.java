@@ -68,7 +68,7 @@ public class ArtNewsController {
 	public ModelAndView deleteArtNewDetailById(HttpServletRequest request) {
 		String artNewsId=request.getParameter("artNewsId");
 		artNewsDisplayService.deleteArtNewsById(artNewsId);
-		ModelAndView modelAndView=new ModelAndView("index");
+		ModelAndView modelAndView=new ModelAndView("forward:getAllDraftByEditor");
 		return modelAndView;
 	}
 }

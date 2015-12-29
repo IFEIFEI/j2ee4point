@@ -19,6 +19,8 @@ import cn.edu.xmu.artworkauction.entity.DateAndPosition;
 import cn.edu.xmu.artworkauction.utils.Constants;
 
 /**
+ * The class ChiefEditorDAOImpl implements the class {@link ChiefEditorDAO} 
+ * and contains the methods about the chiefEditor.
  * @author XiaWenSheng
  *
  */
@@ -31,18 +33,31 @@ public class ChiefEditorDAOImpl implements ChiefEditorDAO{
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
+	/**
+	 * The method approveArtNews is to approve the artNews.
+	 * @param artNews
+	 * @return
+	 */
 	@Override
 	public void approveArtNews(ArtNews artNews) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().merge(artNews);
 	}
 
+	/**
+	 * The method disapproveArtNews is to disapprove the artNews.
+	 * @param artNews
+	 */
 	@Override
 	public void disapproveArtNews(ArtNews artNews) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().merge(artNews);
 	}
 
+	/**
+	 * The method getUnderApprovalArtNews is to get the under approval artNews.
+	 * @return the list which element is artNews
+	 */
 	@Override
 	public List<ArtNews> getUnderApprovalArtNews() {
 		// TODO Auto-generated method stub
@@ -51,6 +66,11 @@ public class ChiefEditorDAOImpl implements ChiefEditorDAO{
 		return (List<ArtNews>)query.list();
 	}
 
+	/**
+	 * The method getArtNewsByChiefEditor is to get all the history record.
+	 * @param chiefEditor
+	 * @return list which element is artNews
+	 */
 	@Override
 	public List<ArtNews> getArtNewsByChiefEditor(ChiefEditor chiefEditor) {
 		return (List<ArtNews>) sessionFactory.getCurrentSession()

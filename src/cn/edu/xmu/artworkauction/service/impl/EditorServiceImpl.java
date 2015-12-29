@@ -146,5 +146,15 @@ public class EditorServiceImpl implements EditorService
 	public void updateDraft(ArtNews artNews, String title, String type, String summary, String content, String state) {
 		// TODO Auto-generated method stub
 		 editorDAO.updateDraft(artNews,title,type,summary,content,state);
+	}
+	@Override
+	public List<ArtNews> getAllUnderApprovalArtNewsByEditor(Editor editor) {
+		// TODO Auto-generated method stub
+		return editorDAO.getAllUnderApprovalArtNewsByEditor(editor);
+	}
+	@Override
+	public List<ArtNews> getAllCheckedArtNewsByEditor(Editor editor) {
+		// TODO Auto-generated method stub
+		return editorDAO.getAllCheckedArtNewsByEditor(editor);
 	}	
 }

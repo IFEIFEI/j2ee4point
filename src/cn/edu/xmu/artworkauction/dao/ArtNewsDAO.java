@@ -11,8 +11,10 @@ import cn.edu.xmu.artworkauction.entity.ChiefEditor;
 import cn.edu.xmu.artworkauction.entity.Editor;
 
 /**
- *  ArtNewsDAO 
- *  @author Dany ifeifei@stu.xmu.edu.cn
+ *  The interface ArtNewsDAO  contains the method's about
+ *  the artNews and is inherited by the {@link ArtNewDAOImpl}.
+ *  @author Dany ifeifei@stu.xmu.edu.cn<br>
+ *  @version 2<br>
  *  Modified By XiaWenSheng 12/26
  */
 public interface ArtNewsDAO 
@@ -27,6 +29,5 @@ public interface ArtNewsDAO
 	public Map getArtNewsDetailById(String artNewsId);
 	public String deleteArtNewsById(String artNewsId);
 	public List<ArtNews> getArtNewsByState(String state);
-
 }
 

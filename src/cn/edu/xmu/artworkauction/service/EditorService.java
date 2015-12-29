@@ -24,4 +24,6 @@ public interface EditorService
 	public List<ArtNews> getAllCommittedArtNewsByEditor(Editor editor);
 	public Map getArtNewsAllDetailById(String artNewsId);
 	public void updateDraft(ArtNews artNews,String title,String type,String summary,String content,String state);
+	public List<ArtNews> getAllUnderApprovalArtNewsByEditor(Editor editor);
+	public List<ArtNews> getAllCheckedArtNewsByEditor(Editor editor);
 }

@@ -1,139 +1,228 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 	
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-	<head>
-		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-		<title>采编后台-新稿件</title>
-		<style type="text/css">
-			h1 {line-height: 300%}
-		</style>
-		<link rel="stylesheet" href="css/admin/960.css" type="text/css" media="screen" charset="utf-8" />
-		<link rel="stylesheet" href="css/admin/template.css" type="text/css" media="screen" charset="utf-8" />
-		<link rel="stylesheet" href="css/admin/colour.css" type="text/css" media="screen" charset="utf-8" />
-		
-		
-	</head>
-	<body>
-	<h1 id="head">艺术品定制网站后台管理系统</h1>
-	
-	<ul id="navigation">
-			<li><span class="active">我要写稿</span></li>
-			<li><a href="getAllCommittedArtNewsByEditor">提交记录</a></li>
-			<li><a href="getAllDraftByEditor">草稿箱</a></li>
-	</ul>
-	<div id="content" name="content" class="container_16 clearfix">
-		<div class="grid_16">
-					<h2>编写新文章</h2>
-		</div>
-			
-		<form name="newArticle" id="draftform"  onsubmit="return validate_form(this)" method="post"  enctype="multipart/form-data">
-			<div>
-				<p>
-					&nbsp;&nbsp;&nbsp;&nbsp;文章类型<br/>&nbsp;&nbsp;
-					<input type="radio" name="Advertorialtype" id="Advertorialtype" checked="checked" value="ads"/>广告&nbsp;&nbsp;&nbsp;&nbsp;
-					<input type="radio" name="Advertorialtype" id="Advertorialtype" value="article" />资讯
-				</p>
-			</div>
-						
-			<div class="grid_5" name="startdate">
-				<p name="reg_testdate">
-				上线时间<br/>
-				  <!--  
-				<select name="SYYYY" id="SYYYY" onchange="SYYYYDD(this.value)" style="width:90px">
-    				<option value="">请选择 年</option>
-  				</select>
-  				<select name="SMM" id="SMM" onchange="SMMDD(this.value)" style="width:80px">
-    				<option value="">选择 月</option>
-  				</select>
-  				<select name="SDD" id="SDD" style="width:80px">
-    				<option value="">选择 日</option>
-  				</select>
-  				-->
-  				<input type="date" name="startDate"/>
-				<br />
-				</p>
-			</div>
-			
-			<div class="grid_5" name="enddate">
-				<p name="reg_testdate">
-				下线时间<br/>
-				<!--  
-				<select name="EYYYY" id="EYYYY" onchange="EYYYYDD(this.value)" style="width:90px">
-    				<option value="">请选择 年</option>
-  				</select>
-  				<select name="EMM" id="EMM" onchange="EMMDD(this.value)" style="width:80px">
-    				<option value="">选择 月</option>
-  				</select>
-  				<select name="EDD" id="EDD" style="width:80px">
-    				<option value="">选择 日</option>
-  				</select>
-  				-->
-  				<input type="date" name="endDate"/>
-				<br />
-				</p>
-			</div>
-			
-			<div class="grid_3" name="article_div1" id="article_div1">
-				<p>
-				所在栏目
-				<select id="article_type" name="columnID" style="width:140px">
-					<option>artist</option>
-					<option>artwork</option>
-					<option>show</option>
-					<option>other</option>
-				</select>
-				</p>
-			</div>
-			
-			<div class="grid_3" name="article_div2" id="article_div2">
-				<p>
-				资讯/广告顺序
-				<input type="text" id="article_pos" name="article_pos" placeholder="请输入数字" oninput="checkAticle_pos()" style="width:140px">
-				<lable><small id="err" style="color:red">&nbsp;</small></lable>
-				</p>
-			</div>
-			
-			<div class="grid_9">
-				<p>
-				<label>标题</label>
-				<input type="text" name="title" id="title" placeholder="your title..." style="width:460px; height:25px;"/>
-				<br/><br/>
-				<label>标题图片</label>
-				<!--
-				<a href="javascript:;" class="file">选择文件
-					<input type="file" name="thefile" id="doc" onchange="javascript:setImagePreview();"/> 
-				</a>
-				-->
-				<asp:Image ID="img_name" runat="server" />
-    			<input type="file" onchange="javascript:setImagePreview();" id="doc" name="thefile" style="width:460px; height:25px;"/>
-				</p>
-			</div>
-			
-			<div class="grid_7">
-				<p>
-				图片预览<br/>
-				<img id="preview" name="preview" src=""/>
-				<br/>
-				</p>
-			</div>
-			
-			<div class="grid_16">
-				<p>
-				<label>文章简介</label>
-				<textarea name="adv_dis" id="adv_dis" rows="4" style="resize:none">
-				</textarea>
-				<br/>
-				</p>
-			</div>
-			
-			<div class="grid_16">	
-			<p>
-				<label>内容</label>
-       		 	<!-- 加载编辑器的容器 
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>采编 - 编写新软文</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="style/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="style/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="style/dist/css/admin.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="style/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="editorIndex">艺术品订制网站后台管理系统</a>
+            </div>
+            <!-- /.navbar-header -->
+
+            <ul class="nav navbar-top-links navbar-right">
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="editorIndex"><i class="fa fa-user fa-fw"></i> ${user.userName}</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="userLogout"><i class="fa fa-sign-out fa-fw"></i> 登出</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+            <!-- /.navbar-top-links -->
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        
+                        <li>
+                            <a href="editorIndex"><i class="fa fa-user fa-fw"></i> 个人中心</a>
+                        </li>
+                        <li>
+                            <a href="editNewArticle"><i class="fa fa-edit fa-fw"></i> 新文章</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-list-alt fa-fw"></i> 我的提交记录<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="getAllUnderApprovalArtNewsByEditor">待审核列表</a>
+                                </li>
+                                <li>
+                                    <a href="getAllCheckedArtNewsByEditor">已审核列表</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="getAllDraftByEditor"><i class="fa fa-file-text fa-fw"></i> 草稿箱</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2 class="page-header">编写新文章</h2>
+                </div>
+            </div>
+          
+            <div class="row" id="edit_div">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            编辑软文
+                            <div class="pull-right">
+                                <button type="button" class="btn btn-default btn-xs" onclick="Preview()">
+                                   <i class="fa fa-file-o fa-fw"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            
+                            <form name="newArticle" id="draftform"  onsubmit="return validate_form(this)" method="post"  enctype="multipart/form-data">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label>文章类型</label><br/>
+                                            <label class="radio-inline">
+					                           <input type="radio" name="Advertorialtype" id="Advertorialtype" checked="checked" value="ads"/>广告
+                                            </label>
+                                            <label class="radio-inline">
+                                               <input type="radio" name="Advertorialtype" id="Advertorialtype" value="article" />资讯
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                       <div class="form-group" name="startdate">
+                                            <label>上线时间</label>
+                                            <!-- 
+                                            <select name="SYYYY" id="SYYYY" onchange="SYYYYDD(this.value)" class="form-control">
+    				                            <option value="">请选择 年</option>
+  				                            </select>
+                                            <select name="SMM" id="SMM" onchange="SMMDD(this.value)" class="form-control">
+    				                            <option value="">选择 月</option>
+  				                            </select>
+  				                            <select name="SDD" id="SDD" class="form-control">
+    				                            <option value="">选择 日</option>
+  				                            </select>
+  				                             -->
+  				                             <input type="date" name="startDate"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="form-group" name="enddate">
+                                            <label>下线时间</label>
+                                            <!--  
+                                            <select name="EYYYY" id="EYYYY" onchange="EYYYYDD(this.value)" class="form-control">
+    				                            <option value="">请选择 年</option>
+  				                            </select>
+                                            <select name="EMM" id="EMM" onchange="EMMDD(this.value)" class="form-control">
+    				                            <option value="">选择 月</option>
+  				                            </select>
+  				                            <select name="EDD" id="EDD" class="form-control">
+    				                            <option value="">选择 日</option>
+  				                            </select>
+  				                            -->
+  				                            <input type="date" name="endDate"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="form-group" name="article_div1" id="article_div1">
+                                            <label>所在栏目</label>
+                                            <select id="article_type" name="columnID" class="form-control">
+					                                <option>artist</option>
+					                                <option>artwork</option>
+					                                <option>show</option>
+					                                <option>other</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="form-group">
+                                            <label>资讯/广告顺序</label>
+                                            <input type="text" id="article_pos" name="article_pos" placeholder="请输入数字" oninput="checkAticle_pos()" class="form-control">
+                                            <lable><small id="err" style="color:red" class="pull-right"> </small></lable>
+                                        </div>
+                                    </div>
+                                </div>
+                                    
+                                <div class="row">    
+                                    <div class="col-lg-8">
+                                        <br/><br/>
+                                        <div class="form-group">
+                                            <label>软文标题</label>
+                                            <input type="text" name="title" id="title" class="form-control">
+                                        </div>
+         
+                                        <div class="form-group">
+                                            <label>文章简介</label>
+                                            <textarea name="adv_dis" id="adv_dis" class="form-control" rows="4"></textarea>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-lg-4">
+                                        <br/><br/>
+                                        <div class="form-group">
+                                            <label>标题图片</label>
+    			                            <input type="file" onchange="javascript:setImagePreview();" id="doc" name="thefile"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <img id="preview" name="preview" src=""/>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <label>软文内容</label>
+       		 	                        <!-- 加载编辑器的容器 
         		<script id="container" name="content" type="text/plain">
            
         		</script>
@@ -141,31 +230,158 @@
 				<script type="text/javascript" charset="utf-8" src="ueditor/ueditor.config.js"></script>
                 <script type="text/javascript" charset="utf-8" src="ueditor/ueditor.all.min.js"> </script>
                 <script type="text/javascript" charset="utf-8" src="ueditor/lang/zh-cn/zh-cn.js"></script>
-                <script id="ueditor"   name="ueditor" type="text/plain" style="width:950px;height:500px;"></script>
+                <script id="ueditor"   name="ueditor" type="text/plain" style="height:500px;"></script>
                 <script type="text/javascript">
-//实例化编辑器
-//建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+                //实例化编辑器
+                //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
                  var ue = UE.getEditor('ueditor');
                  </script>
-			</p>
-			</div>
-				
-			<div class="grid_16">
-			<p align="right">
-				<input type="submit" class="btn" style="width:100px;height:30px;" value="存入草稿箱" onclick="buttonsave()"/>
-				&nbsp;&nbsp;
-				<input type="submit" class="btn" style="width:100px;height:30px;" value="提交" onclick="buttonsubmit()"/>
-			</p>
-			</div>	
-			
-		</form>
-		</div>
-		
-		<div id="foot">
-					<a href="#">联系我们</a>
-		</div>
-	</body>
-	<script type="text/javascript">
+                                        <br/>
+                                        <p class="pull-right">
+                                            
+                                            <input type="submit" class="btn btn-outline btn-info" value="存入草稿箱" onclick="buttonsave()"/>
+				<input type="submit" class="btn btn-default btn-success" value="提交" onclick="buttonsubmit()"/>
+                                        </p>
+                                    </div>
+                                </div>  
+                            </form>
+                        </div>  
+                    </div>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            
+            <div class="row" id="preview_div" style="display:none">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            预览
+                            <div class="pull-right">
+                                <button type="button" class="btn btn-default btn-xs" onclick="BacktoEdit()">
+                                   <i class="fa fa-edit fa-fw"></i>返回编辑
+                                </button>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">  
+                                <div class="col-lg-12">
+					               <h2 id="ptitle" align="center">${Advertorial.title}</h2>
+				                </div>
+                            </div>
+                            
+                            <div class="row" style="margin: 10px 100px 10px 100px;">  
+                                <div class="col-lg-3">
+					               <p id="pauthor" align="center" style="font-size:14px">作者：${Advertorial.author}</p>
+				                </div>
+                                <div class="col-lg-3">
+					               <p align="center" id="ptype" style="font-size:14px">类型：${Advertorial.type}</p>
+				                </div>
+                                <div class="col-lg-3">
+					               <p align="center" small id="pcol" style="font-size:14px">栏目: ${Advertorial.col}</p>
+				                </div>
+                                <div class="col-lg-3">
+					               <p align="center" style="font-size:14px" id="ptime">时间: ${Advertorial.submitTime}</p>
+				                </div>
+                            </div>
+			                <div class="row">  
+                                <div class="col-lg-12">
+					               <p  align="center"><img id="pimg" src="" width="380px"/></p>
+				                </div>
+                            </div>
+				            <div class="row">
+                                <div class="col-lg-1">
+					               
+				                </div>
+                                <div class="col-lg-10">
+                                    <br/>
+					               <label style="font-size:16px;">摘要:</label>
+					               <p  id="pdis" style="text-indent: 2em; font-size:16px;">${Advertorial.dis}</p>
+				                </div>
+                                <div class="col-lg-1">
+					               
+				                </div>
+				            </div>
+                            <div class="row">
+                                <div class="col-lg-1">
+					               
+				                </div>
+                                <div class="col-lg-10">
+                                    <br/>
+					               <label style="font-size:16px;">正文:</label>
+					               <p id="pcontext" style="font-size:16px;">${Advertorial.context}</p>
+				                </div>
+                                <div class="col-lg-1">
+					               
+				                </div>
+				            </div>
+                        </div>  
+                    </div>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            
+        </div>
+        <!-- /#page-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="style/bower_components/jquery/dist/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="style/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="style/bower_components/metisMenu/dist/metisMenu.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="style/dist/js/admin.js"></script>
+
+</body>
+
+<script type="text/javascript">
+		function Preview(){
+            
+            document.getElementById("edit_div").style.display="none";
+      		document.getElementById("preview_div").style.display="";
+              
+            var title = document.getElementById("title").value;
+            document.getElementById("ptitle").innerHTML = title;
+            
+            document.getElementById("pauthor").innerHTML = "作者：Username";
+            if(document.getElementsByName("Advertorialtype")[0].checked){
+      			document.getElementById("ptype").innerHTML = "类型：广告";
+   			}else{
+     		  	document.getElementById("ptype").innerHTML = "类型：资讯";
+    		}
+            var art_options = document.getElementById("article_type").options;
+			for (i=0; i<art_options.length; i++){
+		        if (art_options[i].selected) 
+					var t=art_options[i].value;
+            }
+            document.getElementById("pcol").innerHTML = "栏目："+t;
+            var today=new Date(); 
+            var strDate=(today.getFullYear()+"/"+(today.getMonth()+1)+"/"+today.getDate()); 
+            document.getElementById("ptime").innerHTML = "时间："+strDate;
+            
+            var imgObjPreview=document.getElementById("preview");
+            document.getElementById("pimg").src = imgObjPreview.src;
+            
+            var d = document.getElementById("adv_dis").value;
+            document.getElementById("pdis").innerHTML = d;
+            
+            var c = document.getElementById("container").innerHTML.body;
+            document.getElementById("pcontext").innerHTML = c;
+            
+		}
+        function BacktoEdit(){
+      		document.getElementById("preview_div").style.display="none";
+      		document.getElementById("edit_div").style.display="";
+		}
+</script>
+    
+<script type="text/javascript">
 		function checkAticle_pos(){
 			var pos = document.getElementById("article_pos").value;
 			var patt = new RegExp("^[0-9]+$");
@@ -188,14 +404,53 @@
  		 	}
 		}
 
+        function timelessthan(y,m,d,sy,sm,sd)
+        {
+            sy = parseInt(sy);
+            sm = parseInt(sm);
+            sd = parseInt(sd);
+            y = parseInt(y);
+            m = parseInt(m);
+            d = parseInt(d);
+            if(sy<y) {return false;}
+            else if(sy==y){
+               if(sm<m){return false;}
+               else if(sm==m){
+                   if(sd<d){return false;}
+                   else{return true;}
+               }
+               else{return true;}
+            }
+            else{return true;}
+        }
+        
+        function validate_time()
+        {
+            var y = new Date().getFullYear();
+            var m = new Date().getMonth() + 1;
+            var d = new Date().getDate();
+            var sy = document.getElementById("SYYYY").value;
+		    var ey = document.getElementById("EYYYY").value;
+            var sm = document.getElementById("SMM").value;
+		    var em = document.getElementById("EMM").value;
+            var sd = document.getElementById("SDD").value;
+		    var ed = document.getElementById("EDD").value;   
+            if(sy=="请选择 年"||ey=="请选择 年"||sm=="选择 月"||em=="选择 月"||sd=="选择 日"||ed=="选择 日")
+            {return false;}
+           
+            if(timelessthan(y,m,d,sy,sm,sd)&&timelessthan(sy,sm,sd,ey,em,ed))
+            {return true;}
+            else{return false;}
+        }
+        
 		function validate_form(thisform)
 		{
-			if(document.getElementsByName("Advertorialtype")[0].checked)
-				return true;
 			with (thisform)
   			{
   				if (validate_required(article_pos,"有非法输入!")==false)
     				{article_pos.focus();return false}
+                if (validate_time()==false)
+                    {alert("上下线时间有误！");EYYYY.focus();return false}
   			}
 		}
 		function buttonsave()
@@ -210,6 +465,7 @@
 	document.getElementById("draftform").action="submitDraft";
 	document.getElementById("draftform").submit();
 	     }
+        
 	</script>
 	<script type="text/javascript">  
    		function YYYYMMDDstart()   
@@ -309,23 +565,6 @@
         	e.options.length = 1;   
    		}   
    </script>
-   <script type="text/javascript">
-    function checkPic() {
-            var picPath = document.getElementById("picPath").value;
-            var type = picPath.substring(picPath.lastIndexOf(".") + 1, picPath.length).toLowerCase();
-            if (type != "jpg" && type != "bmp" && type != "gif" && type != "png") {
-                alert("请上传正确的图片格式");
-                return false;
-            }
-            return true;
-        }
-        function showimg() {
-            if(checkPic()){
-            var img = document.getElementById("cardpic").value;
-            document.getElementById("img_name").src =img;
-        }
-        }
-  </script>
   
   <script type="text/javascript">
 	//下面用于图片上传预览功能

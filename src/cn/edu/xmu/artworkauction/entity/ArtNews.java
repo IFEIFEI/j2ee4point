@@ -30,8 +30,9 @@ import java.util.Date;
 import java.util.List;
 
 /**
- *  ArtNews
- *  @author Dany ifeifei@stu.xmu.edu.cn
+ *  The class ArtNews
+ *  @author Dany ifeifei@stu.xmu.edu.cn<br>
+ *  @version 2.0<br>
  *   Modified by XiaWenSheng  12/15
  */
 
@@ -65,7 +66,9 @@ import java.util.List;
 			@NamedQuery(name="@HQL_GetArtNewsDetailById",
 			query="from ArtNews a where a.id=:id"),
 			@NamedQuery(name="@HQL_GetAllCommittedArtNewsByEditor",
-			query="from ArtNews a where a.editor=:editor and a.state !=:state")
+			query="from ArtNews a where a.editor=:editor and a.state !=:state"),
+			@NamedQuery(name="@HQL_GetAllCheckedArtNewsListByEditor",
+			query="from ArtNews a where a.editor=:editor and a.state=:state1 or a.state=:state2"),
 		})
 public class ArtNews implements java.io.Serializable 
 {
@@ -92,10 +95,6 @@ public class ArtNews implements java.io.Serializable
 	@Column
 	@Temporal(TemporalType.DATE)
 	private Date editTime;
-	
-	@Column
-	@Temporal(value=TemporalType.TIME)
-	private Date checkTime;
 	
     @Column
     private String state;
@@ -170,17 +169,8 @@ public class ArtNews implements java.io.Serializable
 	public Date getEditTime() {
 		return this.editTime;
 	}
-	public void setEditTime(Date editTime)
-	{
-		this.checkTime=editTime;
-	}
-	
-	public Date getCheckTime() {
-		return this.checkTime;
-	}
-	public void setCheckTime(Date checkTime)
-	{
-		this.checkTime=checkTime;
+	public void setEditTime(Date editTime) {
+		this.editTime=editTime;
 	}
 	
 	public Editor getEditor() {
@@ -244,12 +234,16 @@ public class ArtNews implements java.io.Serializable
 	public static List<ArtNews> mixArtNewsAndAdvertisement(List<ArtNews> artNews,List<ArtNews> ads) {
 		List<ArtNews> mixedArtNewsList=new ArrayList<ArtNews>();
 		int k=1;
-		for(int i=1;i<=artNews.size();i++) {
+		int i=1;
+		for(i=1;i<=artNews.size();i++) {
 			mixedArtNewsList.add(artNews.get(i-1));
-			if(i%5==0) {
+			if(i%5==0&&ads.size()>=k) {
 				mixedArtNewsList.add(ads.get(k-1));
 				k++;
 			}
+		}
+		for(int m=k;m<=ads.size();m++) {
+			mixedArtNewsList.add(ads.get(m-1));
 		}
 		return mixedArtNewsList;
 	}

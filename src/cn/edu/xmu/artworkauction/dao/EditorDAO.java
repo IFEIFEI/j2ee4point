@@ -12,6 +12,8 @@ import cn.edu.xmu.artworkauction.entity.DateAndPosition;
 import cn.edu.xmu.artworkauction.entity.Editor;
 
 /**
+ * The interface EditorDAO contains the methods which are
+ * about the Editor and is inherited by the class {@link EditorDAO}.
  * @author XiaWenSheng
  *
  */
@@ -26,4 +28,6 @@ public interface EditorDAO {
 	public List<ArtNews> getAllCommittedArtNewsByEditor(Editor editor);
 	public Map getArtNewsAllDetailById(String artNewsId);
 	public void updateDraft(ArtNews artNews,String title,String type,String summary,String content,String state);
+	public List<ArtNews> getAllUnderApprovalArtNewsByEditor(Editor editor);
+	public List<ArtNews> getAllCheckedArtNewsByEditor(Editor editor); 
 }

@@ -112,7 +112,9 @@ img.emoji {
                         </ul>
                     </div>				
                 </nav>
-
+<nav class="clearfix">
+					<div class="menu-menu-1-container">
+						<ul id="menu-menu-1" class="menu">
 							<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-50"><a href="artistRegister.jsp">艺术家注册</a></li>
 	                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-98"><a href="">艺术家</a></li>
 	                		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-52"><a href="">艺术定制</a></li>
