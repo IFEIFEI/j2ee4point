@@ -26,6 +26,7 @@ import cn.edu.xmu.artworkauction.entity.User;
 import cn.edu.xmu.artworkauction.service.ArtNewsDisplayService;
 import cn.edu.xmu.artworkauction.service.EditorService;
 import cn.edu.xmu.artworkauction.utils.Constants;
+import cn.edu.xmu.artworkauction.utils.Login;
 
 /**
  * The class EditorController  is to receive the requests 
@@ -36,7 +37,6 @@ import cn.edu.xmu.artworkauction.utils.Constants;
  * @version 2.0<br>
  * Modified By XiaWenSheng 12/26
  */
-
 @Controller
 public class EditorController 
 {
@@ -50,6 +50,7 @@ public class EditorController
 	 * @param request
 	 * @return modelAndView
 	 */
+	@Login
 	@RequestMapping("/saveDraft")
 	public ModelAndView saveDraft(HttpServletRequest request)
 	{ 
@@ -101,6 +102,7 @@ public class EditorController
 	 * @param request
 	 * @return modelAndView
 	 */
+	@Login
 	@RequestMapping("/submitDraft")
 	public ModelAndView submitDraft(HttpServletRequest request) {
 		String title=request.getParameter("title");
@@ -152,6 +154,7 @@ public class EditorController
 	 * @param request
 	 * @return modelAndView
 	 */
+	@Login
 	@RequestMapping("getAllDraftByEditor")
 	public ModelAndView getAllDraftByEditor(HttpServletRequest request) {
 		Editor editor=(Editor)request.getSession().getAttribute("user");
@@ -167,6 +170,7 @@ public class EditorController
 	 * @param request
 	 * @return modelAndView
 	 */
+	@Login
 	@RequestMapping("getAllApprovedArtNewsByEditor")
 	public ModelAndView getAllApprovedArtNewsByEditor(HttpServletRequest request) {
 		Editor editor=(Editor)request.getSession().getAttribute("user");
@@ -182,6 +186,7 @@ public class EditorController
 	 * @param request
 	 * @return modelAndView
 	 */
+	@Login
 	@RequestMapping("getAllDisApprovedArtNewsByEditor")
 	public ModelAndView getAllDisApprovedArtNewsByEditor(HttpServletRequest request) {
 		Editor editor=(Editor)request.getSession().getAttribute("user");
@@ -196,6 +201,7 @@ public class EditorController
 	 * @param request
 	 * @return modelAndView
 	 */
+	@Login
 	@RequestMapping("getAllCommittedArtNewsByEditor")
 	public ModelAndView getAllCommittedArtNewsByEditor(HttpServletRequest request) {
 		Editor editor=(Editor)request.getSession().getAttribute("user");
@@ -211,6 +217,7 @@ public class EditorController
 	 * @param request
 	 * @return modelAndView
 	 */
+	@Login
 	@RequestMapping("getArtNewsAllDetailByArtNewsId")
 	public ModelAndView getArtNewsAllDetailByArtNewsId(HttpServletRequest request) {
 		String artNewsId=request.getParameter("artNewsId");
@@ -234,6 +241,7 @@ public class EditorController
 	 * @param request
 	 * @return modelAndView
 	 */
+	@Login
 	@RequestMapping("editArtNews")
 	public ModelAndView editArtNews(HttpServletRequest request) {
 		ModelAndView modelAndView =new ModelAndView("Editor/editArtNews");
@@ -245,6 +253,7 @@ public class EditorController
 	 * @param request
 	 * @return modelAndView
 	 */
+	@Login
 	@RequestMapping("updateDraft")
 	public ModelAndView updateDraft(HttpServletRequest request) {
 		String artNewsId=request.getParameter("artNewsId");
@@ -263,6 +272,7 @@ public class EditorController
 	 * @param request
 	 * @return modelAndView
 	 */
+	@Login
 	@RequestMapping("editorIndex")
 	public ModelAndView editorIndex(HttpServletRequest request) {
 		return new ModelAndView("Editor/editorIndex");
@@ -272,6 +282,7 @@ public class EditorController
 	 * @param request
 	 * @return modelAndView
 	 */
+	@Login
 	@RequestMapping("editNewArticle")
 	public ModelAndView editNewArticle(HttpServletRequest request) {
 		return new ModelAndView("Editor/editArtNews");
@@ -283,6 +294,7 @@ public class EditorController
 	 * @param request
 	 * @return modelAndView
 	 */
+	@Login
 	@RequestMapping("getAllUnderApprovalArtNewsByEditor")
 	public ModelAndView getAllUnderApprovalArtNewsByEditor(HttpServletRequest request) {
 		Editor editor=(Editor)request.getSession().getAttribute("user");
@@ -298,6 +310,7 @@ public class EditorController
 	 * @param request
 	 * @return modelAndView
 	 */
+	@Login
 	@RequestMapping("getAllCheckedArtNewsByEditor")
 	public ModelAndView getAllCheckedArtNewsByEditor(HttpServletRequest request) {
 		Editor editor=(Editor)request.getSession().getAttribute("user");
@@ -312,6 +325,7 @@ public class EditorController
 	 * @param request
 	 * @return modelAndView
 	 */
+	@Login
 	@RequestMapping("artNewsPreviewByArtNewsId")
 	public ModelAndView previewArtNews(HttpServletRequest request) {
 		String artNewsId=request.getParameter("artNewsId");

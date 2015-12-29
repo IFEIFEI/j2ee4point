@@ -21,8 +21,9 @@
 	<mvc:annotation-driven />
 	
 	<!-- 静态资源的访问 -->
-	<mvc:resources mapping="*" location="/"/>
-	
+	<mvc:interceptors> 
+          <bean class="cn.edu.xmu.artworkauction.interceptor.LoginAnnotationInterceptor"></bean>
+    </mvc:interceptors>
 	<!-- 定义视图解析器 -->	
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/"></property>

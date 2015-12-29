@@ -87,7 +87,7 @@
                             <a href="editorIndex"><i class="fa fa-user fa-fw"></i> 个人中心</a>
                         </li>
                         <li>
-                            <a href="editNewArtNews"><i class="fa fa-edit fa-fw"></i> 新文章</a>
+                            <a href="editNewArticle"><i class="fa fa-edit fa-fw"></i> 新文章</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-list-alt fa-fw"></i> 我的提交记录<span class="fa arrow"></span></a>

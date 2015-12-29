@@ -27,6 +27,7 @@ import cn.edu.xmu.artworkauction.service.ArtNewsDisplayService;
 import cn.edu.xmu.artworkauction.service.ChiefEditorService;
 import cn.edu.xmu.artworkauction.service.EditorService;
 import cn.edu.xmu.artworkauction.utils.Constants;
+import cn.edu.xmu.artworkauction.utils.Login;
 import javafx.scene.chart.PieChart.Data;
 
 /**
@@ -131,6 +132,7 @@ public class ChiefEditorController
 	 * @param request
 	 * @return modelAndView
 	 */
+	@Login
 	@RequestMapping("approveArtNews")
 	public ModelAndView approveArtNews(HttpServletRequest request) {
 		String artNewsId=request.getParameter("artNewsId");
@@ -152,6 +154,7 @@ public class ChiefEditorController
 	 * @param request
 	 * @return modelAndView
 	 */
+	@Login
 	@RequestMapping("disapproveArtNews")
 	public ModelAndView disapproveArtNews(HttpServletRequest request) {
 		String artNewsId=request.getParameter("artNewsId");
@@ -168,6 +171,7 @@ public class ChiefEditorController
 	 * @param request
 	 * @return modelAndView
 	 */
+	@Login
 	@RequestMapping("getCheckPendingList")
 	public ModelAndView getCheckPendingList(HttpServletRequest request) {
 		List<ArtNews> artNewsList=artNewsDisplayService.
@@ -183,6 +187,7 @@ public class ChiefEditorController
 	 * @param request
 	 * @return modelAndView
 	 */
+	@Login
 	@RequestMapping("getArtNewsByChiefEditor")
 	public ModelAndView getArtNewsByChiefEditor(HttpServletRequest request) {
 		ChiefEditor chiefEditor=(ChiefEditor)request.getSession().getAttribute("user");
@@ -197,6 +202,7 @@ public class ChiefEditorController
 	 * @param request
 	 * @return modelAndView
 	 */
+	@Login
 	@RequestMapping("chiefEditorIndex")
 	public ModelAndView chiefEditorIndex(HttpServletRequest request) {
 		return new ModelAndView("ChiefEditor/chiefEditorIndex");
